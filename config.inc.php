@@ -1,22 +1,21 @@
 <?php
 if(!defined("MP_VERSION")){
-	define('MP_VERSION', 'v0.01');
+	define('MP_VERSION', 'v0.02');
 	
 	//引入入口文件
 	define('__MP_SITE_ROOT__', dirname(__FILE__));
 }
-
 
 /* 系统配置 */
 $MPConfig =  array(
 	// 添加数据库配置信息
 	'DB_TYPE'   => 'mysql', // 数据库类型
 	'DB_HOST'   => '127.0.0.1', // 服务器地址
-	'DB_NAME'   => 'mpdeco', // 数据库名
+	'DB_NAME'   => 'yygcms', // 数据库名
 	'DB_USER'   => 'root', // 用户名
-	'DB_PWD'    => '123', // 密码
+	'DB_PWD'    => 'dai253685', // 密码
 	'DB_PORT'   => 3306, // 端口
-	'DB_PREFIX' => 'mp_', // 数据库表前缀
+	'DB_PREFIX' => 'yyg_', // 数据库表前缀
 	'DEFAULT_THEME'  => 'default',
 	'URL_MODEL' => 1, //PATHINFO设置为1，为兼容模式
     'TMPL_TEMPLATE_SUFFIX' => '.php',
@@ -53,4 +52,3 @@ $MPConfig =  array(
 		),
 );
 
-?>
