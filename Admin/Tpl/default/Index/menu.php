@@ -37,17 +37,17 @@ function saySorry(){
               </li>
             <li>
               <div class='items'>
-                <div class='fllct'><a href='<?php echo site_url("Content/index/type/index/")?>'  target='main'>趣味图片</a></div>
+                <div class='fllct'><a href='<?php echo site_url("Content/index/type/tupian/")?>'  target='main'>趣味图片</a></div>
               </div>
             </li>
                <li>
               <div class='items'>
-                <div class='fllct'><a href='<?php echo site_url("Content/index/type/dnews/")?>' target='main'>趣味段子</a></div>
+                <div class='fllct'><a href='<?php echo site_url("Content/index/type/duanzi/")?>' target='main'>趣味段子</a></div>
               </div>
                </li>
               <li>
               <div class='items'>
-                <div class='fllct'><a href='<?php echo site_url("Content/index/type/dcast/")?>' target='main'>趣味视频</a></div>
+                <div class='fllct'><a href='<?php echo site_url("Content/index/type/shipin/")?>' target='main'>趣味视频</a></div>
               </div>
                </li>
           </ul>
