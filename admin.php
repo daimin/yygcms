@@ -11,6 +11,6 @@
 	define('APP_PATH', './'.APP_NAME.'/');
 	
 	//网站前端目录
-	define('__MP_CORE_PATH__', __MP_SITE_ROOT__.'/Core/');
-	require __MP_CORE_PATH__.'ThinkPHP.php';
+	define('__YYG_CORE_PATH__', __MP_SITE_ROOT__.'/Core/');
+	require __YYG_CORE_PATH__.'ThinkPHP.php';
 ?>

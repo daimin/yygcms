@@ -11,8 +11,7 @@ error_reporting(E_ALL | E_STRICT);
 	define('APP_NAME','Site');
 	
 	define('APP_PATH', './'.APP_NAME.'/');
-	
 
-	define('__MP_CORE_PATH__', __MP_SITE_ROOT__.'/Core/');
-	require __MP_CORE_PATH__.'ThinkPHP.php';
+	define('__YYG_CORE_PATH__', __YYG_SITE_ROOT__.'/Core/');
+	require __YYG_CORE_PATH__.'ThinkPHP.php';
 ?>

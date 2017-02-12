@@ -28,13 +28,13 @@ class SysMgrAction extends BaseAction {
      */
     public function clearCache(){
         del_dir(TEMP_PATH);
-        del_dir(__MP_ADMIN_ROOT__."/Runtime/Temp/");
-        del_dir(__MP_SITE_DIR__."Runtime/Temp/");
+        del_dir(__YYG_ADMIN_ROOT__."/Runtime/Temp/");
+        del_dir(__YYG_SITE_ROOT__."Runtime/Temp/");
    
         del_dir(CACHE_PATH);
-        del_dir(__MP_SITE_DIR__."Runtime/Cache/");
+        del_dir(__YYG_SITE_ROOT__."Runtime/Cache/");
         del_dir(DATA_PATH.'_fields/');
-        del_dir(__MP_SITE_DIR__.'Runtime/Data/_fields/');
+        del_dir(__YYG_SITE_ROOT__.'Runtime/Data/_fields/');
         
         $this->redirect("Index/top");
     }
@@ -94,7 +94,8 @@ class SysMgrAction extends BaseAction {
 				$data .= "INSERT INTO `".$tab."` VALUES (";
 				$vals = array();
 				foreach($val as $v){
-					$vals[] = "'" . mysql_real_escape_string($v) . "'";
+                    //用PDO::quote替换mysql_real_escape_string(已经被废弃)
+					$vals[] = "'" . mysql_escape_mimic($v) . "'";
 				}
 				$data .= implode(', ', $vals) . ");\n"; 
 			}
@@ -114,11 +115,15 @@ class SysMgrAction extends BaseAction {
 
 	//写入文件
 	private function wFile($data){
-		$datadir = 'BackupData/';
+		$datadir = __YYG_SITE_ROOT__.'/BackupData/';
+        if(!file_exists($datadir)){
+            mkdir($datadir);
+        }
 		if(is_array($data)){
 			$i = 1;
 			foreach($data as $val){
-				$filename = $datadir . "mp_" . time() . "_part{$i}.sql"; //文件名
+				$filename = $datadir . "yyg_" . date("YmdHis") . "_part{$i}.sql"; //文件名
+
               
 				if(!$fp = @fopen($filename, "w+")){ 
 					echo "<font coloe='red'>提示：在打开文件时遇到错误！</font>"; 
@@ -134,8 +139,8 @@ class SysMgrAction extends BaseAction {
 			}
 		}
 		else{ //单独备份
-			$filename = $datadir . "mp_" . time() . ".sql";
-			if(!$fp = @fopen($filename, "w+")){ 
+			$filename = $datadir . "yyg_" . date("YmdHis") . ".sql";
+			if(!$fp = @fopen($filename, "w+")){
 				echo "<font coloe='red'提示：>在打开文件时遇到错误!</font>"; 
 				return false;
 			}

@@ -55,6 +55,7 @@ function del_dir($dir) {
         }
     }
 }
+
 /**
  * 替换系统换行符到网页换行符
  * @param unknown_type $str
@@ -62,6 +63,7 @@ function del_dir($dir) {
 function newLineReplace($str){
 	return str_replace(array("\n","\r\n"), "<br/>", $str);
 }
+
 /**
  * 替换网页换行符到系统换行符
  * @param unknown_type $str
@@ -643,3 +645,14 @@ function url($path, $prefix)
 	$path = (0 === strpos($path, './')) ? substr($path, 2) : $path;
 	return rtrim($prefix, '/') . '/' . str_replace('//', '/', ltrim($path, '/'));
 }
+
+function mysql_escape_mimic($inp) {
+    if(is_array($inp))
+        return array_map(__METHOD__, $inp);
+
+    if(!empty($inp) && is_string($inp)) {
+        return str_replace(array('\\', "\0", "\n", "\r", "'", '"', "\x1a"), array('\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z'), $inp);
+    }
+
+    return $inp;
+} 

@@ -1,9 +1,9 @@
 <?php
-if(!defined("MP_VERSION")){
-	define('MP_VERSION', 'v0.02');
+if(!defined("YYG_VERSION")){
+	define('YYG_VERSION', 'v0.02');
 	
 	//引入入口文件
-	define('__MP_SITE_ROOT__', dirname(__FILE__));
+	define('__YYG_SITE_ROOT__', dirname(__FILE__));
 }
 
 /* 系统配置 */

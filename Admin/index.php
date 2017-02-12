@@ -8,10 +8,10 @@
     
 	//引入入口文件
     
-    define('__MP_ADMIN_ROOT__', dirname(__FILE__));
+    define('__YYG_ADMIN_ROOT__', dirname(__FILE__));
 
     //网站前端目录
-    define('__MP_CORE_PATH__', __MP_ADMIN_ROOT__.'/../Core/');
+    define('__YYG_CORE_PATH__', __YYG_ADMIN_ROOT__.'/../Core/');
 
-    require __MP_CORE_PATH__.'ThinkPHP.php';
+    require __YYG_CORE_PATH__.'ThinkPHP.php';
 ?>
