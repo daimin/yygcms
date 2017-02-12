@@ -1,4 +1,6 @@
 <?php
+ini_set("display_errors", "On");
+error_reporting(E_ALL | E_STRICT);
 /*
  * 本系统使用Debug模式，非Debug莫名错误
  * Debug模式下也已开启缓存，见Conf下的debug.php中配置

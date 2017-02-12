@@ -1,6 +1,6 @@
 <?php
 //开启调试模式
-    define('MP_VERSION', 'v0.01');
+    define('MP_VERSION', 'v0.02');
 	define('APP_DEBUG', True);
 	define('APP_NAME','Admin');
     
