@@ -1,5 +1,0 @@
-var phpadsbanner = '';
-
-phpadsbanner += '<'+'a href=\'http://tc.ci123.com/adclick.php?bannerid=279&amp;zoneid=116&amp;source=&amp;dest=http%3A%2F%2Fgood.ci123.com%2Ftudou%2Flist.php%3Ftypes%3Dall\' target=\'_blank\'>积分/快乐土豆兑奖<'+'/a>';
-
-document.write(phpadsbanner);

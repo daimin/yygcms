@@ -1,5 +1,0 @@
-var phpadsbanner = '';
-
-phpadsbanner += '<'+'a style="position:relative;width:260px;height:60px;display:inline-block;margin:0 auto;"href=\'http://tc.ci123.com/adclick.php?bannerid=13062&amp;zoneid=616&amp;source=&amp;dest=http%3A%2F%2Fact.ci123.com%2Fsurvey%2Fspecial%2F%3Fmid%3D435\' target=\'_blank\'><'+'img src=\'http://tc.ci123.com/adimage.php?filename=170804bn-index260x60.jpg&amp;contenttype=jpeg\' width=\'260\' height=\'60\' alt=\'\' title=\'\' border=\'0\'><'+'img src="http://file2.ci123.com/adicon-bottom.png" style="position:absolute;bottom:0;right:0;width:30px;height:17px;margin:0" /><'+'/a>';
-
-document.write(phpadsbanner);

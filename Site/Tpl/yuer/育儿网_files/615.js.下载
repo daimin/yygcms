@@ -1,5 +1,0 @@
-var phpadsbanner = '';
-
-phpadsbanner += '<'+'a style="position:relative;width:960px;height:80px;display:inline-block;margin:0 auto;"href=\'http://tc.ci123.com/adclick.php?bannerid=7022&amp;zoneid=615&amp;source=&amp;dest=http%3A%2F%2Fwww.ci123.com%2Fbaike%2F\' target=\'_blank\'><'+'img src=\'http://tc.ci123.com/adimage.php?filename=150226bk-960-80.jpg&amp;contenttype=jpeg\' width=\'960\' height=\'80\' alt=\'\' title=\'\' border=\'0\'><'+'img src="http://file2.ci123.com/adicon-bottom.png" style="position:absolute;bottom:0;right:0;width:30px;height:17px;margin:0" /><'+'/a>';
-
-document.write(phpadsbanner);

@@ -1,1 +1,0 @@
-getUserMsgNum({"all":{"num":0},"app":{"num":0},"notify":{"num":0},"mail":{"num":0},"friend":{"num":0}})
