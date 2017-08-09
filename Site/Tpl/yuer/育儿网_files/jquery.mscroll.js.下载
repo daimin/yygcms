@@ -1,0 +1,16 @@
+/**
+* 功能: mscroll 左右点击无缝滚动 插件
+* 编写：王 炜
+* 全部参数调用：$.mscroll({left:'.left',center:'.center',right:'.right'},{num:3,speed:3,auto:false,width:'1000px'});
+* 简单调用：$.mscroll({left:'.left',center:'.center',right:'.right'},{num:3});
+* 参数说明：
+	left：  //左箭头class
+	center: //中间选择能够选择到ul class
+	right： //右箭头 class
+	auto: false,	//是否自动移动
+	speed: 3,		//自动滚动速度 单位秒
+	num: 3,			//可以显示几个
+	width: '1000px'	//中间部分长度
+*时间：2013.05.16
+*/
+(function($){$.extend({mscroll:function(handle,setting){_settings={speed:3,num:3,auto:false,width:'10000px',movenum:1};_settings=$.extend(_settings,setting);var prev=$(handle.left);var img=$(handle.center);var next=$(handle.right);var w=img.children().eq(0).outerWidth(true)*_settings.movenum;$(handle.center).wrap('<div style="width:'+w*_settings.num+'px;overflow:hidden; float:left;"></div>');$(handle.center).css({width:_settings.width});next.click(function(){img.animate({'margin-left':-w},function(){for(var i=0;i<_settings.movenum;i++){img.children().eq(0).appendTo(img)}img.css({'margin-left':0})})});prev.click(function(){for(var i=0;i<_settings.movenum;i++){img.children().last().prependTo(img)}img.css({'margin-left':-w});img.animate({'margin-left':0})});if(_settings.auto==true){ad=setInterval(function(){next.click()},_settings.speed*1000);$(handle.left+","+handle.center+","+handle.right).hover(function(){clearInterval(ad)},function(){ad=setInterval(function(){next.click()},_settings.speed*1000)})}}})})(jQuery)

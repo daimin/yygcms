@@ -1,0 +1,5 @@
+var phpadsbanner = '';
+
+phpadsbanner += '<'+'a href=\'http://tc.ci123.com/adclick.php?bannerid=379&amp;zoneid=158&amp;source=&amp;dest=http%3A%2F%2Fshiyong.ci123.com%2F\' target=\'_blank\'>免费试用 抢先体验<'+'/a>';
+
+document.write(phpadsbanner);

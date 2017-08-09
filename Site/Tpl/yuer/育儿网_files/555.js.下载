@@ -1,0 +1,5 @@
+var phpadsbanner = '';
+
+phpadsbanner += '<'+'a href=\'http://tc.ci123.com/adclick.php?bannerid=322&amp;zoneid=117&amp;source=&amp;dest=http%3A%2F%2Fzu.ci123.com%2Ftopic%2F\' target=\'_blank\'>专家访谈 在线答疑<'+'/a>';
+
+document.write(phpadsbanner);

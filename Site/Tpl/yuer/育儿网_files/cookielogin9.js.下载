@@ -1,0 +1,312 @@
+/*
+Author:	黄朝滋
+Date:	2011-03-16 13:08
+Explain:cookie,通用登录框(新增合作网站账号登录)
+*/
+function utf16to8(str) {
+    var out, i, len, c;
+    out = "";
+    len = str.length;
+    for(i = 0; i < len; i++) {
+        c = str.charCodeAt(i);
+        if ((c >= 0x0001) && (c <= 0x007F)) {
+            out += str.charAt(i);
+        } else if (c > 0x07FF) {
+            out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+            out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));
+            out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+        } else {
+            out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));
+            out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+        }
+    }
+    return out;
+}
+function utf8to16(str) {
+    var out, i, len, c;
+    var char2, char3;
+
+    out = "";
+    len = str.length;
+    i = 0;
+    while(i < len) {
+        c = str.charCodeAt(i++);
+        switch(c >> 4)
+        {
+          case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
+            // 0xxxxxxx
+            out += str.charAt(i-1);
+            break;
+          case 12: case 13:
+            // 110x xxxx   10xx xxxx
+            char2 = str.charCodeAt(i++);
+            out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
+            break;
+          case 14:
+            // 1110 xxxx  10xx xxxx  10xx xxxx
+            char2 = str.charCodeAt(i++);
+            char3 = str.charCodeAt(i++);
+            out += String.fromCharCode(((c & 0x0F) << 12) |
+                                           ((char2 & 0x3F) << 6) |
+                                           ((char3 & 0x3F) << 0));
+            break;
+        }
+    }
+
+    return out;
+}
+var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+var base64DecodeChars = new Array(
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, -1, -1, 63,
+    52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -1, -1, -1, -1, -1, -1,
+    -1,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14,
+    15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, -1, -1, -1, -1, -1,
+    -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+    41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -1, -1, -1, -1, -1);
+function base64encode(str) {
+    var out, i, len;
+    var c1, c2, c3;
+
+    len = str.length;
+    i = 0;
+    out = "";
+    while(i < len) {
+        c1 = str.charCodeAt(i++) & 0xff;
+        if(i == len)
+        {
+            out += base64EncodeChars.charAt(c1 >> 2);
+            out += base64EncodeChars.charAt((c1 & 0x3) << 4);
+            out += "==";
+            break;
+        }
+        c2 = str.charCodeAt(i++);
+        if(i == len)
+        {
+            out += base64EncodeChars.charAt(c1 >> 2);
+            out += base64EncodeChars.charAt(((c1 & 0x3)<< 4) | ((c2 & 0xF0) >> 4));
+            out += base64EncodeChars.charAt((c2 & 0xF) << 2);
+            out += "=";
+            break;
+        }
+        c3 = str.charCodeAt(i++);
+        out += base64EncodeChars.charAt(c1 >> 2);
+        out += base64EncodeChars.charAt(((c1 & 0x3)<< 4) | ((c2 & 0xF0) >> 4));
+        out += base64EncodeChars.charAt(((c2 & 0xF) << 2) | ((c3 & 0xC0) >>6));
+        out += base64EncodeChars.charAt(c3 & 0x3F);
+    }
+    return out;
+}
+
+function base64decode(str) {
+    var c1, c2, c3, c4;
+    var i, len, out;
+
+    len = str.length;
+    i = 0;
+    out = "";
+    while(i < len) {
+        /* c1 */
+        do {
+            c1 = base64DecodeChars[str.charCodeAt(i++) & 0xff];
+        } while(i < len && c1 == -1);
+        if(c1 == -1)
+            break;
+
+        /* c2 */
+        do {
+            c2 = base64DecodeChars[str.charCodeAt(i++) & 0xff];
+        } while(i < len && c2 == -1);
+        if(c2 == -1)
+            break;
+
+        out += String.fromCharCode((c1 << 2) | ((c2 & 0x30) >> 4));
+
+        /* c3 */
+        do {
+            c3 = str.charCodeAt(i++) & 0xff;
+            if(c3 == 61)
+                return out;
+            c3 = base64DecodeChars[c3];
+        } while(i < len && c3 == -1);
+        if(c3 == -1)
+            break;
+
+        out += String.fromCharCode(((c2 & 0XF) << 4) | ((c3 & 0x3C) >> 2));
+
+        /* c4 */
+        do {
+            c4 = str.charCodeAt(i++) & 0xff;
+            if(c4 == 61)
+                return out;
+            c4 = base64DecodeChars[c4];
+        } while(i < len && c4 == -1);
+        if(c4 == -1)
+            break;
+        out += String.fromCharCode(((c3 & 0x03) << 6) | c4);
+    }
+    return out;
+}
+function decode64(str){
+        return utf8to16(base64decode(str));
+}
+
+function getCookie(name) {
+	var search;
+	search = name + "="
+	offset = document.cookie.indexOf(search)
+	if (offset != -1) {
+		offset += search.length ;
+		end = document.cookie.indexOf(";", offset) ;
+		if (end == -1)
+		end = document.cookie.length;
+		return unescape(document.cookie.substring(offset, end));
+	}
+	else
+	return;
+}
+function getUserInfo()
+{
+	flag = 0;
+	ciCookie = getCookie("ci123");
+	var t;
+	if ("undefined" != typeof(ciCookie))
+	{
+		tmp = decode64(ciCookie);
+		tmp = tmp.split( ";" );
+		tmp = tmp[0];
+		tmp = tmp.split( "," );
+		if (tmp!="")
+		{
+			tmp['username'] = tmp[0];
+			tmp['nickname'] = tmp[1];
+			tmp['user_id'] = tmp[2];
+			tmp['zone_id'] = tmp[3];
+			tmp['time'] = tmp[4];
+			//t = tmp['user_id'].substr(0,1);
+			t =Math.floor(tmp['user_id']/1000);
+			tmp['avatar'] = 'http://i.ci123.com/avatar/'+t+'/'+tmp['user_id']+'.png' ;
+			return tmp;
+		}
+	}
+	else
+	{
+		tmp = Object();
+		return tmp;
+	}
+}
+
+var g_userinfo = getUserInfo();
+
+function setCookie(name, value, expires, path, domain, secure) {
+  var curCookie = name + "=" + escape(value) +
+      ((expires) ? "; expires=" + expires.toGMTString() : "") +
+      ((path) ? "; path=" + path : "") +
+      ((domain) ? "; domain=" + domain : "") +
+      ((secure) ? "; secure" : "");
+  document.cookie = curCookie;
+}
+
+function deleteCookie(name, path, domain) {
+  if (getCookie(name)) {
+    document.cookie = name + "=" +
+    ((path) ? "; path=" + path : "") +
+    ((domain) ? "; domain=" + domain : "") +
+    "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+  }
+}
+
+
+function fixDate(date) {
+  var base = new Date(0);
+  var skew = base.getTime();
+  if (skew > 0)
+    date.setTime(date.getTime() - skew);
+}
+
+//loginface 2010-01-21 20:19 huangchaozi
+function needlogin()
+{
+	if(!g_userinfo['user_id']){
+		myneedlogin();
+		return false;
+	}else{
+		return true;
+	}
+}
+function getLoginFace(){
+	var strshow='<div id="needloginbg"></div><div id="needlogin"> \
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0"> \
+        <tr><td width="10" height="35" class="lt1"></td><td class="lt3"><div class="hboxt">登录育儿网</div><div class="hboxcl"><a href="javascript:void(0);" onclick="closeNeedLogin();" title="关闭" target="_self"></a></div></td><td width="10" class="lt2"></td></tr> \
+        <tr><td class="lt4"></td> \
+          <td bgcolor="#FFFFFF"><div class="hboxc"> \
+		  	<form name="needloginface" method="post" action="http://user.ci123.com/index.php" id="needloginface"  target="_self" onsubmit="return chkloginsub(this);"> \
+				<div class="item1"><div class="n_left">用户名：</div><div class="n_right"><input class="ntxt" name="username" id="nusername" type="text" /></div></div> \
+				<div class="item1"><div class="n_left">密&nbsp;&nbsp;&nbsp;&nbsp;码：</div><div class="n_right"><input class="ntxt" name="password" type="password" /></div></div> \
+				<div class="item2"><input type="checkbox" name="rememberme" id="rememberme" checked="checked" /><label for="rememberme">记住登录状态</label></div> \
+				<div class="item2"><input type="submit" name="loginsub" id="nloginsub" value="登录" /> &nbsp;&nbsp;&nbsp;<a href="http://user.ci123.com/account/Getpass/" target="_blank">忘记密码？</a> \
+				<input type="hidden" name="back_url" id="need_back_url" value="" /> \
+				</div> \
+				<div class="item3">还没有育儿网帐号？<a href="http://user.ci123.com/account/NewAccount/" target="_blank">立即注册</a> </div> \
+			</form> \
+			<div class="hbright"> \
+				<div class="hbt">使用合作网站账号登录：</div><ul> \
+					<li><a id="login_qq" href="http://user.ci123.com/qq/zone.php?channel=1&back_url=/account/ManageAccount" target="_blank"><img src="http://user.ci123.com/qq/images/qq.png" width="120" height="24" alt="用QQ账号登录" /></a></li> \
+					<li><a id="login_sina" href="http://user.ci123.com/qq/sina/result.php?channel=1&back_url=/account/ManageAccount" target="_blank"><img src="http://file2.ci123.com/ast/images/sina.png" width="126" height="24" alt="新浪微博账号登录" /></a></li> \
+					<li><a id="login_rr" href="http://user.ci123.com/qq/rr/login.php?back_url=/account/ManageAccount&channel=1" target="_blank"><img src="http://file2.ci123.com/ast/images/rr.png" width="126" height="23" alt="人人网账号登录" /></a></li> \
+					<li><a id="login_msn" href="http://user.ci123.com/qq/msn/login.php?back_url=/account/ManageAccount&channel=1" target="_blank"><img src="http://file2.ci123.com/ast/images/msn.png" width="134" height="25" alt="MSN账号登录" /></a></li> \
+				</ul> \
+			</div> \
+		  <div style="clear:both;"></div></div></td><td class="lt5"></td></tr> \
+        <tr><td class="lt6" height="9"></td><td class="lt8"></td><td class="lt7"></td></tr> \
+      </table></div>';
+	return strshow;
+	}
+function myneedlogin(){
+	var ndiv = document.createElement("div");
+	var tb = document.getElementsByTagName("body");
+	tb[0].appendChild(ndiv);
+	ndiv.setAttribute("id","nloginface");
+	
+	var lstr=getLoginFace();
+	ndiv.innerHTML=lstr;
+	
+	var bodywidth=document.body.clientWidth;
+	var bodyheight=document.documentElement.scrollHeight;
+	var st=document.documentElement.scrollTop;
+	var viewheight=document.documentElement.clientHeight;
+	var nlleft=parseInt((bodywidth-480)/2);
+	var nltop=parseInt((viewheight-296)/2+st);
+	document.getElementById("needloginbg").style.display="block";
+	document.getElementById("needloginbg").style.height=bodyheight+'px';
+	document.getElementById("needlogin").style.display="block";
+	document.getElementById("needlogin").style.left=nlleft+'px';
+	document.getElementById("needlogin").style.top=nltop+'px';
+	var url2=window.location;
+	var url=encodeURIComponent(url2);
+	url=url.replace(/%26/g,"candi");
+	document.getElementById("need_back_url").value=url2;
+	document.getElementById("login_qq").href="http://user.ci123.com/qq/zone.php?channel=1&back_url="+url;
+	document.getElementById("login_sina").href="http://user.ci123.com/qq/sina/result.php?channel=1&back_url="+url;
+	document.getElementById("login_rr").href="http://user.ci123.com/qq/rr/login.php?channel=1&back_url="+url;
+	document.getElementById("login_msn").href="http://user.ci123.com/qq/msn/login.php?channel=1&back_url="+url;
+}
+
+function chkloginsub(f){
+	var username=f.username.value.replace(/[ ]/,"");
+	var password=f.password.value;
+	if(username.length<4){
+		alert("用户名在4-26个字符，请重输。");
+		f.username.select();
+		return false;
+	}else if(password.length<5){
+		alert("密码不能小于6个字符，请重输。");
+		f.password.select();
+		return false;
+	}else{
+		f.loginsub.disabled="disabled";
+		return true;
+	}
+}
+function closeNeedLogin(){document.getElementById("needloginbg").style.display="none";document.getElementById("needlogin").style.display="none";}

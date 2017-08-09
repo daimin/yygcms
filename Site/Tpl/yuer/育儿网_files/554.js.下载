@@ -1,0 +1,5 @@
+var phpadsbanner = '';
+
+phpadsbanner += '<'+'a href=\'http://tc.ci123.com/adclick.php?bannerid=1098&amp;zoneid=118&amp;source=&amp;dest=http%3A%2F%2Frs.ci123.com%2Fplayer\' target=\'_blank\'>宝宝音乐故事在线听<'+'/a>';
+
+document.write(phpadsbanner);

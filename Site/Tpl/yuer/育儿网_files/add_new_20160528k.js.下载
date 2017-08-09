@@ -1,0 +1,67 @@
+function showAds(){
+	 var now = new Date();
+     var year = parseInt(now.getFullYear());       //年
+  	 var month = parseInt(now.getMonth()) + 1;     //月
+     var day = parseInt(now.getDate());            //日
+	if(year == 2016 && month == 5 && ( day == 27 ) ){
+		$(".container").prepend('<a href="http://tc.ci123.com/adclick.php?bannerid=11074" class="haoqi_l haoqi_bg"></a><a href="http://tc.ci123.com/adclick.php?bannerid=11074" class="haoqi_r haoqi_bg"></a>');
+		$("body").prepend('<a href="http://tc.ci123.com/adclick.php?bannerid=11074" class="haoqi_t"></a>');
+		document.write('<link href="/index/styles/css/add.css" rel="stylesheet" type="text/css" />');
+		screenInfo();
+	}
+}
+function CurentTime(){ 
+	var now = new Date();
+
+	var year = now.getFullYear();       //年
+	var month = now.getMonth() + 1;     //月
+	var day = now.getDate();            //日
+
+	var hh = now.getHours();            //时
+	var mm = now.getMinutes();          //分
+	var clock = year + "-";
+	if(month < 10)
+		clock += "0";
+
+	clock += month + "-";
+
+	if(day < 10)
+		clock += "0";
+
+	clock += day + " ";
+	return(clock);
+
+}
+function screenInfo(){
+	var screens = [1024,1280,1360,1366,1440,1600,1680,1920];
+	var  s = ""; 
+	s =  window.screen.width;
+	console.log(s);
+	var ss = document.body.clientWidth;;//可视宽度
+	var width = 0;
+    var height = $(".top_ac").height()+34;
+	width = Math.round((ss-960)/2)-1;
+	if( $.inArray(s,screens) ){
+		if(s==1360){
+			s=1366;
+		}
+		if(s < 1360){
+			s=1280;
+			console.log(s,2);
+		}
+		var img = "../index/styles/images/"+s+"-mgx.jpg";
+		console.log(img,3);
+		$('body').css({"background":"url("+img+") no-repeat center top"});
+		$(".haoqi_bg").css({"width":width+"px","height":"540px"});
+		$(".haoqi_l").css("left",-width+"px");
+        $(".haoqi_r").css("right",-width+"px");
+	//	$("#top_ac").height("60px");//这一项，需要根据包框上线当天，司否有顶通来决定
+		$("#top_ac").css("margin","60px auto 0");
+		//这一项配合上面的append一个顶部a标签，使顶部可点击，高度根据是否有广告决定120or60
+        $(".haoqi_t").css({"width":"100%","height":"120px","position":"absolute","display":"block","top":"0","left":"0","z-index":"1"});
+		$("#top_ac").css({"position":"relative","z-index":"2"});
+	}
+}
+//screenInfo();
+showAds();
+
