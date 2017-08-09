@@ -104,7 +104,7 @@ function roleShow($role){
 }
 
 function hashPassword($password){
-	return md5($password.C("__MP_SECURE_KEY__"));
+	return md5($password.C("__YYG_SECURE_KEY__"));
 }
 
 // +----------------------------------------------------------------------

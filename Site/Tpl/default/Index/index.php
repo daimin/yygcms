@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>{$sys.sitename} -- {$sys.seoname}</title>
+<title><?php echo $title ?>{$sys.sitename} -- {$sys.seoname}</title>
 <meta name="keywords" content="{$sys.keywords}">
 <meta name="description" content="{$sys.description}">
 <include file="Public:resources" />

@@ -1,5 +1,5 @@
 <?php
-if(!defined("__MP_SITE_COMMON__")){
+if(!defined("__YYG_SITE_COMMON__")){
     include dirname(__FILE__).'/../../Common/common.php';
-    define("__MP_SITE_COMMON__", True);
+    define("__YYG_SITE_COMMON__", True);
 }
