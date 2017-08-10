@@ -72,8 +72,10 @@ class View {
         G('viewStartTime');
         // 视图开始标签
         tag('view_begin',$templateFile);
+
         // 解析并获取模板内容
         $content = $this->fetch($templateFile,$content,$prefix);
+
         // 输出模板内容
         $this->render($content,$charset,$contentType);
         // 视图结束标签
@@ -109,7 +111,9 @@ class View {
      */
     public function fetch($templateFile='',$content='',$prefix='') {
         if(empty($content)) {
+
             $templateFile   =   $this->parseTemplate($templateFile);
+
             // 模板文件不存在直接返回
             if(!is_file($templateFile)) 
                 throw_exception(L('_TEMPLATE_NOT_EXIST_').'['.$templateFile.']');

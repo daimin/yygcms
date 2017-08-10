@@ -36,25 +36,6 @@ li,dd {
 
 input {
 	border: 1px solid #ababab;
-	zoom: expression(function(ele) {( ele.type == 'button' || ele.type ==
-		'submit' || ele.type == 'reset' ) ? 	 ele.className = 'coolbg' :(
-		ele.type == 'text' ? 	 ele.className = 'alltxt' : '' );
-	(
-	ele
-	.type=='radio'||ele.type=='checkbox')
-	?
-	ele.className='np'
-	:
-	'';
-	ele
-	.style.zoom
-	=
-	'1';
-}
-
-(
-this
-));
 }
 input {
 	
@@ -145,19 +126,19 @@ a:link {
 	font-size: 9pt;
 	color: #000000;
 	text-decoration: none;
-	font-family: Microsoft Yahei,"" 宋体 "";
+	font-family: Microsoft Yahei,"宋体 ";
 }
 
 a:visited {
 	font-size: 9pt;
 	color: #000000;
 	text-decoration: none;
-	font-family: Microsoft Yahei,"" 宋体 "";
+	font-family: Microsoft Yahei,"宋体";
 }
 
 a:hover {
 	color: red;
-	font-family: Microsoft Yahei,"" 宋体 "";
+	font-family: Microsoft Yahei,"宋体";
 }
 
 a img {
