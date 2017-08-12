@@ -18,5 +18,5 @@ composer.phar
 .DS_Store
 
 */Runtime/
-
+/Upload/*
 
