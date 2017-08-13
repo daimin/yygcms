@@ -27,8 +27,8 @@ function saySorry(){
     <td style='padding-left:3px;padding-top:8px' valign="top">
 	<!-- Item 1 Strat -->
    <dl class='bitem'>
-        <dt onClick='showHide("items1_1")'><b>内容管理</b></dt>
-        <dd style='display:block' class='sitem' id='items1_1'>
+        <dt onClick='showHide("items1_11")'><b>内容管理</b></dt>
+        <dd style='display:block' class='sitem' id='items1_11'>
           <ul class='sitemu'>
               <li>
                   <div class='items'>
@@ -53,6 +53,23 @@ function saySorry(){
           </ul>
         </dd>
       </dl>
+        <dl class='bitem'>
+            <dt onClick='showHide("items1_12")'><b>分类管理</b></dt>
+            <dd style='display:block' class='sitem' id='items1_12'>
+                <ul class='sitemu'>
+                    <li>
+                        <div class='items'>
+                            <div class='fllct'><a href='<?php echo site_url("Category/mgr/")?>'  target='main'>管理分类</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class='items'>
+                            <div class='fllct'><a href='<?php echo site_url("Content/index/type/index/")?>'  target='main'>分类列表</a></div>
+                        </div>
+                    </li>
+                </ul>
+            </dd>
+        </dl>
       <?php if(is_admin()){?>
     <dl class='bitem'>
         <dt onClick='showHide("items1_22")'><b>用户管理</b></dt>

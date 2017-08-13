@@ -78,6 +78,7 @@ window.onload = function(){
            doSubmit();
         } 
     };
+    refreshVeryCode();
 };
 </script>
 

@@ -176,7 +176,7 @@ a:link,a:visited {
       </tr>
       <tr>
         <td align="right" height="34" class="rmain">
-            <a class="btn" id="index_link" style="display:none" href="__ROOT__" target="_blank">网站首页</a>
+            <a class="btn" id="index_link" style="display:none" href="/" target="_blank">网站首页</a>
             <button class="btn" onclick="gotoIndex()" style="margin-right:14px;margin-bottom:4px; ">网站首页</button>
             <button class="btn" onclick="changePassword('<?php echo session(C("__MP_AUTH_NAME__")) ?>')" style="margin-right:0px;margin-bottom:4px; ">修改密码</button>
             <button class="btn" onclick="clearCache()" style="margin-right:14px;margin-bottom:4px; ">清除缓存</button>
