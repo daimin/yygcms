@@ -12,6 +12,43 @@ class CategoryAction extends BaseAction {
     public function mgr(){
        $this->display();
     }
+
+    public function getList(){
+        $returnData = [];
+        $parentCategorys = M("category")->where("pid=0")->select();
+        foreach($parentCategorys as $parentCategory){
+            $childNodes = M("category")->where("pid=".$parentCategory['id'])->select();
+
+
+            $pNode = [
+                'nodes' => [],
+            ];
+
+            foreach($childNodes as $childNode){
+                $enabledStr = '<a href="javascript:void(0)" onclick="doDisabled(\''.$childNode['id'].'\')">禁用</a>';
+                if($childNode['status'] == 0){
+                    $enabledStr = '<a href="javascript:void(0)" onclick="doEnabled(\''.$childNode['id'].'\')">启用</a>';
+                }
+                $pNode['nodes'] []= [
+                    'text' => $childNode['name'].'<div class="category-del-li-div"><a onclick="add_category()">禁用</a><a onclick="doDel(\''.$childNode['id'].'\')">删除</a>'.$enabledStr.'</div>',
+                ];
+            }
+
+            $enabledStr = '<a href="javascript:void(0)" onclick="doDisabled(\''.$parentCategory['id'].'\')">禁用</a>';
+            if($parentCategory['status'] == 0){
+                $enabledStr = '<a href="javascript:void(0)" onclick="doEnabled(\''.$parentCategory['id'].'\')">启用</a>';
+            }
+
+            $delStr = "";
+            if(empty($pNode['nodes'])){
+                $delStr = '<a href="javascript:void(0)" onclick="doDel(\''.$parentCategory['id'].'\')">删除</a>';
+            }
+            $pNode['text'] = $parentCategory['name'].'<div class="category-del-li-div"><a onclick="add_category()">新增</a>'.$delStr.$enabledStr.'</div>';
+
+            $returnData []= $pNode;
+        }
+        $this->ajaxReturn ($returnData);
+    }
     
      public function changePassword($name=False){
          

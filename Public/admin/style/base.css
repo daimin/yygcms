@@ -728,3 +728,11 @@ line-height: 26px;
     margin-right:12px;
     font-weight:bold;
 }
+
+.category-del-li-div{
+	float: right;
+}
+
+.category-del-li-div a{
+	margin-right: 6px;
+}

@@ -33,64 +33,20 @@
         </table>
 </div>
 <script type="text/javascript">
-        function getTree() {
-            // Some logic to retrieve, or generate tree structure
-            var tree = [
-                {
-                    text: "孕育知识",
-                    state: {
-                        expanded: false
-                    },
-                    nodes: [
-                        {
-                            text: "护理保健",
-                        },
-                        {
-                            text: "幼儿安全"
-                        }
-                        ,
-                        {
-                            text: "常见疾病"
-                        }
-                    ]
-                },
-                {
-                    text: "育儿百科",
-                    nodes: [
-                        {
-                            text: "准备怀孕",
-                        },
-                        {
-                            text: "孕早期"
-                        }
-                        ,
-                        {
-                            text: "孕中期"
-                        }
-                        ,
-                        {
-                            text: "孕晚期"
-                        }
-                        ,
-                        {
-                            text: "分娩"
-                        }
-                        ,
-                        {
-                            text: "产后"
-                        }
-                    ]
-                }
-            ];
-            return tree;
-        }
 
-    $('#category-tree').treeview(
-        {
-            data: getTree()
+        $.get('__URL__/getList', function(data,status){
+            $('#category-tree').treeview(
+            {
+                data: data,
+                selectedBackColor : '#cccccc'
         });
-        $('#category-tree')
+        });
 
+
+
+//    $(function () {
+//        $("#category-tree")
+//    })
 </script>
 <include file="Public:footer" />
 
