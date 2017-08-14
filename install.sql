@@ -29,7 +29,7 @@ CREATE TABLE `yyg_admins` (
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `role` tinyint(4) NOT NULL DEFAULT '2',
   PRIMARY KEY (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `yyg_admins` */
 
@@ -46,7 +46,7 @@ CREATE TABLE `yyg_attac` (
   `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=696 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=696 DEFAULT CHARSET=utf8;
 
 /*Data for the table `yyg_attac` */
 
@@ -60,7 +60,7 @@ CREATE TABLE `yyg_attac_deco` (
   `att_id` int(10) unsigned NOT NULL,
   `deco_id` int(10) NOT NULL,
   PRIMARY KEY (`att_id`,`deco_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `yyg_attac_deco` */
 
@@ -72,7 +72,7 @@ CREATE TABLE `yyg_attac_design` (
   `att_id` int(11) NOT NULL,
   `des_id` int(11) NOT NULL,
   PRIMARY KEY (`att_id`,`des_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `yyg_attac_design` */
 
@@ -86,7 +86,7 @@ CREATE TABLE `yyg_attac_rel` (
   `att_id` int(10) unsigned NOT NULL,
   `rel_id` varchar(200) NOT NULL DEFAULT '',
   PRIMARY KEY (`att_id`,`rel_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `yyg_attac_rel` */
 
@@ -100,7 +100,7 @@ CREATE TABLE `yyg_attac_style` (
   `att_id` int(11) NOT NULL,
   `sty_id` int(11) NOT NULL,
   PRIMARY KEY (`att_id`,`sty_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `yyg_attac_style` */
 
@@ -123,7 +123,7 @@ CREATE TABLE `yyg_content` (
   `parentid` int(11) NOT NULL DEFAULT '0',
   `order` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=139 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8;
 
 /*Data for the table `yyg_content` */
 
@@ -147,7 +147,7 @@ CREATE TABLE `yyg_designer` (
   `motto` text,
   `expert` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
 
 /*Data for the table `yyg_designer` */
 
@@ -166,7 +166,7 @@ CREATE TABLE `yyg_designer_yuding` (
   `created` datetime DEFAULT '0000-00-00 00:00:00',
   `brief` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 /*Data for the table `yyg_designer_yuding` */
 
@@ -183,7 +183,7 @@ CREATE TABLE `yyg_homedeco` (
   `caption` text NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_user_date` (`userid`,`date`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 /*Data for the table `yyg_homedeco` */
 
@@ -214,7 +214,7 @@ CREATE TABLE `yyg_homedeco_users` (
   `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 /*Data for the table `yyg_homedeco_users` */
 
@@ -228,7 +228,7 @@ CREATE TABLE `yyg_options` (
   `name` varchar(32) NOT NULL,
   `value` text,
   PRIMARY KEY (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `yyg_options` */
 
@@ -246,7 +246,7 @@ CREATE TABLE `yyg_signup` (
   `created` datetime DEFAULT '0000-00-00 00:00:00',
   `status` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 /*Data for the table `yyg_signup` */
 
@@ -265,7 +265,7 @@ CREATE TABLE `yyg_style` (
   `area` int(11) NOT NULL DEFAULT '0',
   `createtime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 /*Data for the table `yyg_style` */
 
@@ -304,11 +304,23 @@ CREATE TABLE `yyg_yuding` (
   `yusuan` decimal(10,0) NOT NULL DEFAULT '0',
   `created` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 
 /*Data for the table `yyg_yuding` */
 
 insert  into `yyg_yuding`(`id`,`area`,`shi`,`ting`,`wei`,`city`,`xiaoqu`,`style`,`name`,`sex`,`phone`,`yusuan`,`created`) values (37,102,2,1,1,'广州','天朗明居','欧式','戴敏','男','13560093349',900000,'2013-10-06 10:49:30');
+
+DROP TABLE IF EXISTS `yyg_category`;
+
+CREATE TABLE `yyg_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pid` int(11) NOT NULL DEFAULT 0,
+  `name` varchar(32) NOT NULL,
+  `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastlogintime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
