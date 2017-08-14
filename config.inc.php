@@ -34,7 +34,6 @@ $MPConfig =  array(
    '__MP_UPLOAD_DIR__' => '/Upload',
    'SHOW_PAGE_TRACE' =>True, // 显示页面Trace信息
    'SHOW_RUN_TIME'    => True, // 运行时间显示
-
    'Design_Groups' => array(   //设计小组配置
 				1 => "风格设计A组",
 				2 => "风格设计B组",
