@@ -22,8 +22,8 @@ DROP TABLE IF EXISTS `yyg_admins`;
 CREATE TABLE `yyg_admins` (
   `name` varchar(32) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `lastlogintime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `createtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lastlogintime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `role` tinyint(4) NOT NULL DEFAULT '2',
   PRIMARY KEY (`name`)
@@ -33,11 +33,11 @@ CREATE TABLE `yyg_admins` (
 -- Records of yyg_admins
 -- ----------------------------
 INSERT INTO `yyg_admins` VALUES ('admin', '5875943b585efd90d60d32343f127004', '2013-07-16 15:43:05', '2017-08-14 23:14:19', '1', '1');
-INSERT INTO `yyg_admins` VALUES ('admin1', '111111', '2013-07-16 15:20:54', '0000-00-00 00:00:00', '1', '2');
-INSERT INTO `yyg_admins` VALUES ('admin2', 'f0bab14fdb2dec036f1837bf48ca0dd3', '2013-07-16 15:21:50', '0000-00-00 00:00:00', '1', '2');
-INSERT INTO `yyg_admins` VALUES ('vagasnail', 'f0bab14fdb2dec036f1837bf48ca0dd3', '2013-07-16 16:24:33', '0000-00-00 00:00:00', '1', '1');
+INSERT INTO `yyg_admins` VALUES ('admin1', '111111', '2013-07-16 15:20:54', NOW(), '1', '2');
+INSERT INTO `yyg_admins` VALUES ('admin2', 'f0bab14fdb2dec036f1837bf48ca0dd3', '2013-07-16 15:21:50', NOW(), '1', '2');
+INSERT INTO `yyg_admins` VALUES ('vagasnail', 'f0bab14fdb2dec036f1837bf48ca0dd3', '2013-07-16 16:24:33', NOW(), '1', '1');
 INSERT INTO `yyg_admins` VALUES ('1111', '2d432ae82045fa704ff12b4ebac19fcc', '2013-07-16 16:39:39', '2013-07-17 11:34:51', '0', '0');
-INSERT INTO `yyg_admins` VALUES ('2222', '2d432ae82045fa704ff12b4ebac19fcc', '2013-07-17 14:23:58', '0000-00-00 00:00:00', '0', '1');
+INSERT INTO `yyg_admins` VALUES ('2222', '2d432ae82045fa704ff12b4ebac19fcc', '2013-07-17 14:23:58', NOW(), '0', '1');
 
 -- ----------------------------
 -- Table structure for yyg_attac
@@ -47,7 +47,7 @@ CREATE TABLE `yyg_attac` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(200) NOT NULL DEFAULT '',
   `path` varchar(500) NOT NULL,
-  `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `createtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=696 DEFAULT CHARSET=utf8;
@@ -940,7 +940,7 @@ CREATE TABLE `yyg_designer_yuding` (
   `phone` varchar(30) NOT NULL DEFAULT '',
   `qq` varchar(20) NOT NULL DEFAULT '',
   `mail` varchar(40) NOT NULL DEFAULT '',
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
+  `created` datetime DEFAULT CURRENT_TIMESTAMP,
   `brief` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
@@ -1023,7 +1023,7 @@ CREATE TABLE `yyg_homedeco_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `createtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
@@ -1065,7 +1065,7 @@ CREATE TABLE `yyg_signup` (
   `name` varchar(20) NOT NULL,
   `tel` varchar(30) NOT NULL,
   `phone` varchar(30) NOT NULL,
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
+  `created` datetime DEFAULT CURRENT_TIMESTAMP,
   `status` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
@@ -1167,7 +1167,7 @@ CREATE TABLE `yyg_yuding` (
   `sex` varchar(4) NOT NULL DEFAULT '男',
   `phone` varchar(30) NOT NULL,
   `yusuan` decimal(10,0) NOT NULL DEFAULT '0',
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
+  `created` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 
