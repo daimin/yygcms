@@ -1,7 +1,7 @@
 <include file="Public:header" />
-<link href="__PUBLIC__/admin/bootstrap-treeview/dist/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="__PUBLIC__/admin/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" language="javascript" src="__PUBLIC__/admin/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="http://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.js"></script>
 <div style="min-width:780px">
     <table width="98%" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px" bgcolor="#D6D6D6" align="center">
         <tr>
@@ -27,7 +27,9 @@
             <td> </td>
         </tr>
         <tr>
-            <td>    <div id="category-tree" style="width: 800px"></div>
+            <td>
+                <div id="category-tree" style="width: 800px"></div>
+                <div><a href="javascript:void(0)">新增</a></div>
             </td>
         </tr>
         </table>

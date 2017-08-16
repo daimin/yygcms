@@ -30,7 +30,7 @@ class CategoryAction extends BaseAction {
                     $enabledStr = '<a href="javascript:void(0)" onclick="doEnabled(\''.$childNode['id'].'\')">启用</a>';
                 }
                 $pNode['nodes'] []= [
-                    'text' => $childNode['name'].'<div class="category-del-li-div"><a onclick="add_category()">禁用</a><a onclick="doDel(\''.$childNode['id'].'\')">删除</a>'.$enabledStr.'</div>',
+                    'text' => $childNode['name'].'<div class="category-del-li-div"><a onclick="doDel(\''.$childNode['id'].'\')">删除</a>'.$enabledStr.'</div>',
                 ];
             }
 

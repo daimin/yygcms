@@ -5,11 +5,11 @@
     <title>宝贝星</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <link href="__PUBLIC__/site/{$Think.THEME_NAME}/flatui/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <!--    <link href="__PUBLIC__/site/{$Think.THEME_NAME}/flatui/css/flat-ui.css" rel="stylesheet">-->
     <link href="__PUBLIC__/site/{$Think.THEME_NAME}/css/base.css" rel="stylesheet">
-    <script type="text/javascript" src="__PUBLIC__/site/{$Think.THEME_NAME}/flatui/js/vendor/jquery.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/site/{$Think.THEME_NAME}/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="__PUBLIC__/site/{$Think.THEME_NAME}/bootstrap/js/carousel.js"></script>
     <script type="text/javascript" src="__PUBLIC__/site/{$Think.THEME_NAME}/js/jquery.SuperSlide.2.1.1.js"></script>
 
