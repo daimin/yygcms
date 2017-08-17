@@ -78,3 +78,23 @@ function changeContentOrder(o, reqUrl){
         window.location.reload();
     });
 }
+
+function show_err_alert(title, message){
+	bootbox.alert({
+		title: '<div class="yyg-msg-title"><span class="glyphicon glyphicon-remove-circle yyg-error" aria-hidden="true"></span>' + title + '</div>',
+		message: '<div class="yyg-msg-message">' + message + '</div>',
+		size: 'small'
+	});
+}
+
+function comm_parseJsonResult(result) {
+	if(typeof result != 'object'){
+		result = JSON.parse(result);
+	}
+	if(result['errCode'] != 0){
+		show_err_alert('错误', result['errMsg']);
+
+	}else{
+		return result['data'];
+	}
+}

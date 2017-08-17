@@ -10,7 +10,7 @@ class CategoryAction extends BaseAction {
 	}
     
     public function mgr(){
-       $this->display();
+        $this->display();
     }
 
     public function getList(){
@@ -18,7 +18,6 @@ class CategoryAction extends BaseAction {
         $parentCategorys = M("category")->where("pid=0")->select();
         foreach($parentCategorys as $parentCategory){
             $childNodes = M("category")->where("pid=".$parentCategory['id'])->select();
-
 
             $pNode = [
                 'nodes' => [],
@@ -34,20 +33,26 @@ class CategoryAction extends BaseAction {
                 ];
             }
 
-            $enabledStr = '<a href="javascript:void(0)" onclick="doDisabled(\''.$parentCategory['id'].'\')">禁用</a>';
-            if($parentCategory['status'] == 0){
-                $enabledStr = '<a href="javascript:void(0)" onclick="doEnabled(\''.$parentCategory['id'].'\')">启用</a>';
-            }
-
+            $enabledStr = "";
             $delStr = "";
             if(empty($pNode['nodes'])){
+                $enabledStr = '<a href="javascript:void(0)" onclick="doDisabled(\''.$parentCategory['id'].'\')">禁用</a>';
+                if($parentCategory['status'] == 0){
+                    $enabledStr = '<a href="javascript:void(0)" onclick="doEnabled(\''.$parentCategory['id'].'\')">启用</a>';
+                }
                 $delStr = '<a href="javascript:void(0)" onclick="doDel(\''.$parentCategory['id'].'\')">删除</a>';
             }
-            $pNode['text'] = $parentCategory['name'].'<div class="category-del-li-div"><a onclick="add_category()">新增</a>'.$delStr.$enabledStr.'</div>';
+            $pNode['text'] = $parentCategory['name'].'<div class="category-del-li-div">'.$delStr.$enabledStr.'</div>';
 
             $returnData []= $pNode;
         }
-        $this->ajaxReturn ($returnData);
+        $this->jsonReturn ($returnData);
+    }
+
+    public function getCategorys(){
+        $pid = I("get.pid");
+        $categorys = M("category")->where("pid=".$pid." and `status`='1'")->field("id, name")->select();
+        $this->jsonReturn ($categorys);
     }
     
      public function changePassword($name=False){
