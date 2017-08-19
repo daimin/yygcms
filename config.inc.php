@@ -20,33 +20,22 @@ $MPConfig =  array(
     'TMPL_TEMPLATE_SUFFIX' => '.php',
     'URL_HTML_SUFFIX'=>'html',
     'VAR_FILTERS'=>'htmlspecialchars',
-  
-    // 权限
-    '__MP_EDITOR__' => 2, 
-    '__MP_ADMIN__' => 1,
-    // 密钥
-    "__YYG_SECURE_KEY__" => 'bc0abba426e9b7e8a35fa5b29f6f724b',
-    '__MP_AUTH_NAME__' => 'mp_4961f5d6d3ceb39508b538ad47ac5e72',
-	'__MP_DECO_NAME__' => 'mp_deco_4961f5d6d3ceb39508b538ad47ac5e72',
    'DEFAULT_TIMEZONE'=>'Asia/Shanghai',
    'SESSION_AUTO_START' =>True,
    'PERM_ACTIONS' => array("SysMgr", "AdminMgr"),   //编辑者禁止访问的Action
    '__MP_UPLOAD_DIR__' => '/Upload',
    'SHOW_PAGE_TRACE' =>True, // 显示页面Trace信息
    'SHOW_RUN_TIME'    => True, // 运行时间显示
-   'Design_Groups' => array(   //设计小组配置
-				1 => "风格设计A组",
-				2 => "风格设计B组",
-				3 => "产品设计",
-				4 => "软装配饰",
-		),
-   'Design_Styles' => array(   //设计风格配置
-				1 => "现代",
-				2 => "简约",
-				3 => "中式",
-				4 => "欧式",
-   		        5 => "古典",
-   		        6 => "地中海",
-		),
+
+	//自定义配置 //////////////////////////////////////////////////////
+
+
+	// 权限
+	'__YYG_EDITOR__' => 2,
+	'__YYG_ADMIN__' => 1,
+	// 密钥
+	"__YYG_SECURE_KEY__" => 'bc0abba426e9b7e8a35fa5b29f6f724b',
+	'__YYG_AUTH_NAME__' => 'mp_4961f5d6d3ceb39508b538ad47ac5e72',
+	'__MP_DECO_NAME__' => 'mp_deco_4961f5d6d3ceb39508b538ad47ac5e72',
 );
 

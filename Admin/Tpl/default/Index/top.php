@@ -170,7 +170,7 @@ a:link,a:visited {
     	<table width="450" border="0" cellspacing="0" cellpadding="0">
       <tr>
       <td align="right" height="26" style="padding-right:10px;line-height:26px;">
-        	您好！<span class="username"><?php echo session(C("__MP_AUTH_NAME__")) ?></span>，欢迎使用美平网站后台系统！
+        	您好！<span class="username"><?php echo session(C("__YYG_AUTH_NAME__")) ?></span>，欢迎使用美平网站后台系统！
         	[<a href="<?php echo site_url("Login/logout")?>" target="_top">注销退出</a>]&nbsp;
       </td>
       </tr>
@@ -178,7 +178,7 @@ a:link,a:visited {
         <td align="right" height="34" class="rmain">
             <a class="btn" id="index_link" style="display:none" href="/" target="_blank">网站首页</a>
             <button class="btn" onclick="gotoIndex()" style="margin-right:14px;margin-bottom:4px; ">网站首页</button>
-            <button class="btn" onclick="changePassword('<?php echo session(C("__MP_AUTH_NAME__")) ?>')" style="margin-right:0px;margin-bottom:4px; ">修改密码</button>
+            <button class="btn" onclick="changePassword('<?php echo session(C("__YYG_AUTH_NAME__")) ?>')" style="margin-right:0px;margin-bottom:4px; ">修改密码</button>
             <button class="btn" onclick="clearCache()" style="margin-right:14px;margin-bottom:4px; ">清除缓存</button>
 		<dl id="tpa">
 		<dd class='img'><a href="javascript:ChangeMenu(-1);"><img vspace="5" src="__PUBLIC__/admin/images/frame/arrl.gif" border="0" width="5" height="8" alt="缩小左框架"  title="缩小左框架" /></a></dd>

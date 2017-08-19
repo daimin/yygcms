@@ -46,23 +46,25 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">新增分类</h4>
             </div>
+            <form id="add-category-form" method="POST" name="add-category-form" action="__URL__/addcategory" onsubmit="return submit_check(this)">
             <div class="modal-body">
-                <form id="add-category-form" name="add-category-form">
+                <div class="alert alert-danger" role="alert" id="add-category-form-alert" style="display:none"></div>
                     <div class="form-group">
-                        <label for="category-name" class="control-label">分类名称:</label>
-                        <input type="text" class="form-control" name="category-name" id="category-name" />
+                        <label for="category_name" class="control-label">分类名称:</label>
+                        <input type="text" class="form-control" name="category_name" id="category_name" />
                     </div>
                     <div class="form-group">
-                        <label for="parent-category" class="control-label">选择父级:</label>
-                        <select class="form-control" id="parent-category" name="parent-category">
+                        <label for="parent_category" class="control-label">选择父级:</label>
+                        <select class="form-control" id="parent_category" name="parent_category">
                         </select>
                     </div>
-                </form>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" onclick="add_category()">保存</button>
+                <button type="submit" class="btn btn-primary">保存</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -79,24 +81,60 @@
         function open_add_dialog() {
             $.get('__URL__/getCategorys?pid=0', function(data,status){
                 var cates = comm_parseJsonResult(data);
-                $("#parent-category").empty();
-                $("#parent-category").append('<option value="0">无分类</option>');
+                $("#parent_category").empty();
+                $("#parent_category").append('<option value="0">无分类</option>');
                 $(cates).each(function(it){
-                    $("#parent-category").append('<option value="'+cates[it]['id']+'">' + cates[it]['name'] + '</option>');
+                    $("#parent_category").append('<option value="'+cates[it]['id']+'">' + cates[it]['name'] + '</option>');
                 });
             });
         }
 
-        function add_category(tform) {
-            if(tform.value == ''){
-                show_err_alert('错误', '名称不能为空');
+        function submit_check(tform) {
+            if(tform.category_name.value == ''){
+                $("#add-category-form-alert").text("分类名称不能为空").show();
+                return false;
             }
+            $.post(tform.action, {'category_name' : tform.category_name.value, 'parent_category' : tform.parent_category.value}, function (data, status) {
+                data = comm_parseJsonResult(data);
+                if(data){
+                    show_success_alert('成功', "新增分类成功", function () {
+                        window.location.reload();
+                    });
+                }
+            });
+            return false;
         }
 
+        function doDel(cid, cname) {
+            bootbox.confirm("确认删除分类：<span style=\"color:#dd2222;\">" + cname + "</span>?", function(result){
+                $.post('__URL__/dodel', {'cid' : cid}, function (data, status) {
+                    data = comm_parseJsonResult(data);
+                    if(data){
+                        window.location.reload();
+                    }
+                });
+            });
 
-//    $(function () {
-//        $("#category-tree")
-//    })
+        }
+
+        function doEnabled(cid) {
+            $.post('__URL__/dodisable', {'cid' : cid, 'status' : 1}, function (data, status) {
+                data = comm_parseJsonResult(data);
+                if(data){
+                    window.location.reload();
+                }
+            });
+        }
+
+        function doDisabled(cid) {
+            $.post('__URL__/dodisable', {'cid' : cid, 'status' : 0}, function (data, status) {
+                data = comm_parseJsonResult(data);
+                if(data){
+                    window.location.reload();
+                }
+            });
+        }
+
 </script>
 <include file="Public:footer" />
 

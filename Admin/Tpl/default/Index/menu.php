@@ -50,21 +50,17 @@ function saySorry(){
                 <div class='fllct'><a href='<?php echo site_url("Content/index/type/shipin/")?>' target='main'>趣味视频</a></div>
               </div>
                </li>
+
           </ul>
         </dd>
       </dl>
         <dl class='bitem'>
-            <dt onClick='showHide("items1_12")'><b>分类管理</b></dt>
+            <dt onClick='showHide("items1_12")'><b>内容设置</b></dt>
             <dd style='display:block' class='sitem' id='items1_12'>
                 <ul class='sitemu'>
                     <li>
                         <div class='items'>
                             <div class='fllct'><a href='<?php echo site_url("Category/mgr/")?>'  target='main'>管理分类</a></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class='items'>
-                            <div class='fllct'><a href='<?php echo site_url("Content/index/type/index/")?>'  target='main'>分类列表</a></div>
                         </div>
                     </li>
                 </ul>

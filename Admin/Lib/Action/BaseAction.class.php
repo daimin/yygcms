@@ -16,8 +16,7 @@ class BaseAction extends Action {
     protected function checkRbac() {
     	// 这里是具体的检测代码
     	// 先判断用户是否登录
-    	//$name = cookie(C("__MP_AUTH_NAME__"));
-    	$name = session(C("__MP_AUTH_NAME__"));
+    	$name = session(C("__YYG_AUTH_NAME__"));
     	if(!empty($name)){
     		$adminsD = D("Admins");
     		$admin = $adminsD->where("`name`='$name'")->find();
@@ -28,8 +27,8 @@ class BaseAction extends Action {
     				if($admin['status'] == 0){
     					$this->error("您的账号已被停用，请联系管理员", __APP__.'/Login/');
     				}
-    				if($admin['role'] == C("__MP_ADMIN__")){
-    					session("is_admin", C("__MP_ADMIN__"));
+    				if($admin['role'] == C("__YYG_ADMIN__")){
+    					session("is_admin", C("__YYG_ADMIN__"));
     				
     				}else{
     					session("is_admin", 0);

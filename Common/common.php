@@ -95,9 +95,9 @@ function sizecount($filesize) {
  */
 function roleShow($role){
     $roleDis = '';
-    if($role == C('__MP_EDITOR__')){
+    if($role == C('__YYG_EDITOR__')){
         $roleDis = '编辑者';
-    }else if($role == C('__MP_ADMIN__')){
+    }else if($role == C('__YYG_ADMIN__')){
         $roleDis = '管理员';
     }
   return $roleDis;

@@ -87,6 +87,15 @@ function show_err_alert(title, message){
 	});
 }
 
+function show_success_alert(title, message, callback){
+	bootbox.alert({
+		title: '<div class="yyg-msg-title"><span class="glyphicon glyphicon-ok yyg-success" aria-hidden="true"></span>' + title + '</div>',
+		message: '<div class="yyg-msg-message">' + message + '</div>',
+		size: 'small',
+		callback:callback
+	});
+}
+
 function comm_parseJsonResult(result) {
 	if(typeof result != 'object'){
 		result = JSON.parse(result);

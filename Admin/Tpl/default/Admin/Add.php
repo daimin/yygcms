@@ -39,8 +39,8 @@
        <td width="300">角色： </td>
        <td align="left" style="padding:3px;">
            <select name="role" >
-               <option value="{$Think.config.__MP_EDITOR__}" >{$Think.config.__MP_EDITOR__|roleShow=### }</option>
-               <option value="{$Think.config.__MP_ADMIN__}" >{$Think.config.__MP_ADMIN__|roleShow=### }</option>
+               <option value="{$Think.config.__YYG_EDITOR__}" >{$Think.config.__YYG_EDITOR__|roleShow=### }</option>
+               <option value="{$Think.config.__YYG_ADMIN__}" >{$Think.config.__YYG_ADMIN__|roleShow=### }</option>
            </select>
        </td>
        <td class="info">管理员：具有网站所有的权限<br/>编辑者：能发布并编辑文档</td>

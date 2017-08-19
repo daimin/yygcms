@@ -4,7 +4,8 @@
 }
 
 td {
-    line-height: 1.5;
+    line-height: 2.5em;
+    border-bottom:1px solid #efefef;
 }
 
 body {
@@ -36,10 +37,6 @@ li, dd {
 
 input {
     border: 1px solid #ababab;
-    zoom: expression(function(ele){(ele.type=='button'||ele.type=='submit'||ele.type=='reset') ?	ele.className='coolbg':(ele.type=='text' ?	ele.className='alltxt':'');
-	(ele.type=='radio'||ele.type=='checkbox') ?	ele.className='np': '';
-	ele.style.zoom = '1';
-}(this));
 }
 
 input {
@@ -67,8 +64,8 @@ input[type="text"], input[type="password"] {
     border-style: solid;
     border-color: #707070 #CECECE #CECECE #707070;
     padding: 2px 4px;
-    height: 18px;
-    line-height: 18px;
+    height: 28px;
+    line-height: 28px;
     vertical-align: middle;
 }
 
@@ -132,19 +129,19 @@ a:link {
     font-size: 9pt;
     color: #000000;
     text-decoration: none;
-    font-family: "" 宋体 "";
+    font-family: "\" 宋体 \"";
 }
 
 a:visited {
     font-size: 9pt;
     color: #000000;
     text-decoration: none;
-    font-family: "" 宋体 "";
+    font-family: "\" 宋体 \"";
 }
 
 a:hover {
     color: red;
-    font-family: "" 宋体 "";
+    font-family: "\" 宋体 \"";
 }
 
 a img {
@@ -309,7 +306,7 @@ a strong {
 
 .wsselect {
     height: 60px;
-    line-height: 24px
+    line-height: 24px;
     overflow-y: auto;
     overflow: auto;
     background-color: #FCFEF1;
@@ -468,7 +465,6 @@ a strong {
 
 .nbt {
     padding: 1px;
-    background-image: url('../images/allbtbg.gif');
     background-color: #ffffff;
     border: 1px solid #A5AF83;
 }
@@ -536,8 +532,6 @@ a strong {
 
 .colordlg {
     width: 100px;
-    z-index;
-    10005;
     border: 2px dashed #749F4D;
     background-color: #F0FAEB;
     padding: 2px;
@@ -585,7 +579,6 @@ option.stype {
     height: 18px;
     font-size: 12px;
     padding-left: 10px;
-    background: url(../images/typeid2bg.gif) no-repeat;
     float: left;
 }
 
@@ -609,10 +602,6 @@ option.stype {
     cursor: pointer;
 }
 
-#starttime, #endtime, #pubdate {
-    background: url(../images/calendar.gif) 3px no-repeat;
-    padding-left: 23px;
-}
 
 #title {
     background: url(../images/ruler.gif) repeat-x 0px 5px;
@@ -769,6 +758,13 @@ option.stype {
     margin-bottom: 10px;
 }
 
+#category-tree .list-group .list-group-item{
+    padding-top: 7px;
+    padding-bottom: 7px;
+    line-height: 1.8em;
+}
+
+
 #add-category-form input[type="text"], input[type="password"]{
     height: 34px;
 }
@@ -786,7 +782,11 @@ select option{
 }
 
 .yyg-error{
-    color:#ff0000;
+    color:#dd2222;
+}
+
+.yyg-success {
+    color:#22dd22;
 }
 
 .yyg-msg-message{

@@ -13,7 +13,8 @@
           <td width="76%" align="right">
           </td>
         </tr>
-      </tbody></table>
+      </tbody>
+        </table>
     </td>
   </tr>
   <form name="form1" action="__URL__/doBackup" method="post">
@@ -42,7 +43,7 @@
       {$user.lastlogintime}  
     </td>
     <td> 
-    <?php if( session(C("__MP_AUTH_NAME__")) != $user['name']){?>
+    <?php if( session(C("__YYG_AUTH_NAME__")) != $user['name']){?>
     <if condition="($user.status eq 1) ">
        <span onclick="changeAdminStatus(0,'<?php echo $user['name']?>')" style="color:green;cursor:pointer;">[正常] </span>
     <else /> <span onclick="changeAdminStatus(1,'<?php echo $user['name']?>')" style="color:red;cursor:pointer;">[停用]</span>
@@ -54,10 +55,10 @@
    <?php }?>
  </td>
     <td>
-    <?php if(session(C("__MP_AUTH_NAME__")) != $user['name']){?>
+    <?php if(session(C("__YYG_AUTH_NAME__")) != $user['name']){?>
           <select name="role" onchange="changeRole(this, '<?php echo $user['name']?>')" >
-               <option value="{$Think.config.__MP_EDITOR__}" <?php if($user['role'] == C("__MP_EDITOR__")) echo ' selected="selected" ';?> >{$Think.config.__MP_EDITOR__|roleShow=### }</option>
-               <option value="{$Think.config.__MP_ADMIN__}" <?php if($user['role'] == C("__MP_ADMIN__")) echo ' selected="selected" ';?> >{$Think.config.__MP_ADMIN__|roleShow=### }</option>
+               <option value="{$Think.config.__YYG_EDITOR__}" <?php if($user['role'] == C("__YYG_EDITOR__")) echo ' selected="selected" ';?> >{$Think.config.__YYG_EDITOR__|roleShow=### }</option>
+               <option value="{$Think.config.__YYG_ADMIN__}" <?php if($user['role'] == C("__YYG_ADMIN__")) echo ' selected="selected" ';?> >{$Think.config.__YYG_ADMIN__|roleShow=### }</option>
            </select>
     <?php }else{?>
     <?php echo roleShow($user['role'])?>
