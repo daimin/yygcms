@@ -20,3 +20,4 @@ composer.phar
 */Runtime/
 /Upload/*
 
+config.inc.php
