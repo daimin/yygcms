@@ -26,6 +26,7 @@ class CategoryAction extends BaseAction {
             $isAllChildNodeDisabled = true;
 
             foreach($childNodes as $childNode){
+                $editStr = '<a href="javascript:void(0)" onclick="doEdit(\''.$childNode['id'].'\')">编辑</a>';
                 $enabledStr = '<a href="javascript:void(0)" style="color:#22bb22;" onclick="doDisabled(\''.$childNode['id'].'\')">禁用</a>';
                 if($childNode['status'] == 0){
                     $enabledStr = '<a href="javascript:void(0)"  style="color:#bb2222;"  onclick="doEnabled(\''.$childNode['id'].'\')">启用</a>';
@@ -33,12 +34,15 @@ class CategoryAction extends BaseAction {
                     $isAllChildNodeDisabled = false;
                 }
                 $pNode['nodes'] []= [
-                    'text' => $childNode['name'].'<div class="category-del-li-div"><a onclick="doDel(\''.$childNode['id'].'\', \''.$childNode['name'].'\')">删除</a>'.$enabledStr.'</div>',
+                    'text' => '<span id="cate-'.$childNode['id'].'-text">'.$childNode['name'].'</span>'.
+                        '<input id="cate-'.$childNode['id'].'-edit" size="32"  type="text" name="cate-'.$childNode['id'].'-edit" value="'.$childNode['name'].'" style="display:none" />'.
+                        '<div class="category-del-li-div">'.$editStr.'<a onclick="doDel(\''.$childNode['id'].'\', \''.$childNode['name'].'\')">删除</a>'.$enabledStr.'</div>',
                 ];
             }
 
             $enabledStr = "";
             $delStr = "";
+            $editStr = '<a href="javascript:void(0)" onclick="doEdit(\''.$parentCategory['id'].'\')">编辑</a>';
             if(empty($pNode['nodes']) || $isAllChildNodeDisabled){
                 $enabledStr = '<a href="javascript:void(0)" style="color:#22bb22;" onclick="doDisabled(\''.$parentCategory['id'].'\')">禁用</a>';
                 if($parentCategory['status'] == 0){
@@ -48,11 +52,9 @@ class CategoryAction extends BaseAction {
                 $delStr = '<a href="javascript:void(0)" onclick="doDel(\''.$parentCategory['id'].'\', \''.$parentCategory['name'].'\')">删除</a>';
             }
 
-//            if($parentCategory['status'] == 1 && ){
-//                $enabledStr = '<a href="javascript:void(0)" style="color:#22bb22;" onclick="doDisabled(\''.$parentCategory['id'].'\')">禁用</a>';
-//            }
-
-            $pNode['text'] = $parentCategory['name'].'<div class="category-del-li-div">'.$delStr.$enabledStr.'</div>';
+            $pNode['text'] = '<span id="cate-'.$parentCategory['id'].'-text">'.$parentCategory['name'].'</span>'.
+                '<input id="cate-'.$parentCategory['id'].'-edit" type="text" name="cate-'.$parentCategory['id'].'-edit" value="'.$parentCategory['name'].
+                '" style="display:none" />'.'<div class="category-del-li-div">'.$editStr.$delStr.$enabledStr.'</div>';
 
             $returnData []= $pNode;
         }
@@ -82,10 +84,15 @@ class CategoryAction extends BaseAction {
             }
         }
 
+        $pageCode = D('Pinyin', 'Helper')->toPinyin($categoryName);
+        if(empty($pageCode)){
+            $pageCode = $categoryName;
+        }
         $categoryModel = M("category"); // 实例化User对象
         $ret = $categoryModel->data([
             'pid' => $parentCategoryVal,
             'name' => $categoryName,
+            'pagecode' => $pageCode,
             'status' => 1,
             'createtime' => date("Y-m-d H:i:s"),
             'modifytime' => date("Y-m-d H:i:s"),
@@ -135,10 +142,11 @@ class CategoryAction extends BaseAction {
         try{
 
             $data['status'] = $status;
+            $data['modifytime'] = date('Y-m-d H:i:s');
             $ret = $categoryModel->where(['id' => $cid])->save($data);
 
             if($status === 1){
-                $disableDchildCategorys = $categoryModel->where(['pid' => $cid, 'status' => 0])->select();
+                $disableDchildCategorys = $categoryModel->where(['pid' => $cid, 'status' => 0, 'modifytime' => date('Y-m-d H:i:s')])->select();
                 foreach($disableDchildCategorys as $disableDchildCategory){
                     if(!$categoryModel->where(['id' => $disableDchildCategory['id']])->save($data)){
                         throw new Exception("禁用失败");
@@ -152,13 +160,41 @@ class CategoryAction extends BaseAction {
             $this->jsonReturn (false, $e->getMessage());
         }
 
-
         if($ret){
             $this->jsonReturn ($ret);
         }else{
             $categoryModel->rollback();
             $this->jsonReturn (false, '禁用失败');
         }
+    }
+
+    public function updatename(){
+        $cid = I('post.cid');
+        $name = I('post.name');
+        if(empty($name)){
+            $this->jsonReturn (false, "分类名称不能为空");
+        }
+        $categoryModel = M("category");
+        $category = $categoryModel->where(['id' => $cid])->select();
+        if(empty($category)){
+            $this->jsonReturn (false, "无法修改不存在的分类");
+        }
+        $existNameCategory = $categoryModel->where(['pid' => $category['pid'], 'name' => $name])->select();
+        if(!empty($existNameCategory)){
+            $this->jsonReturn (false, "已存在该名称的分类");
+        }
+
+        $data['name'] = $name;
+        $data['modifytime'] = date('Y-m-d H:i:s');
+        $ret = $categoryModel->where(['id' => $cid])->save($data);
+
+        if($ret){
+            $this->jsonReturn ($ret);
+        }else{
+            $categoryModel->rollback();
+            $this->jsonReturn (false, '修改名称失败');
+        }
+
     }
 
 }

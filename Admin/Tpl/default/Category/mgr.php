@@ -5,7 +5,6 @@
 <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-modal/2.2.6/js/bootstrap-modalmanager.min.js"></script>
 <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.js"></script>
 
-
 <div style="min-width:780px">
     <table width="98%" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px" bgcolor="#D6D6D6" align="center">
         <tr>
@@ -70,11 +69,16 @@
 </div>
 <script type="text/javascript">
 
-        $.get('__URL__/getList', function(data,status){
+        $.get('__URL__/getList', function(data, status){
             $('#category-tree').treeview(
             {
                 data: comm_parseJsonResult(data),
-                selectedBackColor : '#cccccc'
+                selectedBackColor : '#cccccc',
+                state:{
+                    expanded: true,
+                    selected: false
+                },
+                highlightSelected: false
             });
         });
         
@@ -107,12 +111,14 @@
 
         function doDel(cid, cname) {
             bootbox.confirm("确认删除分类：<span style=\"color:#dd2222;\">" + cname + "</span>?", function(result){
-                $.post('__URL__/dodel', {'cid' : cid}, function (data, status) {
-                    data = comm_parseJsonResult(data);
-                    if(data){
-                        window.location.reload();
-                    }
-                });
+                if(result){
+                    $.post('__URL__/dodel', {'cid' : cid}, function (data, status) {
+                        data = comm_parseJsonResult(data);
+                        if(data){
+                            window.location.reload();
+                        }
+                    });
+                }
             });
 
         }
@@ -134,6 +140,36 @@
                 }
             });
         }
+
+        function doEdit(cid) {
+            var e = getEvent();
+            e.stopPropagation();
+            $("#cate-" + cid + '-text').hide();
+            var editJobj = $("#cate-" + cid + '-edit');
+            editJobj.show();
+            editJobj.click(function (e) {
+                e.stopPropagation();
+                }
+            );
+            var oldVal = editJobj.val();
+            editJobj.blur(function(e){
+                e.stopPropagation();
+                console.log(encodeURIComponent(editJobj.val()));
+
+                if(oldVal != editJobj.val() && editJobj.val().trim() != ''){
+                    $.post('__URL__/updatename', {'cid' : cid, 'name' : editJobj.val()}, function (data, status) {
+                        data = comm_parseJsonResult(data);
+                        if(data){
+                            $("#cate-" + cid + '-text').text(editJobj.val());
+                            $("#cate-" + cid + '-text').show();
+                            editJobj.hide();
+                        }
+                    });
+                }
+            });
+            return false;
+        }
+
 
 </script>
 <include file="Public:footer" />

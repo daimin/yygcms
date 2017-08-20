@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50712
 File Encoding         : 65001
 
-Date: 2017-08-14 23:15:32
+Date: 2017-08-20 23:07:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,8 +22,8 @@ DROP TABLE IF EXISTS `yyg_admins`;
 CREATE TABLE `yyg_admins` (
   `name` varchar(32) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `createtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `lastlogintime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastlogintime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `role` tinyint(4) NOT NULL DEFAULT '2',
   PRIMARY KEY (`name`)
@@ -32,12 +32,12 @@ CREATE TABLE `yyg_admins` (
 -- ----------------------------
 -- Records of yyg_admins
 -- ----------------------------
-INSERT INTO `yyg_admins` VALUES ('admin', '5875943b585efd90d60d32343f127004', '2013-07-16 15:43:05', '2017-08-14 23:14:19', '1', '1');
-INSERT INTO `yyg_admins` VALUES ('admin1', '111111', '2013-07-16 15:20:54', NOW(), '1', '2');
-INSERT INTO `yyg_admins` VALUES ('admin2', 'f0bab14fdb2dec036f1837bf48ca0dd3', '2013-07-16 15:21:50', NOW(), '1', '2');
-INSERT INTO `yyg_admins` VALUES ('vagasnail', 'f0bab14fdb2dec036f1837bf48ca0dd3', '2013-07-16 16:24:33', NOW(), '1', '1');
+INSERT INTO `yyg_admins` VALUES ('admin', 'a44f75e56684fcbb89d46ef2be701265', '2013-07-16 15:43:05', '2017-08-20 17:39:06', '1', '1');
+INSERT INTO `yyg_admins` VALUES ('admin1', '111111', '2013-07-16 15:20:54', '0000-00-00 00:00:00', '1', '2');
+INSERT INTO `yyg_admins` VALUES ('admin2', 'f0bab14fdb2dec036f1837bf48ca0dd3', '2013-07-16 15:21:50', '0000-00-00 00:00:00', '1', '2');
+INSERT INTO `yyg_admins` VALUES ('vagasnail', 'f0bab14fdb2dec036f1837bf48ca0dd3', '2013-07-16 16:24:33', '0000-00-00 00:00:00', '1', '1');
 INSERT INTO `yyg_admins` VALUES ('1111', '2d432ae82045fa704ff12b4ebac19fcc', '2013-07-16 16:39:39', '2013-07-17 11:34:51', '0', '0');
-INSERT INTO `yyg_admins` VALUES ('2222', '2d432ae82045fa704ff12b4ebac19fcc', '2013-07-17 14:23:58', NOW(), '0', '1');
+INSERT INTO `yyg_admins` VALUES ('2222', '2d432ae82045fa704ff12b4ebac19fcc', '2013-07-17 14:23:58', '0000-00-00 00:00:00', '0', '1');
 
 -- ----------------------------
 -- Table structure for yyg_attac
@@ -47,7 +47,7 @@ CREATE TABLE `yyg_attac` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(200) NOT NULL DEFAULT '',
   `path` varchar(500) NOT NULL,
-  `createtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `description` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=696 DEFAULT CHARSET=utf8;
@@ -778,15 +778,32 @@ CREATE TABLE `yyg_category` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(10) unsigned NOT NULL DEFAULT '0',
   `name` varchar(32) NOT NULL,
+  `pagecode` varchar(120) NOT NULL DEFAULT '',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `createtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modifytime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of yyg_category
 -- ----------------------------
+INSERT INTO `yyg_category` VALUES ('1', '0', '孕育知识', 'yun-yu-zhi-shi', '1', '2017-08-14 17:21:33', '2017-08-14 17:21:33');
+INSERT INTO `yyg_category` VALUES ('2', '0', '育儿百科', 'yu-er-bai-ke', '1', '2017-08-14 17:22:14', '2017-08-14 17:22:14');
+INSERT INTO `yyg_category` VALUES ('3', '1', '护理保健', 'hu-li-bao-jian', '1', '2017-08-14 17:22:27', '2017-08-14 17:22:27');
+INSERT INTO `yyg_category` VALUES ('4', '1', '幼儿安全', 'you-er-an-quan', '1', '2017-08-14 17:22:35', '2017-08-14 17:22:35');
+INSERT INTO `yyg_category` VALUES ('5', '1', '常见疾病', 'chang-jian-ji-bing', '1', '2017-08-14 17:22:42', '2017-08-14 17:22:42');
+INSERT INTO `yyg_category` VALUES ('6', '2', '准备怀孕', 'zhun-bei-huai-yun', '1', '2017-08-14 17:22:55', '2017-08-14 17:22:55');
+INSERT INTO `yyg_category` VALUES ('7', '2', '孕早期', 'yun-zao-qi', '1', '2017-08-14 17:23:03', '2017-08-14 17:23:03');
+INSERT INTO `yyg_category` VALUES ('8', '2', '孕中期', 'yun-zhong-qi', '1', '2017-08-14 17:23:08', '2017-08-14 17:23:08');
+INSERT INTO `yyg_category` VALUES ('9', '2', '孕晚期', 'yun-wan-qi', '1', '2017-08-14 17:23:12', '2017-08-14 17:23:12');
+INSERT INTO `yyg_category` VALUES ('10', '2', '分娩', 'fen-mian', '1', '2017-08-14 17:23:21', '2017-08-14 17:23:21');
+INSERT INTO `yyg_category` VALUES ('11', '2', '产后', 'chan-hou', '1', '2017-08-14 17:23:29', '2017-08-14 17:23:29');
+INSERT INTO `yyg_category` VALUES ('32', '0', '母婴优品', 'mu-yin-you-pin', '1', '2017-08-20 15:51:00', '2017-08-20 15:51:00');
+INSERT INTO `yyg_category` VALUES ('33', '0', '儿童故事', 'er-tong-gu-shi', '1', '2017-08-20 15:51:14', '2017-08-20 15:51:14');
+INSERT INTO `yyg_category` VALUES ('38', '0', '儿童动画', 'er-tong-dong-hua', '1', '2017-08-20 21:55:28', '2017-08-20 21:55:28');
+INSERT INTO `yyg_category` VALUES ('39', '0', '婆媳那点儿事', 'po-xi-na-dian-er-shi', '1', '2017-08-20 21:56:06', '2017-08-20 22:48:53');
+INSERT INTO `yyg_category` VALUES ('42', '0', '问问', '', '1', '2017-08-20 23:07:12', '2017-08-20 23:07:12');
 
 -- ----------------------------
 -- Table structure for yyg_content
@@ -940,7 +957,7 @@ CREATE TABLE `yyg_designer_yuding` (
   `phone` varchar(30) NOT NULL DEFAULT '',
   `qq` varchar(20) NOT NULL DEFAULT '',
   `mail` varchar(40) NOT NULL DEFAULT '',
-  `created` datetime DEFAULT CURRENT_TIMESTAMP,
+  `created` datetime DEFAULT '0000-00-00 00:00:00',
   `brief` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
@@ -1023,7 +1040,7 @@ CREATE TABLE `yyg_homedeco_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `createtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
@@ -1065,7 +1082,7 @@ CREATE TABLE `yyg_signup` (
   `name` varchar(20) NOT NULL,
   `tel` varchar(30) NOT NULL,
   `phone` varchar(30) NOT NULL,
-  `created` datetime DEFAULT CURRENT_TIMESTAMP,
+  `created` datetime DEFAULT '0000-00-00 00:00:00',
   `status` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
@@ -1167,7 +1184,7 @@ CREATE TABLE `yyg_yuding` (
   `sex` varchar(4) NOT NULL DEFAULT '男',
   `phone` varchar(30) NOT NULL,
   `yusuan` decimal(10,0) NOT NULL DEFAULT '0',
-  `created` datetime DEFAULT CURRENT_TIMESTAMP,
+  `created` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 

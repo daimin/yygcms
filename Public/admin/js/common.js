@@ -107,3 +107,7 @@ function comm_parseJsonResult(result) {
 		return result['data'];
 	}
 }
+
+var getEvent = function(){
+	return window.event || arguments.callee.caller.arguments[0];
+};

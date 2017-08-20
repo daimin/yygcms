@@ -53,4 +53,3 @@ class AdminsModel extends Model{
    
     
 }
-?>

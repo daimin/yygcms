@@ -7,7 +7,7 @@
     <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="__PUBLIC__/admin/style/base.css" rel="stylesheet" type="text/css"/>
 
-    <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/jquery/2.2.3/jquery.js"></script>
     <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootbox.js/4.4.0/bootbox.js"></script>
     
     <script type="text/javascript" language="javascript" src="__PUBLIC__/admin/js/common.js"></script>

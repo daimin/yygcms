@@ -109,8 +109,8 @@ class BaseAction extends Action {
 				echo '无效的文件类型';
 				return;
 			}
-			$sfdir = C("__MP_UPLOAD_DIR__").'/'.date("Ymd");
-			$fdir = __MP_SITE_ROOT__.$sfdir;
+			$sfdir = C("__YYG_UPLOAD_DIR__").'/'.date("Ymd");
+			$fdir = __YYG_SITE_ROOT__.$sfdir;
 			if(!file_exists($fdir))
 			    createdir($fdir);
 			
