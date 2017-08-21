@@ -28,4 +28,9 @@ class IndexAction extends BaseAction {
     	$this->assign('info',$info);
     	$this->display();
     }
+
+	public function menu(){
+		$this->assign('categorys', M("category")->where("pid=0")->select());
+		$this->display();
+	}
 }

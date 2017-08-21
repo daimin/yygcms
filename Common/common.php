@@ -36,10 +36,10 @@ function delFile($filePath) {
 
 function site_url($url){
 	if(strrchr($url, '/') != '/'){
-		$url = $url.'/';
+		$url = $url.'.html';
 	}
 
-    return __APP__.'/'.$url; 
+    return str_replace('index.php/', '', __APP__.'/'.$url);
 }
 
 function del_dir($dir) {

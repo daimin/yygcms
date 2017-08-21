@@ -2,13 +2,13 @@
 // 本类由系统自动生成，仅供测试用途
 class ContentAction extends BaseAction {
     
-    public function index($type, $o_keyword='', $o_status='', $sort=''){
+    public function category($code, $o_keyword='', $o_status='', $sort=''){
  
         //默认系统配置
         $opts = $this->getOptions();
-        $this->_contentData($type, $opts->pageSize,$o_keyword,$o_status,$sort);
+        $this->_contentData($code, $opts->pageSize,$o_keyword,$o_status,$sort);
 
-        $this->display("Content:$type:index");
+        $this->display("Content:$code:index");
         
 	}
 	

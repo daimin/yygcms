@@ -27,40 +27,35 @@ function saySorry(){
     <td style='padding-left:3px;padding-top:8px' valign="top">
 	<!-- Item 1 Strat -->
    <dl class='bitem'>
-        <dt onClick='showHide("items1_11")'><b>内容管理</b></dt>
+        <dt onClick='showHide("items1_11")'><b>发布管理</b></dt>
         <dd style='display:block' class='sitem' id='items1_11'>
           <ul class='sitemu'>
-              <li>
-                  <div class='items'>
-                      <div class='fllct'><a href='<?php echo site_url("Content/index/type/index/")?>'  target='main'>首页</a></div>
-                  </div>
-              </li>
-            <li>
-              <div class='items'>
-                <div class='fllct'><a href='<?php echo site_url("Content/index/type/tupian/")?>'  target='main'>趣味图片</a></div>
-              </div>
-            </li>
-               <li>
-              <div class='items'>
-                <div class='fllct'><a href='<?php echo site_url("Content/index/type/duanzi/")?>' target='main'>趣味段子</a></div>
-              </div>
-               </li>
-              <li>
-              <div class='items'>
-                <div class='fllct'><a href='<?php echo site_url("Content/index/type/shipin/")?>' target='main'>趣味视频</a></div>
-              </div>
-               </li>
-
+              <?php
+                foreach($categorys as $category) {
+                    ?>
+                    <li>
+                        <div class='items'>
+                            <div class='fllct'><a href='<?php echo site_url("content/category/code/".$category['pagecode']) ?>' target='main'><?php echo $category['name'] ?></a></div>
+                        </div>
+                    </li>
+                    <?php
+                }
+              ?>
           </ul>
         </dd>
       </dl>
         <dl class='bitem'>
-            <dt onClick='showHide("items1_12")'><b>内容设置</b></dt>
+            <dt onClick='showHide("items1_12")'><b>内容管理</b></dt>
             <dd style='display:block' class='sitem' id='items1_12'>
                 <ul class='sitemu'>
                     <li>
                         <div class='items'>
-                            <div class='fllct'><a href='<?php echo site_url("Category/mgr/")?>'  target='main'>管理分类</a></div>
+                            <div class='fllct'><a href='<?php echo site_url("category/mgr/")?>'  target='main'>设置分类</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class='items'>
+                            <div class='fllct'><a href='<?php echo site_url("comment/mgr/")?>'  target='main'>评论管理</a></div>
                         </div>
                     </li>
                 </ul>
