@@ -6,9 +6,9 @@ class ContentAction extends BaseAction {
  
         //默认系统配置
         $opts = $this->getOptions();
-        $this->_contentData($code, $opts->pageSize,$o_keyword,$o_status,$sort);
+        $this->_contentData($code, $opts->pageSize, $o_keyword,$o_status, $sort);
 
-        $this->display("Content:$code:index");
+        $this->display("Content:index");
         
 	}
 	
@@ -85,7 +85,7 @@ class ContentAction extends BaseAction {
 		$this->assign('page',$show);// 赋值分页输出
 	}
 	
-	private function _contentData($type, $pageSize, $o_keyword, $o_status,$sort){
+	private function _contentData($pageCode, $pageSize, $o_keyword, $o_status,$sort){
 		import('ORG.Util.Page');// 导入分页类
 
 		if(empty($o_status)){
@@ -95,7 +95,7 @@ class ContentAction extends BaseAction {
 			$o_keyword = I("o_keyword");
 		}
 
-		if(empty($type)){
+		if(empty($pageCode)){
 			$type = I("type");
 		}
 		
@@ -106,7 +106,7 @@ class ContentAction extends BaseAction {
 			}
 		}
 		
-		$map['type']  = array('eq', $type);
+		$map['type']  = array('eq', $pageCode);
 		if($o_status != ''){
 			$map['status']  = array('eq', $o_status);
 		}
