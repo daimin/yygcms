@@ -51,11 +51,9 @@ input[type="button"], input[type="submit"], input[type="reset"] {
     border: none;
     border-right: 1px solid #ACACAC;
     border-bottom: 1px solid #ACACAC;
-    background-color: #F1F8B4;
     padding: 2px;
     padding-right: 5px;
     padding-left: 5px;
-    background: url(../images/allbtbg2.gif) #EFF7D0;
     cursor: pointer;
 }
 
@@ -792,4 +790,8 @@ select option{
 .yyg-msg-message{
     text-align: center;
     font-size: 14px;
+}
+
+.table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>thead>tr>th {
+    padding: 0px;
 }

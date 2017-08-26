@@ -11,7 +11,7 @@ error_reporting(E_ALL);
     define('APP_DEBUG', true);
 
 	define('APP_NAME','Site');
-	
+
 	define('APP_PATH', './'.APP_NAME.'/');
 
 	define('__YYG_CORE_PATH__', __YYG_SITE_ROOT__.'/Core/');

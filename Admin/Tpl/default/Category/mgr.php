@@ -1,8 +1,6 @@
 <include file="Public:header" />
 
 <link href="http://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-modal/2.2.6/js/bootstrap-modal.min.js"></script>
-<script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-modal/2.2.6/js/bootstrap-modalmanager.min.js"></script>
 <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.js"></script>
 
 <div style="min-width:780px">
@@ -110,7 +108,7 @@
         }
 
         function doDel(cid, cname) {
-            bootbox.confirm("确认删除分类：<span style=\"color:#dd2222;\">" + cname + "</span>?", function(result){
+            yygcms_confirm("确认删除分类：<span style=\"color:#dd2222;\">" + cname + "</span>?", function (result) {
                 if(result){
                     $.post('__URL__/dodel', {'cid' : cid}, function (data, status) {
                         data = comm_parseJsonResult(data);
@@ -119,7 +117,7 @@
                         }
                     });
                 }
-            });
+            })
 
         }
 
@@ -169,7 +167,6 @@
             });
             return false;
         }
-
 
 </script>
 <include file="Public:footer" />

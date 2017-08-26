@@ -2,12 +2,11 @@
 // 本类由系统自动生成，仅供测试用途
 class ContentAction extends BaseAction {
     
-    public function category($code, $o_keyword='', $o_status='', $sort=''){
+    public function category($code, $o_keyword='', $o_status='', $sort='', $o_category='', $startdate='', $enddate=''){
  
         //默认系统配置
         $opts = $this->getOptions();
-        $this->_contentData($code, $opts->pageSize, $o_keyword,$o_status, $sort);
-
+        $this->_contentData($code, $opts->pageSize, $o_keyword,$o_status, $sort, $o_category, $startdate, $enddate);
         $this->display("Content:index");
         
 	}
@@ -85,7 +84,7 @@ class ContentAction extends BaseAction {
 		$this->assign('page',$show);// 赋值分页输出
 	}
 	
-	private function _contentData($pageCode, $pageSize, $o_keyword, $o_status,$sort){
+	private function _contentData($pageCode, $pageSize, $o_keyword, $o_status, $sort, $o_category, $startdate, $enddate){
 		import('ORG.Util.Page');// 导入分页类
 
 		if(empty($o_status)){
@@ -96,7 +95,7 @@ class ContentAction extends BaseAction {
 		}
 
 		if(empty($pageCode)){
-			$type = I("type");
+			$pageCode = I("code");
 		}
 		
 		if(empty($sort)){
@@ -105,34 +104,92 @@ class ContentAction extends BaseAction {
 				$sort = 'desc';
 			}
 		}
-		
-		$map['type']  = array('eq', $pageCode);
-		if($o_status != ''){
+
+		if($o_category === ''){
+			$o_categoryId = I("get.o_category");
+		}else{
+			$o_categoryId = $o_category;
+		}
+
+		if($startdate === ''){
+			$startdate = I("get.startdate");
+		}
+
+		if($enddate === ''){
+			$enddate = I("get.enddate");
+		}
+
+		//==============================================
+
+		$category = M("category")->where(['pagecode' => $pageCode])->find();
+		$subCategorys = M("category")->where(['pid' => $category['id']])->select();
+		$inIds = [];
+		foreach($subCategorys as $subCategory){
+			$inIds []= $subCategory['id'];
+		}
+		$inIds []= $category['id'];
+
+		$map['category_id']  = array('in', $inIds);
+		if($o_status !== ''){
 			$map['status']  = array('eq', $o_status);
 		}
+
+		if($o_categoryId !== ''){
+			$map['category_id'] = $o_categoryId;
+		}
+
+		if($startdate !== '' && $enddate === ''){
+			$map['createtime']  = ['EGT', $startdate];
+		}
+
+		if($startdate === '' && $enddate !== ''){
+			$map['createtime']  = ['ELT', $enddate];
+		}
+
+		if($startdate !== '' && $enddate !== ''){
+			$map['createtime']  = [['EGT', $startdate], ['ELT', $enddate], 'AND'];
+		}
+
 		$map['parentid']  = array('eq', 0);
 		if(!empty($o_keyword)){
-			$map['title|relurl|createtime'] = array('like', '%'.$o_keyword.'%');
+			$map['title|relurl'] = array('like', '%'.$o_keyword.'%');
 		}
-		
-		
+
 		$contentD = D("Content");
 		$count      = $contentD->where($map)->count();// 查询满足要求的总记录数
-		$Page       = new Page($count, $pageSize);// 实例化分页类 传入总记录数和每页显示的记录数
-		
-		
-	    $Page->parameter   =   "type=".urlencode($type).'&o_keyword='.$o_keyword.'&o_status='.$o_status.'&sort='.$sort;
-		
-		
-		$show       = $Page->show();// 分页显示输出
+		$page       = new Page($count, $pageSize);// 实例化分页类 传入总记录数和每页显示的记录数
+
+		$urlParams = [
+			'code' => urlencode($pageCode),
+			'o_keyword' => $o_keyword,
+			'o_status' => $o_status,
+			'sort' => $sort,
+			'o_category' => $o_categoryId,
+			'startdate' => $startdate,
+			'enddate' => $enddate
+		];
+	    $page->parameter = http_build_query($urlParams);
+
+		$show       = $page->show();// 分页显示输出
 		// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-		$list = $contentD->where($map)->order('`order`,`createtime` '.$sort)->limit($Page->firstRow.','.$Page->listRows)->select();
+		$list = $contentD->where($map)->order('`order`,`createtime` '.$sort)->limit($page->firstRow.','.$page->listRows)->select();
 		for($i = 0, $len = count($list); $i < $len; $i++){
 			$list[$i]['attac_count'] = $contentD->getAttatsCount($list[$i]['id']);
+			$subCategory = M("category")->where(['id' => $list[$i]['category_id']])->find();
+			$list[$i]['category_name'] =  $subCategory ? $subCategory['name'] : "";
 		}
+
+		$this->assign('category', $category);// 赋值数据集
+		array_unshift($subCategorys, $category);
+		$this->assign('categorys', $subCategorys);// 赋值数据集
 		$this->assign('list', $list);// 赋值数据集
 		$this->assign('sort', $sort);
-		$this->assign('page',$show);// 赋值分页输出
+		$this->assign('o_status', $o_status);
+		$this->assign('o_categoryId', $o_categoryId);
+		$this->assign('o_keyword', $o_keyword);
+		$this->assign('startdate', $startdate);
+		$this->assign('enddate', $enddate);
+		$this->assign('page', $show);// 赋值分页输出
 		
 	}
 	
@@ -431,7 +488,7 @@ class ContentAction extends BaseAction {
 				$contentD->where("`id`='$id'")->delete();
 			}
 		}
-		$this->ajaxReturn(1);
+		$this->jsonReturn (1);
 	}
 	/**
 	 * 删除指定的ContentId 的所有附件及其关联

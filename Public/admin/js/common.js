@@ -111,3 +111,20 @@ function comm_parseJsonResult(result) {
 var getEvent = function(){
 	return window.event || arguments.callee.caller.arguments[0];
 };
+
+var yygcms_confirm = function (message, callback) {
+	bootbox.confirm({message : message,
+		buttons: {
+			confirm: {
+				label: '确定',
+				className: 'btn-success'
+			},
+			cancel: {
+				label: '取消',
+				className: 'btn-danger'
+			}
+		},
+		callback : function(result){
+			callback(result);
+		}});
+};

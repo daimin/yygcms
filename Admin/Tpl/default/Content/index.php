@@ -1,24 +1,18 @@
 <include file="Public:header" />
+<link href="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker.min.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
 <div style="min-width:780px">
-    <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D6DDD6" align="center">
-        <tr>
-            <td height="28" background="__PUBLIC__/admin/images/tbg.gif" style="padding-left:10px;text-align:center;">
-                <a href="__URL__/add/type/index/" class="coolbg" style="display: block;margin:0 auto;width:100px;"> 添加首页内容 </a>
-            </td>
-        </tr>
-
-    </table>
-    <table width="98%" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px" bgcolor="#D6D6D6" align="center">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px" bgcolor="#D6D6D6" align="center">
         <tr>
             <td bgcolor="#FFFFFF" width="100%">
                 <div id="_mainsearch">
 
-                    <table width="99%" border="0" cellpadding="3" cellspacing="1" bgcolor="#D6D6D6">
+                    <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#D6D6D6">
                         <tbody><tr>
-                            <td height="19" colspan="10" background="__PUBLIC__/admin/images/tbg.gif" bgcolor="#E7E7E7">
+                            <td height="19" colspan="11" background="__PUBLIC__/admin/images/tbg.gif" bgcolor="#E7E7E7">
                                 <table width="96%" border="0" cellspacing="1" cellpadding="1">
                                     <tbody><tr>
-                                        <td width="24%" style="padding-left:10px;"><strong>首页内容列表</strong></td>
+                                        <td width="24%" style="padding-left:10px;"><strong>【<?php echo $category['name'] ?>】文章列表</strong></td>
                                         <td width="76%" align="right">
                                         </td>
                                     </tr>
@@ -26,12 +20,12 @@
                             </td>
                         </tr>
                         <tr align="center" bgcolor="#009900" height="25" style="color:#fff;font-weight: bold;">
-                            <td height="24" width="5%">选择</td>
-                            <td width="2%" nowrap="nowrap">ID</td>
-                            <td width="30%">标题</td>
-                            <td width="22%">关联链接</td>
-                            <td width="12%"><a href="javascript:void(0)" title="点击排序" onclick="sortContent('{$sort}')">创建时间</a>  </td>
-                            <td width="12%">修改时间</td>
+                            <td height="24" width="3%">选择</td>
+                            <td width="30%" align="left">标题</td>
+                            <td width="8%" align="left">分类</td>
+                            <td width="20%">关联链接</td>
+                            <td width="10%"><a href="javascript:void(0)" title="点击排序" onclick="sortContent('{$sort}')">创建时间</a>  </td>
+                            <td width="10%">修改时间</td>
                             <td width="8%" nowrap="nowrap">状态</td>
                             <td width="3%" nowrap="nowrap">附件</td>
                             <td width="3%" nowrap="nowrap">排序</td>
@@ -43,9 +37,11 @@
                                 <td>
                                     <input type="checkbox" name="ids[]" value="{$item.id}" class="np">
                                 </td>
-                                <td>{$item.id}</td>
                                 <td align="left">
                                     {$item.title}
+                                </td>
+                                <td align="left">
+                                    {$item.category_name}
                                 </td>
                                 <td  align="left">
                                     <a target="_blank" href="{$item.relurl}  ">{$item.relurl}  </a>
@@ -77,19 +73,30 @@
                         <tr bgcolor="#ffffff">
                             <td height="24" colspan="10" >
                                 &nbsp;
-                                <a href="javacript:void(0)" onclick="checkAll('ids[]')" class="coolbg">全选/反选</a>
-                                <input type="button" name="delBtn" value="删除" onclick="delContent('ids[]')" class="coolbg np">
+                                <button type="button" class="btn btn-primary">新增文章</button>
+                                <a href="javacript:void(0)" class="btn btn-default" onclick="checkAll('ids[]')" class="coolbg">全选/反选</a>
+                                <button type="button" name="delBtn" class="btn btn-default btn-sm" onclick="delContent('ids[]')" >删除</button>
                                 <div style="float:right">
-
-                                    <form name="o-form" method="get" action="__URL__/index/type/index">
-                                        <span class="info">标题，关联链接，创建时间模糊查询</span>
-                                        <select name="o_status">
-                                            <option value="">所有</option>
-                                            <option value="1">发布</option>
-                                            <option value="0">草稿</option>
+                                    <form name="o-form" id="o-form" method="get" action="__URL__/category/code/<?php echo $category['pagecode'] ?>">
+                                        <span class="info">创建时间</span>
+                                        <input type="text" id="startdate" name="startdate" class="input-sm " size="12" readonly value="<?php echo $startdate ?>" />
+                                        -
+                                        <input type="text" id="enddate" name="enddate" class="input-sm" size="12" readonly value="<?php echo $enddate ?>"/>
+                                        <select name="o_category">
+                                            <option value="">所有分类</option>
+                                            <volist name="categorys" id="caitem">
+                                                <option value="{$caitem.id}" <?php if($o_categoryId === $caitem['id']){ echo "selected";} ?>>{$caitem.name}</option>
+                                            </volist>
                                         </select>
-                                        <input type="text" name="o_keyword" />
-                                        <input type="submit"  value=" 筛选 " />
+                                        <select name="o_status">
+                                            <option value="">所有状态</option>
+                                            <option value="1" <?php if($o_status === '1'){ echo "selected";} ?>>发布</option>
+                                            <option value="0" <?php if($o_status === '0'){ echo "selected";} ?>>草稿</option>
+                                        </select>
+                                        <span class="info">标题，关联链接模糊查询</span>
+                                        <input type="text" name="o_keyword" size="30" placeholder="标题，关联链接" value="<?php echo $o_keyword ?>" />
+                                        <input type="submit"  class="btn btn-primary"  value="  筛选  " />
+                                        <input type="reset" id="reset-btn"  class="btn btn-default"  value=" 重置 " />
                                     </form>
                                 </div>
                             </td>
@@ -100,10 +107,8 @@
                                 {$page}
                             </td>
                         </tr>
-
-
-
-                        </tbody></table>
+                        </tbody>
+                    </table>
             </td>
         </tr>
     </table>
@@ -140,22 +145,23 @@
         console.log(asIdss);
 
         if(asIdss.length <= 0){
-            alert("选择一个要删除的项");
+            bootbox.alert("选择一个要删除的项");
             return false;
         }
 
-        if(window.confirm("确认删除所选项？")){
+        yygcms_confirm("确认删除所选项？", function(result){
             var args = {
                 "ids":asIdss.join(',')
             };
-            $.post('__URL__/del',args,function(data){
-                if(data == 1){
-                    window.location.reload();
-                }else{
-                    alert(data);
-                }
-            });
-        }
+            if(result){
+                $.post('__URL__/del', args, function (data, status) {
+                    data = comm_parseJsonResult(data);
+                    if(data){
+                        window.location.reload();
+                    }
+                });
+            }
+        });
 
     }
 
@@ -194,7 +200,27 @@
 
     }
 
+    $(function () {
+        $('#startdate').datepicker({
+            format: "yyyy-mm-dd",
+            autoclose: true
+        });
+
+        $('#enddate').datepicker({
+            format: "yyyy-mm-dd",
+            autoclose: true
+        });
+        
+        $("#reset-btn").click(function (e) {
+            $("#o-form").get(0).reset();
+            $('#startdate').val("");
+            $('#enddate').val("");
+            e.stopPropagation();
+            return false;
+        });
+    });
 
 </script>
+<script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 <include file="Public:footer" />
 
