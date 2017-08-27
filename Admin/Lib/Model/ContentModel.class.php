@@ -33,7 +33,5 @@ class ContentModel extends Model{
     	return M("attac_rel")->where("rel_id='$cid'")->count();
     }
 
-   
-    
 }
 ?>

@@ -1,12 +1,22 @@
 <?php
 // 本类由系统自动生成，仅供测试用途
 class ContentAction extends BaseAction {
-    
+
+	/**
+	 * 获取分类列表
+	 * @param $code
+	 * @param string $o_keyword
+	 * @param string $o_status
+	 * @param string $sort
+	 * @param string $o_category
+	 * @param string $startdate
+	 * @param string $enddate
+	 */
     public function category($code, $o_keyword='', $o_status='', $sort='', $o_category='', $startdate='', $enddate=''){
  
         //默认系统配置
         $opts = $this->getOptions();
-        $this->_contentData($code, $opts->pageSize, $o_keyword,$o_status, $sort, $o_category, $startdate, $enddate);
+        $this->contentListData($code, $opts->pageSize, $o_keyword,$o_status, $sort, $o_category, $startdate, $enddate);
         $this->display("Content:index");
         
 	}
@@ -83,8 +93,19 @@ class ContentAction extends BaseAction {
 		$this->assign('sort', $sort);
 		$this->assign('page',$show);// 赋值分页输出
 	}
-	
-	private function _contentData($pageCode, $pageSize, $o_keyword, $o_status, $sort, $o_category, $startdate, $enddate){
+
+	/**
+	 * 获取分类列表数据
+	 * @param $pageCode
+	 * @param $pageSize
+	 * @param $o_keyword
+	 * @param $o_status
+	 * @param $sort
+	 * @param $o_category
+	 * @param $startdate
+	 * @param $enddate
+	 */
+	private function contentListData($pageCode, $pageSize, $o_keyword, $o_status, $sort, $o_category, $startdate, $enddate){
 		import('ORG.Util.Page');// 导入分页类
 
 		if(empty($o_status)){
@@ -121,8 +142,8 @@ class ContentAction extends BaseAction {
 
 		//==============================================
 
-		$category = M("category")->where(['pagecode' => $pageCode])->find();
-		$subCategorys = M("category")->where(['pid' => $category['id']])->select();
+		$category = D("category")->where(['pagecode' => $pageCode])->find();
+		$subCategorys = D("category")->where(['pid' => $category['id']])->select();
 		$inIds = [];
 		foreach($subCategorys as $subCategory){
 			$inIds []= $subCategory['id'];
@@ -150,11 +171,11 @@ class ContentAction extends BaseAction {
 			$map['createtime']  = [['EGT', $startdate], ['ELT', $enddate], 'AND'];
 		}
 
-		$map['parentid']  = array('eq', 0);
 		if(!empty($o_keyword)){
-			$map['title|relurl'] = array('like', '%'.$o_keyword.'%');
+			$map['title|relurl|embed_code'] = array('like', '%'.$o_keyword.'%');
 		}
 
+		/** @var  $contentD  ContentModel*/
 		$contentD = D("Content");
 		$count      = $contentD->where($map)->count();// 查询满足要求的总记录数
 		$page       = new Page($count, $pageSize);// 实例化分页类 传入总记录数和每页显示的记录数
@@ -192,21 +213,22 @@ class ContentAction extends BaseAction {
 		$this->assign('page', $show);// 赋值分页输出
 		
 	}
-	
-	public function add($type, $pid=0){
+
+	/**
+	 * 新增文章
+	 * @param $code
+	 * @param int $pid
+	 */
+	public function add($code){
 		if($this->isGet()){
-			$type = ucfirst($type);
 			$opts = $this->getOptions();
 			$this->assign("attachAllow", $this->_sAttachAllow($opts->attachAllow));
-			$type = ucfirst($type);
-			if($pid == 0){
-				$this->display("Content:$type:add");
-			}else{
-				$content = D("Content")->find($pid);
-				$this->assign("parentContent", $content);
-				$this->display("Content:$type:sublist:add");
-			}
-			
+			$category = M("category")->where(['pagecode' => $code])->find();
+			$subCategorys = M("category")->where(['pid' => $category['id']])->select();
+			array_unshift($subCategorys, $category);
+			$this->assign('categorys', $subCategorys);
+			$this->assign('category', $category);
+			$this->display("Content:add");
 		}else{
 			
 			$contentD = D("Content");
@@ -218,14 +240,14 @@ class ContentAction extends BaseAction {
 	            if(!empty($pid)){
 	            	$contentD->parentid = $pid;
 	            }
-				$contentD->type = $type;
+				$contentD->type = $code;
 				$cid = $contentD->add();
 				$this->_addAttac($cid);
 				//Log::write("sublist ".$pid);
 				if(!empty($pid)){
 					$this->success("添加文档成功", __URL__.'/sublist/pid/'.$pid);
 				}else{
-					if(strpos($type, "ketang_") !== False){
+					if(strpos($code, "ketang_") !== False){
 						$this->success("添加文档成功", __URL__.'/Ketang/');
 					}else{
 						$this->success("添加文档成功", __URL__.'/index/type/'.$type);
@@ -297,6 +319,8 @@ class ContentAction extends BaseAction {
 			}
 		}
 	}
+
+
 	/**
      * 家装一站的编辑更新
      * @param type $type

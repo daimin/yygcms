@@ -73,7 +73,7 @@
                         <tr bgcolor="#ffffff">
                             <td height="24" colspan="10" >
                                 &nbsp;
-                                <button type="button" class="btn btn-primary">新增文章</button>
+                                <button type="button" class="btn btn-primary" onclick="doadd()">新增文章</button>
                                 <a href="javacript:void(0)" class="btn btn-default" onclick="checkAll('ids[]')" class="coolbg">全选/反选</a>
                                 <button type="button" name="delBtn" class="btn btn-default btn-sm" onclick="delContent('ids[]')" >删除</button>
                                 <div style="float:right">
@@ -219,6 +219,10 @@
             return false;
         });
     });
+    
+    function doadd() {
+        window.location.href="__URL__/add/code/<?php echo $category['pagecode'] ?>";
+    }
 
 </script>
 <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>

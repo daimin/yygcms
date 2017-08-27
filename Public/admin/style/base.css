@@ -779,8 +779,12 @@ select option{
     font-size: 18px;margin-right: 2px;
 }
 
-.yyg-error{
+.yyg-error, .yyg-required{
     color:#dd2222;
+}
+
+.yyg-required{
+    margin-right: 2px;
 }
 
 .yyg-success {
