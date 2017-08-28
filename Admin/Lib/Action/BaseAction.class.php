@@ -54,7 +54,6 @@ class BaseAction extends Action {
         if($this->_options == False){
             $options = D('Options');
             $this->_options = $options->all();
-            
             return $this->_options;
         }else{
             return $this->_options;
@@ -94,43 +93,28 @@ class BaseAction extends Action {
 	}
 	
 	public function upload() {
-		if (! empty ( $_FILES )) {
-			$tempFile = $_FILES ['Filedata'] ['tmp_name'];
-			
-			$fname = $_FILES ['Filedata'] ['name'];
-			
-			$fext = substr ( $fname, strrpos ( $fname, "." ) + 1);
-			
-			if(empty($fext)) {
-				echo '无效的文件类型';
-				return;
-			}
-			if(!$this->checkExtLimit($fext)){
-				echo '无效的文件类型';
-				return;
-			}
-			$sfdir = C("__YYG_UPLOAD_DIR__").'/'.date("Ymd");
-			$fdir = __YYG_SITE_ROOT__.$sfdir;
-			if(!file_exists($fdir))
-			    createdir($fdir);
-			
-			$fnew_name = md5(time().$fname) . '.' .$fext;
-			$targetFile = $fdir . '/'.$fnew_name;
-			
-			move_uploaded_file ( $tempFile, $targetFile );
-			$attacM = M("attac");
-			$data['title'] = $fnew_name;
-			$data['path'] = $sfdir.'/'.$fnew_name;
-			$data['createtime'] = date("Y-m-d H:i:s");
-				
-			$id = $attacM->add($data);
-			$dataJson = array();
-			$dataJson['id'] = $id;
-			$dataJson['path'] = __ROOT__.$sfdir.'/'.$fnew_name;
-			$dataJson['name'] = $fnew_name;
-			echo urldecode(json_encode($dataJson));
+		import('ORG.Net.UploadFile');
+		$upload = new UploadFile();// 实例化上传类
+		$opt = $this->getOptions();
+		$upload->maxSize  = intval($opt->maxImgSize) ;
+		$upload->allowExts  = explode(',', $opt->attachAllow);
+		$upload->savePath =  __YYG_ADMIN_ROOT__.'/../'.trim(C("__YYG_UPLOAD_DIR__"), '/').'/';
+		$upload->thumb = true;
+		$upload->thumbMaxWidth = $opt->thumbMaxWidth;
+		$upload->thumbMaxHeight = $opt->thumbMaxHeight;
+		$upload->uploadReplace = true;
+		$upload->zipImages = true;
+		$upload->autoSub = true;
+		$upload->subType = 'date';
+		$upload->dateFormat = 'Ymd';
 
+		if(!$upload->upload()) {// 上传错误提示错误信息
+			echo $upload->getErrorMsg();
+		}else{// 上传成功 获取上传文件信息
+			$info =  $upload->getUploadFileInfo();
+			print_r($info);
 		}
+		
 	}
 
 	public function jsonReturn($data, $errMsg="", $errcode=0){

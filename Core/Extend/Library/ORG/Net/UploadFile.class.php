@@ -122,11 +122,11 @@ class UploadFile {//类定义开始
                     if(!empty($thumbFile[$i])) {
                         $thumbname  =   $thumbFile[$i];
                     }else{
-                        $prefix     =   isset($thumbPrefix[$i])?$thumbPrefix[$i]:$thumbPrefix[0];
+                        $prefix     =   isset($thumbPrefix[$i])?$thumbPrefix[$i]:$thumbPrefix[0].$thumbWidth[$i].'_';
                         $suffix     =   isset($thumbSuffix[$i])?$thumbSuffix[$i]:$thumbSuffix[0];
                         $thumbname  =   $prefix.basename($filename,'.'.$file['extension']).$suffix;
                     }
-                    Image::thumb($filename,$thumbPath.$thumbname.'.'.$thumbExt,'',$thumbWidth[$i],$thumbHeight[$i],true);                    
+                    Image::thumb($filename,$thumbPath.$thumbname.'.'.$thumbExt,'',$thumbWidth[$i],$thumbHeight[$i],true);
                 }
                 if($this->thumbRemoveOrigin) {
                     // 生成缩略图之后删除原图

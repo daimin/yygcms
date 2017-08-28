@@ -1,12 +1,8 @@
 <include file="Public:header" />
-<style type="text/css">
-
-
-</style>
 <div style="min-width:780px">
     <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D6DDD6" align="center">
         <tr>
-            <td height="28" background="__PUBLIC__/admin/images/tbg.gif" style="padding-left:10px;"><b>添加【<?php echo $category['name'] ?>】内容： (加<span class="yyg-required">*</span>为必填)</b><a class="return-link" href="javascript:window.history.go(-1)">返回列表</a></td>
+            <td height="28" background="__PUBLIC__/admin/images/tbg.gif" style="padding-left:10px;"><b>添加【<?php echo $category['name'] ?>】内容： (加<span class="yyg-required">*</span>为必填)</b><a class="btn btn-success pull-right" href="javascript:window.history.go(-1)">返回列表</a></td>
         </tr>
 
     </table>
@@ -81,7 +77,6 @@
 <script type="text/javascript" charset="utf-8" src="__PUBLIC__/admin/kindeditor/kindeditor-min.js"></script>
 <script type="text/javascript" charset="utf-8" src="__PUBLIC__/admin/kindeditor/lang/zh_CN.js"></script>
 <link rel="stylesheet" href="__PUBLIC__/admin/uploadify/uploadify.css" />
-<script type="text/javascript" src="__PUBLIC__/admin/uploadify/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/admin/uploadify/swfobject.js"></script>
 <script type="text/javascript" src="__PUBLIC__/admin/uploadify/jquery.uploadify.v2.1.4.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/admin/js/imgpreview.min.jquery.js"></script>
@@ -112,11 +107,11 @@
             'uploader'  : '__PUBLIC__/admin/uploadify/uploadify.swf?var='+(new Date()).getTime(),
             'script'    : '__URL__/upload',
             'cancelImg' : '__PUBLIC__/admin/uploadify/cancel.png',
-            'folder'    : '<?php echo __ROOT__.C("__yyg_UPLOAD_DIR__");?>',
+            'folder'    : '<?php echo __ROOT__.C("__YYG_UPLOAD_DIR__");?>',
             'auto'      : true,
             'multi'     : true,
             'queueSizeLimit' : 8,
-            'sizeLimit' : 2097152,
+            'sizeLimit' : <?php echo $option->maxImgSize?>,
             'fileExt'   : '{$attachAllow}',
             'fileDesc'  : '请选择图片文件',
             'simUploadLimit':8,
@@ -126,7 +121,7 @@
                 try{
                     jsondata = eval("("+jsondata+")");
                 }catch(e){
-                    alert(jsondata);
+                    bootbox.alert(jsondata);
                     return ;
                 }
 
@@ -145,15 +140,11 @@
             '<a href="javascript:void(0)" class="img-del" onclick="deleteUpImg(this, \'' + jsondata['id'] + '\')">' +
             '<img src="__PUBLIC__/admin/images/close.gif" border="none"></a>' +
             '<a href="javascript:void(0)" onclick="addToContent(\'' + jsondata['path'] + '\',\'' +
-            jsondata['name'] + '\')" class="appcont">插入</a>' +
+            jsondata['name'] + '\')" class="btn btn-default btn-xs pull-right" style="margin-top: 4px;">插入</a>' +
             '</div>');
         renderImgLink();
 
     }
-
-
-
-
 
     function deleteUpImg(o, attId){
         var args = {

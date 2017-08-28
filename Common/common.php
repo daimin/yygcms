@@ -655,4 +655,27 @@ function mysql_escape_mimic($inp) {
     }
 
     return $inp;
-} 
+}
+
+
+function uuidBase62(){
+	$bx = uniqid().strval(rand(0, 1000));
+	$xstrlen = strlen($bx);
+	$shows  = [];
+	for($i = 0; $i < $xstrlen; $i += 4 ){
+		$x = intval(hexdec(substr($bx, $i, 4)));
+		$show='';
+		while($x>0){
+			$s= $x%62;
+			if ($s>35) {
+				$s= chr($s+61);
+			}elseif ($s>9&&$s<=35){
+				$s=chr($s+55);
+			}
+			$show.=$s;
+			$x=floor($x/62);
+		}
+		$shows []= $show;
+	}
+	return implode("", $shows);
+}

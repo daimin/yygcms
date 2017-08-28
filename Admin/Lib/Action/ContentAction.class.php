@@ -221,13 +221,14 @@ class ContentAction extends BaseAction {
 	 */
 	public function add($code){
 		if($this->isGet()){
-			$opts = $this->getOptions();
-			$this->assign("attachAllow", $this->_sAttachAllow($opts->attachAllow));
+			$opt = $this->getOptions();
+			$this->assign("attachAllow", $this->_sAttachAllow($opt->attachAllow));
 			$category = M("category")->where(['pagecode' => $code])->find();
 			$subCategorys = M("category")->where(['pid' => $category['id']])->select();
 			array_unshift($subCategorys, $category);
 			$this->assign('categorys', $subCategorys);
 			$this->assign('category', $category);
+			$this->assign('option', $opt);
 			$this->display("Content:add");
 		}else{
 			
@@ -537,7 +538,7 @@ class ContentAction extends BaseAction {
 		
 		$attacM = M("attac");
 		$attac = $attacM->find($attId);
-		delFile(__MP_SITE_ROOT__.$attac['path']);
+		delFile(__YYG_SITE_ROOT__.$attac['path']);
 		if(!empty($cid)) {
 			M("attac_rel")->where("`att_id`='$attId' and `rel_id`='$cid'")->delete();
 		};
