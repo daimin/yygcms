@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50712
 File Encoding         : 65001
 
-Date: 2017-08-27 18:11:35
+Date: 2017-08-28 23:06:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,7 @@ CREATE TABLE `yyg_admins` (
 -- ----------------------------
 -- Records of yyg_admins
 -- ----------------------------
-INSERT INTO `yyg_admins` VALUES ('admin', 'a44f75e56684fcbb89d46ef2be701265', '2013-07-16 15:43:05', '2017-08-27 17:54:53', '1', '1');
+INSERT INTO `yyg_admins` VALUES ('admin', 'a44f75e56684fcbb89d46ef2be701265', '2013-07-16 15:43:05', '2017-08-28 21:27:20', '1', '1');
 INSERT INTO `yyg_admins` VALUES ('admin1', '111111', '2013-07-16 15:20:54', '0000-00-00 00:00:00', '1', '2');
 INSERT INTO `yyg_admins` VALUES ('admin2', 'f0bab14fdb2dec036f1837bf48ca0dd3', '2013-07-16 15:21:50', '0000-00-00 00:00:00', '1', '2');
 INSERT INTO `yyg_admins` VALUES ('vagasnail', 'f0bab14fdb2dec036f1837bf48ca0dd3', '2013-07-16 16:24:33', '0000-00-00 00:00:00', '1', '1');
@@ -50,7 +50,7 @@ CREATE TABLE `yyg_attac` (
   `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=696 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=711 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of yyg_attac
@@ -256,6 +256,15 @@ INSERT INTO `yyg_attac` VALUES ('334', '72bc037ec1373c45b6888aa1776dc25a.jpg', '
 INSERT INTO `yyg_attac` VALUES ('335', 'd15fbb9964a68550e2d2776394870438.jpg', '/Upload/20130808/d15fbb9964a68550e2d2776394870438.jpg', '2013-08-08 22:33:50', null);
 INSERT INTO `yyg_attac` VALUES ('336', '0213cbce24bb6443ca769cd34a39fc33.jpg', '/Upload/20130808/0213cbce24bb6443ca769cd34a39fc33.jpg', '2013-08-08 22:33:50', null);
 INSERT INTO `yyg_attac` VALUES ('337', '2bd6cb34b49c7e9a43b0cb24b6346423.jpg', '/Upload/20130808/2bd6cb34b49c7e9a43b0cb24b6346423.jpg', '2013-08-08 22:33:50', null);
+INSERT INTO `yyg_attac` VALUES ('707', '2ec7de264f19af3fb23404906faca97e.jpg', '/Upload/20170828/2ec7de264f19af3fb23404906faca97e.jpg', '2017-08-28 22:05:28', null);
+INSERT INTO `yyg_attac` VALUES ('706', '9ebd5d9f3d0dc3979ac59854ea3ef6cb.jpg', '/Upload/20170828/9ebd5d9f3d0dc3979ac59854ea3ef6cb.jpg', '2017-08-28 22:05:07', null);
+INSERT INTO `yyg_attac` VALUES ('705', '97b631c0977e670c668aae57d22df7ac.jpg', '/Upload/20170828/97b631c0977e670c668aae57d22df7ac.jpg', '2017-08-28 22:04:24', null);
+INSERT INTO `yyg_attac` VALUES ('703', '0d764c023d15d8a238662d29b697527f.jpg', '/Upload/20170828/0d764c023d15d8a238662d29b697527f.jpg', '2017-08-28 22:03:46', null);
+INSERT INTO `yyg_attac` VALUES ('702', '82b6f22d64c2a94756d786d1154fb08c.jpg', '/Upload/20170828/82b6f22d64c2a94756d786d1154fb08c.jpg', '2017-08-28 22:03:09', null);
+INSERT INTO `yyg_attac` VALUES ('701', '3ff3622342964c5a7b5f9a28ed6a6e36.jpg', '/Upload/20170828/3ff3622342964c5a7b5f9a28ed6a6e36.jpg', '2017-08-28 22:02:20', null);
+INSERT INTO `yyg_attac` VALUES ('698', '4e4ed1a1d7954d8227efe56cc730c645.jpg', '/Upload//20170828/4e4ed1a1d7954d8227efe56cc730c645.jpg', '2017-08-28 21:42:35', null);
+INSERT INTO `yyg_attac` VALUES ('699', '6459772d1cb104588cea871b4fcc3f5a.jpg', 'Upload/20170828/6459772d1cb104588cea871b4fcc3f5a.jpg', '2017-08-28 21:44:31', null);
+INSERT INTO `yyg_attac` VALUES ('700', '2eefe990dbf351d11e0bea355e863482.jpg', '/Upload/20170828/2eefe990dbf351d11e0bea355e863482.jpg', '2017-08-28 21:45:04', null);
 INSERT INTO `yyg_attac` VALUES ('348', 'f06e3180d0d196c041cdb3c86fc310e8.jpg', '/Upload/20130808/f06e3180d0d196c041cdb3c86fc310e8.jpg', '2013-08-08 22:34:56', null);
 INSERT INTO `yyg_attac` VALUES ('349', 'b4ce459b66fd7e64cb01d8910d9a41fb.jpg', '/Upload/20130808/b4ce459b66fd7e64cb01d8910d9a41fb.jpg', '2013-08-08 22:35:10', null);
 INSERT INTO `yyg_attac` VALUES ('350', '00bbbfa9b12abdc3d4c1b8e6b70c6e19.jpg', '/Upload/20130808/00bbbfa9b12abdc3d4c1b8e6b70c6e19.jpg', '2013-08-08 22:35:10', null);
@@ -373,6 +382,9 @@ INSERT INTO `yyg_attac` VALUES ('675', 'ce1fae58c32254aa6c42a1ad75f35f4d.jpg', '
 INSERT INTO `yyg_attac` VALUES ('676', 'd829f8f1566b4c348c3fec7ce567e584.jpg', '/Upload/20131016/d829f8f1566b4c348c3fec7ce567e584.jpg', '2013-10-16 21:56:59', null);
 INSERT INTO `yyg_attac` VALUES ('677', '4551cdf033c3f1958c4ab842bcceb1ff.jpg', '/Upload/20131016/4551cdf033c3f1958c4ab842bcceb1ff.jpg', '2013-10-16 21:56:59', null);
 INSERT INTO `yyg_attac` VALUES ('678', '7d8ecb041fad1243f958a52f99018ce7.jpg', '/Upload/20131016/7d8ecb041fad1243f958a52f99018ce7.jpg', '2013-10-16 21:56:59', null);
+INSERT INTO `yyg_attac` VALUES ('710', '8y5TR2LO04G.jpg', '/Upload/20170828/8y5TR2LO04G.jpg', '2017-08-28 22:11:59', null);
+INSERT INTO `yyg_attac` VALUES ('709', '5cc8072f160cc73f0d6df349c3186375.jpg', '/Upload/20170828/5cc8072f160cc73f0d6df349c3186375.jpg', '2017-08-28 22:08:49', null);
+INSERT INTO `yyg_attac` VALUES ('708', '782cfe7968cddf4223c45450befc068e.jpg', '/Upload/20170828/782cfe7968cddf4223c45450befc068e.jpg', '2017-08-28 22:08:37', null);
 INSERT INTO `yyg_attac` VALUES ('695', 'c4bd56dc6ec5bbd4bd1ffbdfea686a20.jpg', '/Upload/20131016/c4bd56dc6ec5bbd4bd1ffbdfea686a20.jpg', '2013-10-16 21:58:57', null);
 INSERT INTO `yyg_attac` VALUES ('694', 'e80ef3f2c95586ab42c658e1397a6e22.jpg', '/Upload/20131016/e80ef3f2c95586ab42c658e1397a6e22.jpg', '2013-10-16 21:58:57', null);
 INSERT INTO `yyg_attac` VALUES ('693', '63699050e37255d8d2ebf5350471311d.jpg', '/Upload/20131016/63699050e37255d8d2ebf5350471311d.jpg', '2013-10-16 21:58:56', null);
@@ -1033,10 +1045,13 @@ INSERT INTO `yyg_options` VALUES ('siteName', '美平方装饰');
 INSERT INTO `yyg_options` VALUES ('pageSize', '20');
 INSERT INTO `yyg_options` VALUES ('keywords', '开源,开源软件,开源网站,开源社区,开源中国社区,java开源,perl开源,python开源,ruby开源,php开源,开源项目,开源代码');
 INSERT INTO `yyg_options` VALUES ('description', '开源中国 www.oschina.net 是目前中国最大的开源技术社区。我们传播开源的理念，推广开源项目，为 IT 开发者提供了一个发现、使用、并交流开源技术的平台。目前开源中国社区已收录超过两万款开源软件。&lt;?\\&quot;\\&quot;&gt;');
-INSERT INTO `yyg_options` VALUES ('attachAllow', 'png,gif,jpeg,jpg,bmp,zip');
+INSERT INTO `yyg_options` VALUES ('attachAllow', 'png,gif,jpeg,jpg');
 INSERT INTO `yyg_options` VALUES ('seoName', '中国驰名商标 | 中国家居行业的领跑者');
 INSERT INTO `yyg_options` VALUES ('copyright', 'Copyright © 360.CN All Rights Reserved.');
 INSERT INTO `yyg_options` VALUES ('mail', 'daiming253685@126.com');
+INSERT INTO `yyg_options` VALUES ('maxImgSize', '512000');
+INSERT INTO `yyg_options` VALUES ('thumbMaxWidth', '100,200,600');
+INSERT INTO `yyg_options` VALUES ('thumbMaxHeight', '100,200,600');
 
 -- ----------------------------
 -- Table structure for yyg_signup
