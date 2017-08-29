@@ -46,8 +46,21 @@
 		  });
 	}
 	
-	function addToContent(imgUrl, name){
+	function addToContent(imgUrl, name, thiz, tbprefix){
+		var selectdOpt = $(thiz).prev("select").children("option:selected");
+		if(!selectdOpt) return;
+		var thwidth = $(selectdOpt[0]).val();
+		if(thwidth != 0){
+			var fpath = imgUrl.substring(0, imgUrl.lastIndexOf("/"));
+			//thumb_200_59a569a7b25ec.png
+			if(thwidth == 1){
+				imgUrl = fpath + '/' + tbprefix + name;
+			}else{
+				imgUrl = fpath + '/' + tbprefix + thwidth + "_" + name;
+			}
+		}
 		var ext = imgUrl.substring(imgUrl.lastIndexOf(".")+1);
+
 		ext = ext.toLowerCase();
 		if(ext == 'png' || ext == 'gif' || ext == 'jpg' || ext == 'jpeg' || ext == 'bmp'){
 			editor.appendHtml('<img src=" '+ imgUrl + '" alt="" />');
@@ -102,7 +115,6 @@ function comm_parseJsonResult(result) {
 	}
 	if(result['errCode'] != 0){
 		show_err_alert('错误', result['errMsg']);
-
 	}else{
 		return result['data'];
 	}

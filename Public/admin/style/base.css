@@ -720,6 +720,15 @@ option.stype {
     margin-right: 5px;
 }
 
+#update_img_list .img-insert-select{
+    height: 22px;
+    font-size: 12px;
+}
+#update_img_list .img-insert-select option{
+    font-size: 12px;
+}
+
+
 #imgPreviewWithStyles {
     z-index: 999;
     border: none;

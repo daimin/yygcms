@@ -18,6 +18,6 @@ composer.phar
 .DS_Store
 
 */Runtime/
-/Upload/*
+/Upload/
 
 config.inc.php

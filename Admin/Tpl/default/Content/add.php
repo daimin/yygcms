@@ -119,7 +119,7 @@
             'onComplete'  : function(event, ID, fileObj, response, data) {
                 var jsondata = response.toString();
                 try{
-                    jsondata = eval("("+jsondata+")");
+                    jsondata = comm_parseJsonResult(jsondata);
                 }catch(e){
                     bootbox.alert(jsondata);
                     return ;
@@ -134,13 +134,27 @@
     });
 
     function renderImgList(jsondata){
+        var opts = new Array();
+        opts[opts.length] = '<option value="0" selected>原图</option>';
+        $(jsondata['thumb']['width']).each(function(it){
+            var width = jsondata['thumb']['width'][it];
+            if(it == 0){
+                width = 1;
+            }
+            opts[opts.length] = '<option value="'+width+'">缩略图' + jsondata['thumb']['width'][it] + 'px</option>';
+        });
         $("#update_img_list").append('<div><a class="img-link" target="_blank" href="' + jsondata['path'] + '">' +
             jsondata['name'] +
             '</a>' +
             '<a href="javascript:void(0)" class="img-del" onclick="deleteUpImg(this, \'' + jsondata['id'] + '\')">' +
             '<img src="__PUBLIC__/admin/images/close.gif" border="none"></a>' +
-            '<a href="javascript:void(0)" onclick="addToContent(\'' + jsondata['path'] + '\',\'' +
-            jsondata['name'] + '\')" class="btn btn-default btn-xs pull-right" style="margin-top: 4px;">插入</a>' +
+            '<div class="btn-xs pull-right">'+
+            '<select class="img-insert-select">' +
+            opts.join("") +
+            '</select>'+
+            '&nbsp;<a href="javascript:void(0)" onclick="addToContent(\'' + jsondata['path'] + '\',\'' +
+            jsondata['name'] + '\', this, \'' + jsondata['thumb']['prefix'] + '\')" class="btn btn-primary btn-xs pull-right" style="margin-top:4px;color:#fff;">插入</a>'+
+            '</div>'+
             '</div>');
         renderImgLink();
 

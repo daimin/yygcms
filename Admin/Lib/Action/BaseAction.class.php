@@ -96,9 +96,10 @@ class BaseAction extends Action {
 		import('ORG.Net.UploadFile');
 		$upload = new UploadFile();// 实例化上传类
 		$opt = $this->getOptions();
+		$sfdir = '/'.trim(C("__YYG_UPLOAD_DIR__"), '/').'/';
 		$upload->maxSize  = intval($opt->maxImgSize) ;
 		$upload->allowExts  = explode(',', $opt->attachAllow);
-		$upload->savePath =  __YYG_ADMIN_ROOT__.'/../'.trim(C("__YYG_UPLOAD_DIR__"), '/').'/';
+		$upload->savePath =  realpath(__YYG_ADMIN_ROOT__.'/../'.$sfdir).'/';
 		$upload->thumb = true;
 		$upload->thumbMaxWidth = $opt->thumbMaxWidth;
 		$upload->thumbMaxHeight = $opt->thumbMaxHeight;
@@ -109,12 +110,26 @@ class BaseAction extends Action {
 		$upload->dateFormat = 'Ymd';
 
 		if(!$upload->upload()) {// 上传错误提示错误信息
-			echo $upload->getErrorMsg();
+			$this->jsonReturn (false, $upload->getErrorMsg());
 		}else{// 上传成功 获取上传文件信息
 			$info =  $upload->getUploadFileInfo();
-			print_r($info);
+			if(empty($info) || count($info) == 0){
+				$this->jsonReturn (false, "上传失败");
+			}
+			$attacM = M("attac");
+			$fnew_name = $info[0]['savename'];
+			$urlPath = $sfdir.$fnew_name;
+			$data['title'] = $fnew_name;
+			$data['path'] = $urlPath;
+			$data['createtime'] = date("Y-m-d H:i:s");
+			$id = $attacM->add($data);
+			$dataJson = [];
+			$dataJson['id'] = $id;
+			$dataJson['path'] = $urlPath;
+			$dataJson['name'] = substr($fnew_name, strpos($fnew_name, '/') + 1);
+			$dataJson['thumb'] = ['width' => explode(',', $opt->thumbMaxWidth), 'prefix' => $upload->thumbPrefix];
+			$this->jsonReturn($dataJson);
 		}
-		
 	}
 
 	public function jsonReturn($data, $errMsg="", $errcode=0){
