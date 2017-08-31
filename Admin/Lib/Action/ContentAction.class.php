@@ -220,10 +220,13 @@ class ContentAction extends BaseAction {
 	 * @param int $pid
 	 */
 	public function add($code){
+		$category = M("category")->where(['pagecode' => $code])->find();
+		if(empty($category)){
+			$this->error("分类{$code}不存在");
+		}
 		if($this->isGet()){
 			$opt = $this->getOptions();
 			$this->assign("attachAllow", $this->_sAttachAllow($opt->attachAllow));
-			$category = M("category")->where(['pagecode' => $code])->find();
 			$subCategorys = M("category")->where(['pid' => $category['id']])->select();
 			array_unshift($subCategorys, $category);
 			$this->assign('categorys', $subCategorys);
@@ -231,31 +234,21 @@ class ContentAction extends BaseAction {
 			$this->assign('option', $opt);
 			$this->display("Content:add");
 		}else{
-			
 			$contentD = D("Content");
 			if (!$contentD->create(False, 1)){
 				// 如果创建失败 表示验证没有通过 输出错误提示信息
 				$this->error($contentD->getError());
 				exit();
 			}else{
-	            if(!empty($pid)){
-	            	$contentD->parentid = $pid;
-	            }
-				$contentD->type = $code;
+				$selCategoryId = I('post.category');
+				if(empty($selCategoryId)){
+					$contentD->category_id = $category['id'];
+				}else{
+					$contentD->category_id = $selCategoryId;
+				}
 				$cid = $contentD->add();
 				$this->_addAttac($cid);
-				//Log::write("sublist ".$pid);
-				if(!empty($pid)){
-					$this->success("添加文档成功", __URL__.'/sublist/pid/'.$pid);
-				}else{
-					if(strpos($code, "ketang_") !== False){
-						$this->success("添加文档成功", __URL__.'/Ketang/');
-					}else{
-						$this->success("添加文档成功", __URL__.'/index/type/'.$type);
-					}
-					
-				}
-				
+				$this->success("添加文档成功", __URL__.'/category/code/'.$code);
 			}
 		}
 		
@@ -283,18 +276,17 @@ class ContentAction extends BaseAction {
 	    if($this->isGet()){
 	    	$contentD = D("Content");
 	    	$content = $contentD->find($cid);
-	    	$type = $content['type'];
-			$type = ucfirst($type);
-            $this->assign("content", $content);
+			$category = M("category")->where(['id' => $content['category_id']])->find();
+			$subCategorys = M("category")->where(['pid' => $category['id']])->select();
+			array_unshift($subCategorys, $category);
+			$this->assign('categorys', $subCategorys);
+			$this->assign('category', $category);
+			$this->assign("content", $content);
             $opts = $this->getOptions();
             $this->assign("attachAllow", $this->_sAttachAllow($opts->attachAllow));
-            if($content['parentid'] != 0){
-            	$this->assign("parentContent", $contentD->find($content['id']));
-            	$this->display("Content:$type:sublist:edit");
-            }else{
-            	$this->display("Content:$type:edit");
-            }
-			
+			$this->assign('option', $opts);
+			$this->display("Content:edit");
+
 		}else{
 			$contentD = D("Content");
 			if (!$contentD->create(False, 2)){
@@ -427,7 +419,7 @@ class ContentAction extends BaseAction {
 	 * 添加附件与文档的关系
 	 */
 	private function _addAttac($cid){
-		$ids = I("mp_uploadImg_ids");
+		$ids = I("yyg_uploadImg_ids");
 
 		$ids = explode(",", $ids);
 		$attacRelM = M("attac_rel");
@@ -473,6 +465,8 @@ class ContentAction extends BaseAction {
 		
 		$dataJsons = array();
 		$attacM = M("attac");
+		$opt = $this->getOptions();
+
 		foreach($arels as $ar){
 			$att_id = $ar['att_id'];
 			$attac = $attacM->find($att_id);
@@ -486,17 +480,17 @@ class ContentAction extends BaseAction {
 			$dataJson['path'] = __ROOT__.$attac['path'];
 			$dataJson['name'] = $attac['title'];
 			$dataJson['desc'] = brReplace($attac['description']);
+			$dataJson['thumb'] = ['width' => explode(',', $opt->thumbMaxWidth), 'prefix' => $opt->thumbPrefix];
 			array_push($dataJsons, $dataJson);
 		}
-		
-		$this->ajaxReturn(urldecode(json_encode($dataJsons))) ;
+
+		$this->jsonReturn($dataJsons) ;
 	}
 	
 	public function del(){
 		$ids = I("ids");
 		$ids = explode(",", $ids);
 		$contentD = D("Content");
-		
 		
 		foreach($ids as $id){
 			if(!empty($id)){

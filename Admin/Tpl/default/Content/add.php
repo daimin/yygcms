@@ -2,14 +2,17 @@
 <div style="min-width:780px">
     <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D6DDD6" align="center">
         <tr>
-            <td height="28" background="__PUBLIC__/admin/images/tbg.gif" style="padding-left:10px;"><b>添加【<?php echo $category['name'] ?>】内容： (加<span class="yyg-required">*</span>为必填)</b><a class="btn btn-success pull-right" href="javascript:window.history.go(-1)">返回列表</a></td>
+            <td height="28" background="__PUBLIC__/admin/images/tbg.gif" style="padding-left:10px;">
+                <b>添加【<?php echo $category['name'] ?>】内容： (加<span class="yyg-required">*</span>为必填)</b>
+                <a class="btn btn-success pull-right" href="javascript:window.history.go(-1)">返回列表</a>
+            </td>
         </tr>
 
     </table>
     <table width="98%" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px" align="center">
         <tr>
             <td bgcolor="#FFFFFF" width="100%">
-                <form action="__URL__/add/type/index" method="post" name="form1" >
+                <form action="__URL__/add/code/<?php echo $category['pagecode'] ?>" method="post" name="form1" >
                     <div id="_mainsearch">
 
                         <table class="edit-tab" width="100%" style='' id="" border="0" cellspacing="0" cellpadding="1">
@@ -27,7 +30,7 @@
                             <tr >
                                 <td class="head "><span class="yyg-required">*</span>分类： </td>
                                 <td class="tail" colspan="2">
-                                    <select>
+                                    <select name="category">
                                         <volist name="categorys" id="caitem">
                                             <option value="{$caitem.id}" >{$caitem.name}</option>
                                         </volist>
@@ -43,7 +46,6 @@
                             <tr >
                                 <td class="head ">嵌入代码： </td>
                                 <td class="tail" colspan="2"> <textarea name="embed_code" style='width:70%' rows="5" id="yyg_embed_code"></textarea></td>
-
                             </tr>
                             <tr >
                                 <td class="head">上传图片：</td>
@@ -63,7 +65,7 @@
                             <td height="50" colspan="3"><table width="98%" border="0" cellspacing="1" cellpadding="1">
                                     <tr>
                                         <td width="11%">&nbsp;</td>
-                                        <td width="11%"><button name="imageField" type="button" class="btn btn-primary" > 提 交 </button></td>
+                                        <td width="11%"><button name="imageField" type="submit" class="btn btn-primary" > 提 交 </button></td>
                                         <td width="78%"></td>
                                     </tr>
                                 </table></td>
@@ -135,7 +137,7 @@
 
     function renderImgList(jsondata){
         var opts = new Array();
-        opts[opts.length] = '<option value="0" selected>原图</option>';
+        opts[opts.length] = '<option value="0">原图</option>';
         $(jsondata['thumb']['width']).each(function(it){
             var width = jsondata['thumb']['width'][it];
             if(it == 0){
@@ -143,6 +145,7 @@
             }
             opts[opts.length] = '<option value="'+width+'">缩略图' + jsondata['thumb']['width'][it] + 'px</option>';
         });
+        opts.reverse();
         $("#update_img_list").append('<div><a class="img-link" target="_blank" href="' + jsondata['path'] + '">' +
             jsondata['name'] +
             '</a>' +

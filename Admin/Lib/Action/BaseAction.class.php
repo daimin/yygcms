@@ -103,6 +103,7 @@ class BaseAction extends Action {
 		$upload->thumb = true;
 		$upload->thumbMaxWidth = $opt->thumbMaxWidth;
 		$upload->thumbMaxHeight = $opt->thumbMaxHeight;
+		$upload->thumbPrefix = $opt->thumbPrefix;
 		$upload->uploadReplace = true;
 		$upload->zipImages = true;
 		$upload->autoSub = true;
