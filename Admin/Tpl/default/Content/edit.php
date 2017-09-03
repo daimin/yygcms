@@ -12,7 +12,7 @@
     <table width="98%" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px" align="center">
         <tr>
             <td bgcolor="#FFFFFF" width="100%">
-                <form action="__URL__/edit/" method="post" name="form1" >
+                <form action="__URL__/edit/cid/<?php echo $content['id'] ?>" method="post" name="form1" >
                     <input type="hidden" value="{$content.id}" name="id" />
                     <input type="hidden" value="{$content.type}" name="type" />
                     <div id="_mainsearch">
@@ -29,7 +29,32 @@
                                 <td class="tail" colspan="2"> <textarea name="content" style='width:70%' rows="30" id="yyg_content">{$content.content}</textarea></td>
 
                             </tr>
+                            <tr >
+                                <td class="head "><span class="yyg-required">*</span>分类： </td>
+                                <td class="tail" colspan="2">
+                                    <select name="category">
+                                        <volist name="categorys" id="caitem">
+                                            <option value="{$caitem.id}" <?php if($category['id'] == $caitem['id']){
+                                                echo ' selected ';
+                                            } ?>>{$caitem.name}</option>
+                                        </volist>
+                                    </select>
+                                </td>
 
+                            </tr>
+                            <tr >
+                                <td class="head">育儿阶段：</td>
+                                <td class="tail" colspan="2">
+                                    <volist name="stages" id="sitem">
+                                        <label class="checkbox-inline" style="margin-right: 6px;">
+                                            <input type="checkbox" name="yuer_stage[]" <?php if(in_array($sitem, $selStages)){
+                                                echo " checked ";
+                                            } ?> value="{$sitem}">
+                                            {$sitem}
+                                        </label>
+                                    </volist>
+                                </td>
+                            </tr>
                             <tr >
                                 <td class="head">关联URL：</td>
                                 <td class="tail" colspan="2"> <input type='text' name='relurl' value="{$content.relurl}" style='width:40%'>(点击该文档，跳转到的页面(默认是该文档的URL))
@@ -42,8 +67,8 @@
                             </tr>
                             <tr >
                                 <td class="head">上传图片：</td>
-                                <td class="tail"> <input type="file"  name="mp_uploadImg" value="" id="mp_uploadImg" style="visibility: hidden"/>
-                                    <input type="hidden"  name="mp_uploadImg_ids" value="" id="mp_uploadImg_ids"/>
+                                <td class="tail"> <input type="file"  name="yyg_uploadImg" value="" id="yyg_uploadImg" style="visibility: hidden"/>
+                                    <input type="hidden"  name="yyg_uploadImg_ids" value="" id="yyg_uploadImg_ids"/>
                                     <div id="update_img_list">
                                     </div>
                                 </td>
@@ -107,9 +132,9 @@
             'onComplete'  : function(event, ID, fileObj, response, data) {
                 var jsondata = response.toString();
                 try{
-                    jsondata = eval("("+jsondata+")");
+                    jsondata = comm_parseJsonResult(jsondata);
                 }catch(e){
-                    alert(jsondata);
+                    bootbox.alert(jsondata);
                     return ;
                 }
 

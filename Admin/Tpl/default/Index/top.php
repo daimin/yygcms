@@ -164,13 +164,13 @@ a:link,a:visited {
     
 <table width="100%" border="0" cellpadding="0" cellspacing="0" background="__PUBLIC__/admin/images/frame/topbg.gif">
   <tr>
-    <td width='40%' height="60" ><span class="logo">美平网站后台系统&nbsp;</span></td>
+    <td width='40%' height="60" ><span class="logo">又一个CMS网站后台系统&nbsp;</span></td>
     <td width='60%' style="color:white"></td>
     <td width='20%' align="right" valign="bottom">
     	<table width="450" border="0" cellspacing="0" cellpadding="0">
       <tr>
       <td align="right" height="26" style="padding-right:10px;line-height:26px;">
-        	您好！<span class="username"><?php echo session(C("__YYG_AUTH_NAME__")) ?></span>，欢迎使用美平网站后台系统！
+        	您好！<span class="username"><?php echo session(C("__YYG_AUTH_NAME__")) ?></span>，欢迎使用又一个CMS网站后台系统！
         	[<a href="<?php echo site_url("Login/logout")?>" target="_top">注销退出</a>]&nbsp;
       </td>
       </tr>

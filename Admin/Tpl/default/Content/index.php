@@ -21,9 +21,9 @@
                         </tr>
                         <tr align="center" bgcolor="#009900" height="25" style="color:#fff;font-weight: bold;">
                             <td height="24" width="3%">选择</td>
-                            <td width="30%" align="left">标题</td>
+                            <td width="25%" align="left">标题</td>
                             <td width="8%" align="left">分类</td>
-                            <td width="20%">关联链接</td>
+                            <td width="15%">关联链接</td>
                             <td width="10%"><a href="javascript:void(0)" title="点击排序" onclick="sortContent('{$sort}')">创建时间</a>  </td>
                             <td width="10%">修改时间</td>
                             <td width="8%" nowrap="nowrap">状态</td>
@@ -39,6 +39,9 @@
                                 </td>
                                 <td align="left">
                                     {$item.title}
+                                    <?php if($item['topnum'] > 0){ ?>
+                                        <span class="label label-success" style="margin-left: 12px;">已置顶</span>
+                                    <?php }?>
                                 </td>
                                 <td align="left">
                                     {$item.category_name}
@@ -65,7 +68,13 @@
                                     <input type="text" size="2" name="corder_{$item.id}" onblur="changeContentOrder(this, '__URL__')" value="{$item.order}" />
                                 </td>
                                 <td>
-                                    <a style="text-decoration: underline;" href="__URL__/edit/cid/{$item.id}" title="编辑">编辑</a>
+                                    <a style="text-decoration: none;" href="__URL__/edit/cid/{$item.id}" title="编辑">[编辑]</a>
+                                    <?php if($item['topnum'] > 0){ ?>
+                                        <a style="text-decoration: none;" href="javascript:void(0)" onclick="canceltop('{$item.id}')" title="取消置顶">[取消置顶]</a>
+                                    <?php }else if($item['status'] == 1){ ?>
+                                        <a style="text-decoration: none;" href="javascript:void(0)" onclick="puttop('{$item.id}')" title="置顶">[置顶]</a>
+                                    <?php }?>
+
                                 </td>
 
                             </tr>
@@ -170,19 +179,21 @@
         if(s == 0){
             d = "确定该文档置为草稿？";
         }
-        if(window.confirm(d)){
+
+        yygcms_confirm(d, function (result) {
             var args = {
                 "id":id,
                 "status":s
             };
             $.post('__URL__/changeStatus',args,function(data){
+                data = comm_parseJsonResult(data);
                 if(data == 1){
                     window.location.reload();
                 }else{
-                    alert(data);
+                    bootbox.alert(data);
                 }
             });
-        }
+        });
     }
 
     function sortContent(sort){
@@ -223,6 +234,39 @@
     function doadd() {
         window.location.href="__URL__/add/code/<?php echo $category['pagecode'] ?>";
     }
+
+    function canceltop(itemid){
+        var args = {
+            "id":itemid,
+            "status":itemid
+        };
+        $.post('__URL__/canceltop',args,function(data){
+            data = comm_parseJsonResult(data);
+            if(data == 1){
+                window.location.reload();
+            }else{
+                console.log(data);
+                bootbox.alert(data);
+            }
+        });
+    }
+
+    function puttop(itemid){
+        var args = {
+            "id":itemid,
+            "status":itemid
+        };
+        $.post('__URL__/puttop',args,function(data){
+            data = comm_parseJsonResult(data);
+            if(data == 1){
+                window.location.reload();
+            }else{
+                console.log(data);
+                bootbox.alert(data);
+            }
+        });
+    }
+
 
 </script>
 <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>

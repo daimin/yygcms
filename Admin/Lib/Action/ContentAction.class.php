@@ -85,7 +85,7 @@ class ContentAction extends BaseAction {
 		
 		$show       = $Page->show();// 分页显示输出
 		// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-		$list = $contentD->where($map)->order('`order`,`createtime` '.$sort)->limit($Page->firstRow.','.$Page->listRows)->select();
+		$list = $contentD->where($map)->order('topnum, `order`,`createtime` '.$sort)->limit($Page->firstRow.','.$Page->listRows)->select();
 		for($i = 0, $len = count($list); $i < $len; $i++){
 			$list[$i]['attac_count'] = $contentD->getAttatsCount($list[$i]['id']);
 		}
@@ -193,7 +193,7 @@ class ContentAction extends BaseAction {
 
 		$show       = $page->show();// 分页显示输出
 		// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-		$list = $contentD->where($map)->order('`order`,`createtime` '.$sort)->limit($page->firstRow.','.$page->listRows)->select();
+		$list = $contentD->where($map)->order('topnum desc, `order`,`createtime` '.$sort)->limit($page->firstRow.','.$page->listRows)->select();
 		for($i = 0, $len = count($list); $i < $len; $i++){
 			$list[$i]['attac_count'] = $contentD->getAttatsCount($list[$i]['id']);
 			$subCategory = M("category")->where(['id' => $list[$i]['category_id']])->find();
@@ -232,22 +232,39 @@ class ContentAction extends BaseAction {
 			$this->assign('categorys', $subCategorys);
 			$this->assign('category', $category);
 			$this->assign('option', $opt);
+			$this->assign('stages', C('__YYG_YUER_STAGE__'));
 			$this->display("Content:add");
 		}else{
 			$contentD = D("Content");
+			$contentD->startTrans();
 			if (!$contentD->create(False, 1)){
 				// 如果创建失败 表示验证没有通过 输出错误提示信息
 				$this->error($contentD->getError());
+				$contentD->rollback();
 				exit();
 			}else{
-				$selCategoryId = I('post.category');
-				if(empty($selCategoryId)){
-					$contentD->category_id = $category['id'];
-				}else{
-					$contentD->category_id = $selCategoryId;
+				try{
+					$selCategoryId = I('post.category');
+					if(empty($selCategoryId)){
+						$contentD->category_id = $category['id'];
+					}else{
+						$contentD->category_id = $selCategoryId;
+					}
+					$cid = $contentD->add();
+					$stages = I('post.yuer_stage');
+					if(!empty($stages)){
+						foreach($stages as $stage){
+							$data = ['cid' => $cid, 'stage' => $stage];
+							M("stage_rel")->add($data, [], true);
+						}
+					}
+
+					$this->_addAttac($cid);
+					$contentD->commit();
+				}catch (\Exception $e){
+					$contentD->rollback();
 				}
-				$cid = $contentD->add();
-				$this->_addAttac($cid);
+
 				$this->success("添加文档成功", __URL__.'/category/code/'.$code);
 			}
 		}
@@ -271,133 +288,80 @@ class ContentAction extends BaseAction {
 		}
 
 	}
-	
+
+	private function getYuerStages($cid){
+		$stages = M("stage_rel")->where(['cid' => $cid])->select();
+		$selStages = [];
+		foreach ($stages as $stage){
+			$selStages []= $stage['stage'];
+		}
+		$this->assign('selStages', $selStages);
+	}
+
 	public function edit($cid=False){
+		$contentD = D("Content");
+		$content = $contentD->find($cid);
+		$category = M("category")->where(['id' => $content['category_id']])->find();
 	    if($this->isGet()){
-	    	$contentD = D("Content");
-	    	$content = $contentD->find($cid);
-			$category = M("category")->where(['id' => $content['category_id']])->find();
 			$subCategorys = M("category")->where(['pid' => $category['id']])->select();
-			array_unshift($subCategorys, $category);
+			if(empty($subCategorys)){
+				//证明当前选择的分类不是一级分类
+				$parentCategory = M("category")->where(['id' => $category['pid']])->find();
+				$subCategorys = M("category")->where(['pid' => $category['pid']])->select();
+				array_unshift($subCategorys, $parentCategory);
+			}else{
+				array_unshift($subCategorys, $category);
+			}
 			$this->assign('categorys', $subCategorys);
 			$this->assign('category', $category);
 			$this->assign("content", $content);
             $opts = $this->getOptions();
             $this->assign("attachAllow", $this->_sAttachAllow($opts->attachAllow));
 			$this->assign('option', $opts);
+			$this->assign('stages', C('__YYG_YUER_STAGE__'));
+			$this->getYuerStages($cid);
 			$this->display("Content:edit");
 
 		}else{
 			$contentD = D("Content");
+			$contentD->startTrans();
 			if (!$contentD->create(False, 2)){
 				// 如果创建失败 表示验证没有通过 输出错误提示信息
 				$this->error($contentD->getError());
+				$contentD->rollback();
 				exit();
 			}else{
-			
-				$contentD->save();
-				$this->_addAttac(I("id"));
-                $content = $contentD->find(I("id"));
-                
-                if($content['parentid'] != 0){
-                	$this->success("更新文档成功", __URL__.'/sublist/pid/'.$content['parentid']);
-                }else{
-                	if(strpos(I("type"), "ketang_") !== False){
-                		$this->success("更新文档成功", __URL__.'/Ketang/');
-                	}else{
-                		$this->success("更新文档成功", __URL__.'/index/type/'.I("type"));
-                	}
-                }
-				
+				try{
+					$selCategoryId = I('post.category');
+					if(empty($selCategoryId)){
+						$contentD->category_id = $category['id'];
+					}else{
+						$contentD->category_id = $selCategoryId;
+					}
+					M("stage_rel")->delete(['cid' => $cid]);
+					$stages = I('post.yuer_stage');
+					if(!empty($stages)){
+						foreach($stages as $stage){
+							$data = ['cid' => $cid, 'stage' => $stage];
+							M("stage_rel")->add($data, [], true);
+						}
+					}
+					$contentD->save();
+					$this->_addAttac(I("id"));
+					$contentD->commit();
+				}catch (\Exception $e){
+					$contentD->rollback();
+				}
+				$pageCode = $category['pagecode'];
+				if($category['pid'] != 0){
+					$parentCategory = M("category")->where(['id' => $category['pid']])->find();
+					$pageCode = $parentCategory['pagecode'];
+				}
+				$this->success("添加文档成功", __URL__.'/category/code/'.$pageCode);
 			}
 		}
 	}
 
-
-	/**
-     * 家装一站的编辑更新
-     * @param type $type
-     */
-	public function editOneSite($type=False){
-		if($this->isGet()){
-			$contentD = D("Content");
-			$content = $contentD->where("`type`='$type'")->limit(1)->find();
-			if(empty($content)){
-				$data['type'] = $type;
-				$data['title'] = "输入你的标题";
-				$data['content'] = "输入你的内容";
-                $data['createtime'] = date("Y-m-d H:i:s");
-                $data['modifytime'] = date("Y-m-d H:i:s");
-				$oid = $contentD->add($data);
-                $content = $contentD->where("`type`='$type'")->limit(1)->select();
-			}
-		
-			$type = ucfirst($type);
-			$this->assign("content", $content);
-			$opts = $this->getOptions();
-            $this->assign("opt", $opts);
-			$this->display("Content:$type:edit");				
-		}else{
-			$contentD = D("Content");
-			if (!$contentD->create(False, 2)){
-				// 如果创建失败 表示验证没有通过 输出错误提示信息
-				$this->error($contentD->getError());
-				exit();
-			}else{
-					
-				$contentD->save();
-				$this->_addAttac(I("id"));
-				$content = $contentD->find(I("id"));
-		
-				$this->success("更新文档成功", __URL__.'/editOneSite/type/'.I("type"));
-		
-			}
-		}
-	}
-    
-    /**
-     * 关于我们的编辑更新
-     * @param type $type
-     */
-	public function editLookUs($type=False){
-		if($this->isGet()){
-			$contentD = D("Content");
-			$content = $contentD->where("`type`='$type'")->limit(1)->find();
-			if(empty($content)){
-				$data['type'] = $type;
-				$data['title'] = "输入你的标题";
-				$data['content'] = "输入你的内容";
-                $data['createtime'] = date("Y-m-d H:i:s");
-                $data['modifytime'] = date("Y-m-d H:i:s");
-				$oid = $contentD->add($data);
-                $content = $contentD->where("`type`='$type'")->limit(1)->select();
-			}
-			$type = ucfirst($type);
-			$this->assign("content", $content);
-			$opts = $this->getOptions();
-            $this->assign("opt", $opts);
-			$this->display("Content:$type:edit");				
-		}else{
-			$contentD = D("Content");
-			if (!$contentD->create(False, 2)){
-				// 如果创建失败 表示验证没有通过 输出错误提示信息
-				$this->error($contentD->getError());
-				exit();
-			}else{
-					
-				$contentD->save();
-				$this->_addAttac(I("id"));
-				$content = $contentD->find(I("id"));
-		
-				$this->success("更新文档成功", __URL__.'/editOneSite/type/'.I("type"));
-		
-			}
-		}
-	}
-	
-	public function editProject($type=False){
-		$this->editLookUs($type);
-	}
 	
 	public function editWithAttachDesc($cid=False){
 		$contentD = D("Content");
@@ -478,7 +442,7 @@ class ContentAction extends BaseAction {
 			$dataJson = array();
 			$dataJson['id'] = $attac['id'];
 			$dataJson['path'] = __ROOT__.$attac['path'];
-			$dataJson['name'] = $attac['title'];
+			$dataJson['name'] = substr($attac['title'], strpos($attac['title'], '/') + 1);
 			$dataJson['desc'] = brReplace($attac['description']);
 			$dataJson['thumb'] = ['width' => explode(',', $opt->thumbMaxWidth), 'prefix' => $opt->thumbPrefix];
 			array_push($dataJsons, $dataJson);
@@ -558,8 +522,11 @@ class ContentAction extends BaseAction {
 		$contentD = D("Content");
 		$data = array();
 		$data['status'] = $status;
+		if($status == 0){
+			$data['topnum'] = 0;
+		}
 		$res = $contentD->where("`id`='$cid'")->save($data);
-		$this->ajaxReturn($res);
+		$this->jsonReturn($res);
 	}
 	
 	public function changeContentOrder(){
@@ -576,113 +543,29 @@ class ContentAction extends BaseAction {
 		$res = $contentD->where("`id`='$cid'")->save($data);
 		$this->ajaxReturn($res);
 	}
-	
-	private $MP_KETANGS_TYPES = array(
-			"ketang_shui"   => "水",
-			"ketang_dian"   => "电",
-			"ketang_tuliao" => "涂料",
-			"ketang_diban"  => "地板",
-			"ketang_zhuan"  => "砖",
-			"ketang_men"    => "门",
-			"ketang_chuju"  => "厨具",
-			"ketang_jieju"  => "洁具",
-			"ketang_rizhi"  => "装修日志",
-	
-	);
-	
-	public function ketang($o_keyword='', $sort='', $o_status = '', $o_type='')
-	{
-		import('ORG.Util.Page');// 导入分页类
-		$opts = $this->getOptions();
-		if(empty($o_keyword)){
-			$o_keyword = I("o_keyword");
-		}
-		if(empty($o_status)){
-			$o_status = I("o_status");
-		}
-		
-		if(empty($o_type)){
-			$o_type = I("o_type");
-		}
-		
-		if(empty($sort)){
-			$sort = I('sort');
-			if(empty($sort)){
-				$sort = 'desc';
-			}
-		}
-		$types = array();
-		if(empty($o_type))
-		{
-			foreach($this->MP_KETANGS_TYPES as $k=>$v)
-			{
-				array_push($types, array('eq', $k));
-			}
-		}
-		else
-		{
-			array_push($types, array('eq', $o_type));
-		}
-		
-		array_push($types, 'OR');
-		$map['type']  = $types;
-        if($o_status != '')
-        {
-        	$map['status'] = $o_status;
-        }
-		
-        
-		$map['parentid']  = array('eq', 0);
-		if(!empty($o_keyword)){
-			$map['title|relurl|createtime'] = array('like', '%'.$o_keyword.'%');
-		}
-		
-		
+
+	public function puttop(){
+		$cid = I("id");
+		if(empty($cid)) return;
 		$contentD = D("Content");
-		$count      = $contentD->where($map)->count();// 查询满足要求的总记录数
-		$Page       = new Page($count, $opts->pageSize);// 实例化分页类 传入总记录数和每页显示的记录数
-		
-		
-		$Page->parameter   =  '&o_keyword='.$o_keyword.'&sort='.$sort.'&o_status='.$o_status.'&o_type='.$o_type;
-		
-		
-		$show       = $Page->show();// 分页显示输出
-		// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-		$list = $contentD->where($map)->order('`order`,`createtime` '.$sort)->limit($Page->firstRow.','.$Page->listRows)->select();
-		for($i = 0, $len = count($list); $i < $len; $i++){
-			$list[$i]['attac_count'] = $contentD->getAttatsCount($list[$i]['id']);
+		$content = $contentD->find($cid);
+		if($content['status'] == 0){
+			$this->jsonReturn(false, '草稿文章无法置顶');
 		}
-		$this->assign('types', $this->MP_KETANGS_TYPES);// 赋值数据集
-		$this->assign('list', $list);// 赋值数据集
-		$this->assign('sort', $sort);
-		$this->assign('page',$show);// 赋值分页输出
-		$this->display("Content:Ketang:index");
+		$maxTopNumContent = $contentD->where(['category_id' => $content['category_id']])->order("topnum desc")->limit(1)->find();
+		$data = [];
+		$data['topnum'] = $maxTopNumContent['topnum'] + 1;
+		$res = $contentD->where("`id`='$cid'")->save($data);
+		$this->jsonReturn($res);
 	}
-	
-	public function addKetang()
-	{
-		if($this->isGet()){
-		    $this->assign('types', $this->MP_KETANGS_TYPES);// 赋值数据集
-		    $this->display('Content:Ketang:add');
-		}else{
-			$this->add(I('type'));
-		}
+
+	public function canceltop(){
+		$cid = I("id");
+		if(empty($cid)) return;
+		$contentD = D("Content");
+		$data = [];
+		$data['topnum'] = 0;
+		$res = $contentD->where("`id`='$cid'")->save($data);
+		$this->jsonReturn($res);
 	}
-	
-	public function editKetang($cid='')
-	{
-		if($this->isGet()){
-			$contentD = D("Content");
-			$content = $contentD->find($cid);
-			$this->assign("content", $content);
-			$opts = $this->getOptions();
-			$this->assign("attachAllow", $this->_sAttachAllow($opts->attachAllow));
-			$this->assign('types', $this->MP_KETANGS_TYPES);// 赋值数据集
-			$this->display('Content:Ketang:edit');
-		}else{
-			$this->edit(I('id'));
-		}
-	}
-    
-     
 }

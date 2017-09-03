@@ -137,6 +137,8 @@ var yygcms_confirm = function (message, callback) {
 			}
 		},
 		callback : function(result){
-			callback(result);
+			if(result){
+				callback(result);
+			}
 		}});
 };

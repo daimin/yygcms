@@ -39,6 +39,17 @@
 
                             </tr>
                             <tr >
+                                <td class="head">育儿阶段：</td>
+                                <td class="tail" colspan="2">
+                                    <volist name="stages" id="sitem">
+                                    <label class="checkbox-inline" style="margin-right: 6px;">
+                                        <input type="checkbox" name="yuer_stage[]" value="{$sitem}">
+                                            {$sitem}
+                                    </label>
+                                    </volist>
+                                </td>
+                            </tr>
+                            <tr >
                                 <td class="head">关联URL：</td>
                                 <td class="tail" colspan="2"> <input type='text' name='relurl' value="" style='width:40%'><span class="info">点击该文档，跳转到的页面(默认是该文档的URL)</span>
                                 </td>
@@ -54,7 +65,13 @@
                                     <div id="update_img_list">
                                     </div>
                                 </td>
-                                <td class="info">首页仅显示第一张图片</td>
+                                <td class="info">缩略图：<?php
+                                    $widths = explode(',', $option->thumbMaxWidth);
+                                    $pxWidths = array_map(function($it){
+                                        return $it.'px';
+                                    }, $widths);
+                                    echo implode(", ", $pxWidths);
+                                    ?></td>
                             </tr>
 
                         </table>
