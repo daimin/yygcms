@@ -228,7 +228,11 @@ class ContentAction extends BaseAction {
 			$opt = $this->getOptions();
 			$this->assign("attachAllow", $this->_sAttachAllow($opt->attachAllow));
 			$subCategorys = M("category")->where(['pid' => $category['id']])->select();
-			array_unshift($subCategorys, $category);
+			if(empty($subCategorys)){
+				$subCategorys = [$category];
+			}else{
+				array_unshift($subCategorys, $category);
+			}
 			$this->assign('categorys', $subCategorys);
 			$this->assign('category', $category);
 			$this->assign('option', $opt);
@@ -316,13 +320,17 @@ class ContentAction extends BaseAction {
 		$category = M("category")->where(['id' => $content['category_id']])->find();
 	    if($this->isGet()){
 			$subCategorys = M("category")->where(['pid' => $category['id']])->select();
-			if(empty($subCategorys)){
+			if(empty($subCategorys) && $category['pid'] != 0){
 				//证明当前选择的分类不是一级分类
 				$parentCategory = M("category")->where(['id' => $category['pid']])->find();
 				$subCategorys = M("category")->where(['pid' => $category['pid']])->select();
 				array_unshift($subCategorys, $parentCategory);
 			}else{
-				array_unshift($subCategorys, $category);
+				if(empty($subCategorys)){
+					$subCategorys = [$category];
+				}else{
+					array_unshift($subCategorys, $category);
+				}
 			}
 			$this->assign('categorys', $subCategorys);
 			$this->assign('category', $category);

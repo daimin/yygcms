@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50712
 File Encoding         : 65001
 
-Date: 2017-09-02 17:06:38
+Date: 2017-09-03 20:24:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,7 @@ CREATE TABLE `yyg_admins` (
 -- ----------------------------
 -- Records of yyg_admins
 -- ----------------------------
-INSERT INTO `yyg_admins` VALUES ('admin', 'a44f75e56684fcbb89d46ef2be701265', '2013-07-16 15:43:05', '2017-09-02 16:49:43', '1', '1');
+INSERT INTO `yyg_admins` VALUES ('admin', 'a44f75e56684fcbb89d46ef2be701265', '2013-07-16 15:43:05', '2017-09-03 09:16:51', '1', '1');
 INSERT INTO `yyg_admins` VALUES ('admin1', '111111', '2013-07-16 15:20:54', '0000-00-00 00:00:00', '1', '2');
 INSERT INTO `yyg_admins` VALUES ('admin2', 'f0bab14fdb2dec036f1837bf48ca0dd3', '2013-07-16 15:21:50', '0000-00-00 00:00:00', '1', '2');
 INSERT INTO `yyg_admins` VALUES ('vagasnail', 'f0bab14fdb2dec036f1837bf48ca0dd3', '2013-07-16 16:24:33', '0000-00-00 00:00:00', '1', '1');
@@ -50,7 +50,7 @@ CREATE TABLE `yyg_attac` (
   `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=789 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=801 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of yyg_attac
@@ -147,115 +147,17 @@ INSERT INTO `yyg_attac` VALUES ('594', 'acd22366fcc57cf8dafb5d0771a63778.jpg', '
 INSERT INTO `yyg_attac` VALUES ('595', '808aac3b7f89436fd18a8fae16628d5b.jpg', '/Upload/20131011/808aac3b7f89436fd18a8fae16628d5b.jpg', '2013-10-11 22:14:19', null);
 INSERT INTO `yyg_attac` VALUES ('596', '1fffdc8b5a596f7d13ce2365099f791f.jpg', '/Upload/20131011/1fffdc8b5a596f7d13ce2365099f791f.jpg', '2013-10-11 22:14:19', null);
 INSERT INTO `yyg_attac` VALUES ('597', '073372c9c5904104a41017637f9e5bdb.jpg', '/Upload/20131011/073372c9c5904104a41017637f9e5bdb.jpg', '2013-10-11 22:14:19', null);
-INSERT INTO `yyg_attac` VALUES ('622', '459870795731117e339f0369a491f39c.jpg', '/Upload/20131014/459870795731117e339f0369a491f39c.jpg', '2013-10-14 22:16:38', null);
-INSERT INTO `yyg_attac` VALUES ('621', '6c9d0deb809abdbd00d1a31790463cdd.jpg', '/Upload/20131014/6c9d0deb809abdbd00d1a31790463cdd.jpg', '2013-10-14 22:16:38', null);
-INSERT INTO `yyg_attac` VALUES ('444', 'a04eaae6621295e3dabb20bef088dcc1.jpg', '/Upload/20130902/a04eaae6621295e3dabb20bef088dcc1.jpg', '2013-09-02 11:18:44', null);
 INSERT INTO `yyg_attac` VALUES ('204', 'a9e099e98edb7d9cc57fd52a05c0182d.jpg', '/Upload/20130719/a9e099e98edb7d9cc57fd52a05c0182d.jpg', '2013-07-19 15:01:14', null);
 INSERT INTO `yyg_attac` VALUES ('203', '6b094ae41417f6a9119102733d9cbfdc.jpg', '/Upload/20130719/6b094ae41417f6a9119102733d9cbfdc.jpg', '2013-07-19 14:35:02', null);
 INSERT INTO `yyg_attac` VALUES ('201', '03fbd12c64a27e0c2e6addb10ac8fa33.jpg', '/Upload/20130719/03fbd12c64a27e0c2e6addb10ac8fa33.jpg', '2013-07-19 14:06:15', null);
 INSERT INTO `yyg_attac` VALUES ('200', '6366a089102616bd01b30f0b8a4a500a.jpg', '/Upload/20130719/6366a089102616bd01b30f0b8a4a500a.jpg', '2013-07-19 14:06:15', null);
 INSERT INTO `yyg_attac` VALUES ('199', '5b86462dabe0c66fd95f994d5e464ad2.jpg', '/Upload/20130719/5b86462dabe0c66fd95f994d5e464ad2.jpg', '2013-07-19 14:06:14', null);
-INSERT INTO `yyg_attac` VALUES ('247', '3ba08bfdebc5a1acbc25199a5fc24128.jpg', '/Upload/20130725/3ba08bfdebc5a1acbc25199a5fc24128.jpg', '2013-07-25 23:49:00', null);
 INSERT INTO `yyg_attac` VALUES ('197', '860784b9cb176169cc964456d134e262.jpg', '/Upload/20130719/860784b9cb176169cc964456d134e262.jpg', '2013-07-19 13:59:09', null);
 INSERT INTO `yyg_attac` VALUES ('198', '1fcb59aae89ba564469921df4f84fbc6.jpg', '/Upload/20130719/1fcb59aae89ba564469921df4f84fbc6.jpg', '2013-07-19 14:06:14', null);
 INSERT INTO `yyg_attac` VALUES ('193', 'da4d2d0bb870a637862dcaabd30b1023.jpg', '/Upload/20130719/da4d2d0bb870a637862dcaabd30b1023.jpg', '2013-07-19 11:01:07', '1.莲花\r<br/>2.佛');
 INSERT INTO `yyg_attac` VALUES ('192', '5d6315407096243f8953428c3753b3ac.jpg', '/Upload/20130719/5d6315407096243f8953428c3753b3ac.jpg', '2013-07-19 10:57:40', '1.人生\r\n2.等待');
 INSERT INTO `yyg_attac` VALUES ('191', '6feae87ebdf6821fa4316c869bc97a83.jpg', '/Upload/20130719/6feae87ebdf6821fa4316c869bc97a83.jpg', '2013-07-19 10:54:43', null);
 INSERT INTO `yyg_attac` VALUES ('190', '05ad62b6ec7d6ae3617aec25c848af5e.jpg', '/Upload/20130719/05ad62b6ec7d6ae3617aec25c848af5e.jpg', '2013-07-19 10:53:39', null);
-INSERT INTO `yyg_attac` VALUES ('218', 'fb110b708ae525bdf63ae435dbedcf5b.jpg', '/Upload/20130722/fb110b708ae525bdf63ae435dbedcf5b.jpg', '2013-07-22 23:00:49', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）\r<br/>5.门槛石\r<br/>6.卫生间及五金\r<br/>7.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）\r<br/>8.地漏');
-INSERT INTO `yyg_attac` VALUES ('219', '3039e037c109c9dcd4fb7eab05225a37.jpg', '/Upload/20130722/3039e037c109c9dcd4fb7eab05225a37.jpg', '2013-07-22 23:00:49', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）\r<br/>5.门槛石\r<br/>6.卫生间及五金\r<br/>7.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）\r<br/>8.地漏');
-INSERT INTO `yyg_attac` VALUES ('220', 'b3f963f8d281fe2ac1f326105e0ac379.jpg', '/Upload/20130722/b3f963f8d281fe2ac1f326105e0ac379.jpg', '2013-07-22 23:01:19', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）\r<br/>5.门槛石\r<br/>6.卫生间及五金\r<br/>7.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）\r<br/>8.地漏');
-INSERT INTO `yyg_attac` VALUES ('221', '7deaf2431378ebf94dab24f4ab1d5311.jpg', '/Upload/20130722/7deaf2431378ebf94dab24f4ab1d5311.jpg', '2013-07-22 23:01:19', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）\r<br/>5.门槛石\r<br/>6.卫生间及五金\r<br/>7.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）\r<br/>8.地漏');
-INSERT INTO `yyg_attac` VALUES ('222', 'f0697e1fbbca254eeef7c7626693d465.jpg', '/Upload/20130722/f0697e1fbbca254eeef7c7626693d465.jpg', '2013-07-22 23:02:29', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）\r<br/>5.地漏');
-INSERT INTO `yyg_attac` VALUES ('223', 'eec244e9976c8e7cab77b592a0035ea9.jpg', '/Upload/20130722/eec244e9976c8e7cab77b592a0035ea9.jpg', '2013-07-22 23:02:29', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）\r<br/>5.地漏');
-INSERT INTO `yyg_attac` VALUES ('224', 'c4620bf395633719fb3649ef1b3e2501.jpg', '/Upload/20130722/c4620bf395633719fb3649ef1b3e2501.jpg', '2013-07-22 23:02:41', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）\r<br/>5.地漏');
-INSERT INTO `yyg_attac` VALUES ('225', 'a4e2da94f01821b85b55ab84329dd8d7.jpg', '/Upload/20130722/a4e2da94f01821b85b55ab84329dd8d7.jpg', '2013-07-22 23:02:42', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）');
-INSERT INTO `yyg_attac` VALUES ('226', '0284087e2c1039902be02b237fca96fe.jpg', '/Upload/20130722/0284087e2c1039902be02b237fca96fe.jpg', '2013-07-22 23:03:45', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.卫生间及五金\r<br/>4.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）');
-INSERT INTO `yyg_attac` VALUES ('227', 'a5f8bd328b0d231b64a10eae5a5c6c1d.jpg', '/Upload/20130722/a5f8bd328b0d231b64a10eae5a5c6c1d.jpg', '2013-07-22 23:03:51', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.卫生间及五金\r<br/>4.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）');
-INSERT INTO `yyg_attac` VALUES ('228', '6de89acb7782db5912c1d96a9ff1b72b.jpg', '/Upload/20130722/6de89acb7782db5912c1d96a9ff1b72b.jpg', '2013-07-22 23:03:56', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.卫生间及五金\r<br/>4.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）');
-INSERT INTO `yyg_attac` VALUES ('229', '84628cf91ef2bf838e1f879268f37118.jpg', '/Upload/20130722/84628cf91ef2bf838e1f879268f37118.jpg', '2013-07-22 23:04:01', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.卫生间及五金\r<br/>4.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）');
-INSERT INTO `yyg_attac` VALUES ('230', 'effde22818e931501535d9208cc78faa.jpg', '/Upload/20130722/effde22818e931501535d9208cc78faa.jpg', '2013-07-22 23:04:46', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）\r<br/>5.门槛石\r<br/>6.卫生间及五金\r<br/>7.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）\r<br/>8.地漏');
-INSERT INTO `yyg_attac` VALUES ('231', '8c68e44d4369c721d3d46a8c7fd2b5ee.jpg', '/Upload/20130722/8c68e44d4369c721d3d46a8c7fd2b5ee.jpg', '2013-07-22 23:04:46', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）\r<br/>5.门槛石\r<br/>6.卫生间及五金\r<br/>7.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）\r<br/>8.地漏');
-INSERT INTO `yyg_attac` VALUES ('232', '4c32061955181807b787317b4ca426e9.jpg', '/Upload/20130722/4c32061955181807b787317b4ca426e9.jpg', '2013-07-22 23:04:47', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）\r<br/>5.门槛石\r<br/>6.卫生间及五金\r<br/>7.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）\r<br/>8.地漏');
-INSERT INTO `yyg_attac` VALUES ('233', 'a5438b14ca5559eb021777c6ab0ef91e.jpg', '/Upload/20130722/a5438b14ca5559eb021777c6ab0ef91e.jpg', '2013-07-22 23:04:47', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）\r<br/>5.门槛石\r<br/>6.卫生间及五金\r<br/>7.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）\r<br/>8.地漏');
-INSERT INTO `yyg_attac` VALUES ('234', 'abb43666a3bbc619d2478ab6f23c819e.jpg', '/Upload/20130722/abb43666a3bbc619d2478ab6f23c819e.jpg', '2013-07-22 23:05:23', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）\r<br/>5.门槛石\r<br/>6.卫生间及五金');
-INSERT INTO `yyg_attac` VALUES ('235', 'eb8a5aedcd2db205a127e2475c96e882.jpg', '/Upload/20130722/eb8a5aedcd2db205a127e2475c96e882.jpg', '2013-07-22 23:05:23', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）\r<br/>5.门槛石\r<br/>6.卫生间及五金');
-INSERT INTO `yyg_attac` VALUES ('236', 'd203bce76b2bd84d4a14a79a339b8350.jpg', '/Upload/20130722/d203bce76b2bd84d4a14a79a339b8350.jpg', '2013-07-22 23:05:28', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）\r<br/>5.门槛石\r<br/>6.卫生间及五金');
-INSERT INTO `yyg_attac` VALUES ('237', '0960d91379b2be271b8390221bcd3e9b.jpg', '/Upload/20130722/0960d91379b2be271b8390221bcd3e9b.jpg', '2013-07-22 23:05:28', '1.铺地砖人工铺贴\r<br/>2.墙砖（含损耗）\r<br/>3.地板（含损耗）\r<br/>4.铝扣板吊顶（含损耗）\r<br/>5.门槛石\r<br/>6.卫生间及五金');
-INSERT INTO `yyg_attac` VALUES ('248', 'e874962d20406f5cae794a45cd71fb53.jpg', '/Upload/20130808/e874962d20406f5cae794a45cd71fb53.jpg', '2013-08-08 21:51:50', null);
-INSERT INTO `yyg_attac` VALUES ('249', '7348f9cf80eec8e98d1cbaaaa86cca36.jpg', '/Upload/20130808/7348f9cf80eec8e98d1cbaaaa86cca36.jpg', '2013-08-08 21:51:50', null);
-INSERT INTO `yyg_attac` VALUES ('250', 'f32b3044d04dc2c9e8453a875e5b83e7.jpg', '/Upload/20130808/f32b3044d04dc2c9e8453a875e5b83e7.jpg', '2013-08-08 21:51:50', null);
-INSERT INTO `yyg_attac` VALUES ('251', '0da2eba855ada2813ef9ac34496f77b3.jpg', '/Upload/20130808/0da2eba855ada2813ef9ac34496f77b3.jpg', '2013-08-08 21:51:50', null);
-INSERT INTO `yyg_attac` VALUES ('252', '86c0f728058a1eb6e6aa8b4d926032a7.jpg', '/Upload/20130808/86c0f728058a1eb6e6aa8b4d926032a7.jpg', '2013-08-08 22:23:38', null);
-INSERT INTO `yyg_attac` VALUES ('253', 'af0a68acba4b482d443242d47459e16d.jpg', '/Upload/20130808/af0a68acba4b482d443242d47459e16d.jpg', '2013-08-08 22:23:38', null);
-INSERT INTO `yyg_attac` VALUES ('254', '135ed9a04a91924d51df7ea7e8297755.jpg', '/Upload/20130808/135ed9a04a91924d51df7ea7e8297755.jpg', '2013-08-08 22:23:38', null);
-INSERT INTO `yyg_attac` VALUES ('255', '9deffa10e2593cb514f838e5983a47e2.jpg', '/Upload/20130808/9deffa10e2593cb514f838e5983a47e2.jpg', '2013-08-08 22:23:38', null);
-INSERT INTO `yyg_attac` VALUES ('256', 'c6d7fac6034130b40c4726a896cee8fe.jpg', '/Upload/20130808/c6d7fac6034130b40c4726a896cee8fe.jpg', '2013-08-08 22:24:20', null);
-INSERT INTO `yyg_attac` VALUES ('257', '74fb7a5957bec2e2c14362939e416606.jpg', '/Upload/20130808/74fb7a5957bec2e2c14362939e416606.jpg', '2013-08-08 22:24:21', null);
-INSERT INTO `yyg_attac` VALUES ('258', 'fa93897b55f4cc98f787d165f2d6ecd1.jpg', '/Upload/20130808/fa93897b55f4cc98f787d165f2d6ecd1.jpg', '2013-08-08 22:24:21', null);
-INSERT INTO `yyg_attac` VALUES ('259', 'e13de32dee748fcd2a6efab5e6c40d93.jpg', '/Upload/20130808/e13de32dee748fcd2a6efab5e6c40d93.jpg', '2013-08-08 22:24:21', null);
-INSERT INTO `yyg_attac` VALUES ('260', 'b5ff701b51842ae3731459d0724419d5.jpg', '/Upload/20130808/b5ff701b51842ae3731459d0724419d5.jpg', '2013-08-08 22:26:39', null);
-INSERT INTO `yyg_attac` VALUES ('261', '0abac35c86b16d1e9ef777bd2b8e6b4f.jpg', '/Upload/20130808/0abac35c86b16d1e9ef777bd2b8e6b4f.jpg', '2013-08-08 22:28:03', null);
-INSERT INTO `yyg_attac` VALUES ('262', '68d7aad0ab7b42308c935fc3d59f8469.jpg', '/Upload/20130808/68d7aad0ab7b42308c935fc3d59f8469.jpg', '2013-08-08 22:28:03', null);
-INSERT INTO `yyg_attac` VALUES ('263', '6dff179ac6d9ff106f059dcadd2cb3ef.jpg', '/Upload/20130808/6dff179ac6d9ff106f059dcadd2cb3ef.jpg', '2013-08-08 22:28:03', null);
-INSERT INTO `yyg_attac` VALUES ('287', '2ef420db240d21ffcb4b51f80d6f1f3c.jpg', '/Upload/20130808/2ef420db240d21ffcb4b51f80d6f1f3c.jpg', '2013-08-08 22:29:44', null);
-INSERT INTO `yyg_attac` VALUES ('285', '354da16ee0fca703bfea240d9627a866.jpg', '/Upload/20130808/354da16ee0fca703bfea240d9627a866.jpg', '2013-08-08 22:29:44', null);
-INSERT INTO `yyg_attac` VALUES ('286', 'f0b9ef8f23dbfc8f58eb8b78a087b469.jpg', '/Upload/20130808/f0b9ef8f23dbfc8f58eb8b78a087b469.jpg', '2013-08-08 22:29:44', null);
-INSERT INTO `yyg_attac` VALUES ('282', '867677f4219f8d82f3adf07139345b4e.jpg', '/Upload/20130808/867677f4219f8d82f3adf07139345b4e.jpg', '2013-08-08 22:29:44', null);
-INSERT INTO `yyg_attac` VALUES ('284', 'f05500571c87679e1d02300b4162ce0d.jpg', '/Upload/20130808/f05500571c87679e1d02300b4162ce0d.jpg', '2013-08-08 22:29:44', null);
-INSERT INTO `yyg_attac` VALUES ('283', '51c62faeccde2d771b21e247aa43839a.jpg', '/Upload/20130808/51c62faeccde2d771b21e247aa43839a.jpg', '2013-08-08 22:29:44', null);
-INSERT INTO `yyg_attac` VALUES ('281', '2405fa33cacebf7e52a3ee51d4e54395.jpg', '/Upload/20130808/2405fa33cacebf7e52a3ee51d4e54395.jpg', '2013-08-08 22:29:44', null);
-INSERT INTO `yyg_attac` VALUES ('280', '783949e49c84f49cfabeff9d5fd3cdae.jpg', '/Upload/20130808/783949e49c84f49cfabeff9d5fd3cdae.jpg', '2013-08-08 22:29:44', null);
-INSERT INTO `yyg_attac` VALUES ('288', '7231c6f2d1ee77aa7f103b3cfc070d25.jpg', '/Upload/20130808/7231c6f2d1ee77aa7f103b3cfc070d25.jpg', '2013-08-08 22:29:44', null);
-INSERT INTO `yyg_attac` VALUES ('289', 'e5bfd13efcc109295f202c74cd933599.jpg', '/Upload/20130808/e5bfd13efcc109295f202c74cd933599.jpg', '2013-08-08 22:29:45', null);
-INSERT INTO `yyg_attac` VALUES ('290', '1eac2156dfb769f5924951745776a91f.jpg', '/Upload/20130808/1eac2156dfb769f5924951745776a91f.jpg', '2013-08-08 22:29:45', null);
-INSERT INTO `yyg_attac` VALUES ('291', 'b3187ea0b2512066d146641cf63d438e.jpg', '/Upload/20130808/b3187ea0b2512066d146641cf63d438e.jpg', '2013-08-08 22:29:45', null);
-INSERT INTO `yyg_attac` VALUES ('292', '606800eb8147dcbb74091ea1f2ee7a66.jpg', '/Upload/20130808/606800eb8147dcbb74091ea1f2ee7a66.jpg', '2013-08-08 22:30:08', null);
-INSERT INTO `yyg_attac` VALUES ('293', 'be09bfcb207290ebd65584e1020ecc22.jpg', '/Upload/20130808/be09bfcb207290ebd65584e1020ecc22.jpg', '2013-08-08 22:30:08', null);
-INSERT INTO `yyg_attac` VALUES ('294', '4259b60d36018a2a97b33e54ff53554e.jpg', '/Upload/20130808/4259b60d36018a2a97b33e54ff53554e.jpg', '2013-08-08 22:30:08', null);
-INSERT INTO `yyg_attac` VALUES ('295', '6c16db206e75ca5862e827e3116c7e05.jpg', '/Upload/20130808/6c16db206e75ca5862e827e3116c7e05.jpg', '2013-08-08 22:30:08', null);
-INSERT INTO `yyg_attac` VALUES ('296', '93b4e847112eded4a02dfd08adbaa6c3.jpg', '/Upload/20130808/93b4e847112eded4a02dfd08adbaa6c3.jpg', '2013-08-08 22:30:08', null);
-INSERT INTO `yyg_attac` VALUES ('297', '7a870795a278e537c09bdfb424f4b918.jpg', '/Upload/20130808/7a870795a278e537c09bdfb424f4b918.jpg', '2013-08-08 22:30:08', null);
-INSERT INTO `yyg_attac` VALUES ('298', '2b24e3c1200aff730f817564f40a8f3e.jpg', '/Upload/20130808/2b24e3c1200aff730f817564f40a8f3e.jpg', '2013-08-08 22:30:08', null);
-INSERT INTO `yyg_attac` VALUES ('299', '0b7499717268fa0791095ef72be8528b.jpg', '/Upload/20130808/0b7499717268fa0791095ef72be8528b.jpg', '2013-08-08 22:30:08', null);
-INSERT INTO `yyg_attac` VALUES ('300', 'c443e3d8d8f6da9e79b3e8501aac8d81.jpg', '/Upload/20130808/c443e3d8d8f6da9e79b3e8501aac8d81.jpg', '2013-08-08 22:30:09', null);
-INSERT INTO `yyg_attac` VALUES ('301', 'bf3e034dd0ecef73fdab2d76e7ffea05.jpg', '/Upload/20130808/bf3e034dd0ecef73fdab2d76e7ffea05.jpg', '2013-08-08 22:30:09', null);
-INSERT INTO `yyg_attac` VALUES ('302', 'c6984fa7e2864dc401d45778398ded40.jpg', '/Upload/20130808/c6984fa7e2864dc401d45778398ded40.jpg', '2013-08-08 22:30:09', null);
-INSERT INTO `yyg_attac` VALUES ('303', '4465e420dadd5662776ddee7a6c109c8.jpg', '/Upload/20130808/4465e420dadd5662776ddee7a6c109c8.jpg', '2013-08-08 22:30:09', null);
-INSERT INTO `yyg_attac` VALUES ('304', '19f8898dd4972f0b3959ed9e5be7046f.jpg', '/Upload/20130808/19f8898dd4972f0b3959ed9e5be7046f.jpg', '2013-08-08 22:30:09', null);
-INSERT INTO `yyg_attac` VALUES ('305', '5b4ba4669fb4149dcab3f54d25dc36d0.jpg', '/Upload/20130808/5b4ba4669fb4149dcab3f54d25dc36d0.jpg', '2013-08-08 22:30:09', null);
-INSERT INTO `yyg_attac` VALUES ('306', 'e939d836ced536084b91d1f9f1c3416b.jpg', '/Upload/20130808/e939d836ced536084b91d1f9f1c3416b.jpg', '2013-08-08 22:30:09', null);
-INSERT INTO `yyg_attac` VALUES ('307', 'c2e262d85007c1de6da5cfe3f9d0b538.jpg', '/Upload/20130808/c2e262d85007c1de6da5cfe3f9d0b538.jpg', '2013-08-08 22:30:09', null);
-INSERT INTO `yyg_attac` VALUES ('308', '42de9751ed399a155e5c6853ec76f523.jpg', '/Upload/20130808/42de9751ed399a155e5c6853ec76f523.jpg', '2013-08-08 22:30:36', null);
-INSERT INTO `yyg_attac` VALUES ('309', 'df3408a8a301927369c4bc5c5c6928db.jpg', '/Upload/20130808/df3408a8a301927369c4bc5c5c6928db.jpg', '2013-08-08 22:30:36', null);
-INSERT INTO `yyg_attac` VALUES ('310', '474155061327bf0cfb55555a9724f764.jpg', '/Upload/20130808/474155061327bf0cfb55555a9724f764.jpg', '2013-08-08 22:30:36', null);
-INSERT INTO `yyg_attac` VALUES ('311', '03c07884c6c37d0ed17f9d7bfb388a49.jpg', '/Upload/20130808/03c07884c6c37d0ed17f9d7bfb388a49.jpg', '2013-08-08 22:30:36', null);
-INSERT INTO `yyg_attac` VALUES ('312', '6af72977b092c1413a23cc6332a00712.jpg', '/Upload/20130808/6af72977b092c1413a23cc6332a00712.jpg', '2013-08-08 22:30:37', null);
-INSERT INTO `yyg_attac` VALUES ('313', 'b6e370aa3bd83b74a3e0c033501e5247.jpg', '/Upload/20130808/b6e370aa3bd83b74a3e0c033501e5247.jpg', '2013-08-08 22:30:37', null);
-INSERT INTO `yyg_attac` VALUES ('314', '8781c36fe8509f232c9e11463a41aeba.jpg', '/Upload/20130808/8781c36fe8509f232c9e11463a41aeba.jpg', '2013-08-08 22:30:37', null);
-INSERT INTO `yyg_attac` VALUES ('315', '54298e8e84248e523351cf154709147c.jpg', '/Upload/20130808/54298e8e84248e523351cf154709147c.jpg', '2013-08-08 22:30:37', null);
-INSERT INTO `yyg_attac` VALUES ('316', '1af91426f856b9a685c5f1bbb59272c0.jpg', '/Upload/20130808/1af91426f856b9a685c5f1bbb59272c0.jpg', '2013-08-08 22:30:37', null);
-INSERT INTO `yyg_attac` VALUES ('317', '5ac9a2978453fe82645283e7dcd49a2d.jpg', '/Upload/20130808/5ac9a2978453fe82645283e7dcd49a2d.jpg', '2013-08-08 22:30:37', null);
-INSERT INTO `yyg_attac` VALUES ('318', 'b7bbc62914dd6ea62aeb89862d14988c.jpg', '/Upload/20130808/b7bbc62914dd6ea62aeb89862d14988c.jpg', '2013-08-08 22:31:01', null);
-INSERT INTO `yyg_attac` VALUES ('319', 'ac7eb2fd66baab1d4b0c9fe45efed52a.jpg', '/Upload/20130808/ac7eb2fd66baab1d4b0c9fe45efed52a.jpg', '2013-08-08 22:31:01', null);
-INSERT INTO `yyg_attac` VALUES ('320', 'b3ba2f7e66fbeb49658a1a2f91142f59.jpg', '/Upload/20130808/b3ba2f7e66fbeb49658a1a2f91142f59.jpg', '2013-08-08 22:31:01', null);
-INSERT INTO `yyg_attac` VALUES ('321', 'd8c6585f2fed1e402a57e0a9c7e71b72.jpg', '/Upload/20130808/d8c6585f2fed1e402a57e0a9c7e71b72.jpg', '2013-08-08 22:31:01', null);
-INSERT INTO `yyg_attac` VALUES ('322', '880531785e43e6886bd1b36dc2fcb052.jpg', '/Upload/20130808/880531785e43e6886bd1b36dc2fcb052.jpg', '2013-08-08 22:32:03', null);
-INSERT INTO `yyg_attac` VALUES ('323', '7756a158dd27b49ace39c133c41d651a.jpg', '/Upload/20130808/7756a158dd27b49ace39c133c41d651a.jpg', '2013-08-08 22:32:03', null);
-INSERT INTO `yyg_attac` VALUES ('324', 'e691a0e7b9334ac35fb72390b95c2c6c.jpg', '/Upload/20130808/e691a0e7b9334ac35fb72390b95c2c6c.jpg', '2013-08-08 22:32:21', null);
-INSERT INTO `yyg_attac` VALUES ('325', '6f803e0cbe42c8848fd78acaca92dc6e.jpg', '/Upload/20130808/6f803e0cbe42c8848fd78acaca92dc6e.jpg', '2013-08-08 22:32:21', null);
-INSERT INTO `yyg_attac` VALUES ('326', 'c1c82f0493ffd0d3cec2b24d2cb26958.jpg', '/Upload/20130808/c1c82f0493ffd0d3cec2b24d2cb26958.jpg', '2013-08-08 22:32:43', null);
-INSERT INTO `yyg_attac` VALUES ('327', 'ab95d69b0fb973f76dae75a41bd302ee.jpg', '/Upload/20130808/ab95d69b0fb973f76dae75a41bd302ee.jpg', '2013-08-08 22:33:23', null);
-INSERT INTO `yyg_attac` VALUES ('328', '709c510bd3626f9ff52c196808a64b26.jpg', '/Upload/20130808/709c510bd3626f9ff52c196808a64b26.jpg', '2013-08-08 22:33:23', null);
-INSERT INTO `yyg_attac` VALUES ('329', 'fd91af1889296d096221ca5fedb5a7fa.jpg', '/Upload/20130808/fd91af1889296d096221ca5fedb5a7fa.jpg', '2013-08-08 22:33:23', null);
-INSERT INTO `yyg_attac` VALUES ('330', '994e5aab1e4152764894b63ad41f3ea0.jpg', '/Upload/20130808/994e5aab1e4152764894b63ad41f3ea0.jpg', '2013-08-08 22:33:23', null);
-INSERT INTO `yyg_attac` VALUES ('331', 'd0d9bcb33ea39d8245ab2e49d1a01ece.jpg', '/Upload/20130808/d0d9bcb33ea39d8245ab2e49d1a01ece.jpg', '2013-08-08 22:33:23', null);
-INSERT INTO `yyg_attac` VALUES ('332', '41fde650f7a365c31f8a7de6eeffd565.jpg', '/Upload/20130808/41fde650f7a365c31f8a7de6eeffd565.jpg', '2013-08-08 22:33:49', null);
-INSERT INTO `yyg_attac` VALUES ('333', 'd371f2fb64b141e3ca9749a1045a53d3.jpg', '/Upload/20130808/d371f2fb64b141e3ca9749a1045a53d3.jpg', '2013-08-08 22:33:49', null);
-INSERT INTO `yyg_attac` VALUES ('334', '72bc037ec1373c45b6888aa1776dc25a.jpg', '/Upload/20130808/72bc037ec1373c45b6888aa1776dc25a.jpg', '2013-08-08 22:33:50', null);
-INSERT INTO `yyg_attac` VALUES ('335', 'd15fbb9964a68550e2d2776394870438.jpg', '/Upload/20130808/d15fbb9964a68550e2d2776394870438.jpg', '2013-08-08 22:33:50', null);
-INSERT INTO `yyg_attac` VALUES ('336', '0213cbce24bb6443ca769cd34a39fc33.jpg', '/Upload/20130808/0213cbce24bb6443ca769cd34a39fc33.jpg', '2013-08-08 22:33:50', null);
-INSERT INTO `yyg_attac` VALUES ('337', '2bd6cb34b49c7e9a43b0cb24b6346423.jpg', '/Upload/20130808/2bd6cb34b49c7e9a43b0cb24b6346423.jpg', '2013-08-08 22:33:50', null);
 INSERT INTO `yyg_attac` VALUES ('707', '2ec7de264f19af3fb23404906faca97e.jpg', '/Upload/20170828/2ec7de264f19af3fb23404906faca97e.jpg', '2017-08-28 22:05:28', null);
 INSERT INTO `yyg_attac` VALUES ('706', '9ebd5d9f3d0dc3979ac59854ea3ef6cb.jpg', '/Upload/20170828/9ebd5d9f3d0dc3979ac59854ea3ef6cb.jpg', '2017-08-28 22:05:07', null);
 INSERT INTO `yyg_attac` VALUES ('705', '97b631c0977e670c668aae57d22df7ac.jpg', '/Upload/20170828/97b631c0977e670c668aae57d22df7ac.jpg', '2017-08-28 22:04:24', null);
@@ -265,28 +167,10 @@ INSERT INTO `yyg_attac` VALUES ('701', '3ff3622342964c5a7b5f9a28ed6a6e36.jpg', '
 INSERT INTO `yyg_attac` VALUES ('698', '4e4ed1a1d7954d8227efe56cc730c645.jpg', '/Upload//20170828/4e4ed1a1d7954d8227efe56cc730c645.jpg', '2017-08-28 21:42:35', null);
 INSERT INTO `yyg_attac` VALUES ('699', '6459772d1cb104588cea871b4fcc3f5a.jpg', 'Upload/20170828/6459772d1cb104588cea871b4fcc3f5a.jpg', '2017-08-28 21:44:31', null);
 INSERT INTO `yyg_attac` VALUES ('700', '2eefe990dbf351d11e0bea355e863482.jpg', '/Upload/20170828/2eefe990dbf351d11e0bea355e863482.jpg', '2017-08-28 21:45:04', null);
-INSERT INTO `yyg_attac` VALUES ('348', 'f06e3180d0d196c041cdb3c86fc310e8.jpg', '/Upload/20130808/f06e3180d0d196c041cdb3c86fc310e8.jpg', '2013-08-08 22:34:56', null);
-INSERT INTO `yyg_attac` VALUES ('349', 'b4ce459b66fd7e64cb01d8910d9a41fb.jpg', '/Upload/20130808/b4ce459b66fd7e64cb01d8910d9a41fb.jpg', '2013-08-08 22:35:10', null);
-INSERT INTO `yyg_attac` VALUES ('350', '00bbbfa9b12abdc3d4c1b8e6b70c6e19.jpg', '/Upload/20130808/00bbbfa9b12abdc3d4c1b8e6b70c6e19.jpg', '2013-08-08 22:35:10', null);
-INSERT INTO `yyg_attac` VALUES ('351', 'bb24351bf6dc811b7eae76e646fe740c.jpg', '/Upload/20130808/bb24351bf6dc811b7eae76e646fe740c.jpg', '2013-08-08 22:35:11', null);
-INSERT INTO `yyg_attac` VALUES ('352', 'c6678492909037a5165574526b5ea7a4.jpg', '/Upload/20130808/c6678492909037a5165574526b5ea7a4.jpg', '2013-08-08 22:35:11', null);
-INSERT INTO `yyg_attac` VALUES ('353', '6fd49899e646a2b3294756dcf1d8adec.jpg', '/Upload/20130808/6fd49899e646a2b3294756dcf1d8adec.jpg', '2013-08-08 22:35:11', null);
-INSERT INTO `yyg_attac` VALUES ('354', 'e344e5132d4c6b0ffdcdbdc16f6b7eb4.jpg', '/Upload/20130808/e344e5132d4c6b0ffdcdbdc16f6b7eb4.jpg', '2013-08-08 22:35:35', null);
-INSERT INTO `yyg_attac` VALUES ('620', '37de4a50e88f79bcbb60245aa86c0427.jpg', '/Upload/20131014/37de4a50e88f79bcbb60245aa86c0427.jpg', '2013-10-14 22:16:38', null);
-INSERT INTO `yyg_attac` VALUES ('619', 'd13aab27aadd822f599cc085a61b8658.jpg', '/Upload/20131014/d13aab27aadd822f599cc085a61b8658.jpg', '2013-10-14 22:16:38', null);
-INSERT INTO `yyg_attac` VALUES ('618', '09e4334e612997b8394003521d6a810b.jpg', '/Upload/20131014/09e4334e612997b8394003521d6a810b.jpg', '2013-10-14 22:16:10', null);
-INSERT INTO `yyg_attac` VALUES ('617', '2004edfdf6da7954d2e13add71a74331.jpg', '/Upload/20131014/2004edfdf6da7954d2e13add71a74331.jpg', '2013-10-14 22:16:10', null);
 INSERT INTO `yyg_attac` VALUES ('389', '1e58a09d32fdb888c3842222afd67e74.jpg', '/Upload/20130825/1e58a09d32fdb888c3842222afd67e74.jpg', '2013-08-25 20:38:39', null);
 INSERT INTO `yyg_attac` VALUES ('390', 'ef9124927dc2520bdda63118036968b9.jpg', '/Upload/20130825/ef9124927dc2520bdda63118036968b9.jpg', '2013-08-25 20:38:39', null);
 INSERT INTO `yyg_attac` VALUES ('391', '228da7860653072f386e75be68c4b3af.jpg', '/Upload/20130825/228da7860653072f386e75be68c4b3af.jpg', '2013-08-25 20:38:39', null);
 INSERT INTO `yyg_attac` VALUES ('392', 'a770437576ef1ebcbaa14536ed7a7a3b.jpg', '/Upload/20130825/a770437576ef1ebcbaa14536ed7a7a3b.jpg', '2013-08-25 20:38:39', null);
-INSERT INTO `yyg_attac` VALUES ('616', '71c962c92e978aa21ba31dda386bef3e.jpg', '/Upload/20131014/71c962c92e978aa21ba31dda386bef3e.jpg', '2013-10-14 22:16:09', null);
-INSERT INTO `yyg_attac` VALUES ('615', '3baf079ff27b24c48749b3c2152e6c2f.jpg', '/Upload/20131014/3baf079ff27b24c48749b3c2152e6c2f.jpg', '2013-10-14 22:16:09', null);
-INSERT INTO `yyg_attac` VALUES ('614', 'c9bf1bc99e69a5647f8f24043cfff1da.jpg', '/Upload/20131014/c9bf1bc99e69a5647f8f24043cfff1da.jpg', '2013-10-14 22:14:55', null);
-INSERT INTO `yyg_attac` VALUES ('613', '35b7a8fff4a5b93d66a54fc5392dc3e3.jpg', '/Upload/20131014/35b7a8fff4a5b93d66a54fc5392dc3e3.jpg', '2013-10-14 22:14:55', null);
-INSERT INTO `yyg_attac` VALUES ('612', '9d6c61990fb04be3a3e7967a26bd4188.jpg', '/Upload/20131014/9d6c61990fb04be3a3e7967a26bd4188.jpg', '2013-10-14 22:14:55', null);
-INSERT INTO `yyg_attac` VALUES ('611', 'f53e4efcadc0426d7b17270826e5d044.jpg', '/Upload/20131014/f53e4efcadc0426d7b17270826e5d044.jpg', '2013-10-14 22:14:55', null);
-INSERT INTO `yyg_attac` VALUES ('610', '2a51e0aef9c12fc714cf662f1b4d5b6e.jpg', '/Upload/20131014/2a51e0aef9c12fc714cf662f1b4d5b6e.jpg', '2013-10-14 22:14:35', null);
 INSERT INTO `yyg_attac` VALUES ('393', '9e1f306b2ce580b9ea556156cb4398a4.jpg', '/Upload/20130825/9e1f306b2ce580b9ea556156cb4398a4.jpg', '2013-08-25 20:42:45', null);
 INSERT INTO `yyg_attac` VALUES ('394', 'ceea78c3413abdc86d1f0f6a1e11c10d.jpg', '/Upload/20130825/ceea78c3413abdc86d1f0f6a1e11c10d.jpg', '2013-08-25 20:42:46', null);
 INSERT INTO `yyg_attac` VALUES ('395', '4f6d05092f27af0c55692dfaea274bcb.jpg', '/Upload/20130825/4f6d05092f27af0c55692dfaea274bcb.jpg', '2013-08-25 20:42:46', null);
@@ -326,72 +210,17 @@ INSERT INTO `yyg_attac` VALUES ('428', '3baee5d7f479ab3926645b87ce59fdc5.jpg', '
 INSERT INTO `yyg_attac` VALUES ('429', '183bf18b3ea39a16ec874fa6960a3d81.jpg', '/Upload/20130825/183bf18b3ea39a16ec874fa6960a3d81.jpg', '2013-08-25 20:50:43', null);
 INSERT INTO `yyg_attac` VALUES ('430', '7f4d9c31b9851aaafcfa6a7e4e5b9adc.jpg', '/Upload/20130825/7f4d9c31b9851aaafcfa6a7e4e5b9adc.jpg', '2013-08-25 20:50:43', null);
 INSERT INTO `yyg_attac` VALUES ('431', '369a6f6a5d01f4947d0cf330e8f719f6.jpg', '/Upload/20130825/369a6f6a5d01f4947d0cf330e8f719f6.jpg', '2013-08-25 20:50:43', null);
-INSERT INTO `yyg_attac` VALUES ('609', 'c98185f5baed9e3619a5c1d91e2651fe.jpg', '/Upload/20131014/c98185f5baed9e3619a5c1d91e2651fe.jpg', '2013-10-14 22:14:35', null);
-INSERT INTO `yyg_attac` VALUES ('608', 'bfdf5ecf6611b81534703409d4727657.jpg', '/Upload/20131014/bfdf5ecf6611b81534703409d4727657.jpg', '2013-10-14 22:14:35', null);
-INSERT INTO `yyg_attac` VALUES ('607', '13db7598e97547ee58086aa49790168e.jpg', '/Upload/20131014/13db7598e97547ee58086aa49790168e.jpg', '2013-10-14 22:14:35', null);
-INSERT INTO `yyg_attac` VALUES ('606', 'dfd05d2567ea88add8351585fdb93a2d.jpg', '/Upload/20131014/dfd05d2567ea88add8351585fdb93a2d.jpg', '2013-10-14 22:14:34', null);
-INSERT INTO `yyg_attac` VALUES ('605', '5be8d846e6d80499e6f50cc8ed8ff17a.jpg', '/Upload/20131014/5be8d846e6d80499e6f50cc8ed8ff17a.jpg', '2013-10-14 22:14:05', null);
-INSERT INTO `yyg_attac` VALUES ('604', '07bf3261d16fb717345f437319042b2b.jpg', '/Upload/20131014/07bf3261d16fb717345f437319042b2b.jpg', '2013-10-14 22:14:05', null);
-INSERT INTO `yyg_attac` VALUES ('603', '224476d0dd0fdb3a865aee261e0ab7b1.jpg', '/Upload/20131014/224476d0dd0fdb3a865aee261e0ab7b1.jpg', '2013-10-14 22:14:05', null);
-INSERT INTO `yyg_attac` VALUES ('602', '60be3af927dcd9e7214b8ccd24043cb7.jpg', '/Upload/20131014/60be3af927dcd9e7214b8ccd24043cb7.jpg', '2013-10-14 22:14:05', null);
-INSERT INTO `yyg_attac` VALUES ('601', 'ff38fe859ce598c41384aebab4ae8c1a.jpg', '/Upload/20131014/ff38fe859ce598c41384aebab4ae8c1a.jpg', '2013-10-14 22:13:17', null);
-INSERT INTO `yyg_attac` VALUES ('600', '5c2b2f375df25fee01918b1e1b38b783.jpg', '/Upload/20131014/5c2b2f375df25fee01918b1e1b38b783.jpg', '2013-10-14 22:13:17', null);
-INSERT INTO `yyg_attac` VALUES ('599', 'e9dfd566f1e56ae9fe316fa914c87b0e.jpg', '/Upload/20131014/e9dfd566f1e56ae9fe316fa914c87b0e.jpg', '2013-10-14 22:13:17', null);
-INSERT INTO `yyg_attac` VALUES ('598', 'ee36348ed3486e49059a089baefa940b.jpg', '/Upload/20131014/ee36348ed3486e49059a089baefa940b.jpg', '2013-10-14 22:13:17', null);
-INSERT INTO `yyg_attac` VALUES ('623', '873753394bdfe502d039ec09a488d8e7.jpg', '/Upload/20131014/873753394bdfe502d039ec09a488d8e7.jpg', '2013-10-14 22:16:59', null);
-INSERT INTO `yyg_attac` VALUES ('624', '80f2342879ab4c57e0d8c3dbb5317752.jpg', '/Upload/20131014/80f2342879ab4c57e0d8c3dbb5317752.jpg', '2013-10-14 22:16:59', null);
-INSERT INTO `yyg_attac` VALUES ('625', '241aec30d3bed0aeca12733715f56677.jpg', '/Upload/20131014/241aec30d3bed0aeca12733715f56677.jpg', '2013-10-14 22:16:59', null);
-INSERT INTO `yyg_attac` VALUES ('626', 'fe8196fef2696c52b92a6e6b72fb4869.jpg', '/Upload/20131014/fe8196fef2696c52b92a6e6b72fb4869.jpg', '2013-10-14 22:16:59', null);
-INSERT INTO `yyg_attac` VALUES ('645', 'b9b2a4882e04862ef60ec29032a06efa.jpg', '/Upload/20131016/b9b2a4882e04862ef60ec29032a06efa.jpg', '2013-10-16 21:54:54', null);
-INSERT INTO `yyg_attac` VALUES ('644', '7572475b81e3ed8a335837637cd13b56.jpg', '/Upload/20131016/7572475b81e3ed8a335837637cd13b56.jpg', '2013-10-16 21:54:54', null);
-INSERT INTO `yyg_attac` VALUES ('643', 'b60cdf81cae4cbdf543d89547cb5a0a3.jpg', '/Upload/20131016/b60cdf81cae4cbdf543d89547cb5a0a3.jpg', '2013-10-16 21:54:54', null);
-INSERT INTO `yyg_attac` VALUES ('639', '9638a7387b86cb13b44b902ce6c92d54.jpg', '/Upload/20131016/9638a7387b86cb13b44b902ce6c92d54.jpg', '2013-10-16 21:54:17', null);
-INSERT INTO `yyg_attac` VALUES ('640', '262fd390fa69e44244157ec17f6a36c0.jpg', '/Upload/20131016/262fd390fa69e44244157ec17f6a36c0.jpg', '2013-10-16 21:54:18', null);
-INSERT INTO `yyg_attac` VALUES ('641', 'f9657ae858846bb0bd29b33758f1e674.jpg', '/Upload/20131016/f9657ae858846bb0bd29b33758f1e674.jpg', '2013-10-16 21:54:18', null);
-INSERT INTO `yyg_attac` VALUES ('642', 'b912a9f87c784dc3024ca337bd264f76.jpg', '/Upload/20131016/b912a9f87c784dc3024ca337bd264f76.jpg', '2013-10-16 21:54:18', null);
-INSERT INTO `yyg_attac` VALUES ('646', '6be6ffdca7eab0817e7ccc8a7a1facf3.jpg', '/Upload/20131016/6be6ffdca7eab0817e7ccc8a7a1facf3.jpg', '2013-10-16 21:54:54', null);
-INSERT INTO `yyg_attac` VALUES ('647', 'd6b376eb227affbcbd9008aaa0b2ff96.jpg', '/Upload/20131016/d6b376eb227affbcbd9008aaa0b2ff96.jpg', '2013-10-16 21:54:54', null);
-INSERT INTO `yyg_attac` VALUES ('648', 'bcc6e996c0fb571e903db2e8765414ae.jpg', '/Upload/20131016/bcc6e996c0fb571e903db2e8765414ae.jpg', '2013-10-16 21:55:17', null);
-INSERT INTO `yyg_attac` VALUES ('649', '63f224436008e76c163fe128d3f7e6cb.jpg', '/Upload/20131016/63f224436008e76c163fe128d3f7e6cb.jpg', '2013-10-16 21:55:17', null);
-INSERT INTO `yyg_attac` VALUES ('650', '246eaa47e78e2b95e0dee8137978cba5.jpg', '/Upload/20131016/246eaa47e78e2b95e0dee8137978cba5.jpg', '2013-10-16 21:55:18', null);
-INSERT INTO `yyg_attac` VALUES ('651', '228f0becc3f42fee0fcb18cd8fefacef.jpg', '/Upload/20131016/228f0becc3f42fee0fcb18cd8fefacef.jpg', '2013-10-16 21:55:18', null);
-INSERT INTO `yyg_attac` VALUES ('652', 'f5fec30f2f4ae61146d45778c54acf9a.jpg', '/Upload/20131016/f5fec30f2f4ae61146d45778c54acf9a.jpg', '2013-10-16 21:55:18', null);
-INSERT INTO `yyg_attac` VALUES ('653', 'ea8c0489345d31ba10a65e00b44a9a71.jpg', '/Upload/20131016/ea8c0489345d31ba10a65e00b44a9a71.jpg', '2013-10-16 21:55:18', null);
-INSERT INTO `yyg_attac` VALUES ('654', 'bf7f7553c099e5d0aabc9870b7f67d90.jpg', '/Upload/20131016/bf7f7553c099e5d0aabc9870b7f67d90.jpg', '2013-10-16 21:55:18', null);
-INSERT INTO `yyg_attac` VALUES ('655', 'f69f70001987d7298d7636db5f29c44c.jpg', '/Upload/20131016/f69f70001987d7298d7636db5f29c44c.jpg', '2013-10-16 21:55:46', null);
-INSERT INTO `yyg_attac` VALUES ('656', 'ce9696a6dd5ab409c087532cc706e592.jpg', '/Upload/20131016/ce9696a6dd5ab409c087532cc706e592.jpg', '2013-10-16 21:55:46', null);
-INSERT INTO `yyg_attac` VALUES ('657', '03dd4732e0a74f0e71c246d9166db4f7.jpg', '/Upload/20131016/03dd4732e0a74f0e71c246d9166db4f7.jpg', '2013-10-16 21:55:46', null);
-INSERT INTO `yyg_attac` VALUES ('658', 'fd87ef22f842d958777530d42022c8c5.jpg', '/Upload/20131016/fd87ef22f842d958777530d42022c8c5.jpg', '2013-10-16 21:55:46', null);
-INSERT INTO `yyg_attac` VALUES ('659', '46faf42fe8f9d09ff25cf43f462e0aa6.jpg', '/Upload/20131016/46faf42fe8f9d09ff25cf43f462e0aa6.jpg', '2013-10-16 21:55:46', null);
-INSERT INTO `yyg_attac` VALUES ('660', '763713ff5269eabeeeb8b05da465333b.jpg', '/Upload/20131016/763713ff5269eabeeeb8b05da465333b.jpg', '2013-10-16 21:55:46', null);
-INSERT INTO `yyg_attac` VALUES ('661', '22fbf2dbe842a1c021fe8c6ea00c8599.jpg', '/Upload/20131016/22fbf2dbe842a1c021fe8c6ea00c8599.jpg', '2013-10-16 21:55:46', null);
-INSERT INTO `yyg_attac` VALUES ('662', 'a535fccb9b3f1c1fe98440df55b0384b.jpg', '/Upload/20131016/a535fccb9b3f1c1fe98440df55b0384b.jpg', '2013-10-16 21:56:07', null);
-INSERT INTO `yyg_attac` VALUES ('663', 'eafbf87d6d222ce7311c36f0e9aaf66a.jpg', '/Upload/20131016/eafbf87d6d222ce7311c36f0e9aaf66a.jpg', '2013-10-16 21:56:07', null);
-INSERT INTO `yyg_attac` VALUES ('664', 'fa36db368b204333a77da8525493ae8d.jpg', '/Upload/20131016/fa36db368b204333a77da8525493ae8d.jpg', '2013-10-16 21:56:07', null);
-INSERT INTO `yyg_attac` VALUES ('665', 'af32d320216dc73bd1a7075567cbd209.jpg', '/Upload/20131016/af32d320216dc73bd1a7075567cbd209.jpg', '2013-10-16 21:56:07', null);
-INSERT INTO `yyg_attac` VALUES ('666', '5cbda364557d3d74f7ccca896abb4cd6.jpg', '/Upload/20131016/5cbda364557d3d74f7ccca896abb4cd6.jpg', '2013-10-16 21:56:07', null);
-INSERT INTO `yyg_attac` VALUES ('667', 'b2469b6e602f68b95b9048ab0fe23ca9.jpg', '/Upload/20131016/b2469b6e602f68b95b9048ab0fe23ca9.jpg', '2013-10-16 21:56:07', null);
-INSERT INTO `yyg_attac` VALUES ('668', '33958a7229b7cb260ff53339c6077dad.jpg', '/Upload/20131016/33958a7229b7cb260ff53339c6077dad.jpg', '2013-10-16 21:56:33', null);
-INSERT INTO `yyg_attac` VALUES ('669', '44bf6bf738475a7c17d31a93f8667d60.jpg', '/Upload/20131016/44bf6bf738475a7c17d31a93f8667d60.jpg', '2013-10-16 21:56:33', null);
-INSERT INTO `yyg_attac` VALUES ('670', 'cb29b6bbdc961de9e7b72d94aa0f37cd.jpg', '/Upload/20131016/cb29b6bbdc961de9e7b72d94aa0f37cd.jpg', '2013-10-16 21:56:33', null);
-INSERT INTO `yyg_attac` VALUES ('671', '38e2c4b4ca42bfd0d2ec4edfa8aa4ce5.jpg', '/Upload/20131016/38e2c4b4ca42bfd0d2ec4edfa8aa4ce5.jpg', '2013-10-16 21:56:34', null);
-INSERT INTO `yyg_attac` VALUES ('672', '1b2a0dfbf21e69baf66d34a215b472a9.jpg', '/Upload/20131016/1b2a0dfbf21e69baf66d34a215b472a9.jpg', '2013-10-16 21:56:34', null);
-INSERT INTO `yyg_attac` VALUES ('673', 'b795ef8fd64e866553729df4d7227b64.jpg', '/Upload/20131016/b795ef8fd64e866553729df4d7227b64.jpg', '2013-10-16 21:56:58', null);
-INSERT INTO `yyg_attac` VALUES ('674', '5c22ef7eed58c06d81ed7ccaff54dd61.jpg', '/Upload/20131016/5c22ef7eed58c06d81ed7ccaff54dd61.jpg', '2013-10-16 21:56:58', null);
-INSERT INTO `yyg_attac` VALUES ('675', 'ce1fae58c32254aa6c42a1ad75f35f4d.jpg', '/Upload/20131016/ce1fae58c32254aa6c42a1ad75f35f4d.jpg', '2013-10-16 21:56:58', null);
-INSERT INTO `yyg_attac` VALUES ('676', 'd829f8f1566b4c348c3fec7ce567e584.jpg', '/Upload/20131016/d829f8f1566b4c348c3fec7ce567e584.jpg', '2013-10-16 21:56:59', null);
-INSERT INTO `yyg_attac` VALUES ('677', '4551cdf033c3f1958c4ab842bcceb1ff.jpg', '/Upload/20131016/4551cdf033c3f1958c4ab842bcceb1ff.jpg', '2013-10-16 21:56:59', null);
-INSERT INTO `yyg_attac` VALUES ('678', '7d8ecb041fad1243f958a52f99018ce7.jpg', '/Upload/20131016/7d8ecb041fad1243f958a52f99018ce7.jpg', '2013-10-16 21:56:59', null);
+INSERT INTO `yyg_attac` VALUES ('795', '20170903/59abf2f91b28e.jpg', '/Upload/20170903/59abf2f91b28e.jpg', '2017-09-03 20:18:01', null);
+INSERT INTO `yyg_attac` VALUES ('796', '20170903/59abf341e667d.jpg', '/Upload/20170903/59abf341e667d.jpg', '2017-09-03 20:19:14', null);
+INSERT INTO `yyg_attac` VALUES ('797', '20170903/59abf3779e356.jpg', '/Upload/20170903/59abf3779e356.jpg', '2017-09-03 20:20:07', null);
+INSERT INTO `yyg_attac` VALUES ('798', '20170903/59abf392e5dfa.jpg', '/Upload/20170903/59abf392e5dfa.jpg', '2017-09-03 20:20:34', null);
+INSERT INTO `yyg_attac` VALUES ('799', '20170903/59abf3dc357dd.jpg', '/Upload/20170903/59abf3dc357dd.jpg', '2017-09-03 20:21:48', null);
+INSERT INTO `yyg_attac` VALUES ('800', '20170903/59abf43c73ab4.jpg', '/Upload/20170903/59abf43c73ab4.jpg', '2017-09-03 20:23:24', null);
 INSERT INTO `yyg_attac` VALUES ('712', '20170829/59a567e46efe2.png', 'Upload/20170829/59a567e46efe2.png', '2017-08-29 21:11:00', null);
 INSERT INTO `yyg_attac` VALUES ('711', 'QQ截图20170513003512.png', 'Upload/QQ截图20170513003512.png', '2017-08-29 21:09:42', null);
 INSERT INTO `yyg_attac` VALUES ('710', '8y5TR2LO04G.jpg', '/Upload/20170828/8y5TR2LO04G.jpg', '2017-08-28 22:11:59', null);
 INSERT INTO `yyg_attac` VALUES ('709', '5cc8072f160cc73f0d6df349c3186375.jpg', '/Upload/20170828/5cc8072f160cc73f0d6df349c3186375.jpg', '2017-08-28 22:08:49', null);
 INSERT INTO `yyg_attac` VALUES ('708', '782cfe7968cddf4223c45450befc068e.jpg', '/Upload/20170828/782cfe7968cddf4223c45450befc068e.jpg', '2017-08-28 22:08:37', null);
-INSERT INTO `yyg_attac` VALUES ('695', 'c4bd56dc6ec5bbd4bd1ffbdfea686a20.jpg', '/Upload/20131016/c4bd56dc6ec5bbd4bd1ffbdfea686a20.jpg', '2013-10-16 21:58:57', null);
-INSERT INTO `yyg_attac` VALUES ('694', 'e80ef3f2c95586ab42c658e1397a6e22.jpg', '/Upload/20131016/e80ef3f2c95586ab42c658e1397a6e22.jpg', '2013-10-16 21:58:57', null);
-INSERT INTO `yyg_attac` VALUES ('693', '63699050e37255d8d2ebf5350471311d.jpg', '/Upload/20131016/63699050e37255d8d2ebf5350471311d.jpg', '2013-10-16 21:58:56', null);
-INSERT INTO `yyg_attac` VALUES ('692', '1495cf9d9e6decc8438ec931876a66e6.jpg', '/Upload/20131016/1495cf9d9e6decc8438ec931876a66e6.jpg', '2013-10-16 21:58:56', null);
-INSERT INTO `yyg_attac` VALUES ('691', '8cf2ea734f9b22c031d757358e8fe59f.jpg', '/Upload/20131016/8cf2ea734f9b22c031d757358e8fe59f.jpg', '2013-10-16 21:58:56', null);
 INSERT INTO `yyg_attac` VALUES ('713', '20170829/59a5686a8dbb7.png', 'Upload/20170829/59a5686a8dbb7.png', '2017-08-29 21:13:14', null);
 INSERT INTO `yyg_attac` VALUES ('714', '20170829/59a568741a7b6.png', 'Upload/20170829/59a568741a7b6.png', '2017-08-29 21:13:24', null);
 INSERT INTO `yyg_attac` VALUES ('715', '20170829/59a5688eaa2d6.png', 'Upload/20170829/59a5688eaa2d6.png', '2017-08-29 21:13:50', null);
@@ -460,9 +289,12 @@ INSERT INTO `yyg_attac` VALUES ('782', '20170831/59a817048e293.png', '/Upload/20
 INSERT INTO `yyg_attac` VALUES ('783', '20170831/59a817bd2e33b.png', '/Upload/20170831/59a817bd2e33b.png', '2017-08-31 22:05:49', null);
 INSERT INTO `yyg_attac` VALUES ('784', '20170831/59a819c682fe9.png', '/Upload/20170831/59a819c682fe9.png', '2017-08-31 22:14:30', null);
 INSERT INTO `yyg_attac` VALUES ('785', '20170831/59a819e81c207.png', '/Upload/20170831/59a819e81c207.png', '2017-08-31 22:15:04', null);
-INSERT INTO `yyg_attac` VALUES ('786', '20170831/59a81c6358e95.png', '/Upload/20170831/59a81c6358e95.png', '2017-08-31 22:25:39', null);
+INSERT INTO `yyg_attac` VALUES ('794', '20170903/59abf2dd4e18d.jpg', '/Upload/20170903/59abf2dd4e18d.jpg', '2017-09-03 20:17:33', null);
 INSERT INTO `yyg_attac` VALUES ('787', '20170902/59aa7203754e0.png', '/Upload/20170902/59aa7203754e0.png', '2017-09-02 16:55:31', null);
-INSERT INTO `yyg_attac` VALUES ('788', '20170902/59aa74196da9a.png', '/Upload/20170902/59aa74196da9a.png', '2017-09-02 17:04:25', null);
+INSERT INTO `yyg_attac` VALUES ('792', '20170903/59abf26adca6f.jpg', '/Upload/20170903/59abf26adca6f.jpg', '2017-09-03 20:15:38', null);
+INSERT INTO `yyg_attac` VALUES ('793', '20170903/59abf28185482.jpg', '/Upload/20170903/59abf28185482.jpg', '2017-09-03 20:16:01', null);
+INSERT INTO `yyg_attac` VALUES ('790', '20170903/59ab84833ac91.jpg', '/Upload/20170903/59ab84833ac91.jpg', '2017-09-03 12:26:43', null);
+INSERT INTO `yyg_attac` VALUES ('791', '20170903/59abf16cef3d9.jpg', '/Upload/20170903/59abf16cef3d9.jpg', '2017-09-03 20:11:25', null);
 
 -- ----------------------------
 -- Table structure for yyg_attac_deco
@@ -568,187 +400,17 @@ INSERT INTO `yyg_attac_rel` VALUES ('200', '30');
 INSERT INTO `yyg_attac_rel` VALUES ('201', '30');
 INSERT INTO `yyg_attac_rel` VALUES ('203', '31');
 INSERT INTO `yyg_attac_rel` VALUES ('204', '33');
-INSERT INTO `yyg_attac_rel` VALUES ('213', '48');
-INSERT INTO `yyg_attac_rel` VALUES ('218', '68');
-INSERT INTO `yyg_attac_rel` VALUES ('219', '68');
-INSERT INTO `yyg_attac_rel` VALUES ('220', '68');
-INSERT INTO `yyg_attac_rel` VALUES ('221', '68');
-INSERT INTO `yyg_attac_rel` VALUES ('222', '69');
-INSERT INTO `yyg_attac_rel` VALUES ('223', '69');
-INSERT INTO `yyg_attac_rel` VALUES ('224', '69');
-INSERT INTO `yyg_attac_rel` VALUES ('225', '69');
-INSERT INTO `yyg_attac_rel` VALUES ('226', '70');
-INSERT INTO `yyg_attac_rel` VALUES ('227', '70');
-INSERT INTO `yyg_attac_rel` VALUES ('228', '70');
-INSERT INTO `yyg_attac_rel` VALUES ('229', '70');
-INSERT INTO `yyg_attac_rel` VALUES ('230', '71');
-INSERT INTO `yyg_attac_rel` VALUES ('231', '71');
-INSERT INTO `yyg_attac_rel` VALUES ('232', '71');
-INSERT INTO `yyg_attac_rel` VALUES ('233', '71');
-INSERT INTO `yyg_attac_rel` VALUES ('234', '72');
-INSERT INTO `yyg_attac_rel` VALUES ('235', '72');
-INSERT INTO `yyg_attac_rel` VALUES ('236', '72');
-INSERT INTO `yyg_attac_rel` VALUES ('237', '72');
-INSERT INTO `yyg_attac_rel` VALUES ('247', '67');
-INSERT INTO `yyg_attac_rel` VALUES ('248', '90');
-INSERT INTO `yyg_attac_rel` VALUES ('249', '90');
-INSERT INTO `yyg_attac_rel` VALUES ('250', '90');
-INSERT INTO `yyg_attac_rel` VALUES ('251', '90');
-INSERT INTO `yyg_attac_rel` VALUES ('252', '91');
-INSERT INTO `yyg_attac_rel` VALUES ('253', '91');
-INSERT INTO `yyg_attac_rel` VALUES ('254', '91');
-INSERT INTO `yyg_attac_rel` VALUES ('255', '91');
-INSERT INTO `yyg_attac_rel` VALUES ('256', '91');
-INSERT INTO `yyg_attac_rel` VALUES ('257', '91');
-INSERT INTO `yyg_attac_rel` VALUES ('258', '91');
-INSERT INTO `yyg_attac_rel` VALUES ('259', '91');
-INSERT INTO `yyg_attac_rel` VALUES ('260', '92');
-INSERT INTO `yyg_attac_rel` VALUES ('261', '94');
-INSERT INTO `yyg_attac_rel` VALUES ('262', '94');
-INSERT INTO `yyg_attac_rel` VALUES ('263', '94');
-INSERT INTO `yyg_attac_rel` VALUES ('280', '95');
-INSERT INTO `yyg_attac_rel` VALUES ('281', '95');
-INSERT INTO `yyg_attac_rel` VALUES ('282', '95');
-INSERT INTO `yyg_attac_rel` VALUES ('283', '95');
-INSERT INTO `yyg_attac_rel` VALUES ('284', '95');
-INSERT INTO `yyg_attac_rel` VALUES ('285', '95');
-INSERT INTO `yyg_attac_rel` VALUES ('286', '95');
-INSERT INTO `yyg_attac_rel` VALUES ('287', '95');
-INSERT INTO `yyg_attac_rel` VALUES ('288', '95');
-INSERT INTO `yyg_attac_rel` VALUES ('289', '95');
-INSERT INTO `yyg_attac_rel` VALUES ('290', '95');
-INSERT INTO `yyg_attac_rel` VALUES ('291', '95');
-INSERT INTO `yyg_attac_rel` VALUES ('292', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('293', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('294', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('295', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('296', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('297', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('298', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('299', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('300', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('301', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('302', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('303', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('304', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('305', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('306', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('307', '96');
-INSERT INTO `yyg_attac_rel` VALUES ('308', '97');
-INSERT INTO `yyg_attac_rel` VALUES ('309', '97');
-INSERT INTO `yyg_attac_rel` VALUES ('310', '97');
-INSERT INTO `yyg_attac_rel` VALUES ('311', '97');
-INSERT INTO `yyg_attac_rel` VALUES ('312', '97');
-INSERT INTO `yyg_attac_rel` VALUES ('313', '97');
-INSERT INTO `yyg_attac_rel` VALUES ('314', '97');
-INSERT INTO `yyg_attac_rel` VALUES ('315', '97');
-INSERT INTO `yyg_attac_rel` VALUES ('316', '97');
-INSERT INTO `yyg_attac_rel` VALUES ('317', '97');
-INSERT INTO `yyg_attac_rel` VALUES ('318', '98');
-INSERT INTO `yyg_attac_rel` VALUES ('319', '98');
-INSERT INTO `yyg_attac_rel` VALUES ('320', '98');
-INSERT INTO `yyg_attac_rel` VALUES ('321', '98');
-INSERT INTO `yyg_attac_rel` VALUES ('322', '99');
-INSERT INTO `yyg_attac_rel` VALUES ('323', '99');
-INSERT INTO `yyg_attac_rel` VALUES ('324', '100');
-INSERT INTO `yyg_attac_rel` VALUES ('325', '100');
-INSERT INTO `yyg_attac_rel` VALUES ('326', '101');
-INSERT INTO `yyg_attac_rel` VALUES ('327', '102');
-INSERT INTO `yyg_attac_rel` VALUES ('328', '102');
-INSERT INTO `yyg_attac_rel` VALUES ('329', '102');
-INSERT INTO `yyg_attac_rel` VALUES ('330', '102');
-INSERT INTO `yyg_attac_rel` VALUES ('331', '102');
-INSERT INTO `yyg_attac_rel` VALUES ('332', '103');
-INSERT INTO `yyg_attac_rel` VALUES ('333', '103');
-INSERT INTO `yyg_attac_rel` VALUES ('334', '103');
-INSERT INTO `yyg_attac_rel` VALUES ('335', '103');
-INSERT INTO `yyg_attac_rel` VALUES ('336', '103');
-INSERT INTO `yyg_attac_rel` VALUES ('337', '103');
-INSERT INTO `yyg_attac_rel` VALUES ('348', '106');
-INSERT INTO `yyg_attac_rel` VALUES ('349', '107');
-INSERT INTO `yyg_attac_rel` VALUES ('350', '107');
-INSERT INTO `yyg_attac_rel` VALUES ('351', '107');
-INSERT INTO `yyg_attac_rel` VALUES ('352', '107');
-INSERT INTO `yyg_attac_rel` VALUES ('353', '107');
-INSERT INTO `yyg_attac_rel` VALUES ('354', '108');
-INSERT INTO `yyg_attac_rel` VALUES ('444', '48');
-INSERT INTO `yyg_attac_rel` VALUES ('566', '46');
-INSERT INTO `yyg_attac_rel` VALUES ('598', '119');
-INSERT INTO `yyg_attac_rel` VALUES ('599', '119');
-INSERT INTO `yyg_attac_rel` VALUES ('600', '119');
-INSERT INTO `yyg_attac_rel` VALUES ('601', '119');
-INSERT INTO `yyg_attac_rel` VALUES ('602', '120');
-INSERT INTO `yyg_attac_rel` VALUES ('603', '120');
-INSERT INTO `yyg_attac_rel` VALUES ('604', '120');
-INSERT INTO `yyg_attac_rel` VALUES ('605', '120');
-INSERT INTO `yyg_attac_rel` VALUES ('606', '121');
-INSERT INTO `yyg_attac_rel` VALUES ('607', '121');
-INSERT INTO `yyg_attac_rel` VALUES ('608', '121');
-INSERT INTO `yyg_attac_rel` VALUES ('609', '121');
-INSERT INTO `yyg_attac_rel` VALUES ('610', '121');
-INSERT INTO `yyg_attac_rel` VALUES ('611', '122');
-INSERT INTO `yyg_attac_rel` VALUES ('612', '122');
-INSERT INTO `yyg_attac_rel` VALUES ('613', '122');
-INSERT INTO `yyg_attac_rel` VALUES ('614', '122');
-INSERT INTO `yyg_attac_rel` VALUES ('615', '123');
-INSERT INTO `yyg_attac_rel` VALUES ('616', '123');
-INSERT INTO `yyg_attac_rel` VALUES ('617', '123');
-INSERT INTO `yyg_attac_rel` VALUES ('618', '123');
-INSERT INTO `yyg_attac_rel` VALUES ('619', '124');
-INSERT INTO `yyg_attac_rel` VALUES ('620', '124');
-INSERT INTO `yyg_attac_rel` VALUES ('621', '124');
-INSERT INTO `yyg_attac_rel` VALUES ('622', '124');
-INSERT INTO `yyg_attac_rel` VALUES ('623', '125');
-INSERT INTO `yyg_attac_rel` VALUES ('624', '125');
-INSERT INTO `yyg_attac_rel` VALUES ('625', '125');
-INSERT INTO `yyg_attac_rel` VALUES ('626', '125');
-INSERT INTO `yyg_attac_rel` VALUES ('639', '129');
-INSERT INTO `yyg_attac_rel` VALUES ('640', '129');
-INSERT INTO `yyg_attac_rel` VALUES ('641', '129');
-INSERT INTO `yyg_attac_rel` VALUES ('642', '129');
-INSERT INTO `yyg_attac_rel` VALUES ('643', '130');
-INSERT INTO `yyg_attac_rel` VALUES ('644', '130');
-INSERT INTO `yyg_attac_rel` VALUES ('645', '130');
-INSERT INTO `yyg_attac_rel` VALUES ('646', '130');
-INSERT INTO `yyg_attac_rel` VALUES ('647', '130');
-INSERT INTO `yyg_attac_rel` VALUES ('648', '131');
-INSERT INTO `yyg_attac_rel` VALUES ('649', '131');
-INSERT INTO `yyg_attac_rel` VALUES ('650', '131');
-INSERT INTO `yyg_attac_rel` VALUES ('651', '131');
-INSERT INTO `yyg_attac_rel` VALUES ('652', '131');
-INSERT INTO `yyg_attac_rel` VALUES ('653', '131');
-INSERT INTO `yyg_attac_rel` VALUES ('654', '131');
-INSERT INTO `yyg_attac_rel` VALUES ('655', '132');
-INSERT INTO `yyg_attac_rel` VALUES ('656', '132');
-INSERT INTO `yyg_attac_rel` VALUES ('657', '132');
-INSERT INTO `yyg_attac_rel` VALUES ('658', '132');
-INSERT INTO `yyg_attac_rel` VALUES ('659', '132');
-INSERT INTO `yyg_attac_rel` VALUES ('660', '132');
-INSERT INTO `yyg_attac_rel` VALUES ('661', '132');
-INSERT INTO `yyg_attac_rel` VALUES ('662', '133');
-INSERT INTO `yyg_attac_rel` VALUES ('663', '133');
-INSERT INTO `yyg_attac_rel` VALUES ('664', '133');
-INSERT INTO `yyg_attac_rel` VALUES ('665', '133');
-INSERT INTO `yyg_attac_rel` VALUES ('666', '133');
-INSERT INTO `yyg_attac_rel` VALUES ('667', '133');
-INSERT INTO `yyg_attac_rel` VALUES ('668', '134');
-INSERT INTO `yyg_attac_rel` VALUES ('669', '134');
-INSERT INTO `yyg_attac_rel` VALUES ('670', '134');
-INSERT INTO `yyg_attac_rel` VALUES ('671', '134');
-INSERT INTO `yyg_attac_rel` VALUES ('672', '134');
-INSERT INTO `yyg_attac_rel` VALUES ('673', '135');
-INSERT INTO `yyg_attac_rel` VALUES ('674', '135');
-INSERT INTO `yyg_attac_rel` VALUES ('675', '135');
-INSERT INTO `yyg_attac_rel` VALUES ('676', '135');
-INSERT INTO `yyg_attac_rel` VALUES ('677', '135');
-INSERT INTO `yyg_attac_rel` VALUES ('678', '135');
-INSERT INTO `yyg_attac_rel` VALUES ('691', '138');
-INSERT INTO `yyg_attac_rel` VALUES ('692', '138');
-INSERT INTO `yyg_attac_rel` VALUES ('693', '138');
-INSERT INTO `yyg_attac_rel` VALUES ('694', '138');
-INSERT INTO `yyg_attac_rel` VALUES ('695', '138');
-INSERT INTO `yyg_attac_rel` VALUES ('786', '149');
-INSERT INTO `yyg_attac_rel` VALUES ('788', '149');
+INSERT INTO `yyg_attac_rel` VALUES ('790', '155');
+INSERT INTO `yyg_attac_rel` VALUES ('791', '163');
+INSERT INTO `yyg_attac_rel` VALUES ('792', '165');
+INSERT INTO `yyg_attac_rel` VALUES ('793', '165');
+INSERT INTO `yyg_attac_rel` VALUES ('794', '166');
+INSERT INTO `yyg_attac_rel` VALUES ('795', '166');
+INSERT INTO `yyg_attac_rel` VALUES ('796', '167');
+INSERT INTO `yyg_attac_rel` VALUES ('797', '167');
+INSERT INTO `yyg_attac_rel` VALUES ('798', '167');
+INSERT INTO `yyg_attac_rel` VALUES ('799', '168');
+INSERT INTO `yyg_attac_rel` VALUES ('800', '169');
 
 -- ----------------------------
 -- Table structure for yyg_attac_style
@@ -860,7 +522,6 @@ INSERT INTO `yyg_category` VALUES ('32', '0', '母婴优品', 'mu-yin-you-pin', 
 INSERT INTO `yyg_category` VALUES ('33', '0', '儿童故事', 'er-tong-gu-shi', '1', '2017-08-20 15:51:14', '2017-08-20 15:51:14');
 INSERT INTO `yyg_category` VALUES ('38', '0', '儿童动画', 'er-tong-dong-hua', '1', '2017-08-20 21:55:28', '2017-08-20 21:55:28');
 INSERT INTO `yyg_category` VALUES ('39', '0', '婆媳那点儿事', 'po-xi-na-dian-er-shi', '1', '2017-08-20 21:56:06', '2017-08-20 22:48:53');
-INSERT INTO `yyg_category` VALUES ('42', '0', '问问', 'wen-wen', '1', '2017-08-20 23:07:12', '2017-08-26 18:10:41');
 
 -- ----------------------------
 -- Table structure for yyg_content
@@ -870,6 +531,7 @@ CREATE TABLE `yyg_content` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(200) NOT NULL DEFAULT '',
   `content` longtext NOT NULL,
+  `intro` varchar(255) NOT NULL DEFAULT '',
   `embed_code` text NOT NULL,
   `relurl` varchar(500) NOT NULL,
   `category_id` int(11) NOT NULL DEFAULT '0',
@@ -880,237 +542,22 @@ CREATE TABLE `yyg_content` (
   `order` int(11) unsigned NOT NULL DEFAULT '0',
   `topnum` int(11) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=150 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=170 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of yyg_content
 -- ----------------------------
-INSERT INTO `yyg_content` VALUES ('46', '家装一站', '家装一站<img alt=\"\" src=\" /Upload/20130911/309d136e935cc67b671c43705108d3a0.jpg\" />', '', '', '3', '1', '2013-07-21 12:00:02', '2013-09-11 22:39:42', '1', '3', '0');
-INSERT INTO `yyg_content` VALUES ('47', '360套餐推荐', '360套餐推荐<img alt=\"\" src=\" /Upload/20130911/0e995b21462b97e264cb94861637f807.jpg\" />', '', 'http://gzmpf.gotoip3.com/index.php/P360/taocan/', '3', '1', '2013-07-21 12:00:37', '2013-09-11 22:38:38', '1', '1', '0');
-INSERT INTO `yyg_content` VALUES ('48', '促销', '促销<img alt=\"\" src=\" /Upload/20130902/a04eaae6621295e3dabb20bef088dcc1.jpg\" /><img alt=\"\" src=\" /Upload/20130902/a04eaae6621295e3dabb20bef088dcc1.jpg\" />', '', 'http://gzmpf.gotoip3.com/index.php/cuxiao', '3', '1', '2013-07-21 12:01:04', '2013-09-11 22:39:19', '1', '2', '0');
-INSERT INTO `yyg_content` VALUES ('49', '明确目标 高效落实 稳步迈向二季度', '明确目标 高效落实 稳步迈向二季度', '', '', '3', '1', '2013-07-21 12:41:59', '2013-07-21 12:41:59', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('50', '热烈祝贺爱屋集屋家装“新模式”发布会成功举办', '热烈祝贺爱屋集屋家装“新模式”发布会成功举办', '', '', '3', '1', '2013-07-21 12:42:13', '2013-07-21 12:42:13', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('51', 'C业务运营中心员工表扬通报', 'C业务运营中心员工表扬通报', '', '', '3', '1', '2013-07-21 12:42:23', '2013-07-21 12:42:23', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('52', '南北派行业精英深度对话 共谋长远发展', '南北派行业精英深度对话 共谋长远发展', '', '', '3', '1', '2013-07-21 12:42:34', '2013-07-21 12:42:34', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('53', '总裁杨劲亲临上海分公司指导开业筹备工作', '总裁杨劲亲临上海分公司指导开业筹备工作', '', '', '3', '1', '2013-07-21 12:42:42', '2013-07-21 12:42:42', '0', '1', '0');
-INSERT INTO `yyg_content` VALUES ('55', '西安公司增加案例 - 瑞麟君府', '西安公司增加案例 - 瑞麟君府', '', '', '3', '1', '2013-07-21 12:56:45', '2013-07-21 12:56:45', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('56', '西安公司增加案例 - 就掌灯', '西安公司增加案例 - 就掌灯', '', '', '3', '1', '2013-07-21 12:56:54', '2013-07-21 12:56:54', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('57', '上海公司增加案例 - 名都新城', '上海公司增加案例 - 名都新城', '', '', '3', '1', '2013-07-21 12:57:01', '2013-07-21 12:57:01', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('58', '上海公司增加案例 - 尚海湾', '上海公司增加案例 - 尚海湾', '', '', '3', '1', '2013-07-21 12:57:09', '2013-07-21 12:57:09', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('59', '郑州公司增加案例 - 自建房', '郑州公司增加案例 - 自建房', '', '', '3', '1', '2013-07-21 12:57:17', '2013-07-21 12:57:17', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('60', '西安公司增加案例 - 曲江兰亭', '西安公司增加案例 - 曲江兰亭', '', '', '3', '1', '2013-07-21 12:58:32', '2013-07-21 12:58:32', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('61', '西安公司增加案例 - 龙湖香醍', '西安公司增加案例 - 龙湖香醍', '', '', '1', '1', '2013-07-21 12:58:39', '2013-07-21 12:58:39', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('62', '西安公司增加案例 - 华远海蓝城', '西安公司增加案例 - 华远海蓝城', '', '', '1', '1', '2013-07-21 12:58:46', '2013-07-21 12:58:46', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('63', '西安公司增加案例 - 华远海蓝城', '西安公司增加案例 - 华远海蓝城', '', '', '1', '1', '2013-07-21 12:58:53', '2013-07-21 12:58:53', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('64', '西安公司增加案例 - 小户型', '西安公司增加案例 - 小户型', '', '', '1', '1', '2013-07-21 12:59:00', '2013-07-21 12:59:00', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('65', '西安公司增加案例 - 乾唐华府', '西安公司增加案例 - 乾唐华府', '', '', '1', '1', '2013-07-21 12:59:07', '2013-07-21 12:59:07', '0', '1', '0');
-INSERT INTO `yyg_content` VALUES ('66', '360优势，我们的优势', '360优势，我们的优势', '', 'http://gzmpf.gotoip3.com/index.php/P360/youshi.html', '1', '1', '2013-07-21 20:37:15', '2013-09-01 16:33:45', '1', '0', '0');
-INSERT INTO `yyg_content` VALUES ('67', '套餐内容', '1.廉价\r\n2.专业\r\n3.耐磨', '', '', '1', '1', '2013-07-22 23:00:15', '2013-07-25 23:52:29', '1', '1', '0');
-INSERT INTO `yyg_content` VALUES ('68', '客餐厅', '1.铺地砖人工铺贴\r\n2.墙砖（含损耗）\r\n3.地板（含损耗）\r\n4.铝扣板吊顶（含损耗）\r\n5.门槛石\r\n6.卫生间及五金\r\n7.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）\r\n8.地漏', '', '', '1', '1', '2013-07-22 23:01:57', '2013-07-24 22:05:48', '1', '2', '0');
-INSERT INTO `yyg_content` VALUES ('69', '卧室', '1.铺地砖人工铺贴\r\n2.墙砖（含损耗）\r\n3.地板（含损耗）\r\n4.铝扣板吊顶（含损耗）\r\n5.门槛石\r\n6.卫生间及五金\r\n7.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）\r\n8.地漏', '', '', '1', '1', '2013-07-22 23:03:22', '2013-07-24 22:05:54', '1', '3', '0');
-INSERT INTO `yyg_content` VALUES ('70', '卫生间', '1.铺地砖人工铺贴\r\n2.墙砖（含损耗）\r\n3.地板（含损耗）\r\n4.铝扣板吊顶（含损耗）\r\n5.门槛石\r\n6.卫生间及五金', '', '', '1', '1', '2013-07-22 23:04:24', '2013-07-24 22:06:08', '1', '4', '0');
-INSERT INTO `yyg_content` VALUES ('71', '厨房', '1.铺地砖人工铺贴\r\n2.墙砖（含损耗）\r\n3.地板（含损耗）\r\n4.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）', '', '', '1', '1', '2013-07-22 23:05:08', '2013-07-24 22:06:27', '1', '5', '0');
-INSERT INTO `yyg_content` VALUES ('72', '入户花园及阳台', '1.铺地砖人工铺贴\r\n2.墙砖（含损耗）\r\n3.地板（含损耗）\r\n4.铝扣板吊顶（含损耗）\r\n5.门槛石\r\n6.卫生间及五金\r\n7.洁具4件套（浴室柜，水龙头，淋浴花酒，坐便器或蹲便器）\r\n8.地漏\r\n9.优雅', '', '', '1', '1', '2013-07-22 23:05:50', '2013-07-24 22:06:47', '1', '6', '0');
-INSERT INTO `yyg_content` VALUES ('73', '奈乐', '360材料内容', '', '', '1', '1', '2013-08-05 23:07:11', '2013-08-05 23:07:11', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('74', '明发', '360材料内容', '', '', '1', '1', '2013-08-05 23:07:33', '2013-08-05 23:07:33', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('75', '久盛', '360材料内容', '', '', '1', '1', '2013-08-05 23:07:55', '2013-08-05 23:07:55', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('76', '合兴世家', '360材料内容', '', '', '1', '1', '2013-08-05 23:08:02', '2013-08-05 23:08:02', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('77', '凯莱', '360材料内容', '', '', '1', '1', '2013-08-05 23:08:11', '2013-08-05 23:08:11', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('78', '罗兰', '360材料内容', '', '', '1', '1', '2013-08-05 23:08:17', '2013-08-05 23:08:17', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('79', '多乐土', '360材料内容', '', '', '1', '1', '2013-08-05 23:08:44', '2013-08-05 23:08:44', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('80', '华润', '360材料内容', '', '', '1', '1', '2013-08-05 23:08:52', '2013-08-05 23:08:52', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('81', '美涂土', '360材料内容', '', '', '1', '1', '2013-08-05 23:08:58', '2013-08-05 23:08:58', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('82', '法恩莎', '360材料内容', '', '', '1', '1', '2013-08-05 23:09:09', '2013-08-05 23:09:09', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('83', '金顿', '360材料内容', '', '', '1', '1', '2013-08-05 23:09:16', '2013-08-05 23:09:16', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('86', '尚高', '360材料内容', '', '', '1', '1', '2013-08-05 23:09:43', '2013-08-05 23:09:43', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('87', '圣象', '360材料内容', '', '', '1', '1', '2013-08-05 23:09:49', '2013-08-05 23:09:49', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('88', '圣罗伦', '360材料内容', '', '', '1', '1', '2013-08-05 23:10:00', '2013-08-05 23:10:00', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('89', '厨房橱柜', '360材料内容', '', '', '1', '1', '2013-08-08 21:50:28', '2013-08-08 21:50:28', '0', '11', '0');
-INSERT INTO `yyg_content` VALUES ('90', '默认', '360材料厨房橱柜内容', '', '', '1', '1', '2013-08-08 21:51:52', '2013-08-08 21:51:52', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('91', '门', '360材料奈乐内容', '', '', '1', '1', '2013-08-08 22:24:22', '2013-08-08 22:24:22', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('92', '门槛石', '360材料明发内容', '', '', '1', '1', '2013-08-08 22:26:40', '2013-08-08 22:26:40', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('93', '地板展厅', '360材料内容', '', '', '1', '1', '2013-08-08 22:27:33', '2013-08-08 22:27:33', '0', '12', '0');
-INSERT INTO `yyg_content` VALUES ('94', '木地板', '360材料地板展厅内容', '', '', '1', '1', '2013-08-08 22:28:04', '2013-08-08 22:28:04', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('95', '木地板', '360材料合兴世家内容', '', '', '1', '1', '2013-08-08 22:29:46', '2013-08-08 22:29:46', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('96', '木地板', '360材料久盛内容', '', '', '1', '1', '2013-08-08 22:30:11', '2013-08-08 22:30:11', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('97', '木地板', '360材料凯莱内容', '', '', '1', '1', '2013-08-08 22:30:39', '2013-08-08 22:30:39', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('98', '木地板', '360材料罗兰内容', '', '', '1', '1', '2013-08-08 22:31:03', '2013-08-08 22:31:03', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('99', '乳胶漆', '360材料多乐土内容', '', '', '1', '1', '2013-08-08 22:32:04', '2013-08-08 22:32:04', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('100', '乳胶漆', '360材料华润内容', '', '', '1', '1', '2013-08-08 22:32:22', '2013-08-08 22:32:22', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('101', '乳胶漆', '360材料美涂土内容', '', '', '1', '1', '2013-08-08 22:32:44', '2013-08-08 22:32:44', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('102', '卫生间洁具', '360材料法恩莎内容', '', '', '1', '1', '2013-08-08 22:33:24', '2013-08-08 22:33:24', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('103', '卫生间洁具', '360材料金顿内容', '', '', '1', '1', '2013-08-08 22:33:51', '2013-08-08 22:33:51', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('106', '卫生间洁具', '360材料尚高内容', '', '', '1', '1', '2013-08-08 22:34:57', '2013-08-08 22:34:57', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('107', '卫生间洁具', '360材料圣象内容', '', '', '1', '1', '2013-08-08 22:35:12', '2013-08-08 22:35:12', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('108', '阳台砖', '360材料圣罗伦内容', '', '', '1', '1', '2013-08-08 22:35:36', '2013-08-08 22:35:36', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('109', '输入你的标题', '<p>\r\n	<span style=\"font-size:14px;\">&nbsp; 贵州每平方装饰工程有限公司是一家以承接公共建筑装饰、住宅、店面、别墅、商务空间、等室内外装饰装修、设计、施工及配套服务于一体的专业性企业。</span>\r\n</p>\r\n<p>\r\n	<span style=\"font-size:14px;\">&nbsp; 每平方秉承“义、信、诚”企业经营理念，视质量为生命，视服务为根源，强化现代化管理，不断引进高素质人才及先进技术。通过不断提高，公司现拥有一批在装饰装修行业设计、施工、管理等方面专业的优秀人才。</span>\r\n</p>\r\n<p>\r\n	<span style=\"font-size:14px;\">&nbsp; 公司自成立之初，独家推出第二代家装套餐模式，即《360元/平方第二代家装套餐》，包含12大主材、包设计、包施工、包辅料、包损耗，36000元/100平米（户型面积），迅速赢得市场一致好评。为全方位体现透明化服务，公司投入重金在贵阳市商圈中心时代广场北8楼设立1200平方的材料实景展示厅，所有主材看得见、摸得着，让家装更透明、更省心。</span>\r\n</p>\r\n<p>\r\n	<span style=\"font-size:14px;\">&nbsp; 360第二代家装套餐以“户型面积”计价方式彻底打破第一代家装套餐以“建筑面积”计价方式，让消费者不再为无需装修的公摊面积买单，计价方式更科学合理；依托每平方强大的资源整合力，360第二代家装套餐更好的弥补了第一代家装套餐的材料缺陷，材料品质更高、更全面，套餐包含的项目更多，使之性价比更好好。</span>\r\n</p>\r\n<p>\r\n	<span style=\"font-size:14px;\">&nbsp; 2011年岁末，每平方迈出第一步，在兴义市未来的城市中心“富康国际商务公馆”设立近1000平米的“360整装家居体验馆”，汇集各大品牌建材，致力给消费者提供轻松一站式完整家装服务，360度全方位家装服务。</span>\r\n</p>', '', '', '1', '1', '2013-10-14 21:28:55', '2013-10-14 21:30:11', '1', '0', '0');
-INSERT INTO `yyg_content` VALUES ('110', '输入你的标题', '输入你的内容', '', '', '1', '1', '2013-10-14 21:29:39', '2013-10-14 21:29:39', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('111', '联系我们', '<p>\r\n	<span style=\"font-size:16px;\">美平方贵阳公司电话：0851-5855333 5855222 传真：0851-5847800</span>\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<span style=\"font-size:16px;\">美平方贵阳公司地址：中华中路时代广场北8楼全层</span>\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<span style=\"font-size:16px;\">美平方兴义公司电话：0859-3198333 传真：0859-3198222</span>\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<span style=\"font-size:16px;\">美平方兴义公司地址：瑞金大道富康国际商务公馆12楼全层</span>\r\n</p>', '', '', '1', '1', '2013-10-14 21:30:18', '2013-10-14 21:30:43', '1', '0', '0');
-INSERT INTO `yyg_content` VALUES ('112', '输入你的标题', '输入你的内容', '', '', '1', '1', '2013-10-14 21:30:31', '2013-10-14 21:30:31', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('113', '输入你的标题', '输入你的内容', '', '', '1', '1', '2013-10-14 21:30:47', '2013-10-14 21:30:47', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('114', '输入你的标题', '输入你的内容', '', '', '1', '0', '2013-10-14 21:31:03', '2013-10-14 21:31:03', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('115', '“家装一站”操作更透明', '<h1 style=\"text-align:center;\">\r\n	“家装一站”操作更透明\r\n</h1>\r\n<p>\r\n	<span style=\"font-size:14px;\">&nbsp; 长期以来套餐类装饰公司采用的材料“一站式”购齐都是装饰公司与材料供应商合作，其中利益链到底如何却不得而知。久而久之，这种“一站式”购齐被越来越多的业主质疑其可信度。不过，在每平方装饰，一种新的“一站式”模式让利润真正透明起来。</span>\r\n</p>\r\n<h2>\r\n	传统受冲击：不透明\r\n</h2>\r\n<p>\r\n	&nbsp;<span style=\"font-size:14px;\">&nbsp;“起初他还以为能得到很多好处，听上去价格也不算贵，可是通过装修他才发现与自己所想的不同，不仅很多品牌听上去都很难陌生，还发现材料价格并没有得到实惠。”家住世纪南山校区的许女士依然有些懊悔，装修初期家装公司介绍“一站式”购齐，声称这种模式是联合了很多材料商，共同让利，价位都是最优惠的。</span>\r\n</p>\r\n<p>\r\n	<span style=\"font-size:14px;\">&nbsp; 知道装修完毕许女士都未产生过任何海一，后来经朋友透露，其实很多“一站式”购得的材料并未享受到优惠，和经销商零售价格相差不大。知道此时，许女士才恍然大悟，仔细回想，所有材料都是装饰公司定好的价格，自己从未和材料商面谈过，根本搞不清楚到底是不是优惠价。</span>\r\n</p>\r\n<h2>\r\n	打破传统：更放心、更优惠\r\n</h2>\r\n<p>\r\n	<span style=\"font-size:14px;\">&nbsp; “与一味将利益放在首位的装饰公司相比，我们更愿意拿出更多的实际行动为业主多解决难题，包括质量保障、材料优惠方面。”居美平方装饰周总满怀信心地告诉记者，只有真心为客户着想，才是长期的策略。</span>\r\n</p>\r\n<p>\r\n	<span style=\"font-size:14px;\">&nbsp; 在美平方的众多品牌材料联盟中，各品牌商家已签约承诺，扣除中间环节，把利益直接让给消费者，共同维护消费者利益。而此次推出的居彩·美平方式“家装1站”与以往别家公司采用模式有所不同，所有客户可以在不表明是美平方客户身份的情况下，自行到联盟商家选购商品，自己洽谈、砍价，美平方装饰不会参与，这样就能避免装饰公司从中拿回扣的现象发生。等到谈定价格之后，便可出示由居彩</span><span style=\"font-size:14px;\">·美平方装饰为每一位签约客户提供的“家装1站惠通卡”，便可以在谈定的价格上享受折上折的更多惊喜。</span>\r\n</p>', '', '', '1', '1', '2013-10-14 21:53:47', '2013-10-14 21:55:15', '1', '0', '0');
-INSERT INTO `yyg_content` VALUES ('116', '输入你的标题', '输入你的内容', '', '', '1', '1', '2013-10-14 21:55:38', '2013-10-14 21:55:38', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('117', '输入你的标题', '输入你的内容', '', '', '1', '1', '2013-10-14 21:55:44', '2013-10-14 21:55:44', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('118', '输入你的标题', '输入你的内容', '', '', '1', '1', '2013-10-14 21:59:20', '2013-10-14 21:59:20', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('119', '水路施工保障', '工程保障内容', '', '', '1', '1', '2013-10-14 22:13:20', '2013-10-16 21:51:23', '1', '1', '0');
-INSERT INTO `yyg_content` VALUES ('120', '电路施工保障', '工程保障内容', '', '', '1', '1', '2013-10-14 22:14:07', '2013-10-16 21:51:37', '1', '2', '0');
-INSERT INTO `yyg_content` VALUES ('121', '防水施工保障', '工程保障内容', '', '', '1', '1', '2013-10-14 22:14:36', '2013-10-16 21:52:09', '1', '3', '0');
-INSERT INTO `yyg_content` VALUES ('122', '铺贴施工保障', '工程保障内容', '', '', '1', '1', '2013-10-14 22:14:56', '2013-10-16 21:52:26', '1', '4', '0');
-INSERT INTO `yyg_content` VALUES ('123', '吊顶施工保障', '工程保障内容', '', '', '1', '1', '2013-10-14 22:16:11', '2013-10-16 21:52:41', '1', '5', '0');
-INSERT INTO `yyg_content` VALUES ('124', '涂饰施工保障', '工程保障内容', '', '', '1', '1', '2013-10-14 22:16:39', '2013-10-16 21:52:59', '1', '6', '0');
-INSERT INTO `yyg_content` VALUES ('125', '涂料施工保障', '工程保障内容', '', '', '1', '1', '2013-10-14 22:17:00', '2013-10-16 21:53:17', '1', '7', '0');
-INSERT INTO `yyg_content` VALUES ('129', '电', '材料保障内容', '', '', '1', '1', '2013-10-16 21:54:19', '2013-10-16 21:54:19', '0', '1', '0');
-INSERT INTO `yyg_content` VALUES ('130', '洁具', '材料保障内容', '', '', '1', '1', '2013-10-16 21:54:56', '2013-10-16 21:54:56', '0', '2', '0');
-INSERT INTO `yyg_content` VALUES ('131', '砖', '材料保障内容', '', '', '1', '1', '2013-10-16 21:55:20', '2013-10-16 21:55:20', '0', '3', '0');
-INSERT INTO `yyg_content` VALUES ('132', '地板', '材料保障内容', '', '', '1', '1', '2013-10-16 21:55:48', '2013-10-16 21:55:48', '0', '4', '0');
-INSERT INTO `yyg_content` VALUES ('133', '门', '材料保障内容', '', '', '1', '1', '2013-10-16 21:56:09', '2013-10-16 21:56:09', '0', '5', '0');
-INSERT INTO `yyg_content` VALUES ('134', '橱柜', '材料保障内容', '', '', '1', '1', '2013-10-16 21:56:36', '2013-10-16 21:56:36', '0', '6', '0');
-INSERT INTO `yyg_content` VALUES ('135', '涂料', '材料保障内容', '', '', '1', '1', '2013-10-16 21:57:00', '2013-10-16 21:57:00', '0', '7', '0');
-INSERT INTO `yyg_content` VALUES ('138', '家具', '材料保障内容', '', '', '1', '1', '2013-10-16 21:58:58', '2013-10-16 21:58:58', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('139', '实打实大声道', '三十多岁的所', '', '', '0', '1', '2017-08-31 22:05:50', '2017-08-31 22:05:50', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('140', '222', '222', '', '', '1', '1', '2017-08-31 22:10:01', '2017-08-31 22:10:01', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('141', '我问问', '12123121212', '', '', '1', '1', '2017-08-31 22:10:09', '2017-08-31 22:10:09', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('142', '颠三倒四多', '颠三倒四多', '', '', '1', '1', '2017-08-31 22:10:21', '2017-08-31 22:10:21', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('143', '实打实大声道', '实打实大声道', '', '', '1', '1', '2017-08-31 22:10:37', '2017-08-31 22:10:37', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('144', '实打实大声道', '实打实大声道所多', '', '', '1', '1', '2017-08-31 22:11:07', '2017-08-31 22:11:07', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('147', '实打实大声道', '的士速递所多<img src=\" /Upload/20170831/thumb_600_59a819c682fe9.png\" alt=\"\" />我的身份证', '', '', '1', '1', '2017-08-31 22:14:47', '2017-08-31 22:14:47', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('148', '添加附件吧', '<img src=\" /Upload/20170831/thumb_600_59a819e81c207.png\" alt=\"\" />实打实大声道', '', '', '1', '1', '2017-08-31 22:15:07', '2017-08-31 22:15:07', '0', '0', '0');
-INSERT INTO `yyg_content` VALUES ('149', 'wode ceshi sdsdsdsd', '随时随地<img src=\" /Upload/20170831/thumb_600_59a81c6358e95.png\" alt=\"\" />wwwwwww222dsdsfsdfsdfsdfsdsdfsdfsdfsdfsd<img src=\" /Upload/20170902/thumb_600_59aa74196da9a.png\" alt=\"\" />', '', '', '1', '1', '2017-08-31 22:25:43', '2017-09-02 17:04:49', '1', '0', '0');
-
--- ----------------------------
--- Table structure for yyg_designer
--- ----------------------------
-DROP TABLE IF EXISTS `yyg_designer`;
-CREATE TABLE `yyg_designer` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL DEFAULT '',
-  `rank` varchar(20) NOT NULL DEFAULT '',
-  `title` varchar(20) NOT NULL DEFAULT '',
-  `photo` varchar(200) NOT NULL DEFAULT '',
-  `group` int(11) NOT NULL DEFAULT '0',
-  `createtime` datetime NOT NULL,
-  `degree` varchar(20) NOT NULL DEFAULT '',
-  `school` varchar(40) NOT NULL DEFAULT '',
-  `worktime` float NOT NULL DEFAULT '0',
-  `motto` text,
-  `expert` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of yyg_designer
--- ----------------------------
-INSERT INTO `yyg_designer` VALUES ('90', '张健豪', '高级设计师', '设计师', '/Upload/20130825/68b8e9e6a5e92ba343733216bff5e7cd.png', '1', '2013-08-25 20:44:11', '大专', '海口经济学院', '6', '以诚感人者，人亦诚而应', '现代，欧式，中式，田园');
-INSERT INTO `yyg_designer` VALUES ('86', '刘春艳', '高级设计师', '设计师', '/Upload/20130825/2ad70250c32d4ae25bcc9fa5b5c09c1d.png', '1', '2013-08-25 20:16:39', '本科', '吉首大学', '6', '对于设计有着不断探索，追求一种真实与想象空间结合的成果，适用各种实质的物料，光线与影像的新技术做法；色彩，质感，艺术品时尚的家具搭配；合理的的人性空间;完美的设计理念；为业主创造完善的生活空间，演绎自我的居饰品味.', '简欧、田园');
-INSERT INTO `yyg_designer` VALUES ('89', '徐鹏峰', '高级设计师', '设计师', '/Upload/20130825/27b443ba3fcb17598c5568a3a7fd1506.png', '1', '2013-08-25 20:42:49', '本科', '黑龙江佳木斯大学', '6', '人之所以能，是因为相信。', '现代简约，中式，简约');
-INSERT INTO `yyg_designer` VALUES ('91', '杨荷英', '高级设计师', '设计师', '/Upload/20130825/1730e5546eeba9781515e3cc736025ea.png', '1', '2013-08-25 20:46:23', '本科', '贵阳学院', '3', '人是自身的设计师，需要自己去增光添彩', '现代，中式，田园');
-INSERT INTO `yyg_designer` VALUES ('92', '邱月霞', '高级设计师', '设计师', '/Upload/20130825/7d24238ea5a7288760df300cb8cf277d.png', '1', '2013-08-25 20:49:27', '本科', '贵州民族学院', '4', '设计无处不在', '现代简约，欧式');
-INSERT INTO `yyg_designer` VALUES ('93', '李和林', '高级设计师', '设计师', '/Upload/20130825/dd4f4f7cfc88fd4cb882bd70e09dc36a.png', '4', '2013-08-25 20:50:45', '本科', '贵州轻工学院', '3', '装饰美的享受是属于客户的,创意的快乐是属于设计师的！', '欧式，现代简约，中式');
-INSERT INTO `yyg_designer` VALUES ('94', '吴芳权', '高级设计师', '经理', '/Upload/20130825/f7ab27c764f662007933af7c71ebf4e8.png', '3', '2013-08-25 20:51:50', '本科', '重庆信息工程学院', '8', '设计不是个人的表现，设计师的任务不是保持现状，而是设法改变它。', '现代，田园，简欧');
-
--- ----------------------------
--- Table structure for yyg_designer_yuding
--- ----------------------------
-DROP TABLE IF EXISTS `yyg_designer_yuding`;
-CREATE TABLE `yyg_designer_yuding` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL,
-  `phone` varchar(30) NOT NULL DEFAULT '',
-  `qq` varchar(20) NOT NULL DEFAULT '',
-  `mail` varchar(40) NOT NULL DEFAULT '',
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  `brief` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of yyg_designer_yuding
--- ----------------------------
-INSERT INTO `yyg_designer_yuding` VALUES ('36', '李贺春', '12122112', '', '', '2013-08-28 16:20:56', '这个不能叫试色了，因为温莎我用了很有一阵了，只是最近越发感觉此水彩的情绪捉摸不定，时常有惊人之处，所以想想把我用过的温莎艺术家水彩记录一下，给大家当做选色时候的参考。');
-INSERT INTO `yyg_designer_yuding` VALUES ('34', '刘春艳', '1231221', '', '', '2013-08-28 16:03:05', '$mail$mail$mail‘’\'\'‘’\'\'\'&quot;&quot;&quot;&quot;');
-INSERT INTO `yyg_designer_yuding` VALUES ('35', '撒手', '1232111', '', '', '2013-08-28 16:11:17', '向日葵。：让夫妻成为一辈子的情人！\r\n一、男人的五大需求：\r\n1、被理解； 2、被信任；\r\n3、被支持； 4、被认同;\r\n5、被尊重。\r\n二、女人的三大需求\r\n　1、安全感；　2、浪漫；\r\n　3、被宠和被哄。\r\n三、夫妻之间离不开的三大问题\r\n　1、经济问题； 2、性的问题；');
-INSERT INTO `yyg_designer_yuding` VALUES ('37', '四大圣地', '112212121', '', '', '2013-08-28 16:21:38', '这个不能叫试色了，因为温莎我用了很有一阵了，只是最近越发感觉此水彩的情绪捉摸不定，时常有惊人之处，所以想想把我用过的温莎艺术家水彩记录一下，给大家当做选色时候的参考。\r\n\r\n温莎总体来说是比较稳定，显色鲜亮，扩散性强，混色性能优异，易开花的水彩，可以说能够当做水彩中的标杆，看水彩颜料的各方面性能都以它来做参考。\r\n但是吧，就是这样好的温莎，其实也有几个奇葩……也可能是我奇葩色买太多了……');
-INSERT INTO `yyg_designer_yuding` VALUES ('38', '戴身孝', '32132112', '', '', '2013-08-28 16:31:11', '你好\r\n，哈哈\r\n21312,\r\n121221\r\n12312\r\n123\r\n12312\r\n312');
-INSERT INTO `yyg_designer_yuding` VALUES ('39', '宿松县', '12312312', '', '', '2013-08-28 16:32:59', '这个不能叫试色了，因为温莎我用了很有一阵了，只是最近越发感觉此水彩的情绪捉摸不定，时常有惊人之处，所以想想把我用过的温莎艺术家水彩记录一下，给大家当做选色时候的参考。\r<br/>\r<br/>温莎总体来说是比较稳定，显色鲜亮，扩散性强，混色性能优异，易开花的水彩，可以说能够当做水彩中的标杆，看水彩颜料的各方面性能都以它来做参考。\r<br/>但是吧，就是这样好的温莎，其实也有几个奇葩……也可能是我奇葩色买太多了……');
-
--- ----------------------------
--- Table structure for yyg_homedeco
--- ----------------------------
-DROP TABLE IF EXISTS `yyg_homedeco`;
-CREATE TABLE `yyg_homedeco` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userid` int(12) NOT NULL DEFAULT '0',
-  `date` date NOT NULL DEFAULT '0000-00-00',
-  `caption` text NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_user_date` (`userid`,`date`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of yyg_homedeco
--- ----------------------------
-INSERT INTO `yyg_homedeco` VALUES ('10', '9', '2013-10-09', '112');
-INSERT INTO `yyg_homedeco` VALUES ('11', '9', '2013-10-08', '');
-INSERT INTO `yyg_homedeco` VALUES ('12', '9', '2013-10-07', '');
-INSERT INTO `yyg_homedeco` VALUES ('8', '9', '2013-10-10', '112');
-INSERT INTO `yyg_homedeco` VALUES ('9', '9', '2013-10-11', '');
-
--- ----------------------------
--- Table structure for yyg_homedeco_rel
--- ----------------------------
-DROP TABLE IF EXISTS `yyg_homedeco_rel`;
-CREATE TABLE `yyg_homedeco_rel` (
-  `att_id` int(11) NOT NULL DEFAULT '0',
-  `hd_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`att_id`,`hd_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of yyg_homedeco_rel
--- ----------------------------
-INSERT INTO `yyg_homedeco_rel` VALUES ('568', '6');
-INSERT INTO `yyg_homedeco_rel` VALUES ('569', '6');
-INSERT INTO `yyg_homedeco_rel` VALUES ('570', '6');
-INSERT INTO `yyg_homedeco_rel` VALUES ('577', '8');
-INSERT INTO `yyg_homedeco_rel` VALUES ('578', '8');
-INSERT INTO `yyg_homedeco_rel` VALUES ('579', '8');
-INSERT INTO `yyg_homedeco_rel` VALUES ('580', '9');
-INSERT INTO `yyg_homedeco_rel` VALUES ('581', '9');
-INSERT INTO `yyg_homedeco_rel` VALUES ('582', '9');
-INSERT INTO `yyg_homedeco_rel` VALUES ('583', '9');
-INSERT INTO `yyg_homedeco_rel` VALUES ('584', '12');
-INSERT INTO `yyg_homedeco_rel` VALUES ('585', '12');
-INSERT INTO `yyg_homedeco_rel` VALUES ('586', '12');
-INSERT INTO `yyg_homedeco_rel` VALUES ('587', '12');
-INSERT INTO `yyg_homedeco_rel` VALUES ('588', '11');
-INSERT INTO `yyg_homedeco_rel` VALUES ('589', '11');
-INSERT INTO `yyg_homedeco_rel` VALUES ('590', '11');
-INSERT INTO `yyg_homedeco_rel` VALUES ('591', '10');
-INSERT INTO `yyg_homedeco_rel` VALUES ('592', '10');
-INSERT INTO `yyg_homedeco_rel` VALUES ('593', '10');
-INSERT INTO `yyg_homedeco_rel` VALUES ('594', '10');
-INSERT INTO `yyg_homedeco_rel` VALUES ('595', '12');
-INSERT INTO `yyg_homedeco_rel` VALUES ('596', '12');
-INSERT INTO `yyg_homedeco_rel` VALUES ('597', '12');
-
--- ----------------------------
--- Table structure for yyg_homedeco_users
--- ----------------------------
-DROP TABLE IF EXISTS `yyg_homedeco_users`;
-CREATE TABLE `yyg_homedeco_users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of yyg_homedeco_users
--- ----------------------------
-INSERT INTO `yyg_homedeco_users` VALUES ('9', 'test', 'e66bcb901c8891f4749305bc6c1132f0', '2013-10-10 21:38:53', '1');
+INSERT INTO `yyg_content` VALUES ('139', '实打实大声道', '三十多岁的所', '', '', '', '0', '1', '2017-08-31 22:05:50', '2017-08-31 22:05:50', '0', '0', '0');
+INSERT INTO `yyg_content` VALUES ('155', '女性备孕 远离子宫10“怕”', '<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\"> <strong><img src=\"http://test.yygcms.cn/Upload/20170903/thumb_200_59ab84833ac91.jpg\" alt=\"\" /><br />\r\n</strong> \r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\"> <strong>一、怕多次妊娠</strong> \r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　据调查，怀孕3次以上，子宫患病及发生危害的可能性显著增加。\r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\"> <strong>二、怕反复人工流产</strong> \r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　女人一生流产不要超过3次，一年之内流产不要超过2次。\r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　短时期内反复人工流产，是导致子宫伤病的重要因素。通常医生在做人流手术时不能看见宫腔，是“盲操作”。往往有少数因术前未查清楚子宫位置、大 小，手术时器械进入方向与子宫曲度不一致，或用力过猛等而造成子宫损伤，甚至穿孔。或者造成宫腔感染、宫颈或宫腔粘连，导致继发性不孕。\r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　总而言之，人流有很多的害处，甚至可以出现“人流综合征”。\r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\"><br />\r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\"> <strong>三、怕私自堕胎</strong> \r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　这样做的严重后果是子宫破损或继发感染者甚多。\r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\"> <strong>四、怕忽视产前检查</strong> \r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　忽视产前检查，不能及时发现孕妇和胎儿的异常，会导致难产甚至子宫破裂等严重后果。\r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\"> <strong>五、怕畸胎、多胎</strong> \r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　由于畸胎和多胎容易发生难产，从而危及子宫安全，故孕期应注意检查，如发现畸胎、多胎，就应采取有效措施。\r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\"> <strong>六、怕滥用催生药</strong> \r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　子宫体部或子宫下段在妊娠期或分娩期发生破裂称为子宫破裂。子宫破裂是严重的产科并发症之一，常引起母儿死亡。多由于产道、胎儿、胎位的异常如骨产道狭窄、巨大儿、脑积水、忽略性横位等引起胎先露下降受阻，子宫强烈收缩而发生。\r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　子宫破裂为产科最严重并发症之一。\r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\"> <strong>七、怕不正规接生</strong> \r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　少数落后地区仍然采取旧法接生，严重威胁到产妇和胎儿的生命安全。\r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\"><br />\r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\"> <strong>八、怕妊娠期性生活</strong> \r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　妊娠头三个月要禁房事。此时胚胎附着于子宫尚不十分牢固，是流产的好发时期。此时性高潮时强烈子宫收缩，有使妊娠中断的危险。特别对有流产史、妊娠曾出现少量阴道流血的先兆流产妇女，或年龄较大、求子心切者等等，应禁止性交。\r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　妊娠早期对性生活造成的细菌感染也要注意。怀孕期分泌物增多，外阴部不仅容易溃烂，而且对细菌的抵抗力也减弱。被细菌感染，症状如加重就有流产的危险。所以平时要注意保持局部清洁，同时在性行为前必须特别注意。\r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　妊娠后三个月也要禁房事。性交易刺激子宫收缩而导致流产、早产、子宫出血或产褥热。尤其是妊娠末4周，性交可能引起胎膜炎，招致胎膜早破、早产及产后感染等危险，应严禁性生活。\r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　临产前1个月或者3星期时胎儿已经成熟，子宫已经下降，子宫口逐渐张开。如果这时性交，羊水感染的可能性更大。还容易造成早产，胎儿在子宫内也可以受到母亲感染疾病的影响，使身心发育受到障碍。\r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　有自然流产和习惯性流产的孕妇，应在整个妊娠期间都避免性交，千万不要为一时的冲动造成永久的悔恨。\r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　总之，特殊时期的性生活要注意。\r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\"> <strong>九、怕性生活不洁</strong> \r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　不洁的性生活可引起阴道炎、宫颈炎、宫颈糜烂、输卵管炎症。\r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　别小看这些感染，它们可是外阴癌、阴道癌、宫颈癌及输卵管癌的重要发病因素。\r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　总之，现代医学证明，不洁性生活已经成为了诱发妇科肿瘤的“元凶”。\r\n	</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\"> <strong>十、怕性生活紊乱</strong> \r\n</p>\r\n<p style=\"color:#353535;font-family:\" font-size:14px;\"=\"\">\r\n	　　如果妇女性生活放纵，或未成年便开始性生活，将对自己的身心健康造成损害，而可能导致宫颈糜烂以及子宫颈癌等疾病。\r\n	</p>\r\n	<p>\r\n		<br />\r\n	</p>\r\n	<p>\r\n		<br />\r\n	</p>', '子宫是女性孕育宝宝最初的地方，若是子宫不好，自然对宝宝的健康也不好。所以，女性要好好地保护自己的子宫。下面就跟亲宝小编一去看看女性备孕要远离的子宫10“怕”吧！', '', '', '6', '1', '2017-09-03 12:27:02', '2017-09-03 18:23:12', '1', '0', '0');
+INSERT INTO `yyg_content` VALUES ('161', '基础体温', '<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	人体在较长时间(6小时)的后醒来，尚未进行任何活动之前所到的体温称之为基础体温。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　<strong>1、判断是否排卵</strong>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　虽然在一般情况下人体的正常体温是37℃，但在不同的身体状况下也会略微有些差别。通常女性在来月经之前，体温较高，处于高温期;来月经之后，体温则相对较低，处于低温期。如果在24小时之内，体温了0.3～0.6℃，甚至更高，那么则表示处于排卵的状态。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　另外，基础体温也大略可以看出排出卵子的质量优劣程度。如果基础体温高温期较长，可以持续13～14天，那么就表示卵子的质量不错。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　<strong>2、怀孕的早期诊断</strong>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　如果持续两周以上较高的基础体温，就要考虑去医院检查一下，因为你有可能是怀孕了。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　<strong>3、卵巢机能</strong>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　基础体温处于高温期代表黄体机能的减弱、甲状腺素过低、泌乳激素过高，代表排卵的质量会比较差，甚至会不排卵。\r\n</p>\r\n<span style=\"color:#353535;font-family:&quot;font-size:14px;\">&nbsp;</span>\r\n<p id=\"p3\" style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	<span style=\"color:#FF6600;\">　　<strong>基础体温的原理是什么?</strong></span>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　正常育龄妇女的基础体温与月经周期一样，呈周期性变化，这种体温变化与排卵有关。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　女性月经周期以月经见红第一天为周期的开始，周期的长短因人而异，约为21-35天不等，平均约为28天，其中又以排卵日为分隔，分为排卵前的滤泡期，与排卵后的黄体期。滤泡期长短不一定，但黄体期固定约为14天上下两天。排卵后次日，因卵巢形成黄体，分泌黄体素会使体温上升摄氏0。6度左右，而使体温呈现高低两相变化。高温期约持续12-16天(平均14天)。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　1、若无怀孕，黄体萎缩停止分泌黄体素，体温下降，回到基本线，月经来潮。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　2、若是已经怀孕，因黄体受到胚胎分泌荷尔蒙支持，继续分泌黄体素，体温持续高温。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　3、若卵巢功能不良，没有排卵也没有黄体形成，体温将持续低温。\r\n</p>\r\n<p id=\"p4\" style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	<span style=\"color:#FF6600;\">　　<strong>如何测量与记录基础体温?</strong></span>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　1、买一支基础体温计。基础体温计与一般体温计不同，它的刻度较密，一般以摄氏36.7度(刻度24)为高低温的分界。 (36度--刻度10;38度--刻度50)。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　2、将基础体温计于睡前放在枕边可随手拿到之处，于次日睡醒，尚未起床活动时，放在舌下测量三分钟，并记录在基础体温表上。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　3、早晨量记体温有困难者，可在每天某一固定时间量，切记事前半小时不可激烈或饮用冷热食品。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　4、月经来潮和同房日须附加记号标示，遇有发烧饮酒过度晚睡晚起等会影响体温的状况，亦应特别注记说明。\r\n</p>\r\n<p id=\"p5\" style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	<span style=\"color:#FF6600;\">　　<strong>体础温线图曲</strong></span>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　1、周期28天正常排卵的基础体温曲线图 (看好周期是28天的)\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　2、一个有可能怀孕的基础体温曲线图\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　3、一个周期28天体黄素不足的基础体温曲线图\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　4、一个周期28天无排卵的基础体温曲线图\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　以上的图大家可以参考对照，但想要达到完全一样，应该是不可能，因为每个人都不一样。\r\n</p>\r\n<p id=\"p6\" style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	<span style=\"color:#FF6600;\">　　<strong>常见的基础体温变化解读</strong></span>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　<strong>1、排卵</strong>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　当女性月经来临时，基础体温为低温;排卵之后，基础体温则会转为高温。一般来说，女性在排卵24小时之后，受精的比率会变得比较低;但是，男性的精子大约可以在女性的子宫里存活72小时。所以，在女性基础体温处于低温、接近时就应该行房，这样可以增加受精几率;若等到基础体温达到高温时再行房，那怀孕的几率就已经降低了。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　<strong>2、多囊卵巢</strong>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　此类病患以“胖”为表征，往往容易发胖、长青春痘、毛发浓密、月经经常性不准。表现在基础体温上则是：高温期较短，严重的还可能是经常性低温。有这种情况的女性，通常有家族性遗传，如怀孕生子，则属于的高危险群。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　<strong>3、卵巢功能不好</strong>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　卵巢功能不好的人，通常基础体温的循环周期会缩短，原本的28天，可能慢慢会变为24天或22天，高温期也相应缩短。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　<strong>4、泌乳素过高</strong>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　泌乳素高，基础体温的高温期就会缩短，其卵子的质量也较差，所以不容易怀孕或容易流产。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　<strong>5、危险期</strong>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　基础体温为高温期属于，低温期则属于危险期，但低温期也会有个别差异。比如对年轻女孩而言，她们的卵巢功能好，分泌物多，危险期就相应的长一些，精子在子宫内存活的几率也会相对比较高。所以，很可能在排卵前5天开始，就必须看作是危险期。\r\n</p>', '人体在较长时间(6小时)的后醒来，尚未进行任何活动之前所到的体温称之为基础体温。 1、判断是否排卵 虽然在一般情况下人体的正', '', '', '6', '1', '2017-09-03 20:09:34', '2017-09-03 20:09:34', '0', '0', '0');
+INSERT INTO `yyg_content` VALUES ('162', '怀孕一个月的症状有哪些?', '<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	妊娠期的算法是从末次月经第一天起，以满多少天，满多少孕周来计算的。月经周期28天，通常前14天是不会受孕的，所以末次月经后约14天才可能受精，故孕妇自己知道怀孕后才开始计算的妊娠期，在第一个孕月中只占最初妊娠的2周。&nbsp;&nbsp;\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	&nbsp;&nbsp;&nbsp; 妊娠期的算法是从末次月经第一天起，以满多少天，满多少孕周来计算的。月经周期28天，通常前14天是不会受孕的，所以末次月经后约14天才可能受精，故孕妇自己知道怀孕后才开始计算的妊娠期，在第一个孕月中只占最初妊娠的2周。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	&nbsp;&nbsp;<strong>&nbsp; 1.胎儿的成长</strong>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	&nbsp;&nbsp;&nbsp; 受精后约7-10日，受精卵便在子宫内膜着床，并从母体中吸收养分，开始发育。在前8周时，应该称为胚胎，还不能称作胎儿。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	&nbsp;&nbsp;&nbsp; 胚胎的大小在怀孕第3周后期约长0.5-1.0厘米，体重不及1克，但肉眼已能看出其外形。外表上，胚胎无法明显地区分头部和身体，并且长有鳃弓和尾巴，和其他动物的胚胎发育并无两样。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	&nbsp;&nbsp;&nbsp; 而此时原始的胎盘开始成形，胎膜（亦称绒毛膜）亦于此时形成。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	&nbsp;&nbsp;<strong>&nbsp; 2.母体的变化</strong>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	&nbsp;&nbsp;&nbsp; 实际上，受精卵形成的一周之内还不能称为怀孕。孕妇开始呈现怀孕迹象，常在两周以后，因此这时期尚未有任何症状。不过有些人的身体会有发寒、发热、慵懒困倦及难以成眠的症状，因一时未察觉是怀孕往往还误以为是患了感冒呢。这时子宫的大小与未怀孕时相同，还没有增大的现象。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	&nbsp;&nbsp;<strong>&nbsp; 3.生活上应注意的事项</strong>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	&nbsp;&nbsp;&nbsp; 初次怀孕的女性，在身体和心理上，都会发生一连串的变化，因为是第一次，孕妇自己往往还浑然不觉，而且原本没有生育的计划，或是根本不了解身体的反应，以致误食药物或疏忽了生活上的细节，都很可能对胎儿和母体产生不良的影响\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	&nbsp;&nbsp;&nbsp; 就身体反应而言，怀孕初期可能会类似感冒的症状，若胡乱买成药吃，不仅不能达到治疗的效果，说不定还会生出畸形儿呢！所以平日在任何情况下，都不要任意服用成药，最安全的办法是去看医生，找出病因。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	&nbsp;<strong>&nbsp;&nbsp; 4.应该了解与准备的事</strong>\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	&nbsp;&nbsp;&nbsp; 此时虽还没有特别应该准备的事，不过在怀孕约一个月时，会有孕吐的现象，应多准备一些缓和孕吐情况的食物，如酸梅、水果等。\r\n</p>', '怀孕一个月的女人，受精卵还比较小，所以胎儿和孕妇都不会有什么反应，身形也不会有什么变化，但是到快一个月的时候，孕妇会有孕吐现象。', '', '', '11', '1', '2017-09-03 20:10:33', '2017-09-03 20:10:33', '0', '0', '0');
+INSERT INTO `yyg_content` VALUES ('163', '尿频通常是怀孕的标志', '<p style=\"text-align:center;color:#353535;font-family:&quot;font-size:14px;\">\r\n	<img src=\"http://test.yygcms.cn/Upload/20170903/thumb_200_59abf16cef3d9.jpg\" alt=\"\" />\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	很多孕妇在刚开始怀孕的时候出现尿频的现象，甚至很多人是在发现尿频而去医院检查的时候才发现自己怀孕的。其实尿频是怀孕期间大多数孕妇必经的阶段。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　为什么怀孕后会经常想上厕所\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　频繁有尿意通常是确定怀孕的标志，通常很多人是在发现尿频而去医院检查的时候才发现自己怀孕的。孕妇在怀孕初期和末期都会出现不同程度的尿频。在怀孕初期出现尿频主要是因为身体荷尔蒙分泌改变而导致的。晚期出现尿频主要是由于胎儿逐渐落入盆中，压迫膀胱导致尿意。<br />\r\n……〉怀孕后尿频，外阴红肿会影响胎儿吗？\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　是否有什么好的方法可以减少上厕所的时间和次数\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　到现在为止还没有特别好的办法来控制这种情况的发生。唯一可行的就是控制饮水量，要想不在晚上起来，最好在临睡前1——2小时内不要喝水。很多做了妈妈的人经常说，产前尿频未尝不是件好事情，因为它可以提前锻炼您晚间起床，要知道这在宝宝出生后是您必须要经历的过程呦！ ……〉孕期尿频影响睡眠\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　如何判断正常与异常的尿频\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　怀孕尿频什么时候可以停止\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　通常在分娩几天后尿频会终止，不过在最初的几天尿还会很多，这主要是因为身体要将体内多余的液体全部排净的原因。当然，在怀孕期间除了开始和末期尿频外，大多数时间您还是会相对好些，您不会因为这件小事情天天烦恼的。\r\n</p>', '很多孕妇在刚开始怀孕的时候出现尿频的现象，甚至很多人是在发现尿频而去医院检查的时候才发现自己怀孕的。', '', '', '8', '1', '2017-09-03 20:11:46', '2017-09-03 20:11:46', '0', '0', '0');
+INSERT INTO `yyg_content` VALUES ('164', '0-10岁宝宝身高体重对照表', '月龄<span> </span>体重（单位kg ）<span> </span>身高（单位cm）<br />\r\n男<span> </span>女<span> </span>男<span> </span>女<br />\r\n01月<span> </span>3.6-5.0<span> </span>2.7-3.6<span> </span>48.2-52.8<span> </span>47.7-52.0<br />\r\n02月<span> </span>4.3-6.0<span> </span>3.4-4.5<span> </span>52.1-57.0<span> </span>51.2-55.8<br />\r\n03月<span> </span>5.0-6.9<span> </span>4.0-5.4<span> </span>55.5-60.7<span> </span>54.4-59.2<br />\r\n04月<span> </span>5.7-7.6<span> </span>4.7-6.2<span> </span>58.5-63.7<span> </span>57.1-59.5<br />\r\n05月<span> </span>6.3-8.2<span> </span>5.3-6.9<span> </span>61.0-66.4<span> </span>59.4-64.5<br />\r\n06月<span> </span>6.9-8.8<span> </span>6.3-8.1<span> </span>65.1-70.5<span> </span>63.3-68.6<br />\r\n08月<span> </span>7.8-9.8<span> </span>7.2-9.1<span> </span>68.3-73.6<span> </span>66.4-71.8<br />\r\n10月<span> </span>8.6-10.6<span> </span>7.9-9.9<span> </span>71.0-76.3<span> </span>69.0-74.5<br />\r\n12月<span> </span>9.1-11.3<span> </span>8.5-10.6<span> </span>73.4-78.8<span> </span>71.5-77.1<br />\r\n15月<span> </span>9.8-12.0<span> </span>9.1-11.3<span> </span>76.6-82.3<span> </span>74.8-80.7<br />\r\n18月<span> </span>10.3-12.7<span> </span>9.7-12.0<span> </span>79.4-85.4<span> </span>80.6-87.0<br />\r\n21月<span> </span>10.8-13.3<span> </span>10.2-12.6<span> </span>81.9-88.4<span> </span>83.3-89.8<br />\r\n2岁<span> </span>11.2-14.0<span> </span>10.6-13.2<span> </span>84.3-91.0<span> </span>83.3-89.8<br />\r\n2.5岁<span> </span>12.1-15.3<span> </span>11.7-14.7<span> </span>88.9-95.8<span> </span>87.9-94.7<br />\r\n3 岁<span> </span>13.0-16.4<span> </span>12.6-16.1<span> </span>91.1-98.7<span> </span>90.2-98.1<br />\r\n3.5岁<span> </span>13.9-17.6<span> </span>13.5-17.2<span> </span>95.0-103.1<span> </span>94.0-101.8<br />\r\n4 岁<span> </span>14.8-18.7<span> </span>14.3-18.3<span> </span>98.7-107.2<span> </span>97.6-105.7<br />\r\n4.5岁<span> </span>15.7-19.9<span> </span>15.0-19.4<span> </span>102.1-111.0<span> </span>100.9-109.3<br />\r\n5 岁<span> </span>16.6-21.1<span> </span>15.7-20.4<span> </span>105.3-114.5<span> </span>104.0-112.8<br />\r\n5.5岁<span> </span>17.4-22.3<span> </span>16.5-21.6<span> </span>108.4-117.8<span> </span>106.9-116.2<br />\r\n6 岁<span> </span>18.4-23.6<span> </span>17.3-22.9<span> </span>111.2-121.0<span> </span>109.7-119.6<br />\r\n7岁<span> </span>20.2-26.5<span> </span>19.1-26.0<span> </span>116.6-126.8<span> </span>115.1-126.2<br />\r\n8岁<span> </span>22.2-30.0<span> </span>21.4-30.2<span> </span>121.6-132.2<span> </span>120.4-132.4<br />\r\n9岁<span> </span>24.3-34.0<span> </span>24.1-35.3<span> </span>126.5-137.8<span> </span>125.7-138.7<br />\r\n10岁<span> </span>26.8-38.7<span> </span>27.2-40.9<span> </span>131.4-143.6<span> </span>131.5-145.1<br />', '身高没有同龄宝宝高、体重也没隔壁家宝宝重，这些都是妈妈们常常讨论的问题。其实，宝宝身高、体重只要处在某个正常范围，就是健康的，妈妈们，不妨把下面的宝宝身高体重对照表收藏起来吧！', '', '', '11', '1', '2017-09-03 20:13:30', '2017-09-03 20:13:30', '0', '0', '0');
+INSERT INTO `yyg_content` VALUES ('165', '谨记！及时打开新生儿的小拳头', '<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	每个宝宝生下来，他们都会紧紧握住自己的小拳头。对于这种现象，许多妈妈也许并不在意，可是儿科医生却提醒大家：要及时打开宝宝紧握的小拳头。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	为什么要及时打开宝宝的小拳头?\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　1、手的动作能促进神经系统的发育，而且对诱导婴儿心理发展起了前提的作用。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　2、手指分开后，可以随心所欲地摆弄各种物品，使婴儿能够主动地学习和从事各种活动，知觉和具体思维能力得到发育。\r\n</p>\r\n<div>\r\n	<br />\r\n</div>\r\n<p>\r\n	<img src=\" /Upload/20170903/thumb_200_59abf26adca6f.jpg\" alt=\"\" /> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	3、通过手部动作，婴儿和环境产生了互动，帮助婴儿建立自己和环境互动的概念，这种互动的经验对婴儿今后的发展意义重大。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	打开小拳头，妈妈该怎么做?\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　1、日常生活中要注意舒展\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　生活中，时常打开宝宝紧握的双拳，会让他有舒展手指的轻松感觉;\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　洗澡的时候别忘洗宝宝的小手。把手指尖轻轻伸进宝宝的手掌里，在小手心里轻轻地来回转动，边清洗边按摩;\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　喂奶的时候把宝宝搂在怀里，把手指伸进他的手心里，大手握小手，轻轻地摸一摸，缓缓地摇一摇;轻轻抚摸、张开宝宝的拳头，让小手掌触摸妈妈的乳房和妈妈的脸;不停地和宝宝说说话。吸吮妈妈的乳汁、感觉妈妈肌肤的温暖，宝宝满足又舒服。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　2、给宝宝的手指做按摩\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　*宝宝吃饱喝足、心情愉快的时候，可给宝宝的小手做按摩，肌肤温柔的触感能刺激宝宝触觉神经，使宝宝身心放松，小拳头很容易就松开了。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<img src=\" /Upload/20170903/thumb_200_59abf28185482.jpg\" alt=\"\" />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		*拿起宝宝的手掌，轻轻掰开拇指，再将手指一起打开，闭拢，再打开，边做边说话、唱歌。握住宝宝的手指，轻轻地一根一根打开，再一根一根合拢，轻柔地抚摸。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　*鼓励宝宝频频“出拳”，练习手眼协调，触碰、抓拿东西。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　3、把玩具放入宝宝的手掌\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　让宝宝握住玩具，妈妈拿住宝宝的小手，一起摇摇，听听玩具会发出什么声音。在游戏中宝宝慢慢学习控制、使用自己的手。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　注意：正确握姿——姆指和4手指要相对而握。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　TIP1选择适合的玩具。适合宝宝手掌大小、会发声、材质柔软的玩具。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　TIP2宝宝玩的时候旁边一定要有大人陪伴。\r\n	</p>\r\n	<div>\r\n		<br />\r\n	</div>\r\n</p>', '每个宝宝生下来，他们都会紧紧握住自己的小拳头。对于这种现象，许多妈妈也许并不在意，可是儿科医生却提醒大家：要及时打开宝宝紧握的小拳头。', '', '', '1', '1', '2017-09-03 20:16:36', '2017-09-03 20:16:36', '0', '0', '0');
+INSERT INTO `yyg_content` VALUES ('166', '十月大女宝体重只有11斤？为什么宝宝体重增长缓慢', '<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	孩子是爸爸妈妈的掌上明珠，在抚育孩子的历程中，肯定都会给孩子供给最棒的物质条件，让孩子吃好喝好。对小孩子来说，假如体重不合格的话，那么作为爸爸妈妈就应该思考自个的一些做法，是不是真的做到了爸爸妈妈的职责。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　孙女士的女儿现已十个月大了，相对比同龄的孩子来说，孙女士的女儿严峻发育不良，体重格外的轻。孙女士本人做事粗心大意，并且也没有任何的育儿经历，所以孙女士的女儿也就跟母亲一同受苦。孩子一向都是喝奶粉长大的，现在女儿现已十个月大了，体重却只有11斤。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　在平时的日子里孙女士由于各种因素常常和老公闹矛盾，心情不好，所以也不常常照料孩子。有一次和老公吵架以后，孙女士气急就带着孩子一同回娘家了。孙女士回家以后，孩子的外婆看见孙女枯瘦的姿态，立马将孙女士狠狠地骂了一顿。作为母亲的竟然没有尽到母亲的职责，让孩子变得这么瘦弱。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　孙女士也觉得自个格外冤枉，自个也常常给孩子喂奶，可是女儿总是不喜欢吃奶，自个也想不出来啥方法，所以孩子这么大了也没见体重增长多少。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	<br />\r\n</p>\r\n<p>\r\n	<img src=\" /Upload/20170903/thumb_600_59abf2dd4e18d.jpg\" alt=\"\" /> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	后来外婆在给孙女喂奶的时候，发现了一个情况，宝宝在吃奶，可是奶瓶里的奶不怎么减少。宝宝在喝奶的进程中使用了很大的劲，可是没有喝多少奶。后来外婆就查看了一下奶嘴，发现奶嘴根本就没有开口，跟刚买回来的奶嘴一样，只一点点大的口儿。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　本来宝宝并不是不喜欢吃奶，只是天天抱着奶瓶只能喝到一点点，所以时间久了，孩子也懒的吃奶。后来外婆就将奶嘴开了一个很大的口儿，宝宝喝了格外多的奶，将奶瓶里的奶全部都喝完了。孙女士见此，对自个的做法也感到十分的懊悔。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　在平时日子里，假如宝宝有发育不良的状况，体重严峻的不合格的话，家长们就要仔细的找出自个的因素。究竟是由于啥形成孩子发育不良，是不是由于宝宝不常常就餐？家长们必定要找出因素，要让孩子好好就餐，这么才能给孩子补充满足的养分。\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<img src=\" /Upload/20170903/thumb_600_59abf2f91b28e.jpg\" alt=\"\" />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		由于每个孩子的身体健康状况不同，所以也不能用相同的规范去衡量孩子的身高和体重，家长们首要根据孩子的本身状况来判断孩子体重是不是合格。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　用体重丈量的公式来看孩子体重是不是合格，对前六个月大的孩子来说，拿出世体重加上他的月龄乘上0.7千克。对一岁以内的孩子来说，用6千克，加上月龄乘上0.25千克，得出来的数据即是宝宝的正常体重。对两岁以内的孩子来说，基本上体重相对比以往会添加大概2千克或许3千克。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　至于两岁至12岁的孩童来说，年纪的2倍加上8千克即是正常体重。家长们能够用这个简单的公式测一下孩子的体重是不是合格，假如孩子不合格的话，那么家长们必定要给孩子多补充一些养分。\r\n	</p>\r\n</p>', '孩子是爸爸妈妈的掌上明珠，在抚育孩子的历程中，肯定都会给孩子供给最棒的物质条件，让孩子吃好喝好。对小孩子来说，假如体重不合格的话，那么作为爸爸妈妈就应该思考自个的一些做法，是不是真的做到了爸爸妈妈的职责', '', '', '1', '1', '2017-09-03 20:18:23', '2017-09-03 20:18:23', '0', '0', '0');
+INSERT INTO `yyg_content` VALUES ('167', '宝宝越补钙却越缺钙，这些偷钙的食物宝宝还在吃吗', '<p>\r\n	<span style=\"color:#353535;font-family:&quot;font-size:14px;\">孩子从各种食物中获取生长发育所需的养分。所以如今许多家长都会重视孩子平时饮食的调配，可是许多家长都不知道，有的食物却会阻碍孩子吸收养分，让孩子体内的养分白白丢失。今日就为我们罗列几个食物例子，这些食物会阻碍孩子去吸收钙质，甚至会加速身体内钙质的丢失。经常吃这些食物的孩子，基本上越是补钙越是缺钙。</span> \r\n</p>\r\n<p>\r\n	<span style=\"color:#353535;font-family:&quot;font-size:14px;\"><br />\r\n</span> \r\n</p>\r\n<p>\r\n	<img src=\" /Upload/20170903/thumb_600_59abf341e667d.jpg\" alt=\"\" /> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	精粮食物\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　加工过的精粮会丢失掉食物中的钙质。再加上精粮含糖分比较高，糖的新陈代谢需钙，如果食物里边的含钙量缺乏，人体就会主动运用体内储存的钙去继续新陈代谢。所以就会形成体内的钙大量丢失，影响孩子的身体发育。这时家长能够调整一下孩子的饮食，多让孩子吃一些小麦、玉米、红薯之类的粗粮，促进钙的吸收。\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<img src=\" /Upload/20170903/thumb_600_59abf3779e356.jpg\" alt=\"\" /> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	高磷食物\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　如果孩子体内磷过剩的话，由于磷是很容易与钙发生化学反应，最终随着大便排出人体。所以家长要适当给孩子吃动物肝脏和坚果。让孩子体内的钙磷份额平衡，削减钙质丢失。并且在进食这些食物时，尽量是跟服用钙片的时间错开。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　肉类\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　肉类的过量进食不只会让孩子的体重飙升，有脂肪超支情况。并且肉类自身的含钙量比较低，吃太多会致使膳食蛋白过量，致使尿钙大量丢失。可是并不是说不要让孩子吃肉，家长要调整好饮食，让孩子养成荤素调配合理的饮食习惯。在煮羊肉时能够放点胡萝卜，做牛肉时放点西红柿，炖鱼时加点豆腐，这都是防止孩子钙质丢失的不错方法\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<img src=\" /Upload/20170903/thumb_600_59abf392e5dfa.jpg\" alt=\"\" />', '孩子从各种食物中获取生长发育所需的养分。所以如今许多家长都会重视孩子平时饮食的调配，可是许多家长都不知道，有的食物却会阻碍孩子吸收养分，让孩子体内的养分白白丢失。今日就为我们罗列几个食物例子，这些食物会阻碍孩子去吸收钙质，甚至会加速身体内钙质的丢失。经常吃这些食物的孩子，基本上越是补钙越是缺钙。', '', '', '1', '1', '2017-09-03 20:20:40', '2017-09-03 20:20:40', '0', '0', '0');
+INSERT INTO `yyg_content` VALUES ('168', ' 喂奶后少做这一步 后果很严重', '<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	喂奶时，如果你看到宝宝吮吸的速度变慢了，眼皮正在打架，眼看就要睡着了，接下来，你会怎么做?\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　A、就让宝宝含着奶嘴睡吧，反正大人也困到不行了，先睡了再说。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　B、把奶嘴拔出来，再让宝宝躺下来睡觉。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	　　C、把宝宝竖抱片刻(15分钟以上)，听见宝宝打嗝的声音平静下来了，再让宝宝入睡。\r\n</p>\r\n<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n	<br />\r\n</p>\r\n<p>\r\n	<img src=\" /Upload/20170903/thumb_600_59abf3dc357dd.jpg\" alt=\"\" />\r\n</p>\r\n<p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　眼尖的妈妈或许一眼就看出来了，前两种做法明显没有第三种靠谱，答案明显是C。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　不过，能选对答案，不代表实际操作的时候就能做对。现实中很多妈妈常常忽略拍嗝这一步，让宝宝喝完奶了马上就睡。然而，这样真有可能会导致不可挽回的后果!\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　2月27日上午10点多，浙江一6个月大的宝宝喝完一瓶奶后仰躺着睡着了。一个多小时后孩子父亲回家看宝宝，却发现孩子全身皮肤发黑，气息全无。着急的家人赶紧将孩子送到医院急救，但由于奶液呛入呼吸道已久，孩子早就没了呼吸，再也无法醒过来了。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　父母悲痛万分，这是他们的第一个孩子，没想到因为大人一时疏忽，孩子还没来得及好好长大，就这样离开了他们。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　以前，我了解到类似的事件多是在报纸或电视，虽然也会非常心疼，但体会没有那么深。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　今年春节前的前一周，朵妈一个亲戚家的宝宝(尚未满月)，因躺着给宝宝喂奶，结果宝宝把奶液呛入到肺部了，由于情况比较严重，宝宝的春节最终是在重症监护室中度过的(所幸抢救及时，宝宝后来康复出院了)。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　说实在的，当时听到这个消息，我除了非常心疼孩子之外，又非常自责“为什么我不早点提醒他们，不能躺着给宝宝喂奶呢?”我妈知道我心里的矛盾后，回我一句：“人家这是二胎了，第一胎孩子比朵朵还大，论经验你还不如人家，你说了人家也不一定会留心听……”\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　我竟无言以对，只能说：经验不一定就是对的!老司机一旦粗心，也会闯下大祸!\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　此前还看到这样一条新闻：\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　四川成都一女婴，因呛奶造成吸入性肺炎，大脑严重缺氧，女婴面临脑瘫的危险……\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　孩子因呛奶导致脑瘫，想想也是很悲剧!所以说，只要宝宝还需要喂奶，呛奶这事随时都有可能会发生，有关呛奶的一些知识，每个妈妈都要知道。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　严重呛奶时，只有4分钟时间解救!\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　由于消化系统尚未发育成熟，对于1岁内的宝宝来说，吐奶、或呛奶是时有发生的事，越小的宝宝发生吐奶的几率越大。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　通常认为，呛奶属于比较紧急的情况，严重呛奶时，抢救时间只有4分钟!因为此时的奶液进入了呼吸道中，要是不及时处理，孩子就会因为窒息的缘故导致死亡。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　宝宝呛奶应竖着抱?90%的妈妈都错了!\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　那么，孩子发生呛奶了，到底应该怎么处理呢?很多妈妈可能会回答：竖着抱一会，把奶拍出来!\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　很遗憾，答案是错误的!\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　喂完奶后竖着抱，可以预防吐奶或呛奶，但是一旦发生吐奶或呛奶了，竖着抱只会导致奶越呛越深，甚至进入到肺部!\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　正确的应对方法是什么呢?\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　1、轻微呛奶时，快速让婴儿躺下来，将头部侧向一边，手掌握成空心巴掌，拍打婴儿的背部，使吸入的奶液流出来，同时注意及时清理婴儿口腔鼻道中的异物。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　(简要步骤：使婴儿躺下、侧脸→空心巴掌拍背→及时清理分泌物)\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　2、严重呛奶时，应让婴儿俯卧在家长的大腿上，头部稍低于身体，手握空心巴掌，叩击孩子的背部，使孩子把奶液咳出来，同时也要注意清理分泌物。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　(紧要步骤：使婴儿俯卧→空心巴掌叩击背部→及时清理分泌物)\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　如何避免呛奶的发生?拍嗝是关键!\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　新闻事件中的父母，如果喂完奶后注意帮宝宝拍嗝，也许悲剧就不会发生了!\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　拍嗝能帮助宝宝排出胃部的气体，减少吐奶或呛奶的发生。喂完奶后，将宝宝竖着抱片刻(宝宝还不能自主抬头之前，大人的手部应给予宝宝头颈背部平稳的支撑)，轻轻拍打其背部，最好听到宝宝有打嗝的声音，等到停止打嗝了，再将宝宝放到床上平躺。\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　此外，预防呛奶，以下几点也不能忽略：\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　1、少量多次喂奶，以免给宝宝的胃部带来太大的压力;\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　2、母乳亲喂时，妈妈可用中指和食指按压住乳晕，控制出奶量;\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　3、人工喂养时，奶嘴不宜开得太大;\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　4、无论是何种喂养方式，都要注意抱姿，斜抱的方式更能预防呛奶，切忌不要让宝宝平躺着喂奶;\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　5、避免在宝宝哭闹时喂奶，更不宜在宝宝喂奶时逗他笑;\r\n	</p>\r\n	<p style=\"color:#353535;font-family:&quot;font-size:14px;\">\r\n		　　6、宝宝熟睡后，大人最好陪伴在身旁，或至少应定期观察宝宝是否有发生吐奶、呛奶等情况。\r\n	</p>\r\n</p>', '喂奶时，如果你看到宝宝吮吸的速度变慢了，眼皮正在打架，眼看就要睡着了，接下来，你会怎么做?', '', '', '1', '1', '2017-09-03 20:22:04', '2017-09-03 20:22:04', '0', '0', '0');
+INSERT INTO `yyg_content` VALUES ('169', '大嘴熊的鼓励', '<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	<img src=\"http://test.yygcms.cn/Upload/20170903/thumb_600_59abf43c73ab4.jpg\" alt=\"\" /> \r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	在一个美丽的小村庄里，住着一群可爱的小动物。活泼的大嘴熊和调皮的小熊三兄弟——欢实、皮实、结实，是最要好的朋友。一天，村里贴出了要举行讲故事比赛的通知，选出今年的故事大王。欢实、皮实和大嘴熊跃跃欲试，他们都觉得自己是讲故事的天才。只有结实偷偷地躲了起来，因为平时经常有小伙伴取笑他说话慢，还有点儿结巴。\r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	“这个结实跑哪儿去了？”大嘴熊把脖子伸得长长的，东瞧瞧西望望，寻找着结实。大嘴熊非常了解结实的想法。每次有小伙伴取笑结实时，他都会伸出援（yuán）助之手。大嘴熊心想：“结实一定是因为没有自信才悄悄地躲起来，我得找到他，鼓励他，给他加油！”\r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	“结实，可爱又帅气的结实兄弟，你在哪儿呢？”大嘴熊的喊声越来越大。\r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	“嘘，小……小声点儿，别……别……别喊了，我在这儿呢。”结实从玉米地里钻了出来。\r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	“你怎么躲在这里呀？要评选今年的故事大王了，你得参加比赛呀！”大嘴熊一边帮结实拍落身上的灰尘一边说。\r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	“我……我……我可不行。”结实胆怯（qiè）地说。“怕什么！从现在起，我每天都陪你练发音，说绕口令，只要多加练习，一定能行的。即使成不了故事大王，你也要锻炼一下胆量，不能总是不敢上台讲话呀。”\r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	“我一上台，他……他们又该取笑我了。”结实低着头小声说。\r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	“谁再取笑你，我就把他的嘴封住！”大嘴熊愤愤地说。\r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	从那以后，每天清晨，大嘴熊都陪着结实去鱼塘边练习发音。他还帮结实编了一个故事——《<a href=\"http://www.gushi365.com/info/9400.html\">小魔怪的树</a>》。\r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	大嘴熊和结实就这样练哪练，十天后，比赛的日子到了。结实精心打扮了一番——头上戴了顶西瓜帽，可爱极了。\r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	轮到结实上场了，主持人小喜鹊（què）说：“欢迎结实来参加比赛，我们大家给他掌声鼓励好不好？”\r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	“好，好！结实结实你最棒！”母鸡罗丝姐妹，还有大嘴熊、欢实、皮实大声地给结实加油！\r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	结实走上舞台，虽然紧张得不行，但想起大嘴熊的鼓励，心里就平静了许多。他昂着头，绘声绘色地讲起了《小魔怪的树》，观众们都听得入迷了。结实讲完后，台下响起了热烈的掌声。他简直不敢相信，自己居然可以表演得这么好。\r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	“祝贺你，结实！我就说你能行嘛！”大嘴熊捧着一大束野花送给结实。\r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	“谢谢你，大嘴熊！”结实激动地拥抱大嘴熊。\r\n</p>\r\n<p style=\"font-family:&quot;font-size:22px;vertical-align:baseline;text-align:justify;text-indent:2em;color:#444444;background-color:#FFFFFF;\">\r\n	比赛的最终结果是，结实获得了第三名。这个成绩真不错！更令大家高兴的是，从这以后，他彻（chè）底改掉了一紧张就结巴的毛病，村子里举行的各项活动，都少不了他的参与呢！\r\n</p>', '在一个美丽的小村庄里，住着一群可爱的小动物。活泼的大嘴熊和调皮的小熊三兄弟——欢实、皮实、结实，是最要好的朋友。一天，村里贴出了要举行讲故事比赛的通知，选出今年的故事大王。欢实、皮实和大嘴熊跃跃欲试，他们都觉得自己是讲故事的天才。', '', '', '33', '1', '2017-09-03 20:23:48', '2017-09-03 20:23:48', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for yyg_options
@@ -1160,101 +607,35 @@ INSERT INTO `yyg_signup` VALUES ('17', '戴敏', '13560093349', '13560093349', '
 INSERT INTO `yyg_signup` VALUES ('18', '曾小猪', '13232333', '', '2013-08-04 23:18:17', '1');
 
 -- ----------------------------
--- Table structure for yyg_style
+-- Table structure for yyg_stage_rel
 -- ----------------------------
-DROP TABLE IF EXISTS `yyg_style`;
-CREATE TABLE `yyg_style` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(40) NOT NULL DEFAULT '',
-  `region` varchar(20) NOT NULL DEFAULT '',
-  `designer` varchar(20) NOT NULL DEFAULT '',
-  `huxing` varchar(20) NOT NULL DEFAULT '',
-  `area` int(11) NOT NULL DEFAULT '0',
-  `createtime` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of yyg_style
--- ----------------------------
-INSERT INTO `yyg_style` VALUES ('2', '成功新天地', '乌当', '李合林', '1团-A户型', '110', '2013-09-04 21:18:48');
-INSERT INTO `yyg_style` VALUES ('3', '帝景传说', '白云', '李合林', '1团-A户型', '128', '2013-09-04 21:30:39');
-INSERT INTO `yyg_style` VALUES ('4', '花果园', '南明', '李合林', '1团-A户型', '90', '2013-09-04 21:54:25');
-INSERT INTO `yyg_style` VALUES ('5', '花果园', '南明', '刘春艳', '1团-A户型', '105', '2013-09-04 21:57:59');
-INSERT INTO `yyg_style` VALUES ('6', '银海元龙', '云岩', '刘春艳', '1团-A户型', '130', '2013-09-04 21:59:28');
-INSERT INTO `yyg_style` VALUES ('7', '银海元隆', '云岩', '邱月霞', '1团-A户型', '110', '2013-09-04 22:00:30');
-INSERT INTO `yyg_style` VALUES ('8', '中铁逸都', '白云', '邱月霞', '1团-A户型', '140', '2013-09-04 22:01:11');
-INSERT INTO `yyg_style` VALUES ('9', '贝地卢加诺', '云岩', '吴芳权', '1团-A户型', '100', '2013-09-04 22:02:17');
-INSERT INTO `yyg_style` VALUES ('10', '保利温泉', '乌当', '吴芳权', '1团-A户型', '130', '2013-09-04 22:02:48');
-INSERT INTO `yyg_style` VALUES ('11', '国际城', '小河', '徐鹏峰', '1团-A户型', '98', '2013-09-04 22:04:36');
-INSERT INTO `yyg_style` VALUES ('12', '世纪城', '白云', '徐鹏峰', '1团-A户型', '130', '2013-09-04 22:05:15');
-INSERT INTO `yyg_style` VALUES ('13', '中铁逸都', '白云', '徐鹏峰', '1团-A户型', '110', '2013-09-04 22:05:53');
-INSERT INTO `yyg_style` VALUES ('14', '乌江怡院', '云岩', '杨荷英', '1团-A户型', '90', '2013-09-04 22:06:30');
-INSERT INTO `yyg_style` VALUES ('15', '保利温泉', '乌当', '张建豪', '1团-A户型', '110', '2013-09-04 22:07:07');
-INSERT INTO `yyg_style` VALUES ('16', '金元国际', '白云', '张建豪', '1团-A户型', '160', '2013-09-04 22:07:41');
-
--- ----------------------------
--- Table structure for yyg_style_rel
--- ----------------------------
-DROP TABLE IF EXISTS `yyg_style_rel`;
-CREATE TABLE `yyg_style_rel` (
-  `sid` int(11) NOT NULL,
-  `style` int(11) NOT NULL,
-  PRIMARY KEY (`sid`,`style`)
+DROP TABLE IF EXISTS `yyg_stage_rel`;
+CREATE TABLE `yyg_stage_rel` (
+  `cid` int(10) unsigned NOT NULL,
+  `stage` varchar(20) NOT NULL DEFAULT '',
+  PRIMARY KEY (`cid`,`stage`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of yyg_style_rel
+-- Records of yyg_stage_rel
 -- ----------------------------
-INSERT INTO `yyg_style_rel` VALUES ('2', '1');
-INSERT INTO `yyg_style_rel` VALUES ('2', '3');
-INSERT INTO `yyg_style_rel` VALUES ('2', '4');
-INSERT INTO `yyg_style_rel` VALUES ('3', '2');
-INSERT INTO `yyg_style_rel` VALUES ('3', '4');
-INSERT INTO `yyg_style_rel` VALUES ('4', '1');
-INSERT INTO `yyg_style_rel` VALUES ('4', '2');
-INSERT INTO `yyg_style_rel` VALUES ('5', '6');
-INSERT INTO `yyg_style_rel` VALUES ('6', '4');
-INSERT INTO `yyg_style_rel` VALUES ('7', '4');
-INSERT INTO `yyg_style_rel` VALUES ('8', '1');
-INSERT INTO `yyg_style_rel` VALUES ('9', '2');
-INSERT INTO `yyg_style_rel` VALUES ('9', '4');
-INSERT INTO `yyg_style_rel` VALUES ('10', '2');
-INSERT INTO `yyg_style_rel` VALUES ('10', '4');
-INSERT INTO `yyg_style_rel` VALUES ('11', '1');
-INSERT INTO `yyg_style_rel` VALUES ('12', '1');
-INSERT INTO `yyg_style_rel` VALUES ('12', '2');
-INSERT INTO `yyg_style_rel` VALUES ('13', '1');
-INSERT INTO `yyg_style_rel` VALUES ('14', '1');
-INSERT INTO `yyg_style_rel` VALUES ('15', '1');
-INSERT INTO `yyg_style_rel` VALUES ('15', '2');
-INSERT INTO `yyg_style_rel` VALUES ('16', '1');
-INSERT INTO `yyg_style_rel` VALUES ('16', '3');
-INSERT INTO `yyg_style_rel` VALUES ('17', '2');
-INSERT INTO `yyg_style_rel` VALUES ('17', '3');
+INSERT INTO `yyg_stage_rel` VALUES ('155', '备孕');
+INSERT INTO `yyg_stage_rel` VALUES ('161', '备孕');
+INSERT INTO `yyg_stage_rel` VALUES ('162', '0-1岁');
+INSERT INTO `yyg_stage_rel` VALUES ('163', '孕期');
+INSERT INTO `yyg_stage_rel` VALUES ('164', '0-1岁');
 
 -- ----------------------------
--- Table structure for yyg_yuding
+-- Table structure for yyg_tags
 -- ----------------------------
-DROP TABLE IF EXISTS `yyg_yuding`;
-CREATE TABLE `yyg_yuding` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `area` int(11) NOT NULL DEFAULT '0',
-  `shi` int(11) NOT NULL DEFAULT '0',
-  `ting` int(11) NOT NULL DEFAULT '0',
-  `wei` int(11) NOT NULL DEFAULT '0',
-  `city` varchar(30) NOT NULL,
-  `xiaoqu` varchar(30) NOT NULL,
-  `style` varchar(30) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `sex` varchar(4) NOT NULL DEFAULT '男',
-  `phone` varchar(30) NOT NULL,
-  `yusuan` decimal(10,0) NOT NULL DEFAULT '0',
-  `created` datetime DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `yyg_tags`;
+CREATE TABLE `yyg_tags` (
+  `cid` int(10) unsigned NOT NULL,
+  `tag` varchar(4) NOT NULL DEFAULT '',
+  PRIMARY KEY (`cid`,`tag`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of yyg_yuding
+-- Records of yyg_tags
 -- ----------------------------
-INSERT INTO `yyg_yuding` VALUES ('37', '102', '2', '1', '1', '广州', '天朗明居', '欧式', '戴敏', '男', '13560093349', '900000', '2013-10-06 10:49:30');
+INSERT INTO `yyg_tags` VALUES ('169', '');
