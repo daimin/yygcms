@@ -27,7 +27,11 @@
                             <tr >
                                 <td class="head "><span class="yyg-required">*</span>内容： </td>
                                 <td class="tail" colspan="2"> <textarea name="content" style='width:70%' rows="30" id="yyg_content">{$content.content}</textarea></td>
-
+                            </tr>
+                            <tr >
+                                <td class="head "><span class="yyg-required">*</span>导读： </td>
+                                <td class="tail" colspan="2"> <textarea name="intro" style='width:70%;margin-top: 3px;margin-bottom: 3px;' rows="4" id="yyg_intro">{$content.intro}</textarea>
+                                    <span class="info">文章的导读，文章的简介，内容摘要</span></td>
                             </tr>
                             <tr >
                                 <td class="head "><span class="yyg-required">*</span>分类： </td>
@@ -56,8 +60,13 @@
                                 </td>
                             </tr>
                             <tr >
+                                <td class="head">标签：</td>
+                                <td class="tail" colspan="2"> <input type='text' name='tags' value="<?php echo $tags?>" style='width:40%'><span class="info">标签以英文逗号(,)分割，每个标签不超过4个字符</span>
+                                </td>
+                            </tr>
+                            <tr >
                                 <td class="head">关联URL：</td>
-                                <td class="tail" colspan="2"> <input type='text' name='relurl' value="{$content.relurl}" style='width:40%'>(点击该文档，跳转到的页面(默认是该文档的URL))
+                                <td class="tail" colspan="2"> <input type='text' name='relurl' value="{$content.relurl}" style='width:40%'><span class="info">(点击该文档，跳转到的页面(默认是该文档的URL))</span>
 
                                 </td>
                             </tr>
@@ -108,10 +117,17 @@
             resizeType : 1,
             allowPreviewEmoticons : false,
             allowImageUpload : false,
+            pasteType : 2,
             items : [
-                'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
-                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
-                'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+                'source', '|', 'undo', 'redo', '|', 'cut', 'copy', 'paste',
+                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+                'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+                'flash', 'media', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+                'anchor', 'link', 'unlink'
+            ]
         });
     });
 

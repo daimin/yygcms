@@ -25,7 +25,11 @@
                             <tr >
                                 <td class="head "><span class="yyg-required">*</span>内容： </td>
                                 <td class="tail" colspan="2"> <textarea name="content" style='width:70%' rows="30" id="yyg_content"></textarea></td>
-
+                            </tr>
+                            <tr >
+                                <td class="head "><span class="yyg-required">*</span>导读： </td>
+                                <td class="tail" colspan="2"> <textarea name="intro" style='width:70%;margin-top: 3px;margin-bottom: 3px;' rows="4" id="yyg_intro"></textarea>
+                                    <span class="info">文章的导读，文章的简介，内容摘要</span></td>
                             </tr>
                             <tr >
                                 <td class="head "><span class="yyg-required">*</span>分类： </td>
@@ -47,6 +51,11 @@
                                             {$sitem}
                                     </label>
                                     </volist>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td class="head">标签：</td>
+                                <td class="tail" colspan="2"> <input type='text' name='tags' value="" style='width:40%'><span class="info">标签以英文逗号(,)分割，每个标签不超过4个字符</span>
                                 </td>
                             </tr>
                             <tr >
@@ -108,6 +117,7 @@
             allowImageUpload : false,
             allowFlashUpload : false,
             allowMediaUpload : false,
+            pasteType : 2,
             items : [
                 'source', '|', 'undo', 'redo', '|', 'cut', 'copy', 'paste',
                 'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',

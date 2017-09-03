@@ -260,6 +260,7 @@ class ContentAction extends BaseAction {
 					}
 
 					$this->_addAttac($cid);
+					$this->addTags($cid);
 					$contentD->commit();
 				}catch (\Exception $e){
 					$contentD->rollback();
@@ -298,9 +299,20 @@ class ContentAction extends BaseAction {
 		$this->assign('selStages', $selStages);
 	}
 
+	private function getTagsString($cid){
+		$tags = M("tags")->where(['cid' => $cid])->select();
+		$tagArr = [];
+		foreach($tags as $tag){
+			$tagArr []= $tag['tag'];
+		}
+
+		return implode(',', $tagArr);
+	}
+
 	public function edit($cid=False){
 		$contentD = D("Content");
 		$content = $contentD->find($cid);
+
 		$category = M("category")->where(['id' => $content['category_id']])->find();
 	    if($this->isGet()){
 			$subCategorys = M("category")->where(['pid' => $category['id']])->select();
@@ -319,6 +331,7 @@ class ContentAction extends BaseAction {
             $this->assign("attachAllow", $this->_sAttachAllow($opts->attachAllow));
 			$this->assign('option', $opts);
 			$this->assign('stages', C('__YYG_YUER_STAGE__'));
+			$this->assign('tags', $this->getTagsString($cid));
 			$this->getYuerStages($cid);
 			$this->display("Content:edit");
 
@@ -348,6 +361,7 @@ class ContentAction extends BaseAction {
 					}
 					$contentD->save();
 					$this->_addAttac(I("id"));
+					$this->addTags($cid);
 					$contentD->commit();
 				}catch (\Exception $e){
 					$contentD->rollback();
@@ -567,5 +581,30 @@ class ContentAction extends BaseAction {
 		$data['topnum'] = 0;
 		$res = $contentD->where("`id`='$cid'")->save($data);
 		$this->jsonReturn($res);
+	}
+
+	private function addTags($cid)
+	{
+		$tags = I("post.tags");
+		$tagsArr = explode(',', $tags);
+		if($tagsArr){
+			M("tags")->startTrans();
+			M("tags")->delete([
+				'cid' => $cid
+			]);
+			try{
+				foreach($tagsArr as $tagItem){
+					if(mb_strlen($tagItem) > 4){
+						M("tags")->rollback();
+						$this->error("标签不能超过4个字符");
+					}
+					$data = ['cid' => $cid, 'tag' => $tagItem];
+					M("tags")->add($data, array(), True);
+				}
+			}catch (\Exception $e){
+				M("tags")->rollback();
+			}
+			M("tags")->commit();
+		}
 	}
 }

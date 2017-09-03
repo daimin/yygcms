@@ -7,7 +7,8 @@ class ContentModel extends Model{
 	//自动验证
 	protected $_validate = array(
         array('title','require','标题必须输入！'), //默认情况下用正则进行验证
-        array('content','require','内容必须输入！'), //默认情况下用正则进行验证
+		array('content','require','内容必须输入！'), //默认情况下用正则进行验证
+		array('intro','require','摘要必须输入！'), //默认情况下用正则进行验证
         array('title','1,200','标题不可小于1个字符或大于200个字符！',0,'length'), //默认情况下用正则进行验证
        
 	);
