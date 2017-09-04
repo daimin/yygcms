@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 
     define('APP_DEBUG', true);
 
-	define('APP_NAME','Site');
+	define('APP_NAME','Application');
 
 	define('APP_PATH', './'.APP_NAME.'/');
 
