@@ -100,10 +100,10 @@ class BaseController extends Controller {
 	public function upload() {
 		$upload = new Upload();// 实例化上传类
 		$opt = $this->getOptions();
-		$sfdir = '/'.trim(C("__YYG_UPLOAD_DIR__"), '/').'/';
+//		$sfdir = '/'.trim(C("__YYG_UPLOAD_DIR__"), '/').'/';
 		$upload->maxSize  = intval($opt->maxImgSize) ;
 		$upload->allowExts  = explode(',', $opt->attachAllow);
-		$upload->savePath =  realpath(APP_PATH.'/'.$sfdir).'/';
+//		$upload->savePath =  realpath(THINK_PATH.'/../'.$sfdir).'/';
 		$upload->thumb = true;
 		$upload->thumbMaxWidth = $opt->thumbMaxWidth;
 		$upload->thumbMaxHeight = $opt->thumbMaxHeight;
@@ -113,17 +113,16 @@ class BaseController extends Controller {
 		$upload->autoSub = true;
 		$upload->subType = 'date';
 		$upload->dateFormat = 'Ymd';
-
-		if(!$upload->upload()) {// 上传错误提示错误信息
-			$this->jsonReturn (false, $upload->getErrorMsg());
+		$info = $upload->upload();
+		if(!$info) {// 上传错误提示错误信息
+			$this->jsonReturn (false, $upload->getError());
 		}else{// 上传成功 获取上传文件信息
-			$info =  $upload->getUploadFileInfo();
 			if(empty($info) || count($info) == 0){
 				$this->jsonReturn (false, "上传失败");
 			}
 			$attacM = M("attac");
 			$fnew_name = $info[0]['savename'];
-			$urlPath = $sfdir.$fnew_name;
+			$urlPath = $upload->rootPath.$fnew_name;
 			$data['title'] = $fnew_name;
 			$data['path'] = $urlPath;
 			$data['createtime'] = date("Y-m-d H:i:s");

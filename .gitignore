@@ -18,7 +18,7 @@ composer.phar
 .DS_Store
 
 */Runtime/
-/Upload/
+/Uploads/
 
 config.inc.php
 db.php
