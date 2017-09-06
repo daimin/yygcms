@@ -171,7 +171,7 @@ a:link,a:visited {
       <tr>
       <td align="right" height="26" style="padding-right:10px;line-height:26px;">
         	您好！<span class="username"><?php echo session(C("__YYG_AUTH_NAME__")) ?></span>，欢迎使用又一个CMS网站后台系统！
-        	[<a href="<?php echo site_url("Login/logout")?>" target="_top">注销退出</a>]&nbsp;
+        	[<a href="<?php echo admin_url("Login/logout")?>" target="_top">注销退出</a>]&nbsp;
       </td>
       </tr>
       <tr>
@@ -193,12 +193,12 @@ a:link,a:visited {
     <script type="text/javascript">
     function clearCache(){
         if(window.top.confirm("执行该操作将删除系统缓存、运行日志及无用附件，请确认执行？")){
-        	window.location = "<?php echo site_url("ClearCache/") ?>";
+        	window.location = "<?php echo admin_url("ClearCache/") ?>";
         }
         
     }
     function changePassword(name){
-        window.top.frames['main'].location = '<?php echo site_url("ChangePassword/index/name/") ?>' + name;
+        window.top.frames['main'].location = '<?php echo admin_url("ChangePassword/index/name/") ?>' + name;
     }
 
     function gotoIndex(){

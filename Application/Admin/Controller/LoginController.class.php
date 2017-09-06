@@ -51,7 +51,7 @@ class LoginController extends Controller {
                 session(C("__YYG_AUTH_NAME__"), $admin['name']);
                 $data = array("lastlogintime"=>$adminsD->curDate());
                 $adminsD->where("`name`='$name'")->save($data);
-                $this->success("登录成功", __APP__.'/Index/');
+                $this->success("登录成功", __MODULE__ .'/Index/');
             }else{
                 $this->error('密码错误！');
             }

@@ -16,7 +16,7 @@ class OptionsModel extends RelationModel{
 
     public function all(){
         $datas = $this->select();
-        $obj = new stdClass();
+        $obj = new \stdClass();
         
         foreach($datas as $data){
             if(empty($data) || empty($data['name'])) continue;

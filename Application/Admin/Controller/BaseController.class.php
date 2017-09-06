@@ -2,6 +2,7 @@
 namespace Admin\Controller;
 
 use \Think\Controller;
+use Think\Upload;
 
 // 本类由系统自动生成，仅供测试用途
 class BaseController extends Controller {
@@ -97,13 +98,12 @@ class BaseController extends Controller {
 	}
 	
 	public function upload() {
-		import('ORG.Net.UploadFile');
-		$upload = new UploadFile();// 实例化上传类
+		$upload = new Upload();// 实例化上传类
 		$opt = $this->getOptions();
 		$sfdir = '/'.trim(C("__YYG_UPLOAD_DIR__"), '/').'/';
 		$upload->maxSize  = intval($opt->maxImgSize) ;
 		$upload->allowExts  = explode(',', $opt->attachAllow);
-		$upload->savePath =  realpath(__YYG_ADMIN_ROOT__.'/../'.$sfdir).'/';
+		$upload->savePath =  realpath(APP_PATH.'/'.$sfdir).'/';
 		$upload->thumb = true;
 		$upload->thumbMaxWidth = $opt->thumbMaxWidth;
 		$upload->thumbMaxHeight = $opt->thumbMaxHeight;
@@ -146,6 +146,10 @@ class BaseController extends Controller {
 			"errMsg" => $errMsg,
 			"errCode" => $errcode,
 		]);
+	}
+
+	public function isGet(){
+		return IS_GET;
 	}
 	
 }

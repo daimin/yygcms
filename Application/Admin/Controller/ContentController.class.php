@@ -3,6 +3,9 @@
 namespace Admin\Controller;
 
 // 本类由系统自动生成，仅供测试用途
+use Admin\Model\ContentModel;
+use Think\Page;
+
 class ContentController extends BaseController {
 
 	/**
@@ -109,8 +112,6 @@ class ContentController extends BaseController {
 	 * @param $enddate
 	 */
 	private function contentListData($pageCode, $pageSize, $o_keyword, $o_status, $sort, $o_category, $startdate, $enddate){
-		import('ORG.Util.Page');// 导入分页类
-
 		if(empty($o_status)){
 			$o_status = I("o_status");
 		}

@@ -35,7 +35,7 @@ function saySorry(){
                     ?>
                     <li>
                         <div class='items'>
-                            <div class='fllct'><a href='<?php echo site_url("content/category/code/".$category['pagecode']) ?>' target='main'><?php echo $category['name'] ?></a></div>
+                            <div class='fllct'><a href='<?php echo admin_url("content/category/code/".$category['pagecode']) ?>' target='main'><?php echo $category['name'] ?></a></div>
                         </div>
                     </li>
                     <?php
@@ -50,12 +50,12 @@ function saySorry(){
                 <ul class='sitemu'>
                     <li>
                         <div class='items'>
-                            <div class='fllct'><a href='<?php echo site_url("category/mgr/")?>'  target='main'>设置分类</a></div>
+                            <div class='fllct'><a href='<?php echo admin_url("category/mgr/")?>'  target='main'>设置分类</a></div>
                         </div>
                     </li>
                     <li>
                         <div class='items'>
-                            <div class='fllct'><a href='<?php echo site_url("comment/mgr/")?>'  target='main'>评论管理</a></div>
+                            <div class='fllct'><a href='<?php echo admin_url("comment/mgr/")?>'  target='main'>评论管理</a></div>
                         </div>
                     </li>
                 </ul>
@@ -68,12 +68,12 @@ function saySorry(){
           <ul class='sitemu'>
             <li>
               <div class='items'>
-                <div class='fllct'><a href='<?php echo site_url("AdminMgr/add")?>'  target='main'>新增用户</a></div>
+                <div class='fllct'><a href='<?php echo admin_url("AdminMgr/add")?>'  target='main'>新增用户</a></div>
               </div>
             </li>
                <li>
               <div class='items'>
-                <div class='fllct'><a href='<?php echo site_url("AdminMgr")?>' target='main'>用户列表</a></div>
+                <div class='fllct'><a href='<?php echo admin_url("AdminMgr")?>' target='main'>用户列表</a></div>
               </div>
                </li>
           </ul>
@@ -85,12 +85,12 @@ function saySorry(){
           <ul class='sitemu'>
             <li>
               <div class='items'>
-                <div class='fllct'><a href='<?php echo site_url("SysMgr")?>'  target='main'>系统设置</a></div>
+                <div class='fllct'><a href='<?php echo admin_url("SysMgr")?>'  target='main'>系统设置</a></div>
               </div>
             </li>
                <li>
               <div class='items'>
-                <div class='fllct'><a href='<?php echo site_url("SysMgr/backup")?>' target='main'>数据备份</a></div>
+                <div class='fllct'><a href='<?php echo admin_url("SysMgr/backup")?>' target='main'>数据备份</a></div>
               </div>
                </li>
           </ul>

@@ -21,3 +21,4 @@ composer.phar
 /Upload/
 
 config.inc.php
+db.php

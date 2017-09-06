@@ -136,7 +136,7 @@
             'uploader'  : '__PUBLIC__/admin/uploadify/uploadify.swf?var='+(new Date()).getTime(),
             'script'    : '__URL__/upload',
             'cancelImg' : '__PUBLIC__/admin/uploadify/cancel.png',
-            'folder'    : '<?php echo __ROOT__.C("__YYG_UPLOAD_DIR__");?>',
+            'folder'    : '<?php echo C("__YYG_UPLOAD_DIR__");?>',
             'auto'      : true,
             'multi'     : true,
             'queueSizeLimit' : 8,
