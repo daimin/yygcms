@@ -274,7 +274,7 @@ class ContentController extends BaseController {
 					$contentD->rollback();
 				}
 
-				$this->success("添加文档成功", __URL__.'/category/code/'.$code);
+				$this->success("添加文档成功", __CONTROLLER__.'/category/code/'.$code);
 			}
 		}
 		
@@ -293,7 +293,7 @@ class ContentController extends BaseController {
 			$this->_addAttac($cid);
 			$this->_addAttacDesc();
 		
-			$this->success("添加文档成功", __URL__.'/index/type/'.$type);
+			$this->success("添加文档成功", __CONTROLLER__.'/index/type/'.$type);
 		}
 
 	}
@@ -383,7 +383,7 @@ class ContentController extends BaseController {
 					$parentCategory = M("category")->where(['id' => $category['pid']])->find();
 					$pageCode = $parentCategory['pagecode'];
 				}
-				$this->success("添加文档成功", __URL__.'/category/code/'.$pageCode);
+				$this->success("添加文档成功", __CONTROLLER__.'/category/code/'.$pageCode);
 			}
 		}
 	}
@@ -401,7 +401,7 @@ class ContentController extends BaseController {
 			$this->_addAttac(I("id"));
 			$this->_addAttacDesc();
 
-			$this->success("更新文档成功", __URL__.'/index/type/'.I("type"));
+			$this->success("更新文档成功", __CONTROLLER__.'/index/type/'.I("type"));
 		}
 	}
 	

@@ -1,5 +1,5 @@
 <include file="Public:header" />
-<div style="min-width:780px">
+<div style="min-width:780px;height:1440px;">
     <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D6DDD6" align="center">
         <tr>
             <td height="28" background="__PUBLIC__/admin/images/tbg.gif" style="padding-left:10px;">
@@ -173,7 +173,7 @@
             opts[opts.length] = '<option value="'+width+'">缩略图' + jsondata['thumb']['width'][it] + 'px</option>';
         });
         opts.reverse();
-        $("#update_img_list").append('<div><a class="img-link" target="_blank" href="' + jsondata['path'] + '">' +
+        $("#update_img_list").prepend('<div><a class="img-link" target="_blank" href="' + jsondata['path'] + '">' +
             jsondata['name'] +
             '</a>' +
             '<a href="javascript:void(0)" class="img-del" onclick="deleteUpImg(this, \'' + jsondata['id'] + '\')">' +

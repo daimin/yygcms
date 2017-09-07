@@ -6,9 +6,7 @@ use Think\Upload;
 
 // 本类由系统自动生成，仅供测试用途
 class BaseController extends Controller {
-	
-	
-	
+
     private $_options = False;
     
     public function _initialize(){
@@ -100,40 +98,49 @@ class BaseController extends Controller {
 	public function upload() {
 		$upload = new Upload();// 实例化上传类
 		$opt = $this->getOptions();
-//		$sfdir = '/'.trim(C("__YYG_UPLOAD_DIR__"), '/').'/';
 		$upload->maxSize  = intval($opt->maxImgSize) ;
-		$upload->allowExts  = explode(',', $opt->attachAllow);
-//		$upload->savePath =  realpath(THINK_PATH.'/../'.$sfdir).'/';
-		$upload->thumb = true;
-		$upload->thumbMaxWidth = $opt->thumbMaxWidth;
-		$upload->thumbMaxHeight = $opt->thumbMaxHeight;
-		$upload->thumbPrefix = $opt->thumbPrefix;
-		$upload->uploadReplace = true;
-		$upload->zipImages = true;
+		$upload->exts  = explode(',', $opt->attachAllow);
+		$upload->replace = true;
 		$upload->autoSub = true;
-		$upload->subType = 'date';
-		$upload->dateFormat = 'Ymd';
+		$upload->subName = array('date','Ymd');;
 		$info = $upload->upload();
 		if(!$info) {// 上传错误提示错误信息
 			$this->jsonReturn (false, $upload->getError());
 		}else{// 上传成功 获取上传文件信息
-			if(empty($info) || count($info) == 0){
+			if(empty($info) || count($info) == 0 || !isset($info['Filedata'])){
 				$this->jsonReturn (false, "上传失败");
 			}
 			$attacM = M("attac");
-			$fnew_name = $info[0]['savename'];
-			$urlPath = $upload->rootPath.$fnew_name;
+			$fnew_name = $info['Filedata']['savename'];
+			$filepath = $upload->rootPath.$info['Filedata']['savepath'].$fnew_name;
+			$urlPath = ltrim($filepath, '.');
 			$data['title'] = $fnew_name;
 			$data['path'] = $urlPath;
 			$data['createtime'] = date("Y-m-d H:i:s");
 			$id = $attacM->add($data);
+			$this->genThumbs($filepath, $opt, $upload->rootPath, $info);
 			$dataJson = [];
 			$dataJson['id'] = $id;
 			$dataJson['path'] = $urlPath;
-			$dataJson['name'] = substr($fnew_name, strpos($fnew_name, '/') + 1);
-			$dataJson['thumb'] = ['width' => explode(',', $opt->thumbMaxWidth), 'prefix' => $upload->thumbPrefix];
+			$dataJson['name'] = $info['Filedata']['savename'];
+			$dataJson['thumb'] = ['width' => explode(',', $opt->thumbMaxWidth), 'prefix' => $opt->thumbPrefix];
+
+
 			$this->jsonReturn($dataJson);
 		}
+	}
+
+	private function genThumbs($filepath, $opt, $rootPath, $info){
+
+		$widths = explode(',', $opt->thumbMaxWidth);
+		$heights = explode(',', $opt->thumbMaxHeight);
+		foreach($widths as $idx=>$width){
+			$image = new \Think\Image();
+			$image->open($filepath);
+			$tbpath = $rootPath.$info['Filedata']['savepath'].$opt->thumbPrefix.$width.'_'.$info['Filedata']['savename'];
+			$image->thumb($width, $heights[$idx],\Think\Image::IMAGE_THUMB_CENTER)->save($tbpath);
+		}
+
 	}
 
 	public function jsonReturn($data, $errMsg="", $errcode=0){
