@@ -13,21 +13,42 @@ use \Think\Controller;
 require(THINK_PATH . "/../Snoopy.class.php");
 
 class SpiderController extends Controller {
-    public function say(){
-        $snoopy = new \Snoopy();
 
-        $sourceURL = "http://www.ci123.com/";
+    public function handleCi123($url=''){
+        $snoopy        = new \Snoopy();
+        if(empty($url)){
+            $sourceURL = "http://www.ci123.com/";
+        }else{
+            $this->printColor("Begin Handle $url ===");
+            $handled = M("url_handled")->where(['hash' => md5($url), 'url' => $url])->find();
+            if(empty($handled)){
+                $sourceURL = $url;
+                M("url_handled")->data(['hash' => md5($url)])->add();
+            }else{
+                return;
+            }
+        }
+
         $snoopy->fetchlinks($sourceURL);
 
         $as = $snoopy->results;
-        $re = "/\d+\.html$/";
+
+        $re = '|^http://news\.ci123\.com/article/\d+\.html$|';
 
         //过滤获取指定的文件地址请求
+        $matchArticleUrls = [];
         foreach ($as as $tmp) {
             if (preg_match($re, $tmp)) {
-                $this->getImgURL($tmp);
+                $matchArticleUrls []= $tmp;
             }
         }
+        if(count($matchArticleUrls) > 0){
+            foreach($matchArticleUrls as $matchArticleUrl){
+                $this->getImgURL($matchArticleUrl);
+                $this->handleCi123($url);
+            }
+        }
+
     }
 
     function getImgURL($siteName) {
@@ -52,7 +73,7 @@ class SpiderController extends Controller {
 
         $url = $name.".".$suffix;
 
-        echo "请求的图片地址：".$url."<br/>";
+        $this->printColor("请求的图片地址：".$url);
 
         $imgSavePath = "/webser/www/yygcms/Uploads/";
         $imgId = preg_replace("/^.+\/([0-9\-x]+)$/", "\\1", $name);
@@ -67,19 +88,25 @@ class SpiderController extends Controller {
             mkdir ($imgSavePath, 0777, true);
         }
 
-        $imgSavePath .= ("/".$imgId.".".$suffix);
-
-        if (is_file($imgSavePath)) {
-            unlink($imgSavePath);
-            echo "<p style='color:#f00;'>文件".$imgSavePath."已存在，将被删除</p>";
-        }
+        $imgSavePath .= ("/".uuidBase62().".".$suffix);
 
         $imgFile = file_get_contents($url);
+        $imgSaved = M("url_handled")->where(['hash' => md5($imgFile)])->find();
+        if(!empty($imgSaved)){
+            $this->printColor("文件".$imgSavePath."已存在，将不会重复保存", '31');
+            return;
+        }
+
         $flag = file_put_contents($imgSavePath, $imgFile);
 
         if ($flag) {
-            echo "<p>文件".$imgSavePath."保存成功</p>";
+            M("url_handled")->data(['hash' => md5($imgFile), 'url' => $imgSavePath])->add();
+            $this->printColor("文件".$imgSavePath."保存成功", '32');
         }
 
+    }
+
+    function printColor($str, $c='37'){
+        echo sprintf("\e[{$c}m%s\e[0m\n", $str);
     }
 }
