@@ -10,8 +10,16 @@ namespace Admin\Controller;
 
 use \Think\Controller;
 
+require(THINK_PATH . "/../Snoopy.class.php");
+
 class SpiderController extends Controller {
     public function say(){
-        print_r('say some');
+        $snoopy = new \Snoopy;
+
+// $snoopy->fetchtext("http://www.php.net/");
+// print $snoopy->results;
+
+        $snoopy->fetchlinks("http://www.ci123.com/");
+        var_dump($snoopy->results);
     }
 }
