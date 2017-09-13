@@ -11,15 +11,25 @@ namespace Admin\Controller;
 use \Think\Controller;
 
 require(THINK_PATH . "/../Snoopy.class.php");
+require(THINK_PATH . "/../DiDom/Snoopy.class.php");
 
 class SpiderController extends Controller {
+
+    public function test(){
+        $imgsrc = '<img class="aligncenter" title="2" src="http://news.ci123.com/uploads/2017/07/2017-07-27-10450065.jpeg" alt="" width="400" height="300">';
+        $reTag = "/src=\"(http:\/\/.*)\.(jpg|png|gif|jpeg)\"/i";
+
+        if (preg_match_all($reTag, $imgsrc, $matchResult)) {
+            print_r($matchResult);
+        }
+    }
 
     public function handleCi123($url=''){
         $snoopy        = new \Snoopy();
         if(empty($url)){
             $sourceURL = "http://www.ci123.com/";
         }else{
-            $this->printColor("Begin Handle $url ===");
+            $this->printColor("Begin Handle $url ======");
             $handled = M("url_handled")->where(['hash' => md5($url), 'url' => $url])->find();
             if(empty($handled)){
                 $sourceURL = $url;
@@ -58,11 +68,8 @@ class SpiderController extends Controller {
         $fileContent = $snoopy->results;
 
         //匹配图片的正则表达式
-        $reTag = "/<img[^s]+src=\"(http:\/\/[^\"]+).(jpg|png|gif|jpeg)\"[^\/]*\/>/i";
-
-        if (preg_match($reTag, $fileContent)) {
-            $ret = preg_match_all($reTag, $fileContent, $matchResult);
-
+        $reTag = "/src=\"(http:\/\/.*)\.(jpg|png|gif|jpeg)\"/i";
+        if(preg_match_all($reTag, $fileContent, $matchResult)){
             for ($i = 0, $len = count($matchResult[1]); $i < $len; ++$i) {
                 $this->saveImgURL($matchResult[1][$i], $matchResult[2][$i]);
             }
@@ -76,7 +83,7 @@ class SpiderController extends Controller {
         $this->printColor("请求的图片地址：".$url);
 
         $imgSavePath = "/webser/www/yygcms/Uploads/";
-        $imgId = preg_replace("/^.+\/([0-9\-x]+)$/", "\\1", $name);
+//        $imgId = preg_replace("/^.+\/([0-9\-x]+)$/", "\\1", $name);
 
         if ($suffix == "gif") {
             $imgSavePath .= "emotion";
