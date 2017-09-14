@@ -7,6 +7,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) die('require PHP > 5.3.0 !');
 //
 define('MODE_NAME', 'cli');  // 采用CLI运行模式运行
 define('APP_DEBUG', true);
+require(__DIR__ . '/vendor/autoload.php');
 
 //
 //// 定义应用目录

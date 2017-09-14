@@ -9,9 +9,9 @@
 namespace Admin\Controller;
 
 use \Think\Controller;
+use PHPHtmlParser\Dom;
 
-require(THINK_PATH . "/../Snoopy.class.php");
-require(THINK_PATH . "/../DiDom/Snoopy.class.php");
+
 
 class SpiderController extends Controller {
 
@@ -24,8 +24,26 @@ class SpiderController extends Controller {
         }
     }
 
+    public function testDom(){
+        $dom = new Dom;
+        $dom->load('http://www.oschina.net/news/88681/programmer-live-guide');
+        $aa = $dom->find('img');
+        foreach($aa as $aaa){
+            echo $aaa->getAttribute('src')."\n";
+        }
+        $c = $dom->find(".news-content h1");
+        echo $c->text;
+
+        $cs = $dom->find(".news-content .from a");
+        foreach($cs as $ccs){
+            echo $ccs->text;
+        }
+        $cc = $dom->find(".editor-viewer");
+        echo $cc->innerHtml;
+    }
+
     public function handleCi123($url=''){
-        $snoopy        = new \Snoopy();
+        $dom = new Dom;
         if(empty($url)){
             $sourceURL = "http://www.ci123.com/";
         }else{
@@ -39,9 +57,9 @@ class SpiderController extends Controller {
             }
         }
 
-        $snoopy->fetchlinks($sourceURL);
+        $dom->load($sourceURL);
 
-        $as = $snoopy->results;
+        $as = $dom->find("a");
 
         $re = '|^http://news\.ci123\.com/article/\d+\.html$|';
 

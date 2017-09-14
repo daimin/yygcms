@@ -1,5 +1,11 @@
 {
-    "require": {
-        "imangazaliev/didom": "^1.12"
+    "repositories": {
+       "packagist": {
+          "type": "composer",
+          "url": "https://packagist.phpcomposer.com"
+       }
+   },
+   "require": {
+        "paquettg/php-html-parser": "^1.7"
     }
 }
