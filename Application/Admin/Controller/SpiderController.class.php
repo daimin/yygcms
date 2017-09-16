@@ -15,6 +15,15 @@ use PHPHtmlParser\Dom;
 
 class SpiderController extends Controller {
 
+
+    /**
+     * SpiderController constructor.
+     */
+    public function __construct()
+    {
+        ini_set('memory_limit', '512M');
+    }
+
     public function test(){
         $imgsrc = '<img class="aligncenter" title="2" src="http://news.ci123.com/uploads/2017/07/2017-07-27-10450065.jpeg" alt="" width="400" height="300">';
         $reTag = "/src=\"(http:\/\/.*)\.(jpg|png|gif|jpeg)\"/i";
@@ -43,7 +52,6 @@ class SpiderController extends Controller {
     }
 
     public function handleCi123($url=''){
-        $dom = new Dom;
         if(empty($url)){
             $sourceURL = "http://www.ci123.com/";
         }else{
@@ -55,21 +63,9 @@ class SpiderController extends Controller {
             }else{
                 return;
             }
+            $isArticleUrl = true;
         }
-
-        $dom->load($sourceURL);
-
-        $as = $dom->find("a");
-
-        $re = '|^http://news\.ci123\.com/article/\d+\.html$|';
-
-        //过滤获取指定的文件地址请求
-        $matchArticleUrls = [];
-        foreach ($as as $tmp) {
-            if (preg_match($re, $tmp)) {
-                $matchArticleUrls []= $tmp;
-            }
-        }
+        $matchArticleUrls = $this->getMatchArticleUrls($sourceURL);
         if(count($matchArticleUrls) > 0){
             foreach($matchArticleUrls as $matchArticleUrl){
                 $this->getImgURL($matchArticleUrl);
@@ -79,22 +75,52 @@ class SpiderController extends Controller {
 
     }
 
-    function getImgURL($siteName) {
-        $snoopy = new \Snoopy();
-        $snoopy->fetch($siteName);
+    private function getMatchArticleUrls($sourceURL){
+        $dom = new Dom;
+        $dom->load($sourceURL);
+        $as = $dom->find("a");
+        $re = '|^http://news\.ci123\.com/article/\d+\.html$|';
 
-        $fileContent = $snoopy->results;
-
-        //匹配图片的正则表达式
-        $reTag = "/src=\"(http:\/\/.*)\.(jpg|png|gif|jpeg)\"/i";
-        if(preg_match_all($reTag, $fileContent, $matchResult)){
-            for ($i = 0, $len = count($matchResult[1]); $i < $len; ++$i) {
-                $this->saveImgURL($matchResult[1][$i], $matchResult[2][$i]);
+        //过滤获取指定的文件地址请求
+        $matchArticleUrls = [];
+        foreach ($as as $tmp) {
+            $tempHref = $tmp->getAttribute('href');
+            if (preg_match($re, $tempHref)) {
+                $matchArticleUrls []= $tempHref;
             }
         }
+        return $matchArticleUrls;
+    }
+
+    function getImgURL($siteUrl) {
+        $this->printColor("请求的网页地址：".$siteUrl.' ===================================================== ', '34');
+        $dom = new Dom;
+        $dom->load($siteUrl);
+
+        $titleNode = $dom->find('.postTitle');
+        $title =  $titleNode->text;
+        $breadCrumbsNodes =  $dom->find('.breadCrumbs')->find("a");
+        $category = $breadCrumbsNodes[1]->text;
+
+        $contentNode = $dom->find('.entry');
+        $content = $contentNode->innerHtml;
+
+        $imgs = $contentNode->find("img");
+
+        //匹配图片的正则表达式
+        $reTag = "/(http:\/\/.*)\.(jpg|png|gif|jpeg)/i";
+        foreach($imgs as $img){
+            //http://file2.ci123.com/logo2.png
+            $imgSrc = $img->getAttribute('src');
+            if(preg_match($reTag, $imgSrc, $matchResult)){
+                $this->saveImgURL($matchResult[1], $matchResult[2]);
+            }
+        }
+
     }
 
     function saveImgURL($name, $suffix) {
+        $this->printColor(sprintf("使用%2.f M\n", round(memory_get_usage() / 1024 / 1024, 6)), '35');
 
         $url = $name.".".$suffix;
 
@@ -110,7 +136,7 @@ class SpiderController extends Controller {
         }
 
         if (!file_exists($imgSavePath)){
-            mkdir ($imgSavePath, 0777, true);
+            mkdir($imgSavePath, 0777, true);
         }
 
         $imgSavePath .= ("/".uuidBase62().".".$suffix);
