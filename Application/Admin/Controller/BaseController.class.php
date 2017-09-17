@@ -1,6 +1,7 @@
 <?php
 namespace Admin\Controller;
 
+use Admin\Model\OptionsModel;
 use \Think\Controller;
 use Think\Upload;
 
@@ -54,14 +55,7 @@ class BaseController extends Controller {
     }
     
     public function getOptions(){
-        if($this->_options == False){
-            $options = D('Options');
-            $this->_options = $options->all();
-            return $this->_options;
-        }else{
-            return $this->_options;
-        }
-        
+        return OptionsModel::getOptions();
     }
     
     
@@ -118,30 +112,18 @@ class BaseController extends Controller {
 			$data['path'] = $urlPath;
 			$data['createtime'] = date("Y-m-d H:i:s");
 			$id = $attacM->add($data);
-			$this->genThumbs($filepath, $opt, $upload->rootPath, $info);
+			//$info['Filedata']['savepath'].$opt->thumbPrefix.$width.'_'.$info['Filedata']['savename']
+			genThumbs($filepath, $opt, $upload->rootPath, $info['Filedata']['savepath'], $info['Filedata']['savename']);
 			$dataJson = [];
 			$dataJson['id'] = $id;
 			$dataJson['path'] = $urlPath;
 			$dataJson['name'] = $info['Filedata']['savename'];
 			$dataJson['thumb'] = ['width' => explode(',', $opt->thumbMaxWidth), 'prefix' => $opt->thumbPrefix];
 
-
 			$this->jsonReturn($dataJson);
 		}
 	}
 
-	private function genThumbs($filepath, $opt, $rootPath, $info){
-
-		$widths = explode(',', $opt->thumbMaxWidth);
-		$heights = explode(',', $opt->thumbMaxHeight);
-		foreach($widths as $idx=>$width){
-			$image = new \Think\Image();
-			$image->open($filepath);
-			$tbpath = $rootPath.$info['Filedata']['savepath'].$opt->thumbPrefix.$width.'_'.$info['Filedata']['savename'];
-			$image->thumb($width, $heights[$idx],\Think\Image::IMAGE_THUMB_CENTER)->save($tbpath);
-		}
-
-	}
 
 	public function jsonReturn($data, $errMsg="", $errcode=0){
 		if(!empty($errMsg)){

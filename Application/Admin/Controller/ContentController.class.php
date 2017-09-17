@@ -179,7 +179,7 @@ class ContentController extends BaseController {
 			$map['title|relurl|embed_code'] = array('like', '%'.$o_keyword.'%');
 		}
 
-		/** @var  $contentD  ContentModel*/
+		/** @var  $contentD  \Admin\Model\ContentModel*/
 		$contentD = D("Content");
 		$count      = $contentD->where($map)->count();// 查询满足要求的总记录数
 		$page       = new Page($count, $pageSize);// 实例化分页类 传入总记录数和每页显示的记录数
@@ -243,6 +243,7 @@ class ContentController extends BaseController {
 			$this->assign('stages', C('__YYG_YUER_STAGE__'));
 			$this->display("Content:add");
 		}else{
+			/** @var  $contentD /Admin/Model/ContentModel */
 			$contentD = D("Content");
 			$contentD->startTrans();
 			if (!$contentD->create(False, 1)){
@@ -258,6 +259,7 @@ class ContentController extends BaseController {
 					}else{
 						$contentD->category_id = $selCategoryId;
 					}
+
 					$cid = $contentD->add();
 					$stages = I('post.yuer_stage');
 					if(!empty($stages)){
@@ -268,10 +270,11 @@ class ContentController extends BaseController {
 					}
 
 					$this->_addAttac($cid);
-					$this->addTags($cid);
+					$contentD->addTags($cid, I("post.tags"));
 					$contentD->commit();
 				}catch (\Exception $e){
 					$contentD->rollback();
+					$this->error($e->getMessage());
 				}
 
 				$this->success("添加文档成功", __CONTROLLER__.'/category/code/'.$code);
@@ -468,7 +471,12 @@ class ContentController extends BaseController {
 			$dataJson = array();
 			$dataJson['id'] = $attac['id'];
 			$dataJson['path'] = __ROOT__.$attac['path'];
-			$dataJson['name'] = substr($attac['title'], strpos($attac['title'], '/') + 1);
+			if(strpos($attac['title'], '/') === false){
+				$dataJson['name'] = $attac['title'];
+			}else{
+				$dataJson['name'] = substr($attac['title'], strpos($attac['title'], '/') + 1);
+			}
+
 			$dataJson['desc'] = brReplace($attac['description']);
 			$dataJson['thumb'] = ['width' => explode(',', $opt->thumbMaxWidth), 'prefix' => $opt->thumbPrefix];
 			array_push($dataJsons, $dataJson);
@@ -595,28 +603,5 @@ class ContentController extends BaseController {
 		$this->jsonReturn($res);
 	}
 
-	private function addTags($cid)
-	{
-		$tags = I("post.tags");
-		$tagsArr = explode(',', $tags);
-		if($tagsArr){
-			M("tags")->startTrans();
-			M("tags")->delete([
-				'cid' => $cid
-			]);
-			try{
-				foreach($tagsArr as $tagItem){
-					if(mb_strlen($tagItem) > 4){
-						M("tags")->rollback();
-						$this->error("标签不能超过4个字符");
-					}
-					$data = ['cid' => $cid, 'tag' => $tagItem];
-					M("tags")->add($data, array(), True);
-				}
-			}catch (\Exception $e){
-				M("tags")->rollback();
-			}
-			M("tags")->commit();
-		}
-	}
+
 }

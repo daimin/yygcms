@@ -11,9 +11,8 @@ namespace Admin\Helper;
  *  echo CUtf8_PY::encode('阿里巴巴科技有限公司', 'all'); //编码为全拼音
  */
 
-use Think\Model\RelationModel;
+class PinyinHelper{
 
-class PinyinHelper extends RelationModel{
     /**
      * 拼音字符转换图
      * @var array

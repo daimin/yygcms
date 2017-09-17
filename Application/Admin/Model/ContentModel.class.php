@@ -3,6 +3,7 @@
  * @用户模型
  */
 namespace Admin\Model;
+use Think\Exception;
 use Think\Model\RelationModel;
 class ContentModel extends RelationModel{
 	//自动验证
@@ -35,5 +36,30 @@ class ContentModel extends RelationModel{
     	return M("attac_rel")->where("rel_id='$cid'")->count();
     }
 
+	public function addTags($cid, $tags)
+	{
+		$tagsArr = explode(',', $tags);
+		if($tagsArr){
+			M("tags")->startTrans();
+			M("tags")->delete([
+				'cid' => $cid
+			]);
+			try{
+				foreach($tagsArr as $tagItem){
+					if(mb_strlen($tagItem) > 4){
+						M("tags")->rollback();
+						throw new \Exception('标签不能超过4个字符');
+					}
+					$data = ['cid' => $cid, 'tag' => $tagItem];
+					M("tags")->add($data, array(), True);
+				}
+			}catch (\Exception $e){
+				M("tags")->rollback();
+				throw  $e;
+			}
+			M("tags")->commit();
+		}
+		return true;
+	}
 }
 ?>

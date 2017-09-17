@@ -167,9 +167,6 @@
         opts[opts.length] = '<option value="0">原图</option>';
         $(jsondata['thumb']['width']).each(function(it){
             var width = jsondata['thumb']['width'][it];
-            if(it == 0){
-                width = 1;
-            }
             opts[opts.length] = '<option value="'+width+'">缩略图' + jsondata['thumb']['width'][it] + 'px</option>';
         });
         opts.reverse();

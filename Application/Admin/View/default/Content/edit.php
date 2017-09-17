@@ -136,11 +136,11 @@
             'uploader'  : '__PUBLIC__/admin/uploadify/uploadify.swf?var='+(new Date()).getTime(),
             'script'    : '__URL__/upload',
             'cancelImg' : '__PUBLIC__/admin/uploadify/cancel.png',
-            'folder'    : '<?php echo __ROOT__.C("__MP_UPLOAD_DIR__");?>',
+            'folder'    : '<?php echo C("__YYG_UPLOAD_DIR__");?>',
             'auto'      : true,
             'multi'     : true,
             'queueSizeLimit' : 8,
-            'sizeLimit' : 2097152,
+            'sizeLimit' : <?php echo $option->maxImgSize?>,
             'fileExt'   : '{$attachAllow}',
             'fileDesc'  : '请选择图片文件',
             'simUploadLimit':8,
@@ -194,9 +194,6 @@
         opts[opts.length] = '<option value="0">原图</option>';
         $(jsondata['thumb']['width']).each(function(it){
             var width = jsondata['thumb']['width'][it];
-            if(it == 0){
-                width = 1;
-            }
             opts[opts.length] = '<option value="'+width+'">缩略图' + jsondata['thumb']['width'][it] + 'px</option>';
         });
         opts.reverse();

@@ -33,6 +33,17 @@ class OptionsModel extends RelationModel{
        $data['value'] = $value;
        $this->data()->add($data, array(), True);
     }
+
+    public static function getOptions(){
+        static $options = null;
+        if($options === false){
+            $options = D('Options');
+            $options = $options->all();
+            return $options;
+        }else{
+            return $options;
+        }
+    }
     
 }
 ?>

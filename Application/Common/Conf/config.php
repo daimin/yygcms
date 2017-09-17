@@ -12,7 +12,7 @@ return array(
     'SESSION_AUTO_START' => true,
     'PERM_ACTIONS' => array("SysMgr", "AdminMgr"),   //编辑者禁止访问的Action
     'SHOW_PAGE_TRACE' => false, // 显示页面Trace信息
-    'SHOW_RUN_TIME'    => false, // 运行时间显示
+    'SHOW_RUN_TIME'    => false, // 运行时间显示,
 
     //自定义配置 //////////////////////////////////////////////////////
 
