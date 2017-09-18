@@ -6,6 +6,7 @@
        }
    },
    "require": {
-        "paquettg/php-html-parser": "^1.7"
+        "paquettg/php-html-parser": "^1.7",
+        "hashids/hashids": "^2.0"
     }
 }
