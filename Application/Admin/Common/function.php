@@ -11,7 +11,6 @@ function admin_url($url){
 }
 
 function genThumbs($filepath, $opt, $rootPath, $savePath, $saveName){
-
     $widths = explode(',', $opt->thumbMaxWidth);
     $heights = explode(',', $opt->thumbMaxHeight);
     foreach($widths as $idx=>$width){

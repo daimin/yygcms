@@ -36,7 +36,7 @@ class OptionsModel extends RelationModel{
 
     public static function getOptions(){
         static $options = null;
-        if($options === false){
+        if($options === null){
             $options = D('Options');
             $options = $options->all();
             return $options;

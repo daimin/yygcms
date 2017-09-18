@@ -1,61 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>宝贝星</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <!--    <link href="__PUBLIC__/site/{$Think.THEME_NAME}/flatui/css/flat-ui.css" rel="stylesheet">-->
-    <link href="__PUBLIC__/site/{$Think.THEME_NAME}/css/base.css" rel="stylesheet">
-    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/site/{$Think.THEME_NAME}/bootstrap/js/carousel.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/site/{$Think.THEME_NAME}/js/jquery.SuperSlide.2.1.1.js"></script>
-
-    <style type="text/css">
-        /* css 重置 */
-        /**{margin:0; padding:0; list-style:none; }*/
-        /*body{ background:#fff; font:normal 12px/22px 宋体;  }*/
-        /*img{ border:0;  }*/
-        /*a{ text-decoration:none; color:#333;  }*/
-
-        /* 本例子css */
-
-
-    </style>
-
-</head>
-<body>
-<header class="main-header" style="background-image: url('__PUBLIC__/site/{$Think.THEME_NAME}/images/top_bg2.png')">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <span><img src="__PUBLIC__/site/{$Think.THEME_NAME}/images/logo.png"/></span>
-                <form class="navbar-form navbar-right col-sm-6 yyg-search-group" action="#" role="search">
-                    <div class="form-group">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control" id="search-btn" type="search" placeholder="搜索">
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn"><span class="fui-search"></span></button>
-                        </span>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-sm-4 hidden-xs pull-right yyg-text-right">
-                <a href="https://docs.golaravel.com/docs/5.4/" class="label label label-warning" target="_blank">备孕</a>
-                <a href="https://docs.golaravel.com/docs/5.3/" class="label label-success" target="_blank">孕期</a>
-                <a href="https://docs.golaravel.com/docs/5.2/" class="label label-success" target="_blank">分娩</a>
-                <a href="https://docs.golaravel.com/docs/5.2/" class="label label-success" target="_blank">0-1岁</a>
-                <a href="https://docs.golaravel.com/docs/5.2/" class="label label-success" target="_blank">1-3岁</a>
-                <a href="https://docs.golaravel.com/docs/5.2/" class="label label-success" target="_blank">3-6岁</a>
-            </div>
-
-        </div>
-
-    </div>
-</header>
+<include file="Public:header1" />
 <div class="container">
     <nav class="navbar navbar-default" role="navigation">
         <div class="collapse navbar-collapse" id="navbar-collapse-01">
@@ -386,85 +329,12 @@
         </div>
         </div>
 
-    <div class="row col-sm-3" style="margin: 0;padding: 0;">
-        <div class="panel panel-default col-sm-12">
-                <div class="panel side-panel "  style="margin-top:0px;">
-                    <div class="coom_title font_apple">
-                        <div class="coom_h3"><a href="http://www.qqbaobao.com/shidian/" target="_blank">最新<span>文章</span></a></div>
-                    </div>
-                    <ul>
-                        <li>
-                            <span class="label label-danger">1</span><a target="_blank" href="http://bbs.ci123.com/post/110806536.html">自然呵护，才能身心强健强健强健强健</a>
-                        </li>
-                        <li>
-                            <span class="label label-warning">2</span><a target="_blank" href="http://bbs.ci123.com/post/103501216.html">做新人任务 领取诱人福利福利福利</a>
-                        </li>
-                        <li>
-                            <span class="label label-info">3</span><a target="_blank" href="http://bbs.ci123.com/post/72642919.html">记录每次出门的动人时刻时刻时刻</a>
-                        </li>
-                        <li>
-                            <span class="label label-default">4</span><a target="_blank" href="http://bbs.ci123.com/post/69285059.html">千万妈妈孕育经验汇集汇集汇集</a>
-                        </li>
-                        <li>
-                            <span class="label label-default">5</span><a target="_blank" href="http://bbs.ci123.com/post/98273005.html">2017达人专区变变变变变变变 </a>
-                        </li>
-                        <li>
-                            <span class="label label-default">6</span><a target="_blank" href="http://bbs.ci123.com/post/110806536.html">自然呵护，才能身心强健强健强健</a>
-                        </li>
-                        <li>
-                            <span class="label label-default">7</span><a target="_blank" href="http://bbs.ci123.com/post/103501216.html">做新人任务 领取诱人福利福利福利</a>
-                        </li>
-                        <li>
-                            <span class="label label-default">8</span><a target="_blank" href="http://bbs.ci123.com/post/72642919.html">记录每次出门的动人时刻时刻时刻</a>
-                        </li>
-<!--                        <li>-->
-<!--                            <span class="label label-default">9</span><a target="_blank" href="http://bbs.ci123.com/post/69285059.html">千万妈妈孕育经验汇集</a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <span class="label label-default">10</span><a target="_blank" href="http://bbs.ci123.com/post/98273005.html">2017达人专区变变变 变变</a>-->
-<!--                        </li>-->
-                    </ul>
-                </div>
+        <div class="row col-sm-3" style="margin: 0;padding: 0;">
 
-                <div class="panel side-panel" style="margin-top: 30px">
-                    <div class="coom_title font_apple">
-                        <div class="coom_h3"><a href="http://www.qqbaobao.com/shidian/" target="_blank">最热<span>文章</span></a></div>
-                    </div>
-                    <ul>
-                        <li>
-                            <span class="label label-danger">1</span><a target="_blank" href="http://bbs.ci123.com/post/110806536.html">自然呵护，才能身心强健强健强</a>
-                        </li>
-                        <li>
-                            <span class="label label-warning">2</span><a target="_blank" href="http://bbs.ci123.com/post/103501216.html">做新人任务 领取诱人福利</a>
-                        </li>
-                        <li>
-                            <span class="label label-info">3</span><a target="_blank" href="http://bbs.ci123.com/post/72642919.html">记录每次出门的动人时刻</a>
-                        </li>
-                        <li>
-                            <span class="label label-default">4</span><a target="_blank" href="http://bbs.ci123.com/post/69285059.html">千万妈妈孕育经验汇集</a>
-                        </li>
-                        <li>
-                            <span class="label label-default">5</span><a target="_blank" href="http://bbs.ci123.com/post/98273005.html">2017达人专区变变变变变变变 </a>
-                        </li>
-                        <li>
-                            <span class="label label-default">6</span><a target="_blank" href="http://bbs.ci123.com/post/110806536.html">自然呵护，才能身心强健强健强健</a>
-                        </li>
-                        <li>
-                            <span class="label label-default">7</span><a target="_blank" href="http://bbs.ci123.com/post/103501216.html">做新人任务 领取诱人福利</a>
-                        </li>
-                        <li>
-                            <span class="label label-default">8</span><a target="_blank" href="http://bbs.ci123.com/post/72642919.html">记录每次出门的动人时刻</a>
-                        </li>
-<!--                        <li>-->
-<!--                            <span class="label label-default">9</span><a target="_blank" href="http://bbs.ci123.com/post/69285059.html">千万妈妈孕育经验汇集汇集汇集</a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <span class="label label-default">10</span><a target="_blank" href="http://bbs.ci123.com/post/98273005.html">2017达人专区变变变 </a>-->
-<!--                        </li>-->
-                    </ul>
-                </div>
+            <include file="Widgets:new-panel" />
+            <include file="Widgets:hot-panel" />
 
-            </div>
+        </div>
         <div class="panel panel-default col-sm-12 side-panel">
             <img src="__PUBLIC__/site/{$Think.THEME_NAME}/images/185943_21330.jpg" class="img-responsive img-thumbnail" alt="Responsive image"/>
         </div>
@@ -538,16 +408,7 @@
 
     </div>
 </div>
-
-<footer class="main-footer">
-    <div class="foot w1000">
-        <p><a href="http://www.qpx.com/about/index.html" rel="nofollow">关于我们</a> 丨 <a href="http://www.qpx.com/about/contactus.html" rel="nofollow">联系我们</a> 丨 <a href="http://www.qpx.com/about/ad.html" rel="nofollow">广告投放</a> 丨 <a href="http://www.qpx.com/about/service.html" rel="nofollow">服务条款</a> 丨 <a href="http://www.qpx.com/about/copyright.html" rel="nofollow">版权声明</a></p>
-        <p>本站部分资源来自网友上传，如果无意之中侵犯了您的版权，请联系本站，本站将在3个工作日内删除</p>
-        <p>Copyright © 2007-2015 qpx.com 起跑线儿童网版权所有</p>
-    </div>
-</footer>
 <script id="jsID" type="text/javascript">
     jQuery(".picScroll-top").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"top",autoPlay:true,vis:3});
 </script>
-</body>
-</html>
+<include file="Public:footer1" />
