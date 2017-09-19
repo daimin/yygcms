@@ -506,8 +506,32 @@ a:hover {
     color: #444;
 }
 
+.comment-box{
+    margin-top: 1em;
+    padding-right: 3em;
+}
+
+.comment-box .form-control:focus{
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.comment-textarea{
+    resize: none;
+    border-bottom: none;
+    outline: 0 none;
+    border:0;
+}
 
 
+.comment-submit-bar{
+    background-color: #F6F8F9;
+    height: 24px;
+    /*border-right: 1px solid #ccc;*/
+    /*border-bottom: 1px solid #ccc;*/
+    /*border-left: 1px solid #ccc;*/
+}
 
-
-
+.nohighlight:focus {     outline: blue solid 0px;
+}

@@ -1,16 +1,4 @@
 <include file="Public:header1" />
-<div class="container">
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="collapse navbar-collapse" id="navbar-collapse-01">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#fakelink">首页</a></li>
-                <li><a href="#fakelink">百科知识</a></li>
-                <li><a href="#fakelink">母婴优品汇</a></li>
-                <li><a href="#fakelink">婆媳那点儿事</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-
-    </nav><!-- /navbar -->
     <div class="row col-sm-9">
         <div class="row col-sm-12" style="padding: 0">
             <div id="carousel-example-generic" class="carousel slide col-sm-8" data-ride="carousel">
