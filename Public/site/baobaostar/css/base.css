@@ -533,5 +533,11 @@ a:hover {
     /*border-left: 1px solid #ccc;*/
 }
 
-.nohighlight:focus {     outline: blue solid 0px;
+#face_btn{
+    margin-top: 4px;
+    margin-left: 4px;
+    filter:alpha(opacity=80);
+    -moz-opacity:0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
 }
