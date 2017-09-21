@@ -541,3 +541,14 @@ a:hover {
     -khtml-opacity: 0.8;
     opacity: 0.8;
 }
+
+#comment-error{
+    display: none;
+    color:#d9534f;
+    margin-top: 3px;
+    float: left;
+}
+
+#comment-error span{
+    padding-left: 3px;
+}

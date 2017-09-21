@@ -18,14 +18,14 @@
     }
 
 </style>
-<form class="col-sm-12 comment-box">
+<form class="col-sm-12 comment-box" method="post" action="<?php echo site_url('article/addComment') ?>" onsubmit="return checkAndSubmit(this)">
     <div style="border:1px solid #e3e4e5">
-        <textarea class="form-control comment-textarea nohighlight" rows="3" placeholder="输入您的评论..."></textarea>
+        <textarea id="comment-text" name="comment-text" class="form-control comment-textarea nohighlight" rows="3" placeholder="输入您的评论..."></textarea>
         <div class="comment-submit-bar">
             <img id="face_btn" src="__PUBLIC__/site/{$Think.THEME_NAME}/images/happy_hover.png">
         </div>
     </div>
-    <button type="submit" class="btn btn-primary btn-sm pull-right" style="margin-top: 3px;width: 60px;">发 布</button>
+    <div id="comment-error"><span class="glyphicon glyphicon-info-sign"></span></div><button type="submit" class="btn btn-primary btn-sm pull-right" style="margin-top: 3px;width: 60px;">发 布</button>
 </form>
 
 <script type="text/javascript" src="__PUBLIC__/site/{$Think.THEME_NAME}/fangface/jquery.qqFace.js"></script>
@@ -34,8 +34,9 @@
     $(function(){
         $('#face_btn').qqFace({
             id : 'facebox',
-            assign:'saytext',
-            path:'arclist/'	//表情存放的路径
+            assign:'comment-text',
+            path:'__PUBLIC__/site/{$Think.THEME_NAME}/fangface/imgs/',	//表情存放的路径
+            imglist : <?php echo json_encode($imglist, JSON_UNESCAPED_UNICODE) ?>,
         });
 
         $(".sub_btn").click(function(){
@@ -52,5 +53,31 @@
         str = str.replace(/\[em_([0-9]*)\]/g,'<img src="arclist/$1.gif" border="0" />');
         return str;
     }
+    
+    function checkAndSubmit(formboj) {
+        if($("#comment-text").val() == ''){
+            showCommentError('请输入评论内容');
+            return false;
+        }
+
+        if($("#comment-text").val().length < 4){
+            showCommentError('请输入至少输入4个字符');
+            return false;
+        }
+
+        $.post(formboj.action, { cid: "<?php echo $article['id'] ?>", content: $("#comment-text").val() },
+            function(data){
+                window.location.reload();
+            });
+
+        return false;
+    }
+
+    function showCommentError(msg){
+        $("#comment-error span").html(msg);
+        $("#comment-error").show();
+    }
+
+
 
 </script>

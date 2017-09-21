@@ -12,6 +12,7 @@
 		var id = option.id;
 		var path = option.path;
 		var tip = option.tip;
+		var imglist = option.imglist;
 		
 		if(assign.length<=0){
 			alert('缺少表情赋值对象。');
@@ -23,9 +24,11 @@
 			if($('#'+id).length<=0){
 				strFace = '<div id="'+id+'" style="position:absolute;display:none;z-index:1000;" class="qqFace">' +
 							  '<table border="0" cellspacing="0" cellpadding="0"><tr>';
-				for(var i=1; i<=75; i++){
-					labFace = '['+tip+i+']';
-					strFace += '<td><img src="'+path+i+'.gif" onclick="$(\'#'+option.assign+'\').setCaret();$(\'#'+option.assign+'\').insertAtCaret(\'' + labFace + '\');" /></td>';
+
+				for(var i=1; i<=imglist.length; i++){
+					var imgname = imglist[i-1];
+					labFace = '['+imgname+']';
+					strFace += '<td><img src="'+path+imgname+'.gif" onclick="$(\'#'+option.assign+'\').setCaret();$(\'#'+option.assign+'\').insertAtCaret(\'' + labFace + '\');" /></td>';
 					if( i % 15 == 0 ) strFace += '</tr><tr>';
 				}
 				strFace += '</tr></table></div>';
@@ -75,12 +78,11 @@ jQuery.fn.extend({
 	}, 
 
 	setCaret: function(){ 
-		if(!$.browser.msie) return; 
-		var initSetCaret = function(){ 
-			var textObj = $(this).get(0); 
-			textObj.caretPos = document.selection.createRange().duplicate(); 
-		}; 
-		$(this).click(initSetCaret).select(initSetCaret).keyup(initSetCaret); 
+		// var initSetCaret = function(){
+		// 	var textObj = $(this).get(0);
+		// 	textObj.caretPos = document.selection.createRange().duplicate();
+		// };
+		// $(this).click(initSetCaret).select(initSetCaret).keyup(initSetCaret);
 	}, 
 
 	insertAtCaret: function(textFeildValue){ 

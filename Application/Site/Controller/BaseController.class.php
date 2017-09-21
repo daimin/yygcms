@@ -64,6 +64,17 @@ class BaseController extends Controller {
     	
     	return $attacs;
     }
+
+	public function jsonReturn($data, $errMsg="", $errcode=0){
+		if(!empty($errMsg)){
+			$errcode = -1;
+		}
+		$this->ajaxReturn([
+			"data" => $data,
+			"errMsg" => $errMsg,
+			"errCode" => $errcode,
+		]);
+	}
     
 	
 }

@@ -39,7 +39,8 @@ function site_url($url){
 		$url = $url.'.html';
 	}
 
-    return str_replace('index.php/', '', __APP__.'/'.$url);
+    return str_replace('index.php/', '', __MODULE__.'/'.$url);
+
 }
 
 function del_dir($dir) {
