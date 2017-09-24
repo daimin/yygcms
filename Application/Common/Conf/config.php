@@ -20,8 +20,10 @@ return array(
     '__YYG_EDITOR__' => 2,
     '__YYG_ADMIN__' => 1,
     // 密钥
-    "__YYG_SECURE_KEY__" => 'he4ApQm1Sjm8GRLj',
+    "__YYG_SECURE_KEY__" => 'he4ApQm1Sjm8GRLj', //后台
     '__YYG_AUTH_NAME__' => 'yyg_yFqkffobPm0kO4GR',
+    "__YYG_SITE_SECURE_KEY__" => 'vLXxcfbFewOSM8Xm', //前台
+    '__YYG_SITE_AUTH_NAME__' => 'yyg_35BAFerjlO26HJuo',
     '__YYG_YUER_STAGE__' => [
         'beiyun' => '备孕',
         'yunqi' => '孕期',

@@ -22,29 +22,56 @@ class ArticleController extends BaseController {
     }
 
     public function addComment(){
+        $loginInfo = $this->getLoginInfo();
+        if(empty($loginInfo)){
+            $this->jsonReturn(false, "请登录后再评论！");
+        }
+
         $content = I("post.content");
         $cid = I("post.cid");
 
         if(empty($cid)){
-            $this->jsonReturn("文章id不能为空");
+            $this->jsonReturn(false, "文章id不能为空");
         }
 
         if(empty($content)){
-            $this->jsonReturn("请输入评论内容");
+            $this->jsonReturn(false, "请输入评论内容");
         }
 
         if(mb_strlen($content) < 4){
-            $this->jsonReturn("请输入至少输入4个字符");
+            $this->jsonReturn(false, "请输入至少输入4个字符");
         }
 
         $articleContent = M("content")->where(['id' => $cid])->find();
         if(empty($articleContent)){
-            $this->jsonReturn("找不到要评论的文章");
+            $this->jsonReturn(false, "找不到要评论的文章");
         }
 
-        $content = strip_tags(stripslashes($content));
+        $content = remove_xss($content);
+        $sensitives = M("sensitive")->select();
+        foreach($sensitives as $sensitive){
+            $word = $sensitive['word'];
+            if(mb_strpos($word, $content) !== false){
+                $this->jsonReturn(false, "评论内容包含敏感词汇，不合法！");
+            }
+        }
 
 
+        $data = [
+            'content' => $content,
+            'cid' => $cid,
+            'uid' => $loginInfo['id'],
+            'pid' => 0,
+            'createtime' => date('Y-m-d H:i:s'),
+            'modifytime' => date('Y-m-d H:i:s'),
+        ];
+
+        $ret = M('comment')->data($data)->add();
+        if($ret){
+            $this->jsonReturn(1);
+        }else{
+            $this->jsonReturn(false, '添加评论失败');
+        }
 
     }
     

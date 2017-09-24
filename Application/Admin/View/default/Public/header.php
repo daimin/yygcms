@@ -14,7 +14,7 @@
     <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootbox.js/4.4.0/bootbox.js"></script>
 
     
-    <script type="text/javascript" language="javascript" src="__PUBLIC__/admin/js/common.js"></script>
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/common/js/common.js"></script>
 
 </head>
 <body background='__PUBLIC__/admin/images/allbg.gif' leftmargin='8' topmargin='8'>

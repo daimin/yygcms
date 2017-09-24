@@ -40,6 +40,7 @@
         <include file="Widgets:comment-box" />
     </div>
     <div class="row col-sm-3" style="margin: 0;padding: 0;">
+        <include file="Widgets:login-panel" />
         <div class="panel panel-default col-sm-12">
                 <div class="panel side-panel "  style="margin-top:0px;">
                     <div class="coom_title font_apple">

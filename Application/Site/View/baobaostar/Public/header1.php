@@ -6,12 +6,13 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <!--    <link href="__PUBLIC__/site/{$Think.THEME_NAME}/flatui/css/flat-ui.css" rel="stylesheet">-->
     <link href="__PUBLIC__/site/{$Think.THEME_NAME}/css/base.css" rel="stylesheet">
     <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="__PUBLIC__/site/{$Think.THEME_NAME}/bootstrap/js/carousel.js"></script>
     <script type="text/javascript" src="__PUBLIC__/site/{$Think.THEME_NAME}/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootbox.js/4.4.0/bootbox.js"></script>
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/common/js/common.js"></script>
 
     <style type="text/css">
     </style>
@@ -51,10 +52,15 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="collapse navbar-collapse" id="navbar-collapse-01">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#fakelink">首页</a></li>
+                <li class="active"><a href="/">首页</a></li>
                 <li><a href="#fakelink">百科知识</a></li>
                 <li><a href="#fakelink">母婴优品汇</a></li>
                 <li><a href="#fakelink">婆媳那点儿事</a></li>
             </ul>
+            <div class="login-info-div">
+                <span><?php echo $loginInfo['nickname'] ?></span>
+                <a href="javascript:void(0)">设置</a> |
+                <a href="javascript:void(0)">退出</a>
+            </div>
         </div><!-- /.navbar-collapse -->
     </nav><!-- /navbar -->

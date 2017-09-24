@@ -104,8 +104,12 @@ function roleShow($role){
   return $roleDis;
 }
 
-function hashPassword($password){
-	return md5($password.C("__YYG_SECURE_KEY__"));
+function hashPassword($password, $fromFront=false){
+	if(!$fromFront){
+		return md5($password.C("__YYG_SECURE_KEY__"));
+	}else{
+		return md5(C("__YYG_SITE_SECURE_KEY__").$password);
+	}
 }
 
 // +----------------------------------------------------------------------

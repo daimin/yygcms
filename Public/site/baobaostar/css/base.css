@@ -542,13 +542,73 @@ a:hover {
     opacity: 0.8;
 }
 
-#comment-error{
-    display: none;
+#comment-error, #login-panel-error{
     color:#d9534f;
     margin-top: 3px;
     float: left;
+    font-size: 13px;
+    display: none;
 }
 
-#comment-error span{
-    padding-left: 3px;
+#comment-error, #login-panel-error span{
+    padding-left: 6px;
+}
+
+.login-form{
+    padding-left: 12px;
+    margin-top:12px;
+}
+
+.login-form .form-group{
+    margin-bottom: 0.5em;
+}
+
+.login-form .login-form-dev{
+    float:left;
+}
+
+.login-form label{
+    padding-left: 0px;
+}
+
+.login-form input{
+    width:14em;
+}
+
+.login-form .login-form-btn{
+    margin-left: 6px;
+    float: left;
+}
+
+.login-form .login-form-btn button{
+    height:4.8em;
+    width: 4em;
+}
+
+.login-link{
+    padding-left: 0.5em;
+}
+
+.login-link a,label{
+    font-size: 12px;
+    color:#222;
+    font-weight: normal;
+}
+
+.login-info-div{
+    color:#fff;
+    float: right;
+    line-height: 4em;
+    height: 4em;
+    font-size: 12px;
+}
+
+.login-info-div a{
+    color:#fff;
+}
+
+.login-info-div span{
+    color:#ffef55;
+    font-size: 14px;
+    font-family: "微软雅黑", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", Helvetica, Arial, serif;
 }

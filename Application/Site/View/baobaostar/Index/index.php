@@ -318,7 +318,7 @@
         </div>
 
         <div class="row col-sm-3" style="margin: 0;padding: 0;">
-
+            <include file="Widgets:login-panel" />
             <include file="Widgets:new-panel" />
             <include file="Widgets:hot-panel" />
 

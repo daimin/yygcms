@@ -18,6 +18,9 @@
     }
 
 </style>
+
+<?php if(!empty($loginInfo)){ ?>
+
 <form class="col-sm-12 comment-box" method="post" action="<?php echo site_url('article/addComment') ?>" onsubmit="return checkAndSubmit(this)">
     <div style="border:1px solid #e3e4e5">
         <textarea id="comment-text" name="comment-text" class="form-control comment-textarea nohighlight" rows="3" placeholder="输入您的评论..."></textarea>
@@ -78,6 +81,10 @@
         $("#comment-error").show();
     }
 
-
-
 </script>
+<?php } ?>
+
+
+<div class="col-sm-12>
+     
+</div>
