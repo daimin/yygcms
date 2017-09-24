@@ -70,7 +70,14 @@
 
         $.post(formboj.action, { cid: "<?php echo $article['id'] ?>", content: $("#comment-text").val() },
             function(data){
-                window.location.reload();
+                if(typeof data != 'object'){
+                    data = JSON.parse(data);
+                }
+                if(data['errCode'] !== 0){
+                    showCommentError(data['errMsg']);
+                }else{
+                    window.location.reload();
+                }
             });
 
         return false;
@@ -83,8 +90,27 @@
 
 </script>
 <?php } ?>
-
-
-<div class="col-sm-12>
-     
+<div class="col-sm-12 comment-list">
+    <?php foreach($commentlist as $commentItem){ ?>
+        <div class="comment-item">
+            <div class="comment-user-panel">
+                <div><?php
+                    $avatarImgUrl = $commentItem['avatar'];
+                    if(empty($avatarImgUrl)){
+                        $avatarImgUrl = '/Public/site/'.$Think.THEME_NAME.'/images/uface.jpg';
+                    }
+                    ?>
+                    <img src="<?php echo $avatarImgUrl ?>">
+                </div>
+            </div>
+            <div class="comment-body">
+                <div class="comment-nav">
+                    <div class="u-nickname"><?php echo $commentItem['nickname'] ?></div>
+                    <div class="bb-age">宝宝：<?php echo getbbage($commentItem['bbbirthday']) ?></div>
+                    <div class="comment-time"><?php echo $commentItem['modifytime'] ?></div>
+                </div>
+                <div class="comment-cont"><?php echo addFaceToContent($commentItem['content'])   ?></div>
+            </div>
+        </div>
+    <?php }?>
 </div>

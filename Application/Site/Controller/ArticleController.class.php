@@ -16,9 +16,18 @@ class ArticleController extends BaseController {
         }
         $artId = $artRet[0];
         $articleContent = M("content")->where(['id' => $artId])->find();
+
         $this->assign('article', $articleContent);
+        $this->assign('commentlist', $this->getCommentList($artId));
         $this->assign('imglist', self::$imglist);
     	$this->display();
+    }
+
+    private function getCommentList($cid){
+        return M("comment")->field("yyg_comment.*, yyg_customer.email,yyg_customer.nickname,yyg_customer.bbbirthday,yyg_customer.age,yyg_customer.sex,
+                yyg_customer.createtime as ucreatetime,yyg_customer.modifytime as umodifytime,yyg_customer.lastlogintime,yyg_customer.avatar,yyg_customer.address")->
+                join('LEFT JOIN yyg_customer ON yyg_customer.id = yyg_comment.uid')->
+                where(['cid' => $cid])->order("yyg_comment.modifytime desc")->select();
     }
 
     public function addComment(){
@@ -51,8 +60,9 @@ class ArticleController extends BaseController {
         $sensitives = M("sensitive")->select();
         foreach($sensitives as $sensitive){
             $word = $sensitive['word'];
-            if(mb_strpos($word, $content) !== false){
+            if(mb_strpos($content, $word) !== false){
                 $this->jsonReturn(false, "评论内容包含敏感词汇，不合法！");
+                break;
             }
         }
 

@@ -684,3 +684,17 @@ function uuidBase62(){
 	}
 	return implode("", $shows);
 }
+
+function getbbage($bbbirth){
+	$agetime = time() - strtotime($bbbirth);
+	$years = $agetime / (3600 * 24 * 365);
+	$months = $agetime % (3600 * 24 * 365) / (3600 * 24 * 30);
+
+	return sprintf("%d岁%d个月", $years, $months);
+}
+
+function addFaceToContent($content){
+	return preg_replace_callback('/\[([\x{4e00}-\x{9fa5}]+)\]/ui', function($matches){
+		return '<img class="comment-cont-img" src="/Public/site/'.$Think.THEME_NAME.'/fangface/imgs/'.$matches[1].'.gif">';
+	},$content);
+}

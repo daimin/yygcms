@@ -612,3 +612,65 @@ a:hover {
     font-size: 14px;
     font-family: "微软雅黑", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", Helvetica, Arial, serif;
 }
+
+.comment-list{
+    margin-top: 2em;width: 95%
+}
+
+.comment-list .comment-item{
+    border-top: 1px solid #dddddd;height:100px;
+    margin-bottom: 2px;
+}
+
+.comment-list .comment-item .comment-user-panel{
+    float:left;height:100%;width:100px;
+    text-align: center;
+    padding-top: 0.7em;
+}
+
+
+.comment-list .comment-item .comment-user-panel img{
+    width: 80px;height: 80px;padding:0;margin: 0;border: none;
+}
+
+.comment-list .comment-item .comment-body{
+    padding-left: 1em;
+    font-size: 14px;
+    color:#666666;
+}
+
+.comment-list .comment-item .comment-body .comment-nav{
+    padding-left: 1em;
+    height: 1.5em;
+    line-height: 1.5em;
+}
+.comment-list .comment-item .comment-body .comment-nav div{
+    font-size:12px;
+    display: inline;
+}
+
+.comment-list .comment-item .comment-body .comment-nav .u-nickname{
+    font-size: 12px;
+    margin-right: 0.8em;
+    font-weight: bold;
+}
+
+.comment-list .comment-item .comment-body .comment-nav .bb-age{
+    color:#99CC66;
+    margin-right: 0.8em;
+}
+
+.comment-list .comment-item .comment-body .comment-nav .comment-time{
+    color:#CCCCCC;
+}
+
+.comment-list .comment-item .comment-body .comment-cont{
+    padding-left: 1em;
+    padding-top: 0.5em;
+}
+
+.comment-list .comment-item .comment-body .comment-cont .comment-cont-img{
+    border:none;
+    padding: 0;
+    margin: 0 1px;
+}
