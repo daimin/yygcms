@@ -21,16 +21,13 @@
 <body>
 <header class="main-header" style="background-image: url('__PUBLIC__/site/{$Think.THEME_NAME}/images/top_bg2.png')">
     <div class="container">
-        <div class="row">
+        <div class="row col-sm-12">
             <div class="col-sm-12">
                 <span><img src="__PUBLIC__/site/{$Think.THEME_NAME}/images/logo.png"/></span>
                 <form class="navbar-form navbar-right col-sm-6 yyg-search-group" action="#" role="search">
                     <div class="form-group">
-                        <div class="input-group input-group-sm">
+                        <div class="input-group-sm">
                             <input class="form-control" id="search-btn" type="search" placeholder="搜索">
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn"><span class="fui-search"></span></button>
-                        </span>
                         </div>
                     </div>
                 </form>
@@ -49,7 +46,7 @@
     </div>
 </header>
 <div class="container">
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default row col-sm-12" role="navigation">
         <div class="collapse navbar-collapse" id="navbar-collapse-01">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">首页</a></li>

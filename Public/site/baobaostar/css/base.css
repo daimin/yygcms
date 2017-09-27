@@ -21,6 +21,10 @@ a:hover {
     text-decoration: underline;
 }
 
+.navbar-right{
+   margin-right: 0;
+}
+
 .yyg-text-right {
     text-align: right;
 }
@@ -77,10 +81,11 @@ a:hover {
     border: 0px solid #DDDDDD;
 }
 
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+.navbar{
     background-color: #549944;
     margin-top: 6px;
 }
+
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus {
     color: #fff;
@@ -673,4 +678,37 @@ a:hover {
     border:none;
     padding: 0;
     margin: 0 1px;
+}
+
+.breadCrumbs{
+    border-bottom: 2px solid #dddddd;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.6em;
+    font-size:12px;
+}
+
+.post .postTitle{
+    text-align: center;
+    font-family: 微软雅黑, 黑体;
+    font-size: 24px;
+}
+
+.post .postTitle h1{
+    display: block;
+    margin-top: 12px;
+}
+
+.post .postInfo{
+    font-size: 12px;
+    padding: 12px 0 12px 0;
+    color: #999;
+    text-align: center;
+}
+
+.post .postInfo a{
+    color: #999;
+}
+
+.post .postInfo a:hover{
+    color: #993333;
 }
