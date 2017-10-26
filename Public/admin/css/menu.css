@@ -4,68 +4,74 @@ div {
 }
 
 body {
- scrollbar-base-color:#bae87c;
- scrollbar-arrow-color:#FFFFFF;
- scrollbar-shadow-color:#c1ea8b;
- padding:0px;
- margin:auto;
- text-align:center;
- background-color:#88C065;
+     scrollbar-base-color:#bae87c;
+     scrollbar-arrow-color:#FFFFFF;
+     scrollbar-shadow-color:#c1ea8b;
+     padding:0px;
+     margin:auto;
+     text-align:center;
+     background-color:#23262e;
+     font-size:14px;
 }
 
-dl.bitem {
-	width:148px;
-	margin:0px 0px 5px 4px;
+.site-nav-more{
+    cursor: pointer;
+    display: block;
+    float: right;
+    margin-right: 14px;
 }
 
-dl.bitem dt {
-  background:url(../images/frame/menubg.gif);
-  height:26px;
-  line-height:26px;
-  text-align:center;
-  cursor:pointer;
+.bitem {
+	width:100%;
+	margin:0px 0px 0px 0px;
 }
 
-dl.bitem dd {
-  padding:3px 3px 3px 3px;
-  background-color:#fff;
+.bitem .dt {
+    height:40px;
+    line-height:40px;
+    cursor:pointer;
+    background: #3e424e;
+    color:#ffffff;
+    font-size:14px;
+    padding-left: 14px;
+    border-left:4px solid #3e424e;
+
 }
 
-.fllct
-{
-	float:left;
-	
-	width:100px;
+.bitem .dt:hover {
+    background: #4e5465;
+    border-left:4px solid #009688;
 }
 
-.flrct
-{
-	padding-top:3px;
-	float:left;
+.bitem .dd {
+    background: #282b33;
+    font-size:14px;
+    padding-left: 14px;
+    height:40px;
+    line-height:40px;
+    display: block;
 }
 
-div.items
-{
-	line-height:22px;
-	background:url(../images/frame/arr4.gif) no-repeat 10px 9px;
+.bitem .dd a{
+    font-size:14px;
+    color:#cccccc;
+    display: block;
 }
 
-span.items
-{
-	padding:10px 0px 10px 22px;
-	background:url(../images/frame/arr4.gif) no-repeat 10px 12px;
+.bitem .selected{
+    font-size:14px;
+    background-color:#009688;
+    width: 100%;
 }
 
-ul {
-  padding-top:3px;
+.bitem .selected a:hover{
+    color:#ffffff;
 }
 
-li {
-  height:22px;
+.bitem .selected a{
+    color:#ffffff;
 }
 
-.sitemu li {
-	padding:0px 0px 0px 22px;
-	line-height:24px;
-	background:url(../images/frame/arr4.gif) no-repeat 10px 9px;
+.bitem .dd a:hover{
+    color:#ffffff;
 }

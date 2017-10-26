@@ -95,16 +95,6 @@ div.item
 	line-height:28px;
 }
 
-.itemsel {
-  width:80px;
-  text-align:center;
-  background:#226411;
-	border-left:1px solid #c5f097;
-	border-right:1px solid #c5f097;
-	border-top:1px solid #c5f097;
-	height:26px;
-	line-height:28px;
-}
 
 *html .itemsel {
 	height:26px;
@@ -112,33 +102,15 @@ div.item
 }
 
 a:link,a:visited {
- text-decoration: none;
+    text-decoration: none;
+	color:#eeeeee;
 }
 
-.item a:link, .item a:visited {
-	font-size: 12px;
-	color: #ffffff;
-	text-decoration: none;
-	font-weight: bold;
+a:hover{
+	color:#ffffff;
 }
 
-.itemsel a:hover {
-	color: #ffffff;
-	font-weight: bold;
-	border-bottom:2px solid #E9FC65;
-}
 
-.itemsel a:link, .itemsel a:visited {
-	font-size: 12px;
-	color: #ffffff;
-	text-decoration: none;
-	font-weight: bold;
-}
-
-.itemsel a:hover {
-	color: #ffffff;
-	border-bottom:2px solid #E9FC65;
-}
 
 .rmain {
   padding-left:10px;
@@ -151,20 +123,19 @@ a:link,a:visited {
 }
 .btn{
     padding: 2px 12px;
-    border:1px solid #0a0;
+    border:1px solid #aaa;
     cursor:pointer;
-    background: #aaddff;
+    background: #aaaaaa;
     color:#000;
 }
-
 
 </style>
 </head>
 <body bgColor='#ffffff'>
     
-<table width="100%" border="0" cellpadding="0" cellspacing="0" background="__PUBLIC__/admin/images/frame/topbg.gif">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#23262e;color:#eeeeee; ">
   <tr>
-    <td width='40%' height="60" ><span class="logo">又一个CMS网站后台系统&nbsp;</span></td>
+    <td width='40%' height="65" ><span class="logo">又一个CMS网站后台系统&nbsp;</span></td>
     <td width='60%' style="color:white"></td>
     <td width='20%' align="right" valign="bottom">
     	<table width="450" border="0" cellspacing="0" cellpadding="0">
@@ -177,14 +148,9 @@ a:link,a:visited {
       <tr>
         <td align="right" height="34" class="rmain">
             <a class="btn" id="index_link" style="display:none" href="/" target="_blank">网站首页</a>
-            <button class="btn" onclick="gotoIndex()" style="margin-right:14px;margin-bottom:4px; ">网站首页</button>
-            <button class="btn" onclick="changePassword('<?php echo session(C("__YYG_AUTH_NAME__")) ?>')" style="margin-right:0px;margin-bottom:4px; ">修改密码</button>
-            <button class="btn" onclick="clearCache()" style="margin-right:14px;margin-bottom:4px; ">清除缓存</button>
-		<dl id="tpa">
-		<dd class='img'><a href="javascript:ChangeMenu(-1);"><img vspace="5" src="__PUBLIC__/admin/images/frame/arrl.gif" border="0" width="5" height="8" alt="缩小左框架"  title="缩小左框架" /></a></dd>
-		<dd class='img'><a href="javascript:ChangeMenu(0);"><img vspace="3" src="__PUBLIC__/admin/images/frame/arrfc.gif" border="0" width="12" height="12" alt="显示/隐藏左框架" title="显示/隐藏左框架" /></a></dd>
-		<dd class='img' style="margin-right:10px;"><a href="javascript:ChangeMenu(1);"><img vspace="5" src="__PUBLIC__/admin/images/frame/arrr.gif" border="0" width="5" height="8" alt="增大左框架" title="增大左框架" /></a></dd>
-        </dl>
+            <button class="btn" onclick="gotoIndex()" style="margin-right:4px;margin-bottom:4px; ">网站首页</button>
+            <button class="btn" onclick="changePassword('<?php echo session(C("__YYG_AUTH_NAME__")) ?>')" style="margin-right:4px;margin-bottom:4px; ">修改密码</button>
+            <button class="btn" onclick="clearCache()" style="margin-right:4px;margin-bottom:4px; ">清除缓存</button>
 		</td>
       </tr>
     </table></td>

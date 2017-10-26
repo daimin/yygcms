@@ -13,29 +13,29 @@
 <div id="_mainsearch">
      
      <table width="100%" style='' id="" border="0" cellspacing="1" cellpadding="1" bgcolor="#cfcfcf">
-      <tr align="center" bgcolor="#009900" height="25" style="color:#fff;font-weight: bold;">
+      <tr align="center" bgcolor="#23262e" height="25" style="color:#fff;font-weight: bold;">
        <td width="300">名称</td>
        <td>参数值</td>
        <td width="220">说明</td>
       </tr>
       
-      <tr align="center" height="25" bgcolor="#ffffff" onMouseMove="javascript:this.bgColor='#EEFFEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';">
+      <tr align="center" height="25" bgcolor="#ffffff" onMouseMove="javascript:this.bgColor='#EEEEEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';">
        <td width="300">账号： </td>
        <td align="left" style="padding:3px;"><input type='text' name="name" value="" style='width:80%'></td>
        <td class="info">管理员账号</td>
       </tr>
-      <tr align="center" height="25" bgcolor="#ffffff" onMouseMove="javascript:this.bgColor='#EEFFEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';">
+      <tr align="center" height="25" bgcolor="#ffffff" onMouseMove="javascript:this.bgColor='#EEEEEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';">
        <td width="300">密码： </td>
        <td align="left" style="padding:3px;"><input type='password' name='password' value="" style='width:80%'></td>
        <td class="info">输入你的密码</td>
       </tr>
-      <tr align="center" height="25" bgcolor="#ffffff" onMouseMove="javascript:this.bgColor='#EEFFEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';">
+      <tr align="center" height="25" bgcolor="#ffffff" onMouseMove="javascript:this.bgColor='#EEEEEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';">
        <td width="300">重复密码： </td>
        <td align="left" style="padding:3px;"><input type='password' name='repassword' value="" style='width:80%'></td>
        <td class="info">重复输入你的密码</td>
       </tr>
       
-      <tr align="center" height="25" bgcolor="#ffffff" onMouseMove="javascript:this.bgColor='#EEFFEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';">
+      <tr align="center" height="25" bgcolor="#ffffff" onMouseMove="javascript:this.bgColor='#EEEEEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';">
        <td width="300">角色： </td>
        <td align="left" style="padding:3px;">
            <select name="role" >
@@ -50,7 +50,7 @@
 
 </div>
      <table width="100%" border="0" cellspacing="1" cellpadding="1"  style="border:1px solid #cfcfcf;border-top:none;">
-      <tr bgcolor="#BAF095">
+      <tr bgcolor="#d3d6de">
        <td height="50" colspan="3"><table width="98%" border="0" cellspacing="1" cellpadding="1">
          <tr>
           <td width="11%">&nbsp;</td>

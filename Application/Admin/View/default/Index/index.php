@@ -8,11 +8,11 @@ html
 {
   scrollbar-base-color:#C0D586;
   scrollbar-arrow-color:#FFFFFF;
-  scrollbar-shadow-color:DEEFC6;
+  scrollbar-shadow-color:#DEEFC6;
 }
 </style>
 </head>
-<frameset rows="60,*" cols="*" frameborder="no" border="0" framespacing="0">
+<frameset rows="65,*" cols="*" frameborder="no" border="0" framespacing="0">
   <frame src="<?php echo admin_url("Index/top")?>" name="topFrame" scrolling="no">
   <frameset cols="180,*"  id="btFrame" frameborder="NO" border="0" framespacing="0">
     <frame src="<?php echo admin_url("Index/menu")?>" noresize name="menu" scrolling="yes">

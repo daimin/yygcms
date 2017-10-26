@@ -18,7 +18,7 @@
     </td>
   </tr>
   <form name="form1" action="__URL__/doBackup" method="post">
-  <tr align="center" bgcolor="#009900" height="25" style="color:#fff;font-weight: bold;">
+  <tr align="center" bgcolor="#23262e" height="25" style="color:#fff;font-weight: bold;">
     <td height="24" width="5%">选择</td>
     <td width="30%">账号</td>
     <td width="10%">创建时间</td>
@@ -29,7 +29,7 @@
   </tr>
   
   <volist name="users" id="user">
-	    <tr align="center" bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#EEFFEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="24">
+	    <tr align="center" bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#EEEEEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="24">
     <td>
     	<input type="checkbox" name="ids[]" value="{$user.name}" class="np"> 
     </td>

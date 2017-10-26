@@ -1,17 +1,8 @@
-<!--
-
-function showHide(objname)
+function showHide(objname, thiz)
 {
 	//只对主菜单设置cookie
+
 	var obj = document.getElementById(objname);
-	if(objname.indexOf('_1')<0 || objname.indexOf('_10')>0)
-	{
-		if(obj.style.display == 'block' || obj.style.display =='')
-			obj.style.display = 'none';
-		else
-			obj.style.display = 'block';
-		return true;
-	}
   //正常设置cookie
 	var ckstr = getCookie('menuitems');
 	var ckstrs = null;
@@ -30,6 +21,9 @@ function showHide(objname)
 			else okstr += (okstr=='' ? ckstrs[i] : ','+ckstrs[i] );
 		}
 		if(ischange) setCookie('menuitems',okstr,7);
+		$(thiz).find(".site-nav-more").each(function(){
+			$(this).html('▲');
+		});
 	}
 	else
 	{
@@ -44,6 +38,9 @@ function showHide(objname)
 			ckstr = (ckstr==null ? objname : ckstr+','+objname);
 			setCookie('menuitems',ckstr,7);
 		}
+		$(thiz).find(".site-nav-more").each(function(){
+			$(this).html('▼');
+		});
 	}
 }
 //读写cookie函数
@@ -136,4 +133,12 @@ function ShowMainMenu(n)
 	}
 }
 
--->
+$(function(){
+	$(".dd .fllct a").click(function () {
+		$(".dd").each(function(){
+			$(this).removeClass('selected');
+		});
+		$(this).parent().parent().addClass("selected");
+	});
+	
+});

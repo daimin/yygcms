@@ -25,7 +25,7 @@
       </tbody></table>
     </td>
   </tr>
-  <tr align="center" bgcolor="#009900" height="25" style="color:#fff;font-weight: bold;">
+  <tr align="center" bgcolor="#23262e" height="25" style="color:#fff;font-weight: bold;">
     <td height="24" width="5%">选择</td>
     <td width="3%" nowrap="nowrap">ID</td>
     <td width="5%">姓名</td>

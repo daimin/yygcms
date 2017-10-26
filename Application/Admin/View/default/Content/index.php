@@ -2,14 +2,14 @@
 <link href="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker.min.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
 <div style="min-width:780px">
-    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px" bgcolor="#D6D6D6" align="center">
+    <table width="98%" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px" bgcolor="#D6D6D6" align="center">
         <tr>
             <td bgcolor="#FFFFFF" width="100%">
                 <div id="_mainsearch">
 
                     <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#D6D6D6">
                         <tbody><tr>
-                            <td height="19" colspan="11" background="__PUBLIC__/admin/images/tbg.gif" bgcolor="#E7E7E7">
+                            <td height="19" colspan="11" >
                                 <table width="96%" border="0" cellspacing="1" cellpadding="1">
                                     <tbody><tr>
                                         <td width="24%" style="padding-left:10px;"><strong>【<?php echo $category['name'] ?>】文章列表</strong></td>
@@ -19,7 +19,7 @@
                                     </tbody></table>
                             </td>
                         </tr>
-                        <tr align="center" bgcolor="#009900" height="25" style="color:#fff;font-weight: bold;">
+                        <tr align="center" bgcolor="#23262e" height="25" style="color:#fff;font-weight: bold;">
                             <td height="24" width="3%">选择</td>
                             <td width="25%" align="left">标题</td>
                             <td width="8%" align="left">分类</td>
@@ -33,7 +33,7 @@
                         </tr>
 
                         <volist name="list" id="item">
-                            <tr align="center" bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#EEFFEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="24">
+                            <tr align="center" bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#EEEEEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="24">
                                 <td>
                                     <input type="checkbox" name="ids[]" value="{$item.id}" class="np">
                                 </td>

@@ -18,7 +18,7 @@
     </td>
   </tr>
   <form name="form1" action="__URL__/doBackup" method="post">
-  <tr align="center" bgcolor="#009900" height="25" style="color:#fff;font-weight: bold;">
+  <tr align="center" bgcolor="#23262e" height="25" style="color:#fff;font-weight: bold;">
     <td height="24" width="5%">选择</td>
     <td width="20%">表名</td>
     <td width="8%">记录数</td>
@@ -29,7 +29,7 @@
   </tr>
   
     <volist name="list" id="item">
-	    <tr align="center" bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#EEFFEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="24">
+	    <tr align="center" bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#EEEEEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="24">
     <td>
     	<input type="checkbox" name="tables[]" value="{$item.name}" class="np"> 
     </td>
@@ -57,12 +57,14 @@
        <input type="submit" name="Submit" value="备份" class="coolbg np">
       </td>
   </tr>
-
-</tbody></table>
-    </form></td>
+  </form>
+</tbody>
+     </table>
+   </td>
   </tr>
  </table>
 </div>
+
 <script type="text/javascript">
 var isAllChecked = false;
 function checkAll(name){
