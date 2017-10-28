@@ -138,7 +138,7 @@ a:visited {
 }
 
 a:hover {
-    color: red;
+    color:#009688;
     font-family: "\" 宋体 \"";
 }
 
@@ -809,3 +809,12 @@ select option{
     padding: 0px;
 }
 
+#_mainsearch .tr-head td{
+    color:#fff;
+    font-weight: bold;
+}
+
+#_mainsearch .tr-head td a{
+    color:#fff;
+    font-weight: bold;
+}

@@ -19,7 +19,7 @@
                                     </tbody></table>
                             </td>
                         </tr>
-                        <tr align="center" bgcolor="#23262e" height="25" style="color:#fff;font-weight: bold;">
+                        <tr align="center" bgcolor="#23262e" height="25" class="tr-head">
                             <td height="24" width="3%">选择</td>
                             <td width="25%" align="left">标题</td>
                             <td width="8%" align="left">分类</td>
