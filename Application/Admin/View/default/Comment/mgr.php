@@ -63,7 +63,7 @@
                                 <a href="javacript:void(0)" class="btn btn-default" onclick="checkAll('ids[]')" class="coolbg">全选/反选</a>
                                 <button type="button" name="delBtn" class="btn btn-default btn-sm" onclick="delContent('ids[]')" >删除</button>
                                 <div style="float:right">
-                                    <form name="o-form" id="o-form" method="get" action="__URL__/comment/mgr/<?php echo $category['pagecode'] ?>">
+                                    <form name="o-form" id="o-form" method="get" action="__URL__/mgr/<?php echo $category['pagecode'] ?>">
                                         <span class="info">创建时间</span>
                                         <input type="text" id="startdate" name="startdate" class="input-sm " size="12" readonly value="<?php echo $startdate ?>" />
                                         -
@@ -77,10 +77,10 @@
                                         <select name="o_status">
                                             <option value="">所有状态</option>
                                             <option value="1" <?php if($o_status === '1'){ echo "selected";} ?>>发布</option>
-                                            <option value="0" <?php if($o_status === '0'){ echo "selected";} ?>>草稿</option>
+                                            <option value="0" <?php if($o_status === '0'){ echo "selected";} ?>>关闭</option>
                                         </select>
-                                        <span class="info">标题，关联链接模糊查询</span>
-                                        <input type="text" name="o_keyword" size="30" placeholder="标题，关联链接" value="<?php echo $o_keyword ?>" />
+                                        <span class="info">内容，关联文章模糊查询</span>
+                                        <input type="text" name="o_keyword" size="30" placeholder="内容，关联文章" value="<?php echo $o_keyword ?>" />
                                         <input type="submit"  class="btn btn-primary"  value="  筛选  " />
                                         <input type="reset" id="reset-btn"  class="btn btn-default"  value=" 重置 " />
                                     </form>

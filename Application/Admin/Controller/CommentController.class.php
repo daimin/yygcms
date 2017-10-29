@@ -9,7 +9,7 @@ use Hashids\Hashids;
 
 class CommentController extends BaseController {
 
-	public function mgr($o_keyword='', $o_status='', $sort='', $o_category='', $startdate='', $enddate=''){
+	public function mgr($o_keyword='', $o_status='', $sort='', $startdate='', $enddate=''){
 		$opts = $this->getOptions();
 		$pageSize = $opts->pageSize;
 		if(empty($o_status)){
@@ -82,9 +82,15 @@ class CommentController extends BaseController {
 		$contentD = D("Content");
 		$hashids = new Hashids();
 
+		$amap = [];
+		if(!empty($o_keyword)){
+			$amap['title'] = array('like', '%'.$o_keyword.'%');
+		}
 		foreach($list as $item){
 			$item['brief'] = mb_substr($item['content'], 0, 100);
-			$article = $contentD->where(['id' => $item['cid']])->find();
+
+
+			$article = $contentD->where(['id' => $item['cid']])->where($amap)->find();
 			if(empty($article)){
 				continue;
 			}
