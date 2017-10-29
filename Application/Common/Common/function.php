@@ -39,8 +39,11 @@ function site_url($url){
 		$url = $url.'.html';
 	}
 
-    return str_replace('index.php/', '', __MODULE__.'/'.$url);
-
+	$moduleUrl = strtolower(__MODULE__);
+	if(strpos($moduleUrl, 'admin') !== false){
+		$moduleUrl = "/site/";
+	}
+	return preg_replace('|[/]+|', '/', str_replace('index.php/', '', $moduleUrl.'/'.$url));
 }
 
 function del_dir($dir) {

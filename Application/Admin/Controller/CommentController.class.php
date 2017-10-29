@@ -5,6 +5,7 @@ namespace Admin\Controller;
 // 本类由系统自动生成，仅供测试用途
 use Admin\Model\ContentModel;
 use Think\Page;
+use Hashids\Hashids;
 
 class CommentController extends BaseController {
 
@@ -84,8 +85,17 @@ class CommentController extends BaseController {
 		// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
 		$list = $commentM->where($map)->order('`createtime` '.$sort)->limit($page->firstRow.','.$page->listRows)->select();
 		$commentList = [];
+		$contentD = D("Content");
+		$hashids = new Hashids();
+
 		foreach($list as $item){
 			$item['brief'] = mb_substr($item['content'], 0, 100);
+			$article = $contentD->where(['id' => $item['cid']])->find();
+			if(empty($article)){
+				continue;
+			}
+			$article['idcode'] = $hashids->encode($article['id']);
+			$item['article'] = $article;
 			$commentList []= $item;
 		}
 

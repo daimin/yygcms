@@ -27,9 +27,7 @@
                             <td width="35%" align="left">内容</td>
                             <td width="15%" align="left">关联文章</td>
                             <td width="10%"><a href="javascript:void(0)" title="点击排序" onclick="sortContent('{$sort}')">创建时间</a>  </td>
-                            <td width="10%">修改时间</td>
                             <td width="8%" nowrap="nowrap">状态</td>
-                            <td width="3%" nowrap="nowrap">排序</td>
                             <td width="8%" nowrap="nowrap">操作</td>
                         </tr>
 
@@ -42,37 +40,19 @@
                                     <div class="comment-brief-popover" href="javascript:void(0)" data-content="{$item.content}" data-placement="auto" data-width="80%">{$item.brief}</div>
                                 </td>
                                 <td align="left">
-                                    {$item.category_name}
-                                </td>
-                                <td  align="left">
-                                    <a target="_blank" href="{$item.relurl}  ">{$item.relurl}  </a>
+                                    <a href="<?php echo site_url("/article/view/id/".$item['article']['idcode']) ?>" target="_blank">{$item.article.title}</a>
                                 </td>
                                 <td>
                                     {$item.createtime}
                                 </td>
                                 <td>
-                                    {$item.modifytime}
-                                </td>
-                                <td>
                                     <if condition="($item.status eq 1) ">
-                                        <span onclick="changeContentStatus(0,'<?php echo $item['id']?>')" style="color:green;cursor:pointer;">[发布] </span>
-                                        <else /> <span onclick="changeContentStatus(1,'<?php echo $item['id']?>')" style="color:red;cursor:pointer;">[草稿]</span>
+                                        <span  style="color:green;">[发布] </span>
+                                        <else />style="color:red;">[关闭]</span>
                                     </if>
                                 </td>
                                 <td>
-                                    {$item.attac_count}
-                                </td>
-                                <td>
-                                    <input type="text" size="2" name="corder_{$item.id}" onblur="changeContentOrder(this, '__URL__')" value="{$item.order}" />
-                                </td>
-                                <td>
-                                    <a style="text-decoration: none;" href="__URL__/edit/cid/{$item.id}" title="编辑">[编辑]</a>
-                                    <?php if($item['topnum'] > 0){ ?>
-                                        <a style="text-decoration: none;" href="javascript:void(0)" onclick="canceltop('{$item.id}')" title="取消置顶">[取消置顶]</a>
-                                    <?php }else if($item['status'] == 1){ ?>
-                                        <a style="text-decoration: none;" href="javascript:void(0)" onclick="puttop('{$item.id}')" title="置顶">[置顶]</a>
-                                    <?php }?>
-
+                                    审核
                                 </td>
 
                             </tr>
