@@ -818,3 +818,9 @@ select option{
     color:#fff;
     font-weight: bold;
 }
+
+.comment-brief-popover{
+    cursor: pointer;
+    line-height: 1.8em;
+    padding-right: 1em;
+}

@@ -83,7 +83,13 @@ class CommentController extends BaseController {
 		$show       = $page->show();// 分页显示输出
 		// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
 		$list = $commentM->where($map)->order('`createtime` '.$sort)->limit($page->firstRow.','.$page->listRows)->select();
-		$this->assign('list', $list);// 赋值数据集
+		$commentList = [];
+		foreach($list as $item){
+			$item['brief'] = mb_substr($item['content'], 0, 100);
+			$commentList []= $item;
+		}
+
+		$this->assign('list', $commentList);// 赋值数据集
 		$this->assign('sort', $sort);
 		$this->assign('o_status', $o_status);
 		$this->assign('o_categoryId', $o_categoryId);

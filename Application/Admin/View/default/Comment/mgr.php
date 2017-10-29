@@ -1,6 +1,8 @@
 <include file="Public:header" />
 <link href="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker.min.css" type="text/css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/webui-popover/2.1.15/jquery.webui-popover.min.css" rel="stylesheet">
 <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdn.bootcss.com/webui-popover/2.1.15/jquery.webui-popover.min.js"></script>
 <div style="min-width:780px">
     <table width="98%" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px" bgcolor="#D6D6D6" align="center">
         <tr>
@@ -22,8 +24,8 @@
                         </tr>
                         <tr align="center" bgcolor="#23262e" height="25" class="tr-head">
                             <td height="24" width="3%">选择</td>
-                            <td width="25%" align="left">内容</td>
-                            <td width="25%" align="left">关联文章</td>
+                            <td width="35%" align="left">内容</td>
+                            <td width="15%" align="left">关联文章</td>
                             <td width="10%"><a href="javascript:void(0)" title="点击排序" onclick="sortContent('{$sort}')">创建时间</a>  </td>
                             <td width="10%">修改时间</td>
                             <td width="8%" nowrap="nowrap">状态</td>
@@ -37,7 +39,7 @@
                                     <input type="checkbox" name="ids[]" value="{$item.id}" class="np">
                                 </td>
                                 <td align="left">
-                                    {$item.content}
+                                    <div class="comment-brief-popover" href="javascript:void(0)" data-content="{$item.content}" data-placement="auto" data-width="80%">{$item.brief}</div>
                                 </td>
                                 <td align="left">
                                     {$item.category_name}
@@ -224,6 +226,7 @@
             e.stopPropagation();
             return false;
         });
+        $('.comment-brief-popover').webuiPopover();
     });
     
     function doadd() {
