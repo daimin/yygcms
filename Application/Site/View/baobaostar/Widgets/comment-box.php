@@ -94,14 +94,13 @@
     <?php foreach($commentlist as $commentItem){ ?>
         <div class="comment-item">
             <div class="comment-user-panel">
-                <div><?php
+                <?php
                     $avatarImgUrl = $commentItem['avatar'];
                     if(empty($avatarImgUrl)){
                         $avatarImgUrl = '/Public/site/'.$Think.THEME_NAME.'/images/uface.jpg';
                     }
                     ?>
                     <img src="<?php echo $avatarImgUrl ?>">
-                </div>
             </div>
             <div class="comment-body">
                 <div class="comment-nav">

@@ -51,6 +51,10 @@ class ArticleController extends BaseController {
             $this->jsonReturn(false, "请输入至少输入4个字符");
         }
 
+        if(mb_strlen($content) > 2000){
+            $this->jsonReturn(false, "评论内容不能超过2000个字符");
+        }
+
         $articleContent = M("content")->where(['id' => $cid])->find();
         if(empty($articleContent)){
             $this->jsonReturn(false, "找不到要评论的文章");

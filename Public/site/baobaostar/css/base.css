@@ -623,14 +623,18 @@ a:hover {
 }
 
 .comment-list .comment-item{
-    border-top: 1px solid #dddddd;height:100px;
+    border-top: 1px solid #dddddd;
+    min-height:100px;
+    height:auto;
     margin-bottom: 2px;
 }
 
 .comment-list .comment-item .comment-user-panel{
-    float:left;height:100%;width:100px;
+    width:100px;
     text-align: center;
     padding-top: 0.7em;
+    display: inline-block;
+    float:left;
 }
 
 
@@ -639,13 +643,15 @@ a:hover {
 }
 
 .comment-list .comment-item .comment-body{
-    padding-left: 1em;
     font-size: 14px;
     color:#666666;
+    display: inline-block;
+    width: 87%;
+    margin-bottom: 0.6em;
 }
 
 .comment-list .comment-item .comment-body .comment-nav{
-    padding-left: 1em;
+    padding-left: .5em;
     height: 1.5em;
     line-height: 1.5em;
 }
@@ -670,8 +676,9 @@ a:hover {
 }
 
 .comment-list .comment-item .comment-body .comment-cont{
-    padding-left: 1em;
+    padding-left: .5em;
     padding-top: 0.5em;
+    line-height: 1.7em;
 }
 
 .comment-list .comment-item .comment-body .comment-cont .comment-cont-img{
