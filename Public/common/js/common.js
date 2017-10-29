@@ -125,7 +125,7 @@ var getEvent = function(){
 };
 
 var yygcms_confirm = function (message, callback) {
-	bootbox.confirm({message : message,
+	bootbox.confirm({size:"small",message : message,
 		buttons: {
 			confirm: {
 				label: '确定',

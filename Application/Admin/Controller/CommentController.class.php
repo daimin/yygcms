@@ -109,5 +109,43 @@ class CommentController extends BaseController {
 		$this->display();
 	}
 
+	public function del(){
+		$ids = I("ids");
+		$ids = explode(",", $ids);
+		$commentM = M("Comment");
+
+		foreach($ids as $id){
+			if(!empty($id)){
+				// 先查询是否有子文档，如果有则删除之
+				$commentM->where("`id`='$id'")->delete();
+			}
+		}
+		$this->jsonReturn (1);
+	}
+
+	public function audit(){
+		$commId = I("commentId");
+		$cont = I("content");
+		$status = I("status");
+
+		if(empty($cont)){
+			$this->jsonReturn(false, '审核内容不能为空');
+		}
+
+		if(mb_strlen($cont) >= 255){
+			$this->jsonReturn(false, '审核内容太长');
+		}
+
+		$commentM = M("Comment");
+		$commentEntity = $commentM->where(['id' => $commId])->find();
+		if(empty($commentEntity)){
+			$this->jsonReturn(false, '找不到评论');
+		}
+
+		$data['audit'] = $cont;
+
+		$res = $commentM->where("`id`='$commId'")->save(['audit' => $cont, 'status' => intval($status)]);
+		$this->jsonReturn($res);
+	}
 
 }

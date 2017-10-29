@@ -48,11 +48,19 @@
                                 <td>
                                     <if condition="($item.status eq 1) ">
                                         <span  style="color:green;">发布 </span>
-                                        <else />style="color:red;">关闭</span>
+                                        <else /><span style="color:red;">屏蔽</span>
+                                    </if>
+                                    <if condition="($item.audit neq '')">(<span style="color:#222;overflow: hidden;cursor: pointer" title="{$item.audit}">
+                                            <?php if(mb_strlen($item['audit']) > 5){?>
+                                                <?php echo mb_substr($item['audit'], 0, 5) ?><span>...</span>
+                                            <?php }else{ ?>
+                                                <?php echo $item['audit'] ?>
+                                            <?php } ?>
+                                        </span>)
                                     </if>
                                 </td>
                                 <td>
-                                    <a href="javascript:void(0)">[审核]</a>
+                                    <a href="javascript:void(0)" onclick="doAudit('{$item.id}')">[审核]</a>
                                 </td>
 
                             </tr>
@@ -61,7 +69,7 @@
                             <td height="24" colspan="10" >
                                 &nbsp;
                                 <a href="javacript:void(0)" class="btn btn-default" onclick="checkAll('ids[]')" class="coolbg">全选/反选</a>
-                                <button type="button" name="delBtn" class="btn btn-default btn-sm" onclick="delContent('ids[]')" >删除</button>
+                                <button type="button" name="delBtn" class="btn btn-default btn-sm" onclick="delComment('ids[]')" >删除</button>
                                 <div style="float:right">
                                     <form name="o-form" id="o-form" method="get" action="__URL__/mgr/<?php echo $category['pagecode'] ?>">
                                         <span class="info">创建时间</span>
@@ -77,7 +85,7 @@
                                         <select name="o_status">
                                             <option value="">所有状态</option>
                                             <option value="1" <?php if($o_status === '1'){ echo "selected";} ?>>发布</option>
-                                            <option value="0" <?php if($o_status === '0'){ echo "selected";} ?>>关闭</option>
+                                            <option value="0" <?php if($o_status === '0'){ echo "selected";} ?>>屏蔽</option>
                                         </select>
                                         <span class="info">内容，关联文章模糊查询</span>
                                         <input type="text" name="o_keyword" size="30" placeholder="内容，关联文章" value="<?php echo $o_keyword ?>" />
@@ -117,7 +125,7 @@
 
     }
 
-    function delContent(as){
+    function delComment(as){
         var ass = $("input[name='" + as + "']").toArray();
 
         if(ass.length <= 0) return false;
@@ -151,42 +159,6 @@
 
     }
 
-    function changeContentStatus(s, id){
-        var d = "确定将该文档发布？";
-        if(s == 0){
-            d = "确定该文档置为草稿？";
-        }
-
-        yygcms_confirm(d, function (result) {
-            var args = {
-                "id":id,
-                "status":s
-            };
-            $.post('__URL__/changeStatus',args,function(data){
-                data = comm_parseJsonResult(data);
-                if(data == 1){
-                    window.location.reload();
-                }else{
-                    bootbox.alert(data);
-                }
-            });
-        });
-    }
-
-    function sortContent(sort){
-        if(sort == 'desc'){
-            sort = 'asc';
-        }else{
-            sort = 'desc';
-        }
-        var href = window.location.href;
-        if(href.indexOf('&') != -1){
-            window.location = window.location.href + '&1=1&sort='+sort;
-        }else{
-            window.location = window.location.href + '/sort/'+sort;
-        }
-
-    }
 
     $(function () {
         $('#startdate').datepicker({
@@ -208,41 +180,49 @@
         });
         $('.comment-brief-popover').webuiPopover();
     });
-    
-    function doadd() {
-        window.location.href="__URL__/add/code/<?php echo $category['pagecode'] ?>";
-    }
 
-    function canceltop(itemid){
-        var args = {
-            "id":itemid,
-            "status":itemid
-        };
-        $.post('__URL__/canceltop',args,function(data){
-            data = comm_parseJsonResult(data);
-            if(data == 1){
-                window.location.reload();
-            }else{
-                console.log(data);
-                bootbox.alert(data);
+    function doAudit(commentId){
+        var dialog = bootbox.dialog({
+            title: '审核',
+            message: "<p><div id=\"yyg-audit-error\" class=\"yyg-error\"></div><textarea id=\"audit-content\" rows='3' cols='90' style='resize: none;'></textarea></p>",
+            buttons: {
+                ok: {
+                    label: "通过",
+                    className: 'btn-info',
+                    callback: function(){
+                        var cont = $.trim($("#audit-content").val());
+                        if(!cont){
+                            $("#yyg-audit-error").html("审核内容不能为空");
+                            return false;
+                        }
+                        doPostAudit(cont, 1);
+                        return true;
+                    }
+                },
+                cancel: {
+                    label: "屏蔽",
+                    className: 'btn-danger',
+                    callback: function(){
+                        var cont = $.trim($("#audit-content").val());
+                        if(!cont){
+                            $("#yyg-audit-error").html("审核内容不能为空");
+                            return false;
+                        }
+                        doPostAudit(cont, 0);
+                        return true;
+                    }
+                },
             }
         });
-    }
 
-    function puttop(itemid){
-        var args = {
-            "id":itemid,
-            "status":itemid
+        var doPostAudit = function (cont, status) {
+            $.post('__URL__/audit', {"commentId": commentId, "content" : cont, 'status' : status}, function (data, status) {
+                data = comm_parseJsonResult(data);
+                if(data){
+                    window.location.reload();
+                }
+            });
         };
-        $.post('__URL__/puttop',args,function(data){
-            data = comm_parseJsonResult(data);
-            if(data == 1){
-                window.location.reload();
-            }else{
-                console.log(data);
-                bootbox.alert(data);
-            }
-        });
     }
 
 
