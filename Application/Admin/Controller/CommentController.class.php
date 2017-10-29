@@ -30,12 +30,6 @@ class CommentController extends BaseController {
 			}
 		}
 
-		if($o_category === ''){
-			$o_categoryId = I("get.o_category");
-		}else{
-			$o_categoryId = $o_category;
-		}
-
 		if($startdate === ''){
 			$startdate = I("get.startdate");
 		}
@@ -102,7 +96,6 @@ class CommentController extends BaseController {
 		$this->assign('list', $commentList);// 赋值数据集
 		$this->assign('sort', $sort);
 		$this->assign('o_status', $o_status);
-		$this->assign('o_categoryId', $o_categoryId);
 		$this->assign('o_keyword', $o_keyword);
 		$this->assign('startdate', $startdate);
 		$this->assign('enddate', $enddate);

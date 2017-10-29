@@ -47,12 +47,12 @@
                                 </td>
                                 <td>
                                     <if condition="($item.status eq 1) ">
-                                        <span  style="color:green;">[发布] </span>
-                                        <else />style="color:red;">[关闭]</span>
+                                        <span  style="color:green;">发布 </span>
+                                        <else />style="color:red;">关闭</span>
                                     </if>
                                 </td>
                                 <td>
-                                    审核
+                                    <a href="javascript:void(0)">[审核]</a>
                                 </td>
 
                             </tr>
@@ -63,7 +63,7 @@
                                 <a href="javacript:void(0)" class="btn btn-default" onclick="checkAll('ids[]')" class="coolbg">全选/反选</a>
                                 <button type="button" name="delBtn" class="btn btn-default btn-sm" onclick="delContent('ids[]')" >删除</button>
                                 <div style="float:right">
-                                    <form name="o-form" id="o-form" method="get" action="__URL__/category/code/<?php echo $category['pagecode'] ?>">
+                                    <form name="o-form" id="o-form" method="get" action="__URL__/comment/mgr/<?php echo $category['pagecode'] ?>">
                                         <span class="info">创建时间</span>
                                         <input type="text" id="startdate" name="startdate" class="input-sm " size="12" readonly value="<?php echo $startdate ?>" />
                                         -
