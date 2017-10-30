@@ -56,7 +56,7 @@
             </ul>
             <div class="login-info-div">
                 <span><?php echo $loginInfo['nickname'] ?></span>
-                <a href="javascript:void(0)">设置</a> |
+                <a href="<?php echo site_url("customer/setting") ?>">设置</a> |
                 <a href="javascript:void(0)" onclick="yygcms_logout('<?php echo site_url("login/logout/p/".base64_encode($_SERVER['REQUEST_URI'])) ?>')">退出</a>
             </div>
         </div><!-- /.navbar-collapse -->

@@ -40,5 +40,9 @@ class LoginController extends BaseController {
         $durl = str_replace('/index.php/', '/', strtolower(base64_decode($p)));
         $this->redirect($durl);
     }
+
+    public function setting(){
+        $this->display();
+    }
     
 }
