@@ -20,53 +20,46 @@
   <form name="form1" action="__URL__/doBackup" method="post">
   <tr align="center" bgcolor="#23262e" height="25" style="color:#fff;font-weight: bold;">
     <td height="24" width="5%">选择</td>
-    <td width="30%">账号</td>
+    <td width="20%">邮箱|手机</td>
+    <td width="20%">昵称</td>
     <td width="10%">创建时间</td>
     <td width="10%">最后登录时间</td>
     <td width="8%">状态</td>
-    <td width="8%">角色</td>
     <td width="10%">操作</td>
   </tr>
   
-  <volist name="users" id="user">
+  <volist name="customers" id="customer">
 	    <tr align="center" bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#EEEEEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="24">
     <td>
     	<input type="checkbox" name="ids[]" value="{$user.name}" class="np"> 
     </td>
     <td> 
-      {$user.name}  
+      {$customer.email}|{$customer.phone}
+    </td>
+    <td>
+        {$customer.nickname}
     </td>
     <td> 
-      {$user.createtime}  
+      {$customer.createtime}
     </td>
     <td> 
-      {$user.lastlogintime}  
+      {$customer.lastlogintime}
     </td>
     <td> 
-    <?php if( session(C("__YYG_AUTH_NAME__")) != $user['name']){?>
+    <?php if( session(C("__YYG_AUTH_NAME__")) != $customer['name']){?>
     <if condition="($user.status eq 1) ">
-       <span onclick="changeAdminStatus(0,'<?php echo $user['name']?>')" style="color:green;cursor:pointer;">[正常] </span>
-    <else /> <span onclick="changeAdminStatus(1,'<?php echo $user['name']?>')" style="color:red;cursor:pointer;">[停用]</span>
+       <span onclick="changeAdminStatus(0,'<?php echo $customer['name']?>')" style="color:green;cursor:pointer;">[正常] </span>
+    <else /> <span onclick="changeAdminStatus(1,'<?php echo $customer['name']?>')" style="color:red;cursor:pointer;">[停用]</span>
    </if>
    <?php }else{?>
-   <if condition="($user.status eq 1) "> <span  style="color:green;">正常</span>
+   <if condition="($customer.status eq 1) "> <span  style="color:green;">正常</span>
     <else /> <span  style="color:red;">停用</span>
    </if>
    <?php }?>
  </td>
     <td>
-    <?php if(session(C("__YYG_AUTH_NAME__")) != $user['name']){?>
-          <select name="role" onchange="changeRole(this, '<?php echo $user['name']?>')" >
-               <option value="{$Think.config.__YYG_EDITOR__}" <?php if($user['role'] == C("__YYG_EDITOR__")) echo ' selected="selected" ';?> >{$Think.config.__YYG_EDITOR__|roleShow=### }</option>
-               <option value="{$Think.config.__YYG_ADMIN__}" <?php if($user['role'] == C("__YYG_ADMIN__")) echo ' selected="selected" ';?> >{$Think.config.__YYG_ADMIN__|roleShow=### }</option>
-           </select>
-    <?php }else{?>
-    <?php echo roleShow($user['role'])?>
-    <?php }?>
-      
-    </td>
-    <td>
-        <a style="text-decoration: underline;" href="__URL__/changePassword/name/{$user.name}" title="修改用户密码">修改密码</a>    
+        <a style="text-decoration: underline;" href="__URL__/changePassword/name/{$customer.name}" title="修改用户密码">修改密码</a>
+        <a style="text-decoration: underline;" href="__URL__/changePassword/name/{$customer.name}" title="详情">详情</a>
     </td>
     
     </tr> 

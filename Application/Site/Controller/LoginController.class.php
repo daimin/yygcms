@@ -30,8 +30,15 @@ class LoginController extends BaseController {
             }
         }
 
+        M("customer")->where(['id' => $customerEntity['id']])->data(['lastlogintime' => date("Y-m-d H:i:s")])->save([]);
         cookie(C("__YYG_SITE_AUTH_NAME__"), $customerEntity['id'], 3600);
         $this->jsonReturn(1);
+    }
+
+    public function logout($p=''){
+        cookie(C("__YYG_SITE_AUTH_NAME__"), null, time()-1);
+        $durl = str_replace('/index.php/', '/', strtolower(base64_decode($p)));
+        $this->redirect($durl);
     }
     
 }

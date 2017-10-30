@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>美平网站后台系统</title>
+<title>又一个CMS网站后台系统</title>
 <!-- 设置资源的的初始化路径 -->
 <style>
 html

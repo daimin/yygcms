@@ -142,3 +142,10 @@ var yygcms_confirm = function (message, callback) {
 			}
 		}});
 };
+
+
+var yygcms_logout = function(url){
+	if(window.confirm("确定要退出？")){
+		window.location.href = url;
+	}
+};

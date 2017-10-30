@@ -60,24 +60,32 @@ function saySorry(){
                 </ul>
             </div>
         </div>
-      <?php if(is_admin()){?>
+
     <div class='bitem'>
         <div class="dt" onClick='showHide("items1_22", this)'>用户管理 <span class="site-nav-more">▼</span></div>
         <div style='display:block' class='sitem' id='items1_22'>
           <ul class='sitemu'>
+              <li>
+                  <div class='dd'>
+                      <div class='fllct'><a href='<?php echo admin_url("Customer/mgr")?>'  target='main'>客户管理</a></div>
+                  </div>
+              </li>
+              <?php if(is_admin()){?>
             <li>
               <div class='dd'>
-                <div class='fllct'><a href='<?php echo admin_url("AdminMgr/add")?>'  target='main'>新增用户</a></div>
+                <div class='fllct'><a href='<?php echo admin_url("AdminMgr/add")?>'  target='main'>新增管理员</a></div>
               </div>
             </li>
                <li>
               <div class='dd'>
-                <div class='fllct'><a href='<?php echo admin_url("AdminMgr")?>' target='main'>用户列表</a></div>
+                <div class='fllct'><a href='<?php echo admin_url("AdminMgr")?>' target='main'>管理员列表</a></div>
               </div>
                </li>
+              <?php }?>
           </ul>
         </div>
       </div>
+        <?php if(is_admin()){?>
       <div class='bitem'>
         <div class="dt" onClick='showHide("items1_82", this)'>系统管理 <span class="site-nav-more">▼</span></div>
         <div style='display:block' class='sitem' id='items1_82'>
