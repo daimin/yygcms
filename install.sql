@@ -553,8 +553,8 @@ CREATE TABLE `yyg_category` (
   `name` varchar(32) NOT NULL,
   `pagecode` varchar(120) NOT NULL DEFAULT '',
   `status` tinyint(1) NOT NULL DEFAULT '1',
-  `createtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modifytime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modifytime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
@@ -592,8 +592,8 @@ CREATE TABLE `yyg_comment` (
   `pid` int(11) NOT NULL DEFAULT '0',
   `audit` varchar(255) NOT NULL DEFAULT '',
   `status` tinyint(1) NOT NULL DEFAULT '1',
-  `createtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modifytime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modifytime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
@@ -631,8 +631,8 @@ CREATE TABLE `yyg_content` (
   `relurl` varchar(500) NOT NULL,
   `category_id` int(11) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '1',
-  `createtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modifytime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modifytime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `viewnum` int(11) unsigned DEFAULT '0',
   `order` int(11) unsigned NOT NULL DEFAULT '0',
   `topnum` int(11) unsigned DEFAULT '0',
@@ -677,7 +677,7 @@ CREATE TABLE `yyg_customer` (
   `email` varchar(100) NOT NULL,
   `nickname` varchar(100) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `bbbirthday` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `bbbirthday` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `age` tinyint(4) NOT NULL DEFAULT '0',
   `sex` tinyint(4) NOT NULL DEFAULT '0',
   `address` varchar(255) NOT NULL DEFAULT '',
@@ -729,8 +729,8 @@ CREATE TABLE `yyg_sensitive` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `word` varchar(40) NOT NULL DEFAULT '',
   `aid` int(11) NOT NULL DEFAULT '0' COMMENT '添加的管理员',
-  `createtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modifytime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modifytime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1148 DEFAULT CHARSET=utf8;
 
