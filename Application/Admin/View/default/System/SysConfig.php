@@ -68,7 +68,7 @@
 
 </div>
      <table width="100%" border="0" cellspacing="1" cellpadding="1"  style="border:1px solid #cfcfcf;border-top:none;">
-      <tr bgcolor="#23262e">
+      <tr bgcolor="#d3d6de">
        <td height="50" colspan="3"><table width="98%" border="0" cellspacing="1" cellpadding="1">
          <tr>
           <td width="11%">&nbsp;</td>

@@ -46,20 +46,15 @@
       {$customer.lastlogintime}
     </td>
     <td> 
-    <?php if( session(C("__YYG_AUTH_NAME__")) != $customer['name']){?>
-    <if condition="($user.status eq 1) ">
-       <span onclick="changeAdminStatus(0,'<?php echo $customer['name']?>')" style="color:green;cursor:pointer;">[正常] </span>
-    <else /> <span onclick="changeAdminStatus(1,'<?php echo $customer['name']?>')" style="color:red;cursor:pointer;">[停用]</span>
+    <if condition="($customer.status eq 1) ">
+       <span onclick="changeCustomerStatus(0,'<?php echo $customer['id']?>')" style="color:green;cursor:pointer;">[正常] </span>
+    <else />
+        <span onclick="changeCustomerStatus(1,'<?php echo $customer['id']?>')" style="color:red;cursor:pointer;">[停用]</span>
    </if>
-   <?php }else{?>
-   <if condition="($customer.status eq 1) "> <span  style="color:green;">正常</span>
-    <else /> <span  style="color:red;">停用</span>
-   </if>
-   <?php }?>
  </td>
     <td>
-        <a style="text-decoration: underline;" href="__URL__/changePassword/name/{$customer.name}" title="修改用户密码">修改密码</a>
-        <a style="text-decoration: underline;" href="__URL__/changePassword/name/{$customer.name}" title="详情">详情</a>
+        <a style="text-decoration: underline;" href="javascript:void(0)" onclick="changePassword('{$customer.id}')" title="修改用户密码">修改密码</a>
+        <a style="text-decoration: underline;" href="javascript:void(0)" title="详情">详情</a>
     </td>
     
     </tr> 
@@ -126,41 +121,79 @@ function delAdmin(as){
    
 }
 
-function changeAdminStatus(s, name){
+function changeCustomerStatus(s, id){
+
 	var d = "确定激活该用户？";
 	if(s == 0){
 		d = "确定停用该用户？";
 	}
-	if(window.confirm(d)){
-		var args = {
-		          "name":name,
-		          "status":s
-		        };
-		        $.post('__URL__/changeStatus',args,function(data){
-		              if(data == 1){
-		                  window.location.reload();
-		              }else{
-		                  alert(data);
-		              }
-		        });
-    }
+	yygcms_confirm(d, function (result) {
+        if(result){
+            var args = {
+                "id":id,
+                "status":s
+            };
+            $.post('__URL__/changeStatus',args,function(data){
+                if(data == 1){
+                    window.location.reload();
+                }else{
+                    alert(data);
+                }
+            });
+        }
+
+    });
 }
 
-function changeRole(o, name){
-	if(window.confirm("确定修改该用户的角色权限？")){
-		var args = {
-		          "name":name,
-		          "role":o.value
-		        };
-		        $.post('__URL__/changeRole',args,function(data){
-		              if(data == 1){
-		                  window.location.reload();
-		              }else{
-		                  alert(data);
-		              }
-		        });
-    }
+function changePassword(customerId) {
+    var dialog = bootbox.dialog({
+        title: '修改密码',
+        message: "<p><div id=\"yyg-audit-error\" class=\"yyg-error\"></div><input class=\"form-control\" placeholder=\"新密码\" name=\"newpassword\" type=\"password\" id=\"newpassword\" size='40'/></p>",
+        buttons: {
+            ok: {
+                label: "确定",
+                className: 'btn-info',
+                callback: function () {
+                    var newpassword = $.trim($("#newpassword").val());
+                    if (!newpassword) {
+                        $("#yyg-audit-error").html("密码不能为空");
+                        return false;
+                    }
+
+                    if (newpassword.length < 6) {
+                        $("#yyg-audit-error").html("密码不能小于6个字符");
+                        return false;
+                    }
+
+                    if (newpassword.length > 30) {
+                        $("#yyg-audit-error").html("密码不能大于30个字符");
+                        return false;
+                    }
+
+                    doChangePassword(newpassword, customerId);
+                    return true;
+                }
+            },
+            cancel: {
+                label: "取消",
+                className: 'btn-default',
+                callback: function () {
+                    return true;
+                }
+            },
+        }
+    });
+
+    var doChangePassword = function (newpassword, customerId) {
+        $.post('__URL__/changePassword', {"customerId": customerId, "newpassword" : newpassword}, function (data, status) {
+            data = comm_parseJsonResult(data);
+            if(data){
+                show_success_alert("成功", "修改成功");
+            }
+        });
+    };
 }
+
 </script>
 <include file="Public:footer" />
 

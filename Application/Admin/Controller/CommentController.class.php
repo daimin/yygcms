@@ -3,7 +3,6 @@
 namespace Admin\Controller;
 
 // 本类由系统自动生成，仅供测试用途
-use Admin\Model\ContentModel;
 use Think\Page;
 use Hashids\Hashids;
 

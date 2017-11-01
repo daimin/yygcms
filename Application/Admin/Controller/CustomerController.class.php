@@ -11,89 +11,44 @@ class CustomerController extends BaseController {
         $this->display();
 	}
     
-    public function add(){
-       if($this->isGet()){
-           $this->display("Admin:Add");
-       }else if($this->isPost()){
-           $adminD = D("Admins");
-           if (!$adminD->create(False, 1)){
-               // 如果创建失败 表示验证没有通过 输出错误提示信息
-               $this->error($adminD->getError());
-               exit();
-          }else{
-              $adminD->add();
-              $this->success("添加管理员成功", __URL__);
-          }
-
-       }
-    }
     
-     public function changePassword($name=False){
-         
-       if($this->isGet()){
-           $admin = D("Admins")->where("`name`='$name'")->find();
-           if(!empty($admin)){
-               $this->assign('admin', $admin);
-               $this->display("Admin:ChangePwd");
-           }else{
-               $this->error("无效的用户名");
-           }
-           
-       }else if($this->isPost()){
-           $adminD = D("Admins");
-           if (!$adminD->create(False, 2)){
-               // 如果创建失败 表示验证没有通过 输出错误提示信息
-               $this->error($adminD->getError());
-               exit();
-          }else{
-              //更新用
-              $adminD->save();
-              $this->success("更新管理员密码成功", __URL__);
-          }
+     public function changePassword(){
+         $customerId = I('post.customerId');
+         $newpassword = I('post.newpassword');
 
-       }
+         $customerM = M("Customer");
+
+         if(empty($newpassword)){
+             $this->jsonReturn(false, '新密码不能为空');
+         }
+
+         if(mb_strlen($newpassword) < 6){
+             $this->jsonReturn(false, '新密码不能小于6个字符');
+         }
+
+         if(mb_strlen($newpassword) > 30){
+             $this->jsonReturn(false, '新密码不能大于30个字符');
+         }
+
+         $customerEntity = $customerM->where(['id' => $customerId])->find();
+         if(empty($customerEntity)){
+             $this->jsonReturn(false, '找不到指定的用户');
+         }
+
+         $customerM->where(['id' => $customerId])->save(['password' => hashPassword($newpassword, true)]);
+         $this->jsonReturn(1);
     }
-    
-    public function del(){
-        $names = I("names");
-        
-        if(empty($names)) {
-            $this->ajaxReturn("选择要删除的管理员");
-            exit();
-        }
-        $names = explode(",", $names);
-        $adminD = D("Admins");
-        $res = False;
-        foreach($names as $name){
-           $res = $adminD->where("`name`='$name'")->delete();
-        }
-        if($res)
-            $this->ajaxReturn(1);
-        else
-            $this->ajaxReturn ('删除失败');
-        exit();
-    }
+
     
     public function changeStatus(){
-    	$name = I('name');
-    	$status = I('status');
+        $id = I('post.id');
+    	$status = I('post.status');
     
-    	D("Admins")->where("`name`='$name'")->save(array("status"=>$status));
+    	M("Customer")->where("`id`='$id'")->save(array("status"=>intval($status)));
     	$this->ajaxReturn (1);
     	exit();
     }
-    
-    public function changeRole(){
-    	$name = I('name');
-    	$role = I('role');
-    	D("Admins")->where("`name`='$name'")->save(array("role"=>$role));
-    	$this->ajaxReturn (1);
-    	exit();
-    }
-    
-  
-    
-    
+
     
    
 }

@@ -42,21 +42,32 @@ class SysMgrController extends BaseController {
     }
     
     public function backup(){
-        $m = new Model();
+        $m = new \Think\Model();
         //C函数获取配置信息
 		$list = $m->query("SHOW TABLE STATUS FROM "."`".C('DB_NAME')."`");
 		$tables = array();
-        foreach ($list as $key => $val)
+		$newList = [];
+		foreach ($list as $key => $val)
 		{
-			$tables[$key]['name'] = $val['Name'];//表名
-			$tables[$key]['rows'] = $val['Rows'];//记录数
-			$tables[$key]['engine'] = $val['Engine'];//引擎
-			$tables[$key]['data_length'] = sizecount($val['Data_length']);//表大小
-			$tables[$key]['create_time']=$val['Create_time'];//表创建时间
-			$tables[$key]['collation']=$val['Collation'];//编码类型
+			$nval = [];
+			foreach($val as $k2 => $v2){
+				$nval[strtolower($k2)] = $v2;
+			}
+
+			$newList[$key] = $nval;
+		}
+		
+        foreach ($newList as $key => $val)
+		{
+			$tables[$key]['name'] = $val['name'];//表名
+			$tables[$key]['rows'] = $val['rows'];//记录数
+			$tables[$key]['engine'] = $val['engine'];//引擎
+			$tables[$key]['data_length'] = sizecount($val['data_length']);//表大小
+			$tables[$key]['create_time']=$val['create_time'];//表创建时间
+			$tables[$key]['collation']=$val['collation'];//编码类型
         }
-        
-		$this->assign('list',$tables);
+
+		$this->assign('list', $tables);
         $this->display("System:DataBackup");
     }
     
@@ -87,7 +98,7 @@ class SysMgrController extends BaseController {
 	private function getBackupData($tables, $filesize){
 		$data = '';
 		foreach($tables as $tab){
-            Log::write($tab);
+            \Think\Log::write($tab);
 			$obj = M(str_replace(C('DB_PREFIX'),'',$tab));//实例化一个表模型
 			$row = $obj->query("SHOW CREATE TABLE $tab");
 			$data .= "DROP TABLE IF EXISTS `".$tab."`;\n" . $row[0]['Create Table'] . ";\n";
