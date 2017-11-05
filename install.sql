@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50712
 File Encoding         : 65001
 
-Date: 2017-11-05 17:01:56
+Date: 2017-11-05 22:11:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -678,6 +678,7 @@ CREATE TABLE `yyg_customer` (
   `phone` varchar(20) NOT NULL DEFAULT '',
   `nickname` varchar(100) NOT NULL,
   `password` varchar(32) NOT NULL,
+  `stage` int(1) unsigned NOT NULL DEFAULT '0' COMMENT '1备孕，2孕早期，3孕中期，4孕晚期，5宝宝0-1岁，6宝宝1-3岁，7宝宝3-6岁，8宝宝6岁以上',
   `bbbirthday` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `age` tinyint(4) NOT NULL DEFAULT '0',
   `sex` tinyint(4) NOT NULL DEFAULT '0',
@@ -687,13 +688,33 @@ CREATE TABLE `yyg_customer` (
   `lastlogintime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `avatar` varchar(255) NOT NULL DEFAULT '',
+  `intro` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of yyg_customer
 -- ----------------------------
-INSERT INTO `yyg_customer` VALUES ('1', 'xingxing998@126.com', '', '星星妈', 'db71251b380a8322124af8190bdfa62c', '2017-07-01 15:17:49', '26', '0', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-11-01 23:05:20', '1', '');
+INSERT INTO `yyg_customer` VALUES ('1', 'xingxing998@126.com', '', '星星妈', 'db71251b380a8322124af8190bdfa62c', '0', '2017-07-01 15:17:49', '26', '0', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-11-05 21:47:22', '1', '', null);
+
+-- ----------------------------
+-- Table structure for yyg_logintoken
+-- ----------------------------
+DROP TABLE IF EXISTS `yyg_logintoken`;
+CREATE TABLE `yyg_logintoken` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `token` varchar(32) NOT NULL,
+  `uid` int(10) unsigned NOT NULL DEFAULT '0',
+  `invalidtime` int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `idx_token` (`token`),
+  KEY `idx_uid` (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of yyg_logintoken
+-- ----------------------------
+INSERT INTO `yyg_logintoken` VALUES ('1', 'aacsuHXbLwUsgwOW', '1', '1509891931');
 
 -- ----------------------------
 -- Table structure for yyg_options
