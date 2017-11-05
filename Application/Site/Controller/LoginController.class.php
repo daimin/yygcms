@@ -30,14 +30,34 @@ class LoginController extends BaseController {
             }
         }
 
+        $invalidTime = time() + intval(C('__YYG_INVALIDE_MINUTES__')) * 60;
+        $token = rand_string(16);
         M("customer")->where(['id' => $customerEntity['id']])->data(['lastlogintime' => date("Y-m-d H:i:s")])->save([]);
-        cookie(C("__YYG_SITE_AUTH_NAME__"), $customerEntity['id'], 3600);
+
+        $oldToken = M('logintoken')->where(['uid' => $customerEntity['id']])->find();
+        if(!empty($oldToken)){
+            M('logintoken')->where(['id' => $oldToken['id']])->data([
+                'token' => $token,
+                'invalidtime' => $invalidTime,
+            ])->save();
+        }else{
+            $data = [
+                'uid' => $customerEntity['id'],
+                'token' => $token,
+                'invalidtime' => $invalidTime,
+            ];
+
+            M('logintoken')->data($data)->add();
+        }
+
+        cookie(C("__YYG_SITE_AUTH_NAME__"), $token, 3600);
         $this->jsonReturn(1);
     }
 
     public function logout($p=''){
         cookie(C("__YYG_SITE_AUTH_NAME__"), null, time()-1);
         $durl = str_replace('/index.php/', '/', strtolower(base64_decode($p)));
+        $durl = str_replace('.html', '', $durl);
         $this->redirect($durl);
     }
 

@@ -13,7 +13,7 @@ class BaseController extends Controller {
 		if(empty($this->_attacM)){
 			$this->_attacM = M("attac");
 		}
-
+		$this->flushTokenInvalidTime();
 		$this->assign('loginInfo', $this->getLoginInfo());
 	}
 	
@@ -35,11 +35,54 @@ class BaseController extends Controller {
     }
 
 	public function getLoginInfo(){
-		$authId = cookie(C('__YYG_SITE_AUTH_NAME__'));
-		if(empty($authId)){
+		$token = cookie(C('__YYG_SITE_AUTH_NAME__'));
+		if(empty($token)){
 			return null;
 		}
-		return M("customer")->where(["id" => $authId])->find();
+		$loginToken = M('logintoken')->where(['token' => $token])->find();
+		if(empty($loginToken)){
+			return null;
+		}
+		if($loginToken['invalidtime'] < time()){
+			return null;
+		}
+		$customer = M("customer")->where(["id" => $loginToken['uid']])->find();
+		if(empty($customer)){
+			return null;
+		}
+		return $customer;
+	}
+
+	public function flushTokenInvalidTime(){
+		$token = cookie(C('__YYG_SITE_AUTH_NAME__'));
+		if(empty($token)){
+			return;
+		}
+		$loginToken = M('logintoken')->where(['token' => $token])->find();
+		if(empty($loginToken)){
+			return;
+		}
+		if($loginToken['invalidtime'] < time()){
+			return;
+		}
+		$offt = time() - ($loginToken['invalidtime'] - intval(C('__YYG_INVALIDE_MINUTES__')) * 60);
+		if($offt > 15){ //大于15秒才可以刷新
+			$invalidTime = time() + 15 * 60;
+			M('logintoken')->where(['token' => $token])->data([
+				'invalidtime' => $invalidTime,
+			])->save();
+		}
+
+	}
+
+	/**
+	 * 检查登录态
+	 */
+	public function checkAuthStatus(){
+		$loginInfo = $this->getLoginInfo();
+		if(empty($loginInfo)){
+			$this->redirect('/');
+		}
 	}
     
     

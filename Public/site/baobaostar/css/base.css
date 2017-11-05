@@ -692,6 +692,9 @@ a:hover {
     margin-bottom: 0.5em;
     padding-bottom: 0.6em;
     font-size:12px;
+    float: left;
+    width: 100%;
+    margin-top: -8px;
 }
 
 .post .postTitle{
@@ -720,15 +723,6 @@ a:hover {
     color: #993333;
 }
 
-.setting-header{
-    border-bottom: 1px solid #e1e1e1;
-    padding-bottom: 12px;
-    float: left;
-    width: 100%;
-    margin-top: -8px;
-    margin-bottom: 6px;
-
-}
 
 .setting-table{
     display: table;

@@ -2,11 +2,12 @@
 <link href="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker.min.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.7.0-RC3/locales/bootstrap-datepicker.zh-CN.min.js"></script>
-<div id="setting-Main">
+<div id="setting-Main" >
     <div class="setting-box">
-        <div class="setting-header">
-            <a href="/">宝贝星</a> <span class="chevron">&nbsp;›&nbsp;</span> 个人设置
-        </div>
+            <div class="breadCrumbs">
+                当前位置：<a href="javascript:void(0)">首页 </a>
+                &gt; <a href="javascript:void(0)">个人设置</a>
+            </div>
         <div class="inner">
             <form method="post" action="/settings">
                 <table cellpadding="5" cellspacing="0" border="0" width="100%" class="setting-table">
@@ -27,10 +28,6 @@
                     </tr>
 
                     <tr>
-                        <td width="120" align="right">宝宝生日</td>
-                        <td width="auto" align="left"><input type="text" id="bbbirthday" class="sl" name="website" value="" autocomplete="off"></td>
-                    </tr>
-                    <tr>
                         <td width="120" align="right">年龄</td>
                         <td width="auto" align="left"><input type="text" class="sl" name="company" value="" maxlength="32" autocomplete="off" style="width: 48px"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"></td>
                     </tr>
@@ -40,6 +37,25 @@
                             <label>男<input type="radio" name="sex" value="1"></label>
                             <label>女<input type="radio" name="sex" value="0"></label>
                         </td>
+                    </tr>
+                    <tr>
+                        <td width="120" align="right">宝宝生日</td>
+                        <td width="auto" align="left"><input type="text" id="bbbirthday" class="sl" name="website" value="" autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td width="120" align="right">孕育阶段</td>
+                        <td width="auto" align="left">
+                            <!--  1备孕，2孕早期，3孕中期，4孕晚期，5宝宝0-1岁，6宝宝1-3岁，7宝宝3-6岁，8宝宝6岁以上-->
+                            <select name="yy-stage" class="sl" >
+                                <option value="1">备孕</option>
+                                <option value="2">孕早期</option>
+                                <option value="3">孕中期</option>
+                                <option value="4">孕晚期</option>
+                                <option value="5">宝宝0-1岁</option>
+                                <option value="6">宝宝1-3岁</option>
+                                <option value="7">宝宝3-6岁</option>
+                                <option value="8">宝宝6岁以上</option>
+                            </select></td>
                     </tr>
                     <tr>
                         <td width="120" align="right">所在地址</td>
