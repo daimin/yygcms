@@ -145,7 +145,20 @@ var yygcms_confirm = function (message, callback) {
 
 
 var yygcms_logout = function(url){
-	if(window.confirm("确定要退出？")){
-		window.location.href = url;
-	}
+	bootbox.confirm({size:"small",message : '确定要退出？',
+		buttons: {
+			confirm: {
+				label: '确定',
+				className: 'btn-success'
+			},
+			cancel: {
+				label: '取消',
+				className: 'btn-danger'
+			}
+		},
+		callback : function(result){
+			if(result){
+				window.location.href = url;
+			}
+		}});
 };

@@ -1,6 +1,8 @@
 <include file="Public:header" />
 <link href="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker.min.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-datepicker/1.7.0-RC3/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+
 <div style="min-width:780px">
     <table width="98%" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px" bgcolor="#D6D6D6" align="center">
         <tr>
@@ -214,12 +216,14 @@
     $(function () {
         $('#startdate').datepicker({
             format: "yyyy-mm-dd",
-            autoclose: true
+            autoclose: true,
+            language: 'zh-CN'
         });
 
         $('#enddate').datepicker({
             format: "yyyy-mm-dd",
-            autoclose: true
+            autoclose: true,
+            language: 'zh-CN'
         });
         
         $("#reset-btn").click(function (e) {

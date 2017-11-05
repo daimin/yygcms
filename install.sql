@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50712
 File Encoding         : 65001
 
-Date: 2017-10-29 22:42:54
+Date: 2017-11-05 17:01:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,7 @@ CREATE TABLE `yyg_admins` (
 -- ----------------------------
 -- Records of yyg_admins
 -- ----------------------------
-INSERT INTO `yyg_admins` VALUES ('admin', 'a44f75e56684fcbb89d46ef2be701265', '2013-07-16 15:43:05', '2017-10-29 15:31:07', '1', '1');
+INSERT INTO `yyg_admins` VALUES ('admin', 'a44f75e56684fcbb89d46ef2be701265', '2013-07-16 15:43:05', '2017-11-05 11:39:09', '1', '1');
 INSERT INTO `yyg_admins` VALUES ('admin1', '111111', '2013-07-16 15:20:54', '0000-00-00 00:00:00', '1', '2');
 INSERT INTO `yyg_admins` VALUES ('admin2', 'f0bab14fdb2dec036f1837bf48ca0dd3', '2013-07-16 15:21:50', '0000-00-00 00:00:00', '1', '2');
 INSERT INTO `yyg_admins` VALUES ('vagasnail', 'f0bab14fdb2dec036f1837bf48ca0dd3', '2013-07-16 16:24:33', '0000-00-00 00:00:00', '1', '1');
@@ -675,6 +675,7 @@ DROP TABLE IF EXISTS `yyg_customer`;
 CREATE TABLE `yyg_customer` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL,
+  `phone` varchar(20) NOT NULL DEFAULT '',
   `nickname` varchar(100) NOT NULL,
   `password` varchar(32) NOT NULL,
   `bbbirthday` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -692,7 +693,7 @@ CREATE TABLE `yyg_customer` (
 -- ----------------------------
 -- Records of yyg_customer
 -- ----------------------------
-INSERT INTO `yyg_customer` VALUES ('1', 'xingxing998@126.com', '星星妈', '91de565a2b147917e11aa19d5edac757', '2017-07-01 15:17:49', '26', '0', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '1', '');
+INSERT INTO `yyg_customer` VALUES ('1', 'xingxing998@126.com', '', '星星妈', 'db71251b380a8322124af8190bdfa62c', '2017-07-01 15:17:49', '26', '0', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-11-01 23:05:20', '1', '');
 
 -- ----------------------------
 -- Table structure for yyg_options
