@@ -688,13 +688,14 @@ a:hover {
 }
 
 .breadCrumbs{
-    border-bottom: 2px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
     margin-bottom: 0.5em;
     padding-bottom: 0.6em;
     font-size:12px;
     float: left;
     width: 100%;
     margin-top: -8px;
+    padding-left: 1em;
 }
 
 .post .postTitle{
@@ -723,6 +724,11 @@ a:hover {
     color: #993333;
 }
 
+#setting-Main{
+    position: relative;
+    float: left;
+    width: 100%;
+}
 
 .setting-table{
     display: table;
@@ -738,22 +744,30 @@ a:hover {
 }
 
 .setting-table tr td label{
-    margin-right: 12px;
+    width: 5em;
+    display: inline-block;
+    cursor: pointer;
+    padding-left: 1em;
+}
+
+.setting-table tr td label input[type=radio]{
+    margin-right: 5px;
 }
 
 .setting-box{
     background-color: #fff;
-    border-radius: 3px;
-    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    /*box-shadow: -3px 3px 3px rgba(0, 0, 0, 0.1);*/
+    border:1px solid #e2e2e2;
     padding: 6px 6px;
     width: 96%;
 }
 
 .setting-box .cell{
     border-bottom: 1px solid #e2e2e2;
-    padding: 6px 6px 6px 12px;
+    padding: 2px 4px 8px 6px;
     margin-bottom: 6px;
-    font-weight: bold;
+    font-size: 14px;
 }
 
 .setting-sep20 {

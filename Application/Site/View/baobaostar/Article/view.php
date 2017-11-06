@@ -4,8 +4,8 @@
         <div class="row col-sm-12" style="padding: 0;">
             <div class="breadCrumbs">
                 当前位置：<a href="http://news.ci123.com">资讯首页 </a>
-                &gt; <a href="http://news.ci123.com/category/news" title="查看 育儿动态 中的全部文章" rel="category tag">育儿动态</a>
-                &gt; <a href="http://news.ci123.com/article/111561.html">大力摇晃宝宝：多的是你不知道的坏处</a>
+                › <a href="http://news.ci123.com/category/news" title="查看 育儿动态 中的全部文章" rel="category tag">育儿动态</a>
+                › <a href="http://news.ci123.com/article/111561.html">大力摇晃宝宝：多的是你不知道的坏处</a>
             </div>
         </div>
         <div class="post col-sm-12" id="post">

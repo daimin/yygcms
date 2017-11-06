@@ -79,6 +79,8 @@ window.onload = function(){
         } 
     };
     refreshVeryCode();
+    document.getElementById('tbUserName').value = '';
+    document.getElementById('tbPassword').value = '';
 };
 </script>
 
@@ -88,10 +90,10 @@ window.onload = function(){
                     <div id="Main">
                         <div id="Heading">请登录</div>
                         <label class="MyLabel">用户名</label>
-                        <input name="tbUserName" type="text" id="tbUserName" size="34" class="Textbox" onkeypress="checkEnter(event,this)"><br>
+                        <input name="tbUserName" type="text" id="tbUserName" size="34" class="Textbox" onkeypress="checkEnter(event,this)" /><br>
                         <span id="Required_UserName" style="color:Red;visibility:hidden;">用户名不能为空</span>
                         <label class="MyLabel">密码</label>
-                        <input name="tbPassword" type="password" id="tbPassword" size="40" class="Textbox" onkeypress="checkEnter(event,this)"><br>
+                        <input name="tbPassword" type="password" id="tbPassword" size="40" class="Textbox" onkeypress="checkEnter(event,this)" /><br>
                         <span id="Required＿Password" style="color:Red;visibility:hidden;">密码不能为空</span><br/>
                        <label class="MyLabel">验证码</label>
                        <img src='__URL__/verifyCode/' id="verifyCodeImg" border="none" style="vertical-align: middle;margin-right:12px;" />

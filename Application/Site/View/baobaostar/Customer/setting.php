@@ -3,11 +3,11 @@
 <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.7.0-RC3/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 <div id="setting-Main" >
+
     <div class="setting-box">
-            <div class="breadCrumbs">
-                当前位置：<a href="javascript:void(0)">首页 </a>
-                &gt; <a href="javascript:void(0)">个人设置</a>
-            </div>
+        <div class="cell">
+            宝宝星 › 个人设置
+        </div>
         <div class="inner">
             <form method="post" action="/settings">
                 <table cellpadding="5" cellspacing="0" border="0" width="100%" class="setting-table">
@@ -34,8 +34,8 @@
                     <tr>
                         <td width="120" align="right">性别</td>
                         <td width="auto" align="left">
-                            <label>男<input type="radio" name="sex" value="1"></label>
-                            <label>女<input type="radio" name="sex" value="0"></label>
+                            <label><input type="radio" name="sex" value="1">男</label>
+                            <label><input type="radio" name="sex" value="0">女</label>
                         </td>
                     </tr>
                     <tr>
@@ -109,15 +109,15 @@
                     <tbody>
                     <tr>
                         <td width="120" align="right">当前密码</td>
-                        <td width="auto" align="left"><input type="password" class="sl" name="password_current" value=""></td>
+                        <td width="auto" align="left"><input type="password" class="sl" name="password_current" value="" autocomplete="off"></td>
                     </tr>
                     <tr>
                         <td width="120" align="right">新密码</td>
-                        <td width="auto" align="left"><input type="password" class="sl" name="password_new" value=""></td>
+                        <td width="auto" align="left"><input type="password" class="sl" name="password_new" value="" autocomplete="off"></td>
                     </tr>
                     <tr>
                         <td width="120" align="right">再次输入新密码</td>
-                        <td width="auto" align="left"><input type="password" class="sl" name="password_again" value=""></td>
+                        <td width="auto" align="left"><input type="password" class="sl" name="password_again" value="" autocomplete="off"></td>
                     </tr>
                     <tr>
                         <td width="120" align="right"></td>
@@ -128,7 +128,7 @@
             </form>
         </div>
     </div>
-
+</div>
 </div>
 
 <script>

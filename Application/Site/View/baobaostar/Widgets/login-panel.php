@@ -9,13 +9,13 @@
             <div class="form-group">
                 <label for="exampleInputEmail1" class="col-sm-2 control-label">邮箱</label>
                 <div class="col-sm-10">
-                <input type="email" name="email" class="form-control input-sm" id="exampleInputEmail1" placeholder="Email">
+                <input type="email" name="email" class="form-control input-sm" id="exampleInputEmail1" placeholder="Email" autocomplete="off">
                 </div>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1" class="col-sm-2 control-label">密码</label>
                 <div class="col-sm-10">
-                <input type="password" name="password" class="form-control input-sm" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" name="password" class="form-control input-sm" id="exampleInputPassword1" placeholder="Password" autocomplete="off">
                 </div>
             </div>
         </div>
