@@ -1,7 +1,18 @@
 <include file="Public:header1"/>
 <link href="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker.min.css" type="text/css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/toastr.js/2.1.0/css/toastr.min.css" rel="stylesheet">
 <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.7.0-RC3/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+<script src="https://cdn.bootcss.com/toastr.js/2.1.0/js/toastr.min.js"></script>
+<style>
+    .toast-middle-center {
+        top: 35%;
+        right: 50%;
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
 <div id="setting-Main" >
 
     <div class="setting-box">
@@ -104,7 +115,8 @@
             更改密码
         </div>
         <div class="inner">
-            <form method="post" action="/settings/password">
+            <div class="alert alert-warning" role="alert" id="alert-change-password" style="display: none"></div>
+            <form method="post" action="<?php echo site_url('/Customer/changePassword') ?>" autocomplete="off" onsubmit="return changePassword(this)">
                 <table class="setting-table" cellpadding="5" cellspacing="0" border="0" width="100%">
                     <tbody>
                     <tr>
@@ -138,7 +150,89 @@
             autoclose: true,
             language: 'zh-CN'
         });
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-middle-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "2000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
     });
+
+    function showWrongMsg(id, message){
+        $(id).html(message);
+        $(id).show();
+        return false;
+    }
+
+    
+    function changePassword(oform) {
+        var password_current = $.trim(oform.password_current.value);
+        var password_new = $.trim(oform.password_new.value);
+        var password_again = $.trim(oform.password_again.value);
+
+        if(password_current == ''){
+            return showWrongMsg("#alert-change-password","当前密码不能为空");
+        }
+
+        if(password_new == ''){
+            return showWrongMsg("#alert-change-password","新密码不能为空");
+        }
+
+        if(password_again == ''){
+            return showWrongMsg("#alert-change-password","再次输入新密码不能为空");
+        }
+
+        if(password_new.length < 6){
+            return showWrongMsg("#alert-change-password","新密码不能小于6个字符");
+        }
+
+        if(password_new != password_again){
+            return showWrongMsg("#alert-change-password","再次输入新密码不正确");
+        }
+
+        var args = {
+            "password_current": password_current,
+            "password_new": password_new,
+            "password_again": password_again
+        };
+        $.post(oform.action,args,function(data){
+            if(typeof data != 'object'){
+                data = JSON.parse(data);
+            }
+            if(data['errCode'] != 0){
+                return showWrongMsg("#alert-change-password",data['errMsg']);
+            }else{
+                toastr.success("密码修改成功");
+                oform.password_current.value = '';
+                oform.password_new.value = '';
+                oform.password_again.value = '';
+                $('#alert-change-password').hide();
+//                show_success_alert('成功', '密码修改成功', function(){
+//                    oform.password_current.value = '';
+//                    oform.password_new.value = '';
+//                    oform.password_again.value = '';
+//                    $('#alert-change-password').hide();
+//                });
+            }
+
+        });
+
+        return false;
+    }
+
+
 </script>
 
 <include file="Public:footer1"/>

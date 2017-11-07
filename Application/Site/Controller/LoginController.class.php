@@ -23,11 +23,9 @@ class LoginController extends BaseController {
         if(empty($customerEntity)){
             $this->jsonReturn(false, "邮箱用户不存在");
         }
-        
-        if($customerEntity['password'] !== hashPassword($password)){
-            if(empty($customerEntity)){
-                $this->jsonReturn(false, "密码不正确");
-            }
+
+        if($customerEntity['password'] !== hashPassword($password, true)){
+            $this->jsonReturn(false, "密码不正确");
         }
 
         $invalidTime = time() + intval(C('__YYG_INVALIDE_MINUTES__')) * 60;

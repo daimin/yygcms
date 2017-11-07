@@ -556,7 +556,10 @@ a:hover {
 }
 
 #comment-error, #login-panel-error span{
-    padding-left: 6px;
+    margin-left: 7px;
+}
+#comment-error, #login-panel-error span:before{
+    margin-right: 3px;
 }
 
 .login-form{
