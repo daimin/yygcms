@@ -19,6 +19,7 @@
         <div class="cell">
             宝宝星 › 个人设置
         </div>
+        <div class="alert alert-warning" role="alert" id="alert-setting-profile" style="display: none"></div>
         <div class="inner">
             <form method="post" action="/settings">
                 <table cellpadding="5" cellspacing="0" border="0" width="100%" class="setting-table">
@@ -93,21 +94,28 @@
         <div class="cell">
             头像上传
         </div>
+        <div class="alert alert-warning" role="alert" id="alert-upload-avatar" style="display: none"></div>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="hidden" name="ajax">
             <table class="setting-table" cellpadding="5" cellspacing="0" border="0" width="100%">
                 <tbody>
                 <tr>
                     <td width="120" align="right">当前头像</td>
-                    <td width="auto" align="left"><img src="//v2ex.assets.uxengine.net/avatar/fa6c/3d0b/45364_large.png?m=1474165977" class="avatar" border="0" align="default">
-                        &nbsp; <img src="//v2ex.assets.uxengine.net/avatar/fa6c/3d0b/45364_normal.png?m=1474165977" class="avatar" border="0" align="default"> &nbsp; <img
-                            src="//v2ex.assets.uxengine.net/avatar/fa6c/3d0b/45364_mini.png?m=1474165977" class="avatar" border="0" align="default"></td>
+                    <td width="auto" align="left"><img id="big-head-img" src="<?php echo $loginInfo['headimgs']['big'] ?>" class="avatar" border="0" align="default">
+                        &nbsp; <img id="middle-head-img" src="<?php echo $loginInfo['headimgs']['middle'] ?>" class="avatar" border="0" align="default"> &nbsp;
+                        <img id="small-head-img" src="<?php echo $loginInfo['headimgs']['small'] ?>" class="avatar" border="0" align="default"></td>
                 </tr>
                 <tr>
                     <td width="120" align="right"></td>
-                    <td width="auto" align="left"><input type="hidden" value="21590" name="once"><input type="button" onclick="location.href = '/settings/avatar';"
-                                                                                                        class="super normal button" value="上传新头像"></td>
+                    <td width="auto" align="left">
+                        <input type="file" name="file" class="super normal button" value="选择文件">
+                        <span style="color:#aaa;display: block;margin-bottom: 6px;font-size:12px;margin-top: 3px;">支持 500K 以内的 PNG / JPG / GIF 文件</span>
+                        <input type="button" onclick="uploadHeadImg()" class="super normal button" value="开始上传">
+                    </td>
                 </tr>
                 </tbody>
             </table>
+        </form>
     </div>
     <div class="setting-sep20"></div>
     <div class="setting-box">
@@ -117,6 +125,7 @@
         <div class="inner">
             <div class="alert alert-warning" role="alert" id="alert-change-password" style="display: none"></div>
             <form method="post" action="<?php echo site_url('/Customer/changePassword') ?>" autocomplete="off" onsubmit="return changePassword(this)">
+                <input type="hidden" name="ajax">
                 <table class="setting-table" cellpadding="5" cellspacing="0" border="0" width="100%">
                     <tbody>
                     <tr>
@@ -212,6 +221,7 @@
                 data = JSON.parse(data);
             }
             if(data['errCode'] != 0){
+                yyg_check_login(data);
                 return showWrongMsg("#alert-change-password",data['errMsg']);
             }else{
                 toastr.success("密码修改成功");
@@ -219,6 +229,7 @@
                 oform.password_new.value = '';
                 oform.password_again.value = '';
                 $('#alert-change-password').hide();
+
 //                show_success_alert('成功', '密码修改成功', function(){
 //                    oform.password_current.value = '';
 //                    oform.password_new.value = '';
@@ -231,6 +242,33 @@
 
         return false;
     }
+
+    function uploadHeadImg(){
+        $.ajax({
+            url: '<?php echo site_url('customer/uploadAvatar')?>',
+            type: 'POST',
+            cache: false,
+            data: new FormData($('#uploadForm')[0]),
+            processData: false,
+            contentType: false
+        }).done(function(data) {
+            if(typeof data != 'object'){
+                data = JSON.parse(data);
+            }
+            if(data['errCode'] != 0){
+                yyg_check_login(data);
+                return showWrongMsg("#alert-upload-avatar",data['errMsg']);
+            }else{
+                toastr.success("上传成功");
+                $('#alert-upload-avatar').hide();
+                $.each(data['data'], function(it){
+                    $("#" + it + "-head-img").attr('src', data['data'][it]);
+                    console.log(data['data'][it]);
+                });
+            }
+        }).fail(function(res) {});
+    }
+
 
 
 </script>

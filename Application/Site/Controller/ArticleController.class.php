@@ -24,10 +24,17 @@ class ArticleController extends BaseController {
     }
 
     private function getCommentList($cid){
-        return M("comment")->field("yyg_comment.*, yyg_customer.email,yyg_customer.nickname,yyg_customer.bbbirthday,yyg_customer.age,yyg_customer.sex,
+        $comments = M("comment")->field("yyg_comment.*, yyg_customer.email,yyg_customer.nickname,yyg_customer.bbbirthday,yyg_customer.age,yyg_customer.sex,
                 yyg_customer.createtime as ucreatetime,yyg_customer.modifytime as umodifytime,yyg_customer.lastlogintime,yyg_customer.avatar,yyg_customer.address")->
                 join('LEFT JOIN yyg_customer ON yyg_customer.id = yyg_comment.uid')->
                 where(['cid' => $cid, 'yyg_comment.status' => 1])->order("yyg_comment.modifytime desc")->select();
+
+        $newComments = [];
+        foreach ($comments as $comment){
+            $comment['avatar'] = $this->getAvatarurl($comment['avatar']);
+            $newComments []= $comment;
+        }
+        return $newComments;
     }
 
     public function addComment(){

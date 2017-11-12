@@ -21,4 +21,3 @@ function genThumbs($filepath, $opt, $rootPath, $savePath, $saveName){
     }
 
 }
-

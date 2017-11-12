@@ -701,3 +701,14 @@ function addFaceToContent($content){
 		return '<img class="comment-cont-img" src="/Public/site/'.$Think.THEME_NAME.'/fangface/imgs/'.$matches[1].'.gif">';
 	},$content);
 }
+
+
+function genAvatarThumbs($filepath, $opt, $savePath, $saveName){
+	foreach($opt['width'] as $prefix=>$width){
+		$image = new \Think\Image();
+		$image->open($filepath);
+		$tbpath = $savePath.$prefix.'_'.$saveName;
+		$image->thumb($width, $opt['height'][$prefix],\Think\Image::IMAGE_THUMB_CENTER)->save($tbpath);
+	}
+
+}

@@ -162,3 +162,9 @@ var yygcms_logout = function(url){
 			}
 		}});
 };
+
+function yyg_check_login(data){
+	if(data['errCode'] == -2){
+		setTimeout("window.location.href = '/'", 1000);
+	}
+}

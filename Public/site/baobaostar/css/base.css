@@ -798,3 +798,9 @@ a:hover {
     font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
     box-sizing: border-box;
 }
+
+.head-pic{
+    margin-left: 3px;
+    margin-right: 3px;
+    border-radius: 2px;
+}

@@ -47,9 +47,24 @@ class BaseController extends Controller {
 			return null;
 		}
 		$customer = M("customer")->where(["id" => $loginToken['uid']])->find();
+
 		if(empty($customer)){
 			return null;
 		}
+		if(!empty($customer['avatar'])){
+			$headImgs =  [
+				'big' => $this->getAvatarurl($customer['avatar'], 'big'),
+				'middle' => $this->getAvatarurl($customer['avatar'], 'middle'),
+				'small' => $this->getAvatarurl($customer['avatar'], 'small'),
+			];
+		}else{
+			$headImgs = [
+				'big' => C('__YYG_UPLOAD_DIR__').'/avatars/default/big_headpic.jpg?t='.time(),
+				'middle' => C('__YYG_UPLOAD_DIR__').'/avatars/default/middle_headpic.jpg?t='.time(),
+				'small' => C('__YYG_UPLOAD_DIR__').'/avatars/default/small_headpic.jpg?t='.time(),
+			];
+		}
+		$customer['headimgs'] = $headImgs;
 		return $customer;
 	}
 
@@ -81,7 +96,11 @@ class BaseController extends Controller {
 	public function checkAuthStatus(){
 		$loginInfo = $this->getLoginInfo();
 		if(empty($loginInfo)){
-			$this->redirect('/');
+			if(isset($_REQUEST['ajax'])){
+				$this->jsonReturn(false, "请先登录！", -2);
+			}else{
+				$this->redirect('/');
+			}
 		}
 	}
     
@@ -117,7 +136,7 @@ class BaseController extends Controller {
     }
 
 	public function jsonReturn($data, $errMsg="", $errcode=0){
-		if(!empty($errMsg)){
+		if($errcode == 0 && !empty($errMsg)){
 			$errcode = -1;
 		}
 		$this->ajaxReturn([
@@ -125,6 +144,16 @@ class BaseController extends Controller {
 			"errMsg" => $errMsg,
 			"errCode" => $errcode,
 		]);
+	}
+
+	public function getAvatarurl($avatarurl, $size='big'){
+		if(empty($avatarurl)){
+			$avatarurl = C('__YYG_UPLOAD_DIR__').'/avatars/default/big_headpic.jpg';
+		}else{
+			$pos = strrpos($avatarurl, '/');
+			$avatarurl = substr($avatarurl, 0, $pos).'/'.$size.'_'.substr($avatarurl, $pos + 1);
+		}
+		return $avatarurl.'?t='.time();
 	}
     
 	

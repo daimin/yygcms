@@ -33,5 +33,5 @@ return array(
         '13sui' => '1-3岁',
         '36sui' => '3-6岁',
     ],
-//    '__YYG_UPLOAD_DIR__' => '/Upload',
+    '__YYG_UPLOAD_DIR__' => '/Uploads',
 );
