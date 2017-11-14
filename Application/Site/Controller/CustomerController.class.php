@@ -84,5 +84,25 @@ class CustomerController extends BaseController {
         $this->jsonReturn (false, '上传失败');
 
     }
+
+    public function checkNickName(){
+        $nickname = I('nickname');
+        $uid = I('uid');
+        $existCustomer = M('Customer')->where("`id`<>'$uid' and nickname='$nickname'")->find();
+        if($existCustomer){
+            $this->jsonReturn (false, '昵称已存在，请用其他昵称');
+        }
+        $this->jsonReturn (true);
+    }
+
+    public function checkEmail(){
+        $email = I('email');
+        $uid = I('uid');
+        $existCustomer = M('Customer')->where("`id`<>'$uid' and email='$email'")->find();
+        if($existCustomer){
+            $this->jsonReturn (false, '邮箱已存在，请用其他邮箱');
+        }
+        $this->jsonReturn (true);
+    }
     
 }

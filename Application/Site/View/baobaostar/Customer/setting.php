@@ -25,64 +25,70 @@
                 <table cellpadding="5" cellspacing="0" border="0" width="100%" class="setting-table">
                     <tbody>
                     <tr>
-                        <td width="120" align="right">昵称</td>
-                        <td width="auto" align="left"><input type="text" class="sl" name="website" value="vagasnail" autocomplete="off"></td>
+                        <td width="120" align="right"><span class="profile-required">*</span>昵称</td>
+                        <td width="auto" align="left">
+                            <input type="text" class="sl" name="nickname" value="<?php echo $loginInfo['nickname'] ?>" autocomplete="off" onblur="checkNickName(this)">
+                            <span class="alert alert-danger profile-error" ></span>
+                        </td>
                     </tr>
 
                     <tr>
                         <td width="120" align="right">手机号</td>
-                        <td width="auto" align="left"><input type="text" class="sl" name="website" value="" autocomplete="off"></td>
+                        <td width="auto" align="left"><input type="text" class="sl" name="phone" value="<?php echo $loginInfo['phone'] ?>" autocomplete="off" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+                                                             onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"></td>
                     </tr>
 
                     <tr>
-                        <td width="120" align="right">电子邮件</td>
-                        <td width="auto" align="left"><input type="text" class="sl" name="website" value="daiming253685@126.com" autocomplete="off"></td>
+                        <td width="120" align="right"><span class="profile-required">*</span>电子邮件</td>
+                        <td width="auto" align="left"><input type="text" class="sl" name="email" value="daiming253685@126.com" autocomplete="off" onblur="checkEmail(this)">
+                        <span class="alert alert-danger profile-error" ></span>
+                        </td>
                     </tr>
 
                     <tr>
                         <td width="120" align="right">年龄</td>
-                        <td width="auto" align="left"><input type="text" class="sl" name="company" value="" maxlength="32" autocomplete="off" style="width: 48px"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"></td>
+                        <td width="auto" align="left">
+                            <input type="text" class="sl" name="age" value="<?php echo $loginInfo['age'] ?>"  autocomplete="off" style="width: 48px"  onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+                                                             onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"></td>
                     </tr>
                     <tr>
                         <td width="120" align="right">性别</td>
                         <td width="auto" align="left">
-                            <label><input type="radio" name="sex" value="1">男</label>
-                            <label><input type="radio" name="sex" value="0">女</label>
+                            <label><input type="radio" name="sex" value="1" <?php echo ($loginInfo['sex'] == 1 || $loginInfo['sex'] == '' ? ' checked' : '') ?>>男</label>
+                            <label><input type="radio" name="sex" value="0" <?php echo ($loginInfo['sex'] == 0 ? ' checked' : '') ?>>女</label>
                         </td>
                     </tr>
                     <tr>
                         <td width="120" align="right">宝宝生日</td>
-                        <td width="auto" align="left"><input type="text" id="bbbirthday" class="sl" name="website" value="" autocomplete="off"></td>
+                        <td width="auto" align="left"><input type="text" id="bbbirthday" class="sl" name="bbbirthday" value="<?php echo $loginInfo['bbbirthday'] ?>" autocomplete="off"></td>
                     </tr>
                     <tr>
                         <td width="120" align="right">孕育阶段</td>
                         <td width="auto" align="left">
                             <!--  1备孕，2孕早期，3孕中期，4孕晚期，5宝宝0-1岁，6宝宝1-3岁，7宝宝3-6岁，8宝宝6岁以上-->
                             <select name="yy-stage" class="sl" >
-                                <option value="1">备孕</option>
-                                <option value="2">孕早期</option>
-                                <option value="3">孕中期</option>
-                                <option value="4">孕晚期</option>
-                                <option value="5">宝宝0-1岁</option>
-                                <option value="6">宝宝1-3岁</option>
-                                <option value="7">宝宝3-6岁</option>
-                                <option value="8">宝宝6岁以上</option>
+                                <option value="1" <?php echo ($loginInfo['stage'] == 1 ? 'selected' : '') ?>>备孕</option>
+                                <option value="2" <?php echo ($loginInfo['stage'] == 2 ? 'selected' : '') ?>>孕早期</option>
+                                <option value="3" <?php echo ($loginInfo['stage'] == 3 ? 'selected' : '') ?>>孕中期</option>
+                                <option value="4" <?php echo ($loginInfo['stage'] == 4 ? 'selected' : '') ?>>孕晚期</option>
+                                <option value="5" <?php echo ($loginInfo['stage'] == 5 ? 'selected' : '') ?>>宝宝0-1岁</option>
+                                <option value="6" <?php echo ($loginInfo['stage'] == 6 ? 'selected' : '') ?>>宝宝1-3岁</option>
+                                <option value="7" <?php echo ($loginInfo['stage'] == 7 ? 'selected' : '') ?>>宝宝3-6岁</option>
+                                <option value="8" <?php echo ($loginInfo['stage'] == 8 ? 'selected' : '') ?>>宝宝6岁以上</option>
                             </select></td>
                     </tr>
                     <tr>
                         <td width="120" align="right">所在地址</td>
-                        <td width="auto" align="left"><textarea class="ml"  name="bio" cols="40" style="resize: none;height: 48px"></textarea></td>
+                        <td width="auto" align="left"><textarea class="ml"  name="address" cols="40" style="resize: none;height: 48px"><?php echo $loginInfo['address'] ?></textarea></td>
                     </tr>
                     <tr>
                         <td width="120" align="right">个人简介</td>
-                        <td width="auto" align="left"><textarea class="ml" name="bio" rows="5" cols="40" style="resize: none"></textarea></td>
+                        <td width="auto" align="left"><textarea class="ml" name="intro" rows="5" cols="40" style="resize: none"><?php echo $loginInfo['intro'] ?></textarea></td>
                     </tr>
 
                     <tr>
                         <td width="120" align="right"></td>
-                        <td width="auto" align="left"><input type="hidden" value="1" name="show_ads"><input type="hidden" value="21590" name="once"><input type="submit"
-                                                                                                                                                           class="super normal button"
-                                                                                                                                                           value="保存设置"></td>
+                        <td width="auto" align="left"><input type="submit"  class="super normal button" value="保存设置"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -267,6 +273,56 @@
                 });
             }
         }).fail(function(res) {});
+    }
+
+    function checkNickName(thiz){
+        clearProfileError(thiz);
+        var value = $.trim(thiz.value);
+        if(value == ''){
+            showProfileError(thiz, '昵称不能为空');
+            return false;
+        }
+        doCheckField(thiz, '<?php echo site_url("customer/checkNickName")?>', 'nickname');
+    }
+
+    function checkEmail(thiz){
+        clearProfileError(thiz);
+        var value = $.trim(thiz.value);
+        if(value == ''){
+            showProfileError(thiz, '邮箱地址不能为空');
+            return false;
+        }
+        var Regex = /^(?:\w+\.?)*\w+@(?:\w+)*\.\w+$/;
+        if (!Regex.test(value)){
+            showProfileError(thiz, '邮箱地址不正确');
+            return false;
+        }
+        doCheckField(thiz, '<?php echo site_url("customer/checkEmail")?>', 'email');
+
+    }
+
+    function doCheckField(thiz, url, fieldname){
+        var data = {fieldname: $.trim(thiz.value), 'uid' : '<?php echo $loginInfo['id'] ?>'};
+        console.log(url);
+        $.get(url, data, function (result) {
+            if(result['errCode'] < 0){
+                showProfileError(thiz, result['errMsg']);
+            }
+
+        });
+    }
+
+    function showProfileError(thiz, errMsg){
+        var errdiv = $(thiz).parent().find(".profile-error");
+        errdiv.html(errMsg);
+        errdiv.show();
+    }
+    function clearProfileError(thiz){
+
+        var errdiv = $(thiz).parent().find(".profile-error");
+        console.log(errdiv);
+        errdiv.html("");
+        errdiv.hide();
     }
 
 

@@ -804,3 +804,15 @@ a:hover {
     margin-right: 3px;
     border-radius: 12px;
 }
+
+.profile-error{
+    display: none;
+    padding: 4px 2px;
+    margin-left: 6px;
+}
+
+.profile-required{
+    color:red;
+    margin-left: 3px;
+    margin-right: 3px;
+}

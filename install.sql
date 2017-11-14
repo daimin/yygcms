@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50712
 File Encoding         : 65001
 
-Date: 2017-11-05 22:11:01
+Date: 2017-11-14 22:43:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -689,13 +689,16 @@ CREATE TABLE `yyg_customer` (
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `avatar` varchar(255) NOT NULL DEFAULT '',
   `intro` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_uniq_email` (`email`) USING BTREE,
+  UNIQUE KEY `idx_uniq_nickname` (`nickname`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of yyg_customer
 -- ----------------------------
-INSERT INTO `yyg_customer` VALUES ('1', 'xingxing998@126.com', '', '星星妈', 'db71251b380a8322124af8190bdfa62c', '0', '2017-07-01 15:17:49', '26', '0', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-11-05 21:47:22', '1', '', null);
+INSERT INTO `yyg_customer` VALUES ('1', 'xingxing998@126.com', '', '星星妈', '28f08a123d5b586a0d1591f9d4f051e2', '2', '2017-07-01 15:17:49', '26', '0', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-11-14 22:40:09', '1', '/Uploads/avatars/1/headpic.jpg', null);
+INSERT INTO `yyg_customer` VALUES ('4', 'xingxing9728@126.com', '', '星星妈2', '28f08a123d5b586a0d1591f9d4f051e2', '2', '2017-07-01 15:17:49', '26', '0', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-11-14 22:40:09', '1', '/Uploads/avatars/1/headpic.jpg', null);
 
 -- ----------------------------
 -- Table structure for yyg_logintoken
@@ -714,7 +717,7 @@ CREATE TABLE `yyg_logintoken` (
 -- ----------------------------
 -- Records of yyg_logintoken
 -- ----------------------------
-INSERT INTO `yyg_logintoken` VALUES ('1', 'aacsuHXbLwUsgwOW', '1', '1509891931');
+INSERT INTO `yyg_logintoken` VALUES ('1', 'MvmKRFfBLvyJZVvV', '1', '1510671349');
 
 -- ----------------------------
 -- Table structure for yyg_options
