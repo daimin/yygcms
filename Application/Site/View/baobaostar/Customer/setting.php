@@ -21,7 +21,9 @@
         </div>
         <div class="alert alert-warning" role="alert" id="alert-setting-profile" style="display: none"></div>
         <div class="inner">
-            <form method="post" action="/settings">
+            <form method="post" action="<?php echo site_url('/Customer/saveProfile') ?>" onsubmit="return submitProfileForm(this);">
+                <input type="hidden" name="uid" value="<?php echo $loginInfo['id'] ?>">
+                <input type="hidden" name="ajax">
                 <table cellpadding="5" cellspacing="0" border="0" width="100%" class="setting-table">
                     <tbody>
                     <tr>
@@ -34,13 +36,16 @@
 
                     <tr>
                         <td width="120" align="right">手机号</td>
-                        <td width="auto" align="left"><input type="text" class="sl" name="phone" value="<?php echo $loginInfo['phone'] ?>" autocomplete="off" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
-                                                             onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"></td>
+                        <td width="auto" align="left">
+                            <input type="text" class="sl" name="phone" onblur="checkPhone(this)" value="<?php echo $loginInfo['phone'] ?>" autocomplete="off" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+                                                             onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}">
+                            <span class="alert alert-danger profile-error" ></span>
+                        </td>
                     </tr>
 
                     <tr>
                         <td width="120" align="right"><span class="profile-required">*</span>电子邮件</td>
-                        <td width="auto" align="left"><input type="text" class="sl" name="email" value="daiming253685@126.com" autocomplete="off" onblur="checkEmail(this)">
+                        <td width="auto" align="left"><input type="text" class="sl" name="email" value="<?php echo $loginInfo['email'] ?>" autocomplete="off" onblur="checkEmail(this)">
                         <span class="alert alert-danger profile-error" ></span>
                         </td>
                     </tr>
@@ -60,13 +65,15 @@
                     </tr>
                     <tr>
                         <td width="120" align="right">宝宝生日</td>
-                        <td width="auto" align="left"><input type="text" id="bbbirthday" class="sl" name="bbbirthday" value="<?php echo $loginInfo['bbbirthday'] ?>" autocomplete="off"></td>
+                        <td width="auto" align="left">
+                            <input type="text" id="bbbirthday" class="sl" name="bbbirthday" value="<?php echo $loginInfo['bbbirthday'] ?>" autocomplete="off" />
+                        </td>
                     </tr>
                     <tr>
                         <td width="120" align="right">孕育阶段</td>
                         <td width="auto" align="left">
                             <!--  1备孕，2孕早期，3孕中期，4孕晚期，5宝宝0-1岁，6宝宝1-3岁，7宝宝3-6岁，8宝宝6岁以上-->
-                            <select name="yy-stage" class="sl" >
+                            <select name="stage" class="sl" >
                                 <option value="1" <?php echo ($loginInfo['stage'] == 1 ? 'selected' : '') ?>>备孕</option>
                                 <option value="2" <?php echo ($loginInfo['stage'] == 2 ? 'selected' : '') ?>>孕早期</option>
                                 <option value="3" <?php echo ($loginInfo['stage'] == 3 ? 'selected' : '') ?>>孕中期</option>
@@ -75,7 +82,8 @@
                                 <option value="6" <?php echo ($loginInfo['stage'] == 6 ? 'selected' : '') ?>>宝宝1-3岁</option>
                                 <option value="7" <?php echo ($loginInfo['stage'] == 7 ? 'selected' : '') ?>>宝宝3-6岁</option>
                                 <option value="8" <?php echo ($loginInfo['stage'] == 8 ? 'selected' : '') ?>>宝宝6岁以上</option>
-                            </select></td>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td width="120" align="right">所在地址</td>
@@ -235,13 +243,6 @@
                 oform.password_new.value = '';
                 oform.password_again.value = '';
                 $('#alert-change-password').hide();
-
-//                show_success_alert('成功', '密码修改成功', function(){
-//                    oform.password_current.value = '';
-//                    oform.password_new.value = '';
-//                    oform.password_again.value = '';
-//                    $('#alert-change-password').hide();
-//                });
             }
 
         });
@@ -294,21 +295,28 @@
         }
         var Regex = /^(?:\w+\.?)*\w+@(?:\w+)*\.\w+$/;
         if (!Regex.test(value)){
-            showProfileError(thiz, '邮箱地址不正确');
+            showProfileError(thiz, '邮箱地址格式不正确');
             return false;
         }
         doCheckField(thiz, '<?php echo site_url("customer/checkEmail")?>', 'email');
+    }
 
+    function checkPhone(thiz){
+        clearProfileError(thiz);
+        var phone = $.trim(thiz.value);
+        if(!(/^1(3|4|5|7|8)\d{9}$/.test(phone))){
+            showProfileError(thiz, '手机号码格式不正确');
+            return false;
+        }
     }
 
     function doCheckField(thiz, url, fieldname){
-        var data = {fieldname: $.trim(thiz.value), 'uid' : '<?php echo $loginInfo['id'] ?>'};
-        console.log(url);
+        var data = {'uid' : '<?php echo $loginInfo['id'] ?>'};
+        data[fieldname] = $.trim(thiz.value);
         $.get(url, data, function (result) {
             if(result['errCode'] < 0){
                 showProfileError(thiz, result['errMsg']);
             }
-
         });
     }
 
@@ -318,13 +326,27 @@
         errdiv.show();
     }
     function clearProfileError(thiz){
-
         var errdiv = $(thiz).parent().find(".profile-error");
         console.log(errdiv);
         errdiv.html("");
         errdiv.hide();
     }
 
+    function submitProfileForm(form){
+        $.post(form.action, $(form).serialize(), function(data){
+            if(typeof data != 'object'){
+                data = JSON.parse(data);
+            }
+            if(data['errCode'] != 0){
+                yyg_check_login(data);
+                return showWrongMsg("#alert-setting-profile", data['errMsg']);
+            }else{
+                toastr.success("保存成功");
+                $('#alert-setting-profile').hide();
+            }
+        });
+        return false;
+    }
 
 
 </script>

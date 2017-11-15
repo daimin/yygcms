@@ -104,5 +104,60 @@ class CustomerController extends BaseController {
         }
         $this->jsonReturn (true);
     }
+
+    public function saveProfile(){
+        $this->checkAuthStatus();
+        foreach($_POST as $k=>$v){
+            $_POST[$k] = remove_xss($v);
+        }
+        $uid = I('post.uid');
+        $nickname = I('post.nickname');
+        $phone = I('post.phone');
+        $email = I('post.email');
+        $age = intval(I('post.age'));
+        $sex = boolval(I('post.sex'));
+        $bbbirthday = date('Y-m-d H:i:s', strtotime(I('post.bbbirthday')));
+        $stage = intval(I('post.stage'));
+        $address = I('post.address');
+        $intro = I('post.intro');
+
+        if(empty($nickname)){
+            $this->jsonReturn (false, '昵称不能为空');
+        }
+
+        if(empty($email)){
+            $this->jsonReturn (false, '邮箱地址不能为空');
+        }
+
+        $existCustomer = M('Customer')->where("`id`<>'$uid' and nickname='$nickname'")->find();
+        if($existCustomer){
+            $this->jsonReturn (false, '昵称已存在，请用其他昵称');
+        }
+
+        $existCustomer = M('Customer')->where("`id`<>'$uid' and email='$email'")->find();
+        if($existCustomer){
+            $this->jsonReturn (false, '邮箱已存在，请用其他邮箱');
+        }
+
+        if($age < 0 || $age > 150){
+            $this->jsonReturn (false, '年龄不正确');
+        }
+
+        $data = [
+            'nickname' => $nickname,
+            'phone' => $phone,
+            'email' => $email,
+            'age' => $age,
+            'sex' => $sex,
+            'bbbirthday' => $bbbirthday,
+            'stage' => $stage,
+            'address' => $address,
+            'intro' => $intro,
+        ];
+        M('Customer')->where(['id' => $uid])->data($data)->save();
+
+        $this->jsonReturn (true);
+
+    }
     
 }
