@@ -6,6 +6,7 @@ class LoginController extends BaseController {
     public function login(){
         $email = I("post.email");
         $password = I("post.password");
+        $remberPasswd = boolval(I("post.remberPasswd"));
 
         $email = remove_xss($email);
         $password = remove_xss($password);
@@ -29,6 +30,10 @@ class LoginController extends BaseController {
         }
 
         $invalidTime = time() + intval(C('__YYG_INVALIDE_MINUTES__')) * 60;
+        if($remberPasswd){
+            $invalidTime = time() + intval(C('__YYG_INVALIDE_MINUTES__')) * 120 * 24 * 100;
+        }
+
         $token = rand_string(16);
         M("customer")->where(['id' => $customerEntity['id']])->data(['lastlogintime' => date("Y-m-d H:i:s")])->save([]);
 
@@ -48,7 +53,7 @@ class LoginController extends BaseController {
             M('logintoken')->data($data)->add();
         }
 
-        cookie(C("__YYG_SITE_AUTH_NAME__"), $token, 3600);
+        cookie(C("__YYG_SITE_AUTH_NAME__"), $token, 3600 * 24 * 365); // cookie设为一年
         $this->jsonReturn(1);
     }
 

@@ -80,7 +80,7 @@ class BaseController extends Controller {
 		if($loginToken['invalidtime'] < time()){
 			return;
 		}
-		$offt = time() - ($loginToken['invalidtime'] - intval(C('__YYG_INVALIDE_MINUTES__')) * 60);
+		$offt = time() - ($loginToken['invalidtime'] - intval(C('__YYG_INVALIDE_MINUTES__')) * 60); //如果设置为了“记住密码”，这里影响不大
 		if($offt > 15){ //大于15秒才可以刷新
 			$invalidTime = time() + 15 * 60;
 			M('logintoken')->where(['token' => $token])->data([

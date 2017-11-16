@@ -19,7 +19,7 @@ return array(
     // 权限
     '__YYG_EDITOR__' => 2,
     '__YYG_ADMIN__' => 1,
-    '__YYG_INVALIDE_MINUTES__' => 15, //token的无效时间
+    '__YYG_INVALIDE_MINUTES__' => 30, //token的无效时间
     // 密钥
     "__YYG_SECURE_KEY__" => 'he4ApQm1Sjm8GRLj', //后台
     '__YYG_AUTH_NAME__' => 'yyg_yFqkffobPm0kO4GR',

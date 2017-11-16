@@ -26,8 +26,8 @@
         </div>
     </form>
     <div class="login-link">
-        <label><input type="checkbox"> 记住密码</label> |
-        <a href="javascript:void(0)">用户注册</a> |
+        <label><input type="checkbox" id="remberPasswd" /> 记住密码</label> |
+        <a href="<?php echo site_url("customer/register") ?>">用户注册</a> |
         <a href="javascript:void(0)">忘记密码</a>
     </div>
 
@@ -54,19 +54,17 @@
             showLoginPanelError('请输入有效的邮箱地址');
             return false;
         }
-
-
-            $.post(formboj.action, { email: emailValue, password: passwordValue},
-            function(data){
-                if(typeof data != 'object'){
-                    data = JSON.parse(data);
-                }
-                if(data['errCode'] !== 0){
-                    showLoginPanelError(data['errMsg']);
-                }else{
-                    window.location.reload();
-                }
-            });
+        $.post(formboj.action, { email: emailValue, password: passwordValue, remberPasswd : $("#remberPasswd").is(':checked') == false ? 0 : 1},
+        function(data){
+            if(typeof data != 'object'){
+                data = JSON.parse(data);
+            }
+            if(data['errCode'] !== 0){
+                showLoginPanelError(data['errMsg']);
+            }else{
+                window.location.reload();
+            }
+        });
 
         return false;
     }

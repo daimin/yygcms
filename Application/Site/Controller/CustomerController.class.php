@@ -159,5 +159,18 @@ class CustomerController extends BaseController {
         $this->jsonReturn (true);
 
     }
+
+    public function register(){
+        $this->display();
+    }
+
+    public function verifyCode(){
+        $Verify = new \Think\Verify([
+            'length' => 6,
+            'useNoise' => false,
+            'fontSize' => 13,
+        ]);
+        $Verify->entry();
+    }
     
 }
