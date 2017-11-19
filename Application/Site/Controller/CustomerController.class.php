@@ -1,6 +1,8 @@
 <?php
 namespace Site\Controller;
 
+use Site\Service\CustomerService;
+
 class CustomerController extends BaseController {
 
     public function setting(){
@@ -164,6 +166,61 @@ class CustomerController extends BaseController {
         $this->display();
     }
 
+    public function doRegister(){
+        foreach($_POST as $k=>$v){
+            $_POST[$k] = remove_xss($v);
+        }
+        $nickname = I('post.nickname');
+        $email = I('post.email');
+        $passwd = I('post.password');
+        $verifyCode = I('post.verifyCode');
+
+        if(empty($nickname)){
+            $this->jsonReturn (false, '昵称不能为空');
+        }
+
+        if(empty($email)){
+            $this->jsonReturn (false, '邮箱地址不能为空');
+        }
+
+        if(strlen($passwd) < 6){
+            $this->jsonReturn (false, '密码不能小于6个字符');
+        }
+
+        if(!$this->check_verify($verifyCode)){
+            $this->jsonReturn (false, '验证码错误');
+        }
+
+        $existCustomer = M('Customer')->where("nickname='$nickname'")->find();
+        if($existCustomer){
+            $this->jsonReturn (false, '昵称已存在，请用其他昵称');
+        }
+
+        $existCustomer = M('Customer')->where("email='$email'")->find();
+        if($existCustomer){
+            $this->jsonReturn (false, '邮箱已存在，请用其他邮箱');
+        }
+
+        $data = [
+            'nickname' => $nickname,
+            'email' => $email,
+            'password' => hashPassword($passwd, true),
+        ];
+        $ret = M('Customer')->data($data)->add();
+        if(!$ret){
+            $this->jsonReturn (false, '注册失败');
+        }
+
+        /** @var  $customerService CustomerService */
+        $customerService = D("Customer", "Service");
+        $customerService->loginCustomer($ret);
+
+        $this->jsonReturn (true);
+
+
+        $this->display();
+    }
+
     public function verifyCode(){
         $Verify = new \Think\Verify([
             'length' => 6,
@@ -171,6 +228,48 @@ class CustomerController extends BaseController {
             'fontSize' => 13,
         ]);
         $Verify->entry();
+    }
+
+    function check_verify($code){
+        $verify = new \Think\Verify();
+        return $verify->check($code, '');
+    }
+
+    public function forgotPasswd(){
+        $this->display();
+    }
+
+    public function submitForgotPasswd(){
+        foreach($_POST as $k=>$v){
+            $_POST[$k] = remove_xss($v);
+        }
+        $nickname = I('post.nickname');
+        $email = I('post.email');
+        $verifyCode = I('post.verifyCode');
+
+        if(empty($nickname)){
+            $this->jsonReturn (false, '昵称不能为空');
+        }
+
+        if(empty($email)){
+            $this->jsonReturn (false, '邮箱地址不能为空');
+        }
+
+
+        if(!$this->check_verify($verifyCode)){
+            $this->jsonReturn (false, '验证码错误');
+        }
+
+        $data = [
+            'nickname' => $nickname,
+            'email' => $email,
+        ];
+        $ret = M('forgotpasswd')->data($data)->add();
+        if(!$ret){
+            $this->jsonReturn (false, '提交失败');
+        }
+
+        $this->jsonReturn (true);
     }
     
 }

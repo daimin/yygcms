@@ -28,7 +28,7 @@
     <div class="login-link">
         <label><input type="checkbox" id="remberPasswd" /> 记住密码</label> |
         <a href="<?php echo site_url("customer/register") ?>">用户注册</a> |
-        <a href="javascript:void(0)">忘记密码</a>
+        <a href="<?php echo site_url("customer/forgotPasswd") ?>">忘记密码</a>
     </div>
 
 </div>

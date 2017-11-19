@@ -17,11 +17,15 @@
 
     <div class="setting-box">
         <div class="cell">
-            宝宝星 › 用户注册
+            宝宝星 › 忘记密码
         </div>
-        <div class="alert alert-warning" role="alert" id="alert-setting-register" style="display: none"></div>
+        <div class="alert alert-info" role="alert">
+            输入您的昵称和电子邮箱地址，稍后会将重置后的密码发到您的邮箱。
+        </div>
+        <div class="alert alert-warning" role="alert" style="display: none" id="forgot-passwd-alert">
+        </div>
         <div class="inner">
-            <form method="post" id="reg-form" action="<?php echo site_url('/Customer/doRegister') ?>" onsubmit="return submitRegisterForm(this);">
+            <form method="post" action="<?php echo site_url('/Customer/submitForgotPasswd') ?>" onsubmit="return submitForgotPasswdForm(this);">
                 <table cellpadding="5" cellspacing="0" border="0" width="100%" class="setting-table">
                     <tbody>
                     <tr>
@@ -41,14 +45,7 @@
                         <span class="alert alert-danger profile-error" ></span>
                         </td>
                     </tr>
-                    <tr>
-                        <td width="120" align="right">密码</td>
-                        <td width="auto" align="left">
-                            <input style="display:none" name="password" type="password"><!-- for disable autocomplete on chrome -->
-                            <input type="password" class="sl" name="password" value="" autocomplete="off" onblur="checkPasswd(this)">
-                            <span class="alert alert-danger profile-error" ></span>
-                        </td>
-                    </tr>
+
                     <tr>
                         <td width="120" align="right"><span class="profile-required">*</span>验证码</td>
                         <td width="auto" align="left">
@@ -59,7 +56,7 @@
                     </tr>
                     <tr>
                         <td width="120" align="right"></td>
-                        <td width="auto" align="left"><input type="submit"  class="super normal button" value="注册"></td>
+                        <td width="auto" align="left"><input type="submit"  class="super normal button" value="提交"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -111,7 +108,6 @@
             showRegError(thiz, '昵称不能为空');
             return false;
         }
-        doCheckField(thiz, '<?php echo site_url("customer/checkNickName")?>', 'nickname');
     }
 
     function checkEmail(thiz){
@@ -126,22 +122,9 @@
             showRegError(thiz, '邮箱地址格式不正确');
             return false;
         }
-        doCheckField(thiz, '<?php echo site_url("customer/checkEmail")?>', 'email');
     }
 
-    function checkPasswd(thiz){
-        clearProfileError(thiz);
-        var value = $.trim(thiz.value);
-        if(value == ''){
-            showRegError(thiz, '密码不能为空');
-            return false;
-        }
-        if (value.length < 6){
-            showRegError(thiz, '密码不能小于6个字符');
-            return false;
-        }
-    }
-    
+
     function checkVerifyCode(thiz) {
         clearProfileError(thiz);
         var value = $.trim(thiz.value);
@@ -172,20 +155,17 @@
         errdiv.hide();
     }
 
-    function submitRegisterForm(form){
+    function submitForgotPasswdForm(form){
         $.post(form.action, $(form).serialize(), function(data){
             if(typeof data != 'object'){
                 data = JSON.parse(data);
             }
             if(data['errCode'] != 0){
                 refreshVeryCode();
-                return showWrongMsg("#alert-setting-register", data['errMsg']);
+                return showWrongMsg("#forgot-passwd-alert", data['errMsg']);
             }else{
-                toastr.success("注册成功");
-                $('#alert-setting-profile').hide();
-                setTimeout(function () {
-                    window.location.href = '/';
-                }, 1000);
+                toastr.success("提交成功");
+                $('#forgot-passwd-alert').hide();
             }
         });
         return false;
