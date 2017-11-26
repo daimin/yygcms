@@ -34,4 +34,12 @@ return array(
         '36sui' => '3-6岁',
     ],
     '__YYG_UPLOAD_DIR__' => '/Uploads',
+    '__YYG_INDEX_DISPLAY' => [ //首页展示
+        'lunboimgs',
+        'yunyuzhishi',
+        'qingzibaike',
+        'muyinyoupin',
+        'ertonggushi',
+        'ertongdonghua',
+    ]
 );

@@ -57,6 +57,10 @@ class IndexController extends BaseController {
     public function jiazhuangliucheng(){
     	$this->display();
     }
+
+    private function getCarouselArticles(){
+//        M("Content")->
+    }
     
     
 }

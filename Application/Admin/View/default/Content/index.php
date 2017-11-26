@@ -2,6 +2,7 @@
 <link href="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker.min.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" language="javascript" src="http://cdn.bootcss.com/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.7.0-RC3/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/2.2.2/bootstrap.min.js"></script>
 
 <div style="min-width:780px">
     <table width="98%" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px" bgcolor="#D6D6D6" align="center">
@@ -31,7 +32,7 @@
                             <td width="8%" nowrap="nowrap">状态</td>
                             <td width="3%" nowrap="nowrap">附件</td>
                             <td width="3%" nowrap="nowrap">排序</td>
-                            <td width="8%" nowrap="nowrap">操作</td>
+                            <td width="12%" nowrap="nowrap">操作</td>
                         </tr>
 
                         <volist name="list" id="item">
@@ -76,7 +77,28 @@
                                     <?php }else if($item['status'] == 1){ ?>
                                         <a style="text-decoration: none;" href="javascript:void(0)" onclick="puttop('{$item.id}')" title="置顶">[置顶]</a>
                                     <?php }?>
-
+                                    <div class="dropdown" style="display: inline-block">
+                                        <a id="drop6" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                            [首页展示]
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul id="menu3" class="dropdown-menu" aria-labelledby="drop6">
+                                            <li><a href="#">图片轮播</a></li>
+                                            <li><a href="#">孕育知识</a></li>
+                                            <li><a href="#">亲子百科</a></li>
+                                            <li><a href="#">母婴优品</a></li>
+                                            <li><a href="#">儿童故事</a></li>
+                                            <li><a href="#">儿童动画</a></li>
+                                        </ul>
+                                        <select>
+                                            <option>图片轮播</option>
+                                            <option>孕育知识</option>
+                                            <option>亲子百科</option>
+                                            <option></option>
+                                            <option></option>
+                                            <option></option>
+                                        </select>
+                                    </div>
                                 </td>
 
                             </tr>
@@ -233,6 +255,7 @@
             e.stopPropagation();
             return false;
         });
+        $('.dropdown-toggle').dropdown()
     });
     
     function doadd() {

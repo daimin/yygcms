@@ -49,6 +49,11 @@ function saySorry(){
                 <ul class='sitemu'>
                     <li>
                         <div class='dd'>
+                            <div class='fllct'><a href='<?php echo admin_url("IndexMgr/")?>'  target='main'>首页管理</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class='dd'>
                             <div class='fllct'><a href='<?php echo admin_url("category/mgr/")?>'  target='main'>设置分类</a></div>
                         </div>
                     </li>

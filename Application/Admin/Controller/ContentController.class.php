@@ -386,7 +386,7 @@ class ContentController extends BaseController {
 					$parentCategory = M("category")->where(['id' => $category['pid']])->find();
 					$pageCode = $parentCategory['pagecode'];
 				}
-				$this->success("添加文档成功", __CONTROLLER__.'/category/code/'.$pageCode);
+				$this->success("编辑文档成功", __CONTROLLER__.'/category/code/'.$pageCode);
 			}
 		}
 	}
@@ -492,15 +492,6 @@ class ContentController extends BaseController {
 		
 		foreach($ids as $id){
 			if(!empty($id)){
-				// 先查询是否有子文档，如果有则删除之
-				$subConts = $contentD->where("`parentid`='$id'")->select();
-				if(!empty($subConts)){
-					foreach($subConts as $suCont){
-						$this->_delAttr($suCont['id']);
-						$contentD->where("`id`='".$suCont['id']."'")->delete();
-					}
-					
-				}
 				$this->_delAttr($id);
 				$contentD->where("`id`='$id'")->delete();
 			}
