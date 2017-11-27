@@ -62,7 +62,12 @@ class SpiderController extends Controller {
 
     public function handleCi123($url=''){
         if(empty($url)){
-            $sourceURL = "http://www.ci123.com/";
+            $argv = $_SERVER['argv'];
+            if(empty($argv[2])){
+                $sourceURL = "http://www.ci123.com/";
+            }else{
+                $sourceURL = $argv[2];
+            }
         }else{
             $this->printColor("Begin Handle $url ======");
             $handled = M("url_handled")->where(['hash' => md5($url)])->find();
@@ -74,12 +79,16 @@ class SpiderController extends Controller {
             }
         }
 
-        $matchArticleUrls = $this->getMatchArticleUrls($sourceURL);
+        list($matchArticleUrls, $elseUrls) = $this->getMatchArticleUrls($sourceURL);
         if(count($matchArticleUrls) > 0){
             foreach($matchArticleUrls as $matchArticleUrl){
                 $this->getContent($matchArticleUrl);
                 $this->handleCi123($matchArticleUrl);
             }
+        }
+
+        foreach($elseUrls as $elseUrl){
+            $this->handleCi123($elseUrl);
         }
 
     }
@@ -92,13 +101,19 @@ class SpiderController extends Controller {
 
         //过滤获取指定的文件地址请求
         $matchArticleUrls = [];
+        $elseUrls = [];
         foreach ($as as $tmp) {
             $tempHref = $tmp->getAttribute('href');
             if (preg_match($re, $tempHref)) {
                 $matchArticleUrls []= $tempHref;
+            }else{
+                if(stripos($tempHref, 'news.ci123.com') !== false){
+                    $elseUrls []= $tempHref;
+                }
             }
         }
-        return $matchArticleUrls;
+        var_dump($sourceURL);
+        return [$matchArticleUrls, $elseUrls];
     }
 
     private function addCategory($categoryName){
@@ -186,13 +201,15 @@ class SpiderController extends Controller {
             try{
                 $cid = $contentD->add();
                 $contentD->addTags($cid, $tags);
+                foreach($attacIds as $attacId){
+                    M("attac_rel")->data(['att_id' => $attacId, 'rel_id' => $cid])->add();
+                }
                 $contentD->commit();
             }catch (\Exception $e){
                 $contentD->rollback();
                 $this->printColor($e->getMessage(), self::ECHO_RED);
             }
         }
-
 
     }
 
@@ -221,6 +238,7 @@ class SpiderController extends Controller {
 
         $imageName = uuidBase62().".".$suffix;
         $imgSavePath .= ("/".$imageName);
+        $imgSavePath = '/'.get_absolute_path($imgSavePath);
 
         $imgFile = file_get_contents($url);
         $imgSaved = M("url_handled")->where(['hash' => md5($imgFile)])->find();
@@ -228,7 +246,6 @@ class SpiderController extends Controller {
             $this->printColor("文件".$imgSavePath."已存在，将不会重复保存", self::ECHO_RED);
             return;
         }
-
         $flag = file_put_contents($imgSavePath, $imgFile);
 
         if ($flag) {
@@ -241,8 +258,8 @@ class SpiderController extends Controller {
         $data['createtime'] = date("Y-m-d H:i:s");
         $id = M("attac")->add($data);
         genThumbs($imgSavePath, OptionsModel::getOptions(), substr($imgSavePath, 0, strpos($imgSavePath, $UPLOAD_DIR) + strlen($UPLOAD_DIR)), $relSavepath, $imageName);
-
-        return ['ori' => $url, 'new' => $imgSavePath, 'id' => $id];
+        $relImgPath = substr($imgSavePath, stripos($imgSavePath, $UPLOAD_DIR));
+        return ['ori' => $url, 'new' => $relImgPath, 'id' => $id];
     }
 
     function printColor($str, $c=self::ECHO_WHITE){

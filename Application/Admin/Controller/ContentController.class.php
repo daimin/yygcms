@@ -595,4 +595,10 @@ class ContentController extends BaseController {
 	}
 
 
+	public function setToDisplayIndex(){
+		$disId = I('post.disId');
+		$cid = I('post.id');
+		$res = D("Content")->where("`id`='$cid'")->save(['indexdisplay' => $disId]);
+		$this->jsonReturn($res);
+	}
 }
