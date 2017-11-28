@@ -30,10 +30,10 @@
                     <tbody>
                     <?php foreach($indexDisplayList['lunboimgs'] as $idx => $indexDisplayItem){ ?>
                     <tr>
-                        <th scope="row"><?php echo $idx+1 ?></th>
+                        <td scope="row"><?php echo $idx+1 ?></td>
                         <td><?php echo $indexDisplayItem['title'] ?></td>
                         <td><?php echo $indexDisplayItem['category']['name'] ?></td>
-                        <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '图片轮播', this)">移除</a></td>
+                        <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '图片轮播', this)">移除</a> | <a href="javascript:void(0)" onclick="putToTop('<?php echo $indexDisplayItem['id'] ?>', this)">置顶</a></td>
                     </tr>
                     <?php } ?>
                     </tbody>
@@ -52,7 +52,7 @@
                     <tbody>
                     <?php foreach($indexDisplayList['yunyuzhishi'] as $idx => $indexDisplayItem){ ?>
                         <tr>
-                            <th scope="row"><?php echo $idx+1 ?></th>
+                            <td scope="row"><?php echo $idx+1 ?></td>
                             <td><?php echo $indexDisplayItem['title'] ?></td>
                             <td><?php echo $indexDisplayItem['category']['name'] ?></td>
                             <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '孕育知识', this)">移除</a></td>
@@ -74,7 +74,7 @@
                     <tbody>
                     <?php foreach($indexDisplayList['qingzibaike'] as $idx => $indexDisplayItem){ ?>
                         <tr>
-                            <th scope="row"><?php echo $idx+1 ?></th>
+                            <td scope="row"><?php echo $idx+1 ?></td>
                             <td><?php echo $indexDisplayItem['title'] ?></td>
                             <td><?php echo $indexDisplayItem['category']['name'] ?></td>
                             <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '亲子百科', this)">移除</a></td>
@@ -96,7 +96,7 @@
                     <tbody>
                     <?php foreach($indexDisplayList['muyinyoupin'] as $idx => $indexDisplayItem){ ?>
                         <tr>
-                            <th scope="row"><?php echo $idx+1 ?></th>
+                            <td scope="row"><?php echo $idx+1 ?></td>
                             <td><?php echo $indexDisplayItem['title'] ?></td>
                             <td><?php echo $indexDisplayItem['category']['name'] ?></td>
                             <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '母婴优品', this)">移除</a></td>
@@ -118,7 +118,7 @@
                     <tbody>
                     <?php foreach($indexDisplayList['ertonggushi'] as $idx => $indexDisplayItem){ ?>
                         <tr>
-                            <th scope="row"><?php echo $idx+1 ?></th>
+                            <td scope="row"><?php echo $idx+1 ?></td>
                             <td><?php echo $indexDisplayItem['title'] ?></td>
                             <td><?php echo $indexDisplayItem['category']['name'] ?></td>
                             <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '儿童故事', this)">移除</a></td>
@@ -140,7 +140,7 @@
                     <tbody>
                     <?php foreach($indexDisplayList['ertongdonghua'] as $idx => $indexDisplayItem){ ?>
                         <tr>
-                            <th scope="row"><?php echo $idx+1 ?></th>
+                            <td scope="row"><?php echo $idx+1 ?></td>
                             <td><?php echo $indexDisplayItem['title'] ?></td>
                             <td><?php echo $indexDisplayItem['category']['name'] ?></td>
                             <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '儿童动画', this)">移除</a></td>
@@ -191,6 +191,18 @@
             if(data == 1){
                 show_success_alert('成功', '文章在首页【' + moduleName + '】模块移除', function () {
                     $(thiz).parent().parent().remove();
+                });
+            }
+        });
+    }
+    
+    function putToTop(cid, thiz) {
+        $.post('<?php echo admin_url('content/puttop')?>',{'id' : cid},function(data){
+            data = comm_parseJsonResult(data);
+            if(data == 1){
+                $(thiz).parent().parent().parent().prepend($(thiz).parent().parent());
+                $(thiz).parent().parent().parent().find("tr").each(function (i, o) {
+                    $(this).find('td').first().html(i+1);
                 });
             }
         });
