@@ -28,32 +28,127 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <?php foreach($indexDisplayList['lunboimgs'] as $idx => $indexDisplayItem){ ?>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th scope="row"><?php echo $idx+1 ?></th>
+                        <td><?php echo $indexDisplayItem['title'] ?></td>
+                        <td><?php echo $indexDisplayItem['category']['name'] ?></td>
+                        <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '图片轮播', this)">移除</a></td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
             </div>
-            <div role="tabpanel" class="tab-pane" id="yunyuzhishi">...</div>
-            <div role="tabpanel" class="tab-pane" id="qingzibaike">...</div>
-            <div role="tabpanel" class="tab-pane" id="muyinyoupin">...</div>
-            <div role="tabpanel" class="tab-pane" id="ertonggushi">...</div>
-            <div role="tabpanel" class="tab-pane" id="ertongdonghua">...</div>
+            <div role="tabpanel" class="tab-pane" id="yunyuzhishi">
+                <table class="table table-hover ">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>标题</th>
+                        <th>分类</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($indexDisplayList['yunyuzhishi'] as $idx => $indexDisplayItem){ ?>
+                        <tr>
+                            <th scope="row"><?php echo $idx+1 ?></th>
+                            <td><?php echo $indexDisplayItem['title'] ?></td>
+                            <td><?php echo $indexDisplayItem['category']['name'] ?></td>
+                            <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '孕育知识', this)">移除</a></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="qingzibaike">
+                <table class="table table-hover ">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>标题</th>
+                        <th>分类</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($indexDisplayList['qingzibaike'] as $idx => $indexDisplayItem){ ?>
+                        <tr>
+                            <th scope="row"><?php echo $idx+1 ?></th>
+                            <td><?php echo $indexDisplayItem['title'] ?></td>
+                            <td><?php echo $indexDisplayItem['category']['name'] ?></td>
+                            <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '亲子百科', this)">移除</a></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="muyinyoupin">
+                <table class="table table-hover ">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>标题</th>
+                        <th>分类</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($indexDisplayList['muyinyoupin'] as $idx => $indexDisplayItem){ ?>
+                        <tr>
+                            <th scope="row"><?php echo $idx+1 ?></th>
+                            <td><?php echo $indexDisplayItem['title'] ?></td>
+                            <td><?php echo $indexDisplayItem['category']['name'] ?></td>
+                            <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '母婴优品', this)">移除</a></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="ertonggushi">
+                <table class="table table-hover ">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>标题</th>
+                        <th>分类</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($indexDisplayList['ertonggushi'] as $idx => $indexDisplayItem){ ?>
+                        <tr>
+                            <th scope="row"><?php echo $idx+1 ?></th>
+                            <td><?php echo $indexDisplayItem['title'] ?></td>
+                            <td><?php echo $indexDisplayItem['category']['name'] ?></td>
+                            <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '儿童故事', this)">移除</a></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="ertongdonghua">
+                <table class="table table-hover ">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>标题</th>
+                        <th>分类</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($indexDisplayList['ertongdonghua'] as $idx => $indexDisplayItem){ ?>
+                        <tr>
+                            <th scope="row"><?php echo $idx+1 ?></th>
+                            <td><?php echo $indexDisplayItem['title'] ?></td>
+                            <td><?php echo $indexDisplayItem['category']['name'] ?></td>
+                            <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '儿童动画', this)">移除</a></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
@@ -90,106 +185,16 @@
 </div>
 <script type="text/javascript">
 
-        $.get('__URL__/getList', function(data, status){
-            $('#category-tree').treeview(
-            {
-                data: comm_parseJsonResult(data),
-                selectedBackColor : '#cccccc',
-                state:{
-                    expanded: true,
-                    selected: false
-                },
-                highlightSelected: false
-            });
-        });
-        
-        function open_add_dialog() {
-            $.get('__URL__/getCategorys?pid=0', function(data,status){
-                var cates = comm_parseJsonResult(data);
-                $("#parent_category").empty();
-                $("#parent_category").append('<option value="0">无分类</option>');
-                $(cates).each(function(it){
-                    $("#parent_category").append('<option value="'+cates[it]['id']+'">' + cates[it]['name'] + '</option>');
+    function cancelToDisplayIndex(cid, moduleName, thiz) {
+        $.post('__URL__/cancelDisplayIndex',{'id' : cid},function(data){
+            data = comm_parseJsonResult(data);
+            if(data == 1){
+                show_success_alert('成功', '文章在首页【' + moduleName + '】模块移除', function () {
+                    $(thiz).parent().parent().remove();
                 });
-            });
-        }
-
-        function submit_check(tform) {
-            if(tform.category_name.value == ''){
-                $("#add-category-form-alert").text("分类名称不能为空").show();
-                return false;
             }
-            $.post(tform.action, {'category_name' : tform.category_name.value, 'parent_category' : tform.parent_category.value}, function (data, status) {
-                data = comm_parseJsonResult(data);
-                if(data){
-                    show_success_alert('成功', "新增分类成功", function () {
-                        window.location.reload();
-                    });
-                }
-            });
-            return false;
-        }
-
-        function doDel(cid, cname) {
-            yygcms_confirm("确认删除分类：<span style=\"color:#dd2222;\">" + cname + "</span>?", function (result) {
-                if(result){
-                    $.post('__URL__/dodel', {'cid' : cid}, function (data, status) {
-                        data = comm_parseJsonResult(data);
-                        if(data){
-                            window.location.reload();
-                        }
-                    });
-                }
-            })
-
-        }
-
-        function doEnabled(cid) {
-            $.post('__URL__/dodisable', {'cid' : cid, 'status' : 1}, function (data, status) {
-                data = comm_parseJsonResult(data);
-                if(data){
-                    window.location.reload();
-                }
-            });
-        }
-
-        function doDisabled(cid) {
-            $.post('__URL__/dodisable', {'cid' : cid, 'status' : 0}, function (data, status) {
-                data = comm_parseJsonResult(data);
-                if(data){
-                    window.location.reload();
-                }
-            });
-        }
-
-        function doEdit(cid) {
-            var e = getEvent();
-            e.stopPropagation();
-            $("#cate-" + cid + '-text').hide();
-            var editJobj = $("#cate-" + cid + '-edit');
-            editJobj.show();
-            editJobj.click(function (e) {
-                e.stopPropagation();
-                }
-            );
-            var oldVal = editJobj.val();
-            editJobj.blur(function(e){
-                e.stopPropagation();
-                console.log(encodeURIComponent(editJobj.val()));
-
-                if(oldVal != editJobj.val() && editJobj.val().trim() != ''){
-                    $.post('__URL__/updatename', {'cid' : cid, 'name' : editJobj.val()}, function (data, status) {
-                        data = comm_parseJsonResult(data);
-                        if(data){
-                            $("#cate-" + cid + '-text').text(editJobj.val());
-                            $("#cate-" + cid + '-text').show();
-                            editJobj.hide();
-                        }
-                    });
-                }
-            });
-            return false;
-        }
+        });
+    }
 
 </script>
 <include file="Public:footer" />

@@ -36,10 +36,10 @@ return array(
     '__YYG_UPLOAD_DIR__' => '/Uploads',
     '__YYG_INDEX_DISPLAY' => [ //首页展示
         'lunboimgs' => 4,
-        'yunyuzhishi' => 3,
-        'qingzibaike' => 3,
-        'muyinyoupin' => 6,
+        'yunyuzhishi' => 7,
+        'qingzibaike' => 7,
+        'muyinyoupin' => 4,
         'ertonggushi' => 8,
-        'ertongdonghua' => 8,
+        'ertongdonghua' => 10,
     ]
 );

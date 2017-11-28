@@ -83,12 +83,12 @@
                                             <span class="caret"></span>
                                         </a>
                                         <ul id="menu3" class="dropdown-menu" aria-labelledby="drop6">
-                                            <li><a href="javascript:void(0)" onclick="setToDisplayIndex('lunboimgs', '{$item.id}')">图片轮播</a></li>
-                                            <li><a href="javascript:void(0)" onclick="setToDisplayIndex('yunyuzhishi', '{$item.id}')">孕育知识</a></li>
-                                            <li><a href="javascript:void(0)" onclick="setToDisplayIndex('qingzibaike', '{$item.id}')">亲子百科</a></li>
-                                            <li><a href="javascript:void(0)" onclick="setToDisplayIndex('muyinyoupin', '{$item.id}')">母婴优品</a></li>
-                                            <li><a href="javascript:void(0)" onclick="setToDisplayIndex('ertonggushi', '{$item.id}')">儿童故事</a></li>
-                                            <li><a href="javascript:void(0)" onclick="setToDisplayIndex('ertongdonghua', '{$item.id}')">儿童动画</a></li>
+                                            <li><a href="javascript:void(0)" onclick="setToDisplayIndex('lunboimgs', '{$item.id}', this)">图片轮播</a></li>
+                                            <li><a href="javascript:void(0)" onclick="setToDisplayIndex('yunyuzhishi', '{$item.id}', this)">孕育知识</a></li>
+                                            <li><a href="javascript:void(0)" onclick="setToDisplayIndex('qingzibaike', '{$item.id}', this)">亲子百科</a></li>
+                                            <li><a href="javascript:void(0)" onclick="setToDisplayIndex('muyinyoupin', '{$item.id}', this)">母婴优品</a></li>
+                                            <li><a href="javascript:void(0)" onclick="setToDisplayIndex('ertonggushi', '{$item.id}', this)">儿童故事</a></li>
+                                            <li><a href="javascript:void(0)" onclick="setToDisplayIndex('ertongdonghua', '{$item.id}', this)">儿童动画</a></li>
                                         </ul>
                                     </div>
                                 </td>
@@ -286,11 +286,11 @@
         });
     }
     
-    function setToDisplayIndex(disid, cid) {
+    function setToDisplayIndex(disid, cid, thiz) {
         $.post('__URL__/setToDisplayIndex',{'id' : cid, 'disId' : disid},function(data){
             data = comm_parseJsonResult(data);
             if(data == 1){
-                show_success_alert('成功', '设置成功');
+                show_success_alert('成功', '文章在首页【' + $(thiz).html() + '】模块展示');
             }
         });
     }

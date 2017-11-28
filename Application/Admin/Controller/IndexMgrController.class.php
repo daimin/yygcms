@@ -6,36 +6,29 @@ namespace Admin\Controller;
 class IndexMgrController extends BaseController {
     
     public function index(){
-        //默认系统配置
+        $indexDisplays = C("__YYG_INDEX_DISPLAY");
+        $indexDisplayList = [];
+        foreach($indexDisplays as $dsid => $limitSize){
+            $contentEntitys = D("Content")->field('id, title, category_id')->where(["status" => 1, "indexdisplay" => $dsid])->order("topnum desc, `order`,`createtime` desc")->limit($limitSize)->select();
+            foreach($contentEntitys as &$contentEntity){
+                $contentEntity['category'] = M("category")->where(['id' => $contentEntity['category_id']])->find();
+            }
+            $indexDisplayList[$dsid] = $contentEntitys;
+        }
+        $this->assign('indexDisplayList', $indexDisplayList);
         $this->display();
 	}
     
-     public function changePassword($name=False,$topLink=False){
-         
-       if($this->isGet()){
-           $admin = D("Admins")->where("`name`='$name'")->find();
-           if(!empty($admin)){
-               $this->assign('admin', $admin);
-               $this->display("Admin:ChangePwd");
-           }else{
-               $this->error("无效的用户名");
-           }
-           
-       }else if($this->isPost()){
-           $adminD = D("Admins");
-           if (!$adminD->create(False, 2)){
-               // 如果创建失败 表示验证没有通过 输出错误提示信息
-               $this->error($adminD->getError());
-               exit();
-          }else{
-              //更新用
-              $adminD->save();
-              $this->success("更新管理员密码成功");
-              
-          }
 
-       }
+    public function cancelDisplayIndex(){
+        $cid = I("post.id");
+        $contentEntity = D("Content")->where(["id" => $cid])->find();
+        if(empty($contentEntity)){
+            $this->jsonReturn(false, '文章不存在');
+        }
+        $contentEntity['indexdisplay'] = '';
+        D("Content")->where("`id`='$cid'")->save(['indexdisplay' => '']);
+        $this->jsonReturn(true);
     }
-    
    
 }
