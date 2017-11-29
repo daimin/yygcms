@@ -72,10 +72,9 @@
                         </li>
                     </ul>
                 </div>
-            
-            <include file="Widgets:new-panel" />
-            <include file="Widgets:hot-panel" />
 
+            {:W('ArticlesPanel/News')}
+            {:W('ArticlesPanel/Hots')}
             </div>
 
         </div>

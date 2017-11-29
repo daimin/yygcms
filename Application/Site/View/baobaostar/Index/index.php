@@ -1,6 +1,6 @@
 <include file="Public:header1" />
     <div class="row col-sm-9">
-        <include file="Widgets:carousel-imgs" />
+        {:W('IndexPanel/CarouselImgs')}
         <div class="panel panel-default col-sm-6">
             <div class="coom_title font_apple">
                 <div class="coom_h3"><a href="http://www.qqbaobao.com/shidian/" target="_blank">孕育<span>知识</span></a></div>
@@ -263,9 +263,9 @@
         </div>
 
         <div class="row col-sm-3" style="margin: 0;padding: 0;">
-            <include file="Widgets:login-panel" />
-            <include file="Widgets:new-panel" />
-            <include file="Widgets:hot-panel" />
+            {:W('IndexPanel/LoginPanel')}
+            {:W('ArticlesPanel/News')}
+            {:W('ArticlesPanel/Hots')}
 
         </div>
         <div class="panel panel-default col-sm-12 side-panel">
