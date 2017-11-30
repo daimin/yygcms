@@ -14,6 +14,7 @@ class LoginController extends Controller {
             'length' => 4,
             'useNoise' => false,
             'fontSize' => 14,
+            'reset' => true
         ]);
         $Verify->entry();
     }

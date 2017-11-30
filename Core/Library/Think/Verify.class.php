@@ -94,9 +94,8 @@ class Verify {
             session($key, null);
             return false;
         }
-
+        $this->reset && session($key, null); //无论是否成功，都按照设置的reset参数来充值session中的验证码以防止暴力破解
         if($this->authcode(strtoupper($code)) == $secode['verify_code']) {
-            $this->reset && session($key, null);
             return true;
         }
 
