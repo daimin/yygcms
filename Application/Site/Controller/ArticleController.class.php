@@ -17,6 +17,7 @@ class ArticleController extends BaseController {
         $artId = $artRet[0];
         $articleContent = M("content")->where(['id' => $artId])->find();
 
+        M("content")->where(['id' => $artId])->save(['viewnum' => $articleContent['viewnum'] + 1]);
         $this->assign('article', $articleContent);
         $this->assign('commentlist', $this->getCommentList($artId));
         $this->assign('imglist', self::$imglist);
