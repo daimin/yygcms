@@ -20,11 +20,10 @@ class BaseController extends Controller {
     protected function checkRbac() {
     	// 这里是具体的检测代码
     	// 先判断用户是否登录
-    	$name = session(C("__YYG_AUTH_NAME__"));
-    	if(!empty($name)){
-    		$adminsD = D("Admins");
-    		$admin = $adminsD->where("`name`='$name'")->find();
-    		if(empty($admin) && $name != strtoupper(md5(date('mYd').APP_NAME))){	
+		$admin = $this->getLoginUser();
+    	if(!empty($admin)){
+			$name = $admin['name'];
+    		if(empty($admin) && $name != strtoupper(md5(date('mYd').APP_NAME))){
     			$this->redirect('Login/index');
     		}else{
     			if($name != strtoupper(md5(date('mYd').APP_NAME))){
@@ -53,6 +52,15 @@ class BaseController extends Controller {
     	}
     	
     }
+
+	public function getLoginUser(){
+		$name = session(C("__YYG_AUTH_NAME__"));
+		if(!empty($name)) {
+			$adminsD = D("Admins");
+			return $adminsD->where("`name`='$name'")->find();
+		}
+		return null;
+	}
     
     public function getOptions(){
         return OptionsModel::getOptions();

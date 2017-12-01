@@ -228,7 +228,7 @@ class CustomerController extends BaseController {
             'fontSize' => 13,
         ]);
         $Verify->useZh = true;
-        $Verify->zhSet = '当宰父谷粱属微裴陆荣翁信登项祝董粱录或闻人东和穆萧尹方者公甄魏家封众号客冉宰郦雍服消皮卡齐康息的验证赵钱孙李';
+        $Verify->zhSet = '当宰首父谷粱属微裴陆荣翁信登项祝董粱录或闻关人东和穆萧尹方者公甄魏家词封众号客冉乌焦巴弓宰郦雍服消皮卡齐康息的验证赵钱孙李网站官景詹束龙公孙仲孙方提供';
         $Verify->entry();
     }
 

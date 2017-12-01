@@ -260,6 +260,9 @@ class ContentController extends BaseController {
 						$contentD->category_id = $selCategoryId;
 					}
 
+					$admin = $this->getLoginUser();
+					$contentD->author_id = $admin['id'];
+					$contentD->editor_id = $admin['id'];
 					$cid = $contentD->add();
 					$stages = I('post.yuer_stage');
 					if(!empty($stages)){
@@ -374,6 +377,8 @@ class ContentController extends BaseController {
 							M("stage_rel")->add($data, [], true);
 						}
 					}
+					$admin = $this->getLoginUser();
+					$contentD->editor_id = $admin['id'];
 					$contentD->save();
 					$this->_addAttac(I("id"));
 					$this->addTags($cid);
