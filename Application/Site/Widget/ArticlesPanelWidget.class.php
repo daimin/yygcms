@@ -41,4 +41,17 @@ class ArticlesPanelWidget extends BaseController {
         return $newArticles;
     }
 
+    //中文分词
+    public function pa(){
+        Vendor('phpanalysis.phpanalysis');
+        $str = 'Python装饰器与面向切面编程';
+        $pa = new \PhpAnalysis('utf-8', 'utf-8', false);
+        $pa::$loadInit = false;
+        $pa->LoadDict();
+        $pa->SetSource($str);
+        $pa->StartAnalysis( false );
+        $tags = $pa->GetFinallyResult();
+        var_dump($tags);
+    }
+
 }
