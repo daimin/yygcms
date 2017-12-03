@@ -14,7 +14,7 @@ use PHPHtmlParser\Dom;
 
 
 
-class SpiderController extends Controller {
+class SpiderCi123CliController extends Controller {
     //黑色=30，红色=31，绿色=32，黄色=33，蓝色=34，洋红=35，青色=36，白色=37
     const ECHO_RED = '31';
     const ECHO_BLACK = '30';

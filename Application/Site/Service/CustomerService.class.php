@@ -2,7 +2,7 @@
 
 namespace Site\Service;
 
-class CustomerService{
+class CustomerService {
 
     public function loginCustomer($cstId, $remberPasswd=false){
         $customerEntity = M("Customer")->where(['id' => $cstId])->find();

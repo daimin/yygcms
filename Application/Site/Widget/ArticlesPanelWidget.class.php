@@ -25,6 +25,8 @@ class ArticlesPanelWidget extends BaseController {
     }
 
     public function relates($mainArticle){
+        $content = strip_tags($mainArticle['content']);
+
         $articles = M("Content")->where(['status' => 1])->order("viewnum desc")->limit(8)->select();
         $this->assign('relArticles', $this->makeArticlesCanDisplay($articles));
         $this->display('Widgets:ArticlesPanel:relates');
