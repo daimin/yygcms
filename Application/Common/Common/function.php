@@ -712,3 +712,31 @@ function genAvatarThumbs($filepath, $opt, $savePath, $saveName){
 	}
 
 }
+
+
+function get_absolute_path($path) {
+	$path = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $path);
+	$parts = array_filter(explode(DIRECTORY_SEPARATOR, $path), 'strlen');
+	$absolutes = array();
+	foreach ($parts as $part) {
+		if ('.' == $part) continue;
+		if ('..' == $part) {
+			array_pop($absolutes);
+		} else {
+			$absolutes[] = $part;
+		}
+	}
+	return implode(DIRECTORY_SEPARATOR, $absolutes);
+}
+
+function genThumbs($filepath, $opt, $rootPath, $savePath, $saveName){
+	$widths = explode(',', $opt->thumbMaxWidth);
+	$heights = explode(',', $opt->thumbMaxHeight);
+	foreach($widths as $idx=>$width){
+		$image = new \Think\Image();
+		$image->open($filepath);
+		$tbpath = $rootPath.$savePath.$opt->thumbPrefix.$width.'_'.$saveName;
+		$image->thumb($width, $heights[$idx],\Think\Image::IMAGE_THUMB_CENTER)->save($tbpath);
+	}
+
+}

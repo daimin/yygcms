@@ -44,7 +44,7 @@
         <include file="Widgets:comment-box" />
     </div>
     <div class="row col-sm-3" style="margin: 0;padding: 0;">
-        <include file="Widgets:login-panel" />
+        {:W('IndexPanel/LoginPanel')}
         <div class="panel panel-default col-sm-12">
             {:W('ArticlesPanel/relates', [$article])}
             {:W('ArticlesPanel/News')}

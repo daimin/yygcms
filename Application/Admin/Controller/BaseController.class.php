@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 
-use Admin\Model\OptionsModel;
+use Common\Model\OptionsModel;
 use \Think\Controller;
 use Think\Upload;
 

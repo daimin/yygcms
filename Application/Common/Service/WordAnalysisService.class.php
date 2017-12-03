@@ -32,6 +32,12 @@ class WordAnalysisService{
         arsort($tags);
         $newTags = [];
         foreach ($tags as $tname => $tcout){
+            if(empty($tname)){
+                continue;
+            }
+            if(preg_match("/^[a-zA-Z0-9]*$/", $tname)){
+                continue;
+            }
             if(mb_strlen($tname) > 1){
                 $newTags []= $tname;
             }

@@ -2,7 +2,7 @@
 /**
  * @用户模型
  */
-namespace Admin\Model;
+namespace Common\Model;
 use Think\Exception;
 use Think\Model\RelationModel;
 class ContentModel extends RelationModel{
@@ -44,11 +44,15 @@ class ContentModel extends RelationModel{
 			M("tags")->delete([
 				'cid' => $cid
 			]);
+			$tagSize = C("__YYG_TAG_SIZE__");
 			try{
 				foreach($tagsArr as $tagItem){
-					if(mb_strlen($tagItem) > 4){
+					if(empty($tagItem)){
+						continue;
+					}
+					if(mb_strlen($tagItem) > $tagSize){
 						M("tags")->rollback();
-						throw new \Exception('标签不能超过4个字符');
+						throw new \Exception('标签不能超过'.$tagSize.'个字符');
 					}
 					$data = ['cid' => $cid, 'tag' => $tagItem];
 					M("tags")->add($data, array(), True);

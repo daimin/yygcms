@@ -264,8 +264,10 @@
 
         <div class="row col-sm-3" style="margin: 0;padding: 0;">
             {:W('IndexPanel/LoginPanel')}
+            <div class="panel panel-default col-sm-12">
             {:W('ArticlesPanel/News')}
             {:W('ArticlesPanel/Hots')}
+             </div>
 
         </div>
         <div class="panel panel-default col-sm-12 side-panel">

@@ -8,30 +8,13 @@
 
 namespace Client\Controller;
 
-use Admin\Model\OptionsModel;
-use \Think\Controller;
+use Common\Model\ContentModel;
+use Common\Model\OptionsModel;
+use Common\Service\WordAnalysisService;
 use PHPHtmlParser\Dom;
 
 
-
-class SpiderCi123Controller extends Controller {
-    //黑色=30，红色=31，绿色=32，黄色=33，蓝色=34，洋红=35，青色=36，白色=37
-    const ECHO_RED = '31';
-    const ECHO_BLACK = '30';
-    const ECHO_GREEN = '32';
-    const ECHO_YELLOW = '33';
-    const ECHO_BLUE = '34';
-    const ECHO_MAGENTA = '35';
-    const ECHO_CYAN = '36';
-    const ECHO_WHITE = '37';
-
-    /**
-     * SpiderController constructor.
-     */
-    public function __construct()
-    {
-        ini_set('memory_limit', '512M');
-    }
+class SpiderCi123Controller extends BaseController {
 
     public function test(){
         $imgsrc = '<img class="aligncenter" title="2" src="http://news.ci123.com/uploads/2017/07/2017-07-27-10450065.jpeg" alt="" width="400" height="300">';
@@ -60,7 +43,7 @@ class SpiderCi123Controller extends Controller {
         echo $cc->innerHtml;
     }
 
-    public function handleCi123($url=''){
+    public function handle($url=''){
         if(empty($url)){
             $argv = $_SERVER['argv'];
             if(empty($argv[2])){
@@ -83,12 +66,12 @@ class SpiderCi123Controller extends Controller {
         if(count($matchArticleUrls) > 0){
             foreach($matchArticleUrls as $matchArticleUrl){
                 $this->getContent($matchArticleUrl);
-                $this->handleCi123($matchArticleUrl);
+                $this->handle($matchArticleUrl);
             }
         }
 
         foreach($elseUrls as $elseUrl){
-            $this->handleCi123($elseUrl);
+            $this->handle($elseUrl);
         }
 
     }
@@ -182,7 +165,7 @@ class SpiderCi123Controller extends Controller {
             }
         }
 
-        /** @var  $contentD /Admin/Model/ContentModel */
+        /** @var  $contentD ContentModel */
         $contentD = D("Content");
         $contentD->startTrans();
         if (!$contentD->create([
@@ -200,7 +183,16 @@ class SpiderCi123Controller extends Controller {
         }else{
             try{
                 $cid = $contentD->add();
-                $contentD->addTags($cid, $tags);
+                /** @var  $wordAnalysisService  WordAnalysisService*/
+                $wordAnalysisService = D("Common/WordAnalysis", "Service");
+                $analysisTags = $wordAnalysisService->analysis($content['content']);
+                if(count($analysisTags) > 5){
+                    $analysisTags = array_filter(array_slice($analysisTags, 0, 5), function ($it){
+                        return mb_strlen($it) < C("__YYG_TAG_SIZE__");
+                    });
+                }
+                $contentD->addTags($content['id'], implode(',', array_merge($analysisTags, $tags)));
+
                 foreach($attacIds as $attacId){
                     M("attac_rel")->data(['att_id' => $attacId, 'rel_id' => $cid])->add();
                 }
@@ -262,7 +254,4 @@ class SpiderCi123Controller extends Controller {
         return ['ori' => $url, 'new' => $relImgPath, 'id' => $id];
     }
 
-    function printColor($str, $c=self::ECHO_WHITE){
-        echo sprintf("\e[{$c}m%s\e[0m\n", $str);
-    }
 }

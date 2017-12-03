@@ -2,9 +2,8 @@
 /**
  * @配置模型
  */
-namespace Site\Model;
+namespace Common\Model;
 use Think\Model\RelationModel;
-
 class OptionsModel extends RelationModel{
 	//自动验证
 	protected $_validate = array(
@@ -33,6 +32,17 @@ class OptionsModel extends RelationModel{
        $data['name'] = $name;
        $data['value'] = $value;
        $this->data()->add($data, array(), True);
+    }
+
+    public static function getOptions(){
+        static $options = null;
+        if($options === null){
+            $options = D('Options');
+            $options = $options->all();
+            return $options;
+        }else{
+            return $options;
+        }
     }
     
 }

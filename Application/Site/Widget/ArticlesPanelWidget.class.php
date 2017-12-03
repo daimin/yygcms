@@ -7,6 +7,7 @@
  */
 namespace Site\Widget;
 
+use Common\Service\WordAnalysisService;
 use Hashids\Hashids;
 use Site\Controller\BaseController;
 
@@ -25,10 +26,37 @@ class ArticlesPanelWidget extends BaseController {
     }
 
     public function relates($mainArticle){
-        $content = strip_tags($mainArticle['content']);
+        $tags = M("tags")->where(['cid' => $mainArticle['id']])->select();
+        if(empty($tags)){
+            /** @var  $wordAnalysisService  WordAnalysisService*/
+            $wordAnalysisService = D("Common/WordAnalysis", "Service");
+            $tags = $wordAnalysisService->analysis($mainArticle['title']);
+        }
 
-        $articles = M("Content")->where(['status' => 1])->order("viewnum desc")->limit(8)->select();
-        $this->assign('relArticles', $this->makeArticlesCanDisplay($articles));
+        $relArticles = [];
+        foreach($tags as $tag){
+            $relArticles []= M("Content")->where(['status' => ['eq', 1], 'title' => ['like', '%'.$tag.'%'], 'id' => ['neq', $mainArticle['id']]])->order("createtime desc")->select();
+        }
+
+        $listArticles = [];
+        while(1){
+            if(count($listArticles) >= 8){
+                break;
+            }
+            $isAllEmpty = true;
+            foreach($relArticles as &$relArts){
+                if(!empty($relArts)){
+                    $listArticles[]= array_shift($relArts);
+                    $isAllEmpty = false;
+                }
+            }
+
+            if($isAllEmpty){
+                break;
+            }
+        }
+
+        $this->assign('relArticles', $this->makeArticlesCanDisplay($listArticles));
         $this->display('Widgets:ArticlesPanel:relates');
     }
 

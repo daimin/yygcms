@@ -1,4 +1,3 @@
-<div class="panel panel-default col-sm-12">
     <div class="panel side-panel "  style="margin-top:0px;">
         <div class="coom_title font_apple">
             <div class="coom_h3"><a href="javascript:void(0)" target="_blank">最新<span>文章</span></a></div>

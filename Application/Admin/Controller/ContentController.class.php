@@ -3,7 +3,7 @@
 namespace Admin\Controller;
 
 // 本类由系统自动生成，仅供测试用途
-use Admin\Model\ContentModel;
+use Common\Model\ContentModel;
 use Think\Page;
 
 class ContentController extends BaseController {
@@ -179,7 +179,7 @@ class ContentController extends BaseController {
 			$map['title|relurl|embed_code'] = array('like', '%'.$o_keyword.'%');
 		}
 
-		/** @var  $contentD  \Admin\Model\ContentModel*/
+		/** @var  $contentD  \Common\Model\ContentModel*/
 		$contentD = D("Content");
 		$count      = $contentD->where($map)->count();// 查询满足要求的总记录数
 		$page       = new Page($count, $pageSize);// 实例化分页类 传入总记录数和每页显示的记录数
@@ -243,7 +243,7 @@ class ContentController extends BaseController {
 			$this->assign('stages', C('__YYG_YUER_STAGE__'));
 			$this->display("Content:add");
 		}else{
-			/** @var  $contentD /Admin/Model/ContentModel */
+			/** @var  $contentD /Common/Model/ContentModel */
 			$contentD = D("Content");
 			$contentD->startTrans();
 			if (!$contentD->create(False, 1)){
