@@ -20,9 +20,41 @@ class ArticlesPanelWidget extends BaseController {
     }
 
     public function hots(){
-        $articles = M("Content")->where(['status' => 1])->order("viewnum desc")->limit(8)->select();
-        $this->assign('hotArticles', $this->makeArticlesCanDisplay($articles));
+
+        $this->assign('hotArticles', $this->makeArticlesCanDisplay($this->getHotArticles()));
         $this->display('Widgets:ArticlesPanel:hots');
+    }
+
+    private function getHotArticles(){
+        $year100mins = 51264000.0;
+        //3 * (51264000 - (time() - strtotime('2017-12-03 11:12:24'))/60) / 51264000 * 10 +  30 * (51264000 - (time() - strtotime('2017-12-04 14:12:24'))/60) / 51264000 * 2;
+        $articles = M("Content")->field('`id`,viewnum,lastviewtime,commentnum,lastcommenttime')->where(['status' => 1])->select();
+        $articleRanks = [];
+        foreach($articles as $article){
+            $lastcommenttime = strtotime($article['lastcommenttime']);
+            if($lastcommenttime < 0){
+                $lastcommenttime = 0;
+            }
+            $lastviewtime = strtotime($article['lastviewtime']);
+            if($lastviewtime < 0){
+                $lastviewtime = 0;
+            }
+            $articleRanks[$article['id']] = $article['commentnum'] * ($year100mins - (time() - $lastcommenttime)/ 60) * 15  + $article['viewnum'] * ($year100mins - (time() - $lastviewtime) / 60) * 1;
+        }
+        arsort($articleRanks);
+        $subArticleRanks = array_slice(array_keys($articleRanks), 0, 8);
+        $hotArticles = M("Content")->where(['id' => ['in', $subArticleRanks]])->select();
+        $rankHotArticles = [];
+        foreach($subArticleRanks as $rankId){
+            foreach($hotArticles as $hotArticle){
+                if($hotArticle['id'] == $rankId){
+                    $rankHotArticles []= $hotArticle;
+                    break;
+                }
+            }
+        }
+
+        return $rankHotArticles;
     }
 
     public function relates($mainArticle){
@@ -32,6 +64,7 @@ class ArticlesPanelWidget extends BaseController {
             $wordAnalysisService = D("Common/WordAnalysis", "Service");
             $tags = $wordAnalysisService->analysis($mainArticle['title']);
         }
+
 
         $relArticles = [];
         foreach($tags as $tag){
@@ -56,8 +89,16 @@ class ArticlesPanelWidget extends BaseController {
             }
         }
 
+        if(empty($listArticles)){
+            $listArticles = $this->getRandomArticles();
+        }
+
         $this->assign('relArticles', $this->makeArticlesCanDisplay($listArticles));
         $this->display('Widgets:ArticlesPanel:relates');
+    }
+
+    public function getRandomArticles(){
+        return M("Content")->where(['status' => 1])->order("RAND()")->limit(8)->select();
     }
 
     private function makeArticlesCanDisplay($articles){

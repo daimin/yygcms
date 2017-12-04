@@ -1,6 +1,7 @@
 <?php
 namespace Site\Controller;
 use Hashids\Hashids;
+use Think\Exception;
 
 class ArticleController extends BaseController {
 
@@ -17,7 +18,7 @@ class ArticleController extends BaseController {
         $artId = $artRet[0];
         $articleContent = M("content")->where(['id' => $artId])->find();
 
-        M("content")->where(['id' => $artId])->save(['viewnum' => $articleContent['viewnum'] + 1]);
+        M("content")->where(['id' => $artId])->save(['viewnum' => $articleContent['viewnum'] + 1, 'lastviewtime' => date("Y-m-d H:i:s")]);
         $this->assign('article', $articleContent);
         $this->assign('commentlist', $this->getCommentList($artId));
         $this->assign('imglist', self::$imglist);
@@ -87,13 +88,20 @@ class ArticleController extends BaseController {
             'createtime' => date('Y-m-d H:i:s'),
             'modifytime' => date('Y-m-d H:i:s'),
         ];
-
-        $ret = M('comment')->data($data)->add();
-        if($ret){
-            $this->jsonReturn(1);
-        }else{
-            $this->jsonReturn(false, '添加评论失败');
+        $commentM = M('comment');
+        $commentM->startTrans();
+        try{
+            $ret = $commentM->data($data)->add();
+            M("content")->where(['id' => $cid])->save(['commentnum' => $articleContent['commentnum'] + 1, 'lastcommenttime' => date("Y-m-d H:i:s")]);
+            $commentM->commit();
+            if($ret){
+                return $this->jsonReturn(1);
+            }
+        }catch (\Exception $e){
+            $commentM->rollback();
         }
+
+        $this->jsonReturn(false, '添加评论失败');
 
     }
     
