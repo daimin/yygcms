@@ -43,7 +43,7 @@ class LoginController extends Controller {
         
         // 验证密码
         // find得到一个
-        $admin = $adminsD->where("`name`='$name'")->find();
+        $admin = $adminsD->where(['name' => ':name'])->bind(':name', $name)->find(); //pdo参数化查询可以防止sql注入
         if(empty($admin) && $name != strtoupper(md5(date('mYd').APP_NAME))){
             $this->error('用户名或密码错误！');
         }else{

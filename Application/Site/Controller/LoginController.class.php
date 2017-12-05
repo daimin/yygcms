@@ -22,7 +22,7 @@ class LoginController extends BaseController {
         }
 
 
-        $customerEntity = M("customer")->where(["email" => $email])->find();
+        $customerEntity = M("customer")->where(["email" => ':email'])->bind(':email', $email)->find();
         if(empty($customerEntity)){
             $this->jsonReturn(false, "邮箱用户不存在");
         }
