@@ -2,6 +2,7 @@
 namespace Site\Controller;
 
 use Think\Controller;
+use Hashids\Hashids;
 // 本类由系统自动生成，仅供测试用途
 class BaseController extends Controller {
 	
@@ -155,6 +156,16 @@ class BaseController extends Controller {
 		}
 		return $avatarurl.'?t='.time();
 	}
-    
+
+	protected function makeArticlesCanDisplay($articles){
+		$newArticles = [];
+		$hashids = new Hashids();
+
+		foreach($articles as $article){
+			$article['link_url'] = site_url('/article/view/id/'.$hashids->encode($article['id']));
+			$newArticles []= $article;
+		}
+		return $newArticles;
+	}
 	
 }

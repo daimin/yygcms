@@ -33,7 +33,12 @@
                         <td scope="row"><?php echo $idx+1 ?></td>
                         <td><?php echo $indexDisplayItem['title'] ?></td>
                         <td><?php echo $indexDisplayItem['category']['name'] ?></td>
-                        <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '图片轮播', this)">移除</a> | <a href="javascript:void(0)" onclick="putToTop('<?php echo $indexDisplayItem['id'] ?>', this)">置顶</a></td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '图片轮播', this)">移除</a> |
+                            <a href="javascript:void(0)" onclick="putToTop('<?php echo $indexDisplayItem['id'] ?>', this)">置顶</a> |
+                            <a class="btn btn-default btn-xs" href="#" role="button">轮播图上传</a>
+                            <img src="" />
+                        </td>
                     </tr>
                     <?php } ?>
                     </tbody>

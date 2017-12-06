@@ -8,7 +8,6 @@
 namespace Site\Widget;
 
 use Common\Service\WordAnalysisService;
-use Hashids\Hashids;
 use Site\Controller\BaseController;
 
 class ArticlesPanelWidget extends BaseController {
@@ -99,17 +98,6 @@ class ArticlesPanelWidget extends BaseController {
 
     public function getRandomArticles(){
         return M("Content")->where(['status' => 1])->order("RAND()")->limit(8)->select();
-    }
-
-    private function makeArticlesCanDisplay($articles){
-        $newArticles = [];
-        $hashids = new Hashids();
-
-        foreach($articles as $article){
-            $article['link_url'] = site_url('/article/view/id/'.$hashids->encode($article['id']));
-            $newArticles []= $article;
-        }
-        return $newArticles;
     }
 
     //中文分词

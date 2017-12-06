@@ -12,6 +12,8 @@ use Site\Controller\BaseController;
 class IndexPanelWidget extends BaseController {
 
     public function carouselImgs(){
+        $articles = D("content")->field("id, title, intro")->where(["indexdisplay" => 'lunboimgs', 'status' => 1])->order("topnum, modifytime desc")->select();
+        $this->assign('articles', $this->makeArticlesCanDisplay($articles));
         $this->display('Widgets:IndexPanel:carousel-imgs');
     }
 

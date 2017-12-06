@@ -1,5 +1,6 @@
 body {
     color: #444;
+    font-size: 13px;
 }
 
 .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
@@ -142,7 +143,7 @@ a:hover {
 }
 
 .secnscr_title dt {
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     margin-bottom: 5px;
 }
@@ -189,7 +190,7 @@ a:hover {
     height: 1.8em;
     font-family: "微软雅黑", "Microsoft YaHei", Helvetica, Arial, serif;
     font-style: normal;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.8em;
     overflow: hidden;
 }
@@ -278,7 +279,7 @@ a:hover {
 }
 
 .muyi dl dt a {
-    font-size: 16px;
+    font-size: 14px;
     color: #3F3F3F;
     line-height: 16px;
 }

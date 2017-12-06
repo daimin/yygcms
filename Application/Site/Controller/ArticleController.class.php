@@ -17,6 +17,8 @@ class ArticleController extends BaseController {
         }
         $artId = $artRet[0];
         $articleContent = M("content")->where(['id' => $artId])->find();
+        $articleContent['content'] = htmlspecialchars_decode($articleContent['content']);
+
 
         M("content")->where(['id' => $artId])->save(['viewnum' => $articleContent['viewnum'] + 1, 'lastviewtime' => date("Y-m-d H:i:s")]);
         $this->assign('article', $articleContent);

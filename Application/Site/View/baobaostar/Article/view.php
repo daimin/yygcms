@@ -45,7 +45,7 @@
     </div>
     <div class="row col-sm-3" style="margin: 0;padding: 0;">
         {:W('IndexPanel/LoginPanel')}
-        <div class="panel panel-default col-sm-12">
+        <div class="panel panel-default col-sm-12" style="margin-top: 12px;">
             {:W('ArticlesPanel/relates', [$article])}
             {:W('ArticlesPanel/News')}
             {:W('ArticlesPanel/Hots')}
