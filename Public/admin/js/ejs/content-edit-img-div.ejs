@@ -1,0 +1,14 @@
+<div>
+    <a class="img-link" target="_blank" href="<%= jsondata.path %>">
+        <%= jsondata.name %>
+    </a>
+    <a href="javascript:void(0)" class="img-del" onclick="deleteUpImg(this, '<%= jsondata.id %>')">
+        <img src="__PUBLIC__/admin/images/close.gif" border="none"></a>' +
+    <div class="btn-xs pull-right">'+
+        <select class="img-insert-select"><%= optshtml%>
+        </select>
+        &nbsp;<a href="javascript:void(0)" onclick="addToContent('<%= jsondata.path%>', '<%= jsondata.name%>', this, '<%= jsondata.thumb.prefix %>')"
+                 class="btn btn-primary btn-xs" style="margin-top:4px;color:#fff;">插入</a>
+        &nbsp;<label class="pull-right"><input type="checkbox">主图</label></a>
+    </div>
+</div>

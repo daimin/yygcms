@@ -36,8 +36,7 @@
                         <td>
                             <a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '图片轮播', this)">移除</a> |
                             <a href="javascript:void(0)" onclick="putToTop('<?php echo $indexDisplayItem['id'] ?>', this)">置顶</a> |
-                            <a class="btn btn-default btn-xs" href="#" role="button">轮播图上传</a>
-                            <img src="" />
+                            <a style="text-decoration: none;" href="<?php echo admin_url('/Content/edit/cid/'.$indexDisplayItem['id']) ?>" title="编辑">编辑</a>
                         </td>
                     </tr>
                     <?php } ?>

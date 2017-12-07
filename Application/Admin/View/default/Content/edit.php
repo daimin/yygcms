@@ -1,4 +1,5 @@
 <include file="Public:header" />
+<script type="text/javascript" language="javascript" src="__PUBLIC__/admin/js/ejs/ejs.min.js"></script>
 <div style="min-width:780px;height:1440px;">
     <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D6DDD6" align="center">
         <tr>
@@ -26,7 +27,7 @@
                             </tr>
                             <tr >
                                 <td class="head "><span class="yyg-required">*</span>内容： </td>
-                                <td class="tail" colspan="2"> <textarea name="content" style='width:70%' rows="30" id="yyg_content">{$content.content}</textarea></td>
+                                <td class="tail" colspan="2"> <textarea name="content" style='width:70%' rows="40" id="yyg_content">{$content.content}</textarea></td>
                             </tr>
                             <tr >
                                 <td class="head "><span class="yyg-required">*</span>导读： </td>
@@ -110,6 +111,29 @@
 <script type="text/javascript" src="__PUBLIC__/admin/uploadify/swfobject.js"></script>
 <script type="text/javascript" src="__PUBLIC__/admin/uploadify/jquery.uploadify.v2.1.4.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/admin/js/imgpreview.min.jquery.js"></script>
+
+<script id="ejs-img-div" type="text/template">
+    <div>
+        <a class="img-link" target="_blank" href="<%= jsondata.path %>">
+            <%= jsondata.name %>
+        </a>
+        <a href="javascript:void(0)" class="img-del" onclick="deleteUpImg(this, '<%= jsondata.id %>')">
+            <img src="__PUBLIC__/admin/images/close.gif" border="none"></a>
+        <div class="btn-xs pull-right">
+            <select class="img-insert-select">
+                <% var thumbsWidths = jsondata.thumb.width.reverse(); %>
+                <% thumbsWidths.forEach(function(wh){ %>
+                <option value="<%= wh %>">缩略图<%= wh %>px</option>
+                <% }) %>
+                <option value="0">原图</option>
+            </select>
+            &nbsp;<a href="javascript:void(0)" onclick="addToContent('<%= jsondata.path%>', '<%= jsondata.name%>', this, '<%= jsondata.thumb.prefix %>')"
+                     class="btn btn-primary btn-xs" style="margin-top:4px;color:#fff;">插入</a>
+            &nbsp;<label class="pull-right"><input type="checkbox">主图</label></a>
+        </div>
+    </div>
+</script>
+
 <script type="text/javascript">
     var editor;
     KindEditor.ready(function(K) {
@@ -190,28 +214,10 @@
     }
 
     function renderImgList(jsondata){
-        var opts = new Array();
-        opts[opts.length] = '<option value="0">原图</option>';
-        $(jsondata['thumb']['width']).each(function(it){
-            var width = jsondata['thumb']['width'][it];
-            opts[opts.length] = '<option value="'+width+'">缩略图' + jsondata['thumb']['width'][it] + 'px</option>';
-        });
-        opts.reverse();
-        $("#update_img_list").prepend('<div><a class="img-link" target="_blank" href="' + jsondata['path'] + '">' +
-            jsondata['name'] +
-            '</a>' +
-            '<a href="javascript:void(0)" class="img-del" onclick="deleteUpImg(this, \'' + jsondata['id'] + '\')">' +
-            '<img src="__PUBLIC__/admin/images/close.gif" border="none"></a>' +
-            '<div class="btn-xs pull-right">'+
-            '<select class="img-insert-select">' +
-            opts.join("") +
-            '</select>'+
-            '&nbsp;<a href="javascript:void(0)" onclick="addToContent(\'' + jsondata['path'] + '\',\'' +
-            jsondata['name'] + '\', this, \'' + jsondata['thumb']['prefix'] + '\')" class="btn btn-primary btn-xs pull-right" style="margin-top:4px;color:#fff;">插入</a>'+
-            '</div>'+
-            '</div>');
+        var ejsImgDiv = document.getElementById('ejs-img-div').innerHTML;
+        var imghtml = ejs.render(ejsImgDiv, { jsondata:jsondata });
+        $("#update_img_list").prepend(imghtml);
         renderImgLink();
-
     }
 
 

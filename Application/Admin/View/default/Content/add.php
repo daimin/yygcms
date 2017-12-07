@@ -24,7 +24,7 @@
                             </tr>
                             <tr >
                                 <td class="head "><span class="yyg-required">*</span>内容： </td>
-                                <td class="tail" colspan="2"> <textarea name="content" style='width:70%' rows="30" id="yyg_content"></textarea></td>
+                                <td class="tail" colspan="2"> <textarea name="content" style='width:70%' rows="40" id="yyg_content"></textarea></td>
                             </tr>
                             <tr >
                                 <td class="head "><span class="yyg-required">*</span>导读： </td>

@@ -1,7 +1,6 @@
 <?php
 namespace Site\Controller;
 use Hashids\Hashids;
-use Think\Exception;
 
 class ArticleController extends BaseController {
 
