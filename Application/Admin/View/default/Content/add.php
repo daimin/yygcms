@@ -19,16 +19,16 @@
 
                             <tr >
                                 <td class="head"><span class="yyg-required">*</span>标题： </td>
-                                <td class="tail" colspan="2"><input type='text' name="title" value="" style='width:60%'></td>
+                                <td class="tail" colspan="2"><input type='text' name="title" value="" style='width:90%'></td>
 
                             </tr>
                             <tr >
                                 <td class="head "><span class="yyg-required">*</span>内容： </td>
-                                <td class="tail" colspan="2"> <textarea name="content" style='width:70%' rows="40" id="yyg_content"></textarea></td>
+                                <td class="tail" colspan="2"> <textarea name="content" style='width:90%' rows="40" id="yyg_content"></textarea></td>
                             </tr>
                             <tr >
                                 <td class="head "><span class="yyg-required">*</span>导读： </td>
-                                <td class="tail" colspan="2"> <textarea name="intro" style='width:70%;margin-top: 3px;margin-bottom: 3px;' rows="4" id="yyg_intro"></textarea>
+                                <td class="tail" colspan="2"> <textarea name="intro" style='width:90%;margin-top: 3px;margin-bottom: 3px;' rows="4" id="yyg_intro"></textarea>
                                     <span class="info">文章的导读，文章的简介，内容摘要</span></td>
                             </tr>
                             <tr >
@@ -65,7 +65,7 @@
                             </tr>
                             <tr >
                                 <td class="head ">嵌入代码： </td>
-                                <td class="tail" colspan="2"> <textarea name="embed_code" style='width:70%' rows="5" id="yyg_embed_code"></textarea></td>
+                                <td class="tail" colspan="2"> <textarea name="embed_code" style='width:90%' rows="5" id="yyg_embed_code"></textarea></td>
                             </tr>
                             <tr >
                                 <td class="head">上传图片：</td>
@@ -174,7 +174,7 @@
             jsondata['name'] +
             '</a>' +
             '<a href="javascript:void(0)" class="img-del" onclick="deleteUpImg(this, \'' + jsondata['id'] + '\')">' +
-            '<img src="__PUBLIC__/admin/images/close.gif" border="none"></a>' +
+            '<img src="__PUBLIC__/admin/images/remove.png" border="none"></a>' +
             '<div class="btn-xs pull-right">'+
             '<select class="img-insert-select">' +
             opts.join("") +

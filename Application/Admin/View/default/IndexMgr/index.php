@@ -31,12 +31,12 @@
                     <?php foreach($indexDisplayList['lunboimgs'] as $idx => $indexDisplayItem){ ?>
                     <tr>
                         <td scope="row"><?php echo $idx+1 ?></td>
-                        <td><?php echo $indexDisplayItem['title'] ?></td>
+                        <td><?php echo $indexDisplayItem['title'] ?><span class="pull-right label label-info"><?php echo $indexDisplayItem['is_set_main'] ? '已设置主图' : ''?></span></td>
                         <td><?php echo $indexDisplayItem['category']['name'] ?></td>
                         <td>
                             <a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '图片轮播', this)">移除</a> |
                             <a href="javascript:void(0)" onclick="putToTop('<?php echo $indexDisplayItem['id'] ?>', this)">置顶</a> |
-                            <a style="text-decoration: none;" href="<?php echo admin_url('/Content/edit/cid/'.$indexDisplayItem['id']) ?>" title="编辑">编辑</a>
+                            <a style="text-decoration: none;" href="javascript:void(0)" onclick="edit_content_page('<?php echo admin_url('/Content/edit/cid/'.$indexDisplayItem['id']) ?>')" title="编辑">编辑</a>
                         </td>
                     </tr>
                     <?php } ?>
@@ -210,6 +210,12 @@
                 });
             }
         });
+    }
+    
+    function edit_content_page(url) {
+        bootbox.alert({message:'<iframe style="width: 100%;height:600px;" src="' + url + '&fromPopWindow=1"></iframe>', title:"编辑", size:"large", callback:function(){
+            window.location.reload();
+        }});
     }
 
 </script>

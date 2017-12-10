@@ -12,6 +12,7 @@ class IndexMgrController extends BaseController {
             $contentEntitys = D("Content")->field('id, title, category_id')->where(["status" => 1, "indexdisplay" => $dsid])->order("topnum desc, `order`,`createtime` desc")->limit($limitSize)->select();
             foreach($contentEntitys as &$contentEntity){
                 $contentEntity['category'] = M("category")->where(['id' => $contentEntity['category_id']])->find();
+                $contentEntity['is_set_main'] = !empty(M('attac_rel')->where(['ismain' => 1, 'rel_id' => $contentEntity['id']])->find());
             }
             $indexDisplayList[$dsid] = $contentEntitys;
         }

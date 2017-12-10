@@ -678,17 +678,21 @@ option.stype {
 }
 
 #update_img_list {
-
-    width: 600px;
+    width:90%;
     margin-top: 12px;
+    color: #4d4d4d;
 }
 
-#update_img_list div {
-    border-top: 1px solid #bbb;
-    height: 30px;
-    min-height: 30px;
-    line-height: 30px;
+#update_img_list .img-div-item {
+    border-top: 1px solid #e2e2e2;
+    height: 32px;
+    min-height: 32px;
+    line-height: 32px;
     padding-left: 12px;
+}
+
+#update_img_list .img-div-item:hover {
+    background-color: #F2F2F2;
 }
 
 #update_img_list div .appcont {
@@ -706,7 +710,8 @@ option.stype {
 
 #update_img_list div .img-del {
     float: right;
-    padding: 0 6px;
+    padding-left: 6px;
+    padding-right: 4px;
     height: 20px;
     line-height: 20px;
     margin-top: 10px;
@@ -714,15 +719,17 @@ option.stype {
     font-size: 24px;
     vertical-align: middle;
     color: #f22;
-    margin-right: 5px;
 }
 
 #update_img_list .img-insert-select{
-    height: 22px;
     font-size: 12px;
+    margin-top: 3px;
 }
 #update_img_list .img-insert-select option{
     font-size: 12px;
+}
+
+.set-main-img-checkbox{
 }
 
 

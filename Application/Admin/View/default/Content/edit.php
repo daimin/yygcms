@@ -5,7 +5,6 @@
         <tr>
             <td height="28" background="__PUBLIC__/admin/images/tbg.gif" style="padding-left:10px;">
                 <b>编辑【<?php echo $category['name'] ?>】内容： (加<span class="yyg-required">*</span>为必填)</b>
-                <a class="btn btn-success pull-right" href="javascript:window.history.go(-1)">返回列表</a>
             </td>
         </tr>
 
@@ -22,16 +21,16 @@
 
                             <tr >
                                 <td class="head"><span class="yyg-required">*</span>标题： </td>
-                                <td class="tail" colspan="2"><input type='text' name="title" value="{$content.title}" style='width:60%'></td>
+                                <td class="tail" colspan="2"><input type='text' name="title" value="{$content.title}" style='width:90%'></td>
 
                             </tr>
                             <tr >
                                 <td class="head "><span class="yyg-required">*</span>内容： </td>
-                                <td class="tail" colspan="2"> <textarea name="content" style='width:70%' rows="40" id="yyg_content">{$content.content}</textarea></td>
+                                <td class="tail" colspan="2"> <textarea name="content" style='width:90%' rows="40" id="yyg_content">{$content.content}</textarea></td>
                             </tr>
                             <tr >
                                 <td class="head "><span class="yyg-required">*</span>导读： </td>
-                                <td class="tail" colspan="2"> <textarea name="intro" style='width:70%;margin-top: 3px;margin-bottom: 3px;' rows="4" id="yyg_intro">{$content.intro}</textarea>
+                                <td class="tail" colspan="2"> <textarea name="intro" style='width:90%;margin-top: 3px;margin-bottom: 3px;' rows="4" id="yyg_intro">{$content.intro}</textarea>
                                     <span class="info">文章的导读，文章的简介，内容摘要</span></td>
                             </tr>
                             <tr >
@@ -73,12 +72,13 @@
                             </tr>
                             <tr >
                                 <td class="head ">嵌入代码： </td>
-                                <td class="tail" colspan="2"> <textarea name="embed_code" style='width:70%' rows="5" id="yyg_embed_code"></textarea></td>
+                                <td class="tail" colspan="2"> <textarea name="embed_code" style='width:90%' rows="5" id="yyg_embed_code"></textarea></td>
                             </tr>
                             <tr >
                                 <td class="head">上传图片：</td>
                                 <td class="tail"> <input type="file"  name="yyg_uploadImg" value="" id="yyg_uploadImg" style="visibility: hidden"/>
                                     <input type="hidden"  name="yyg_uploadImg_ids" value="" id="yyg_uploadImg_ids"/>
+                                    <input type="hidden"  name="set_main_img_id" value="" id="set_main_img_id"/>
                                     <div id="update_img_list">
                                     </div>
                                 </td>
@@ -113,12 +113,13 @@
 <script type="text/javascript" src="__PUBLIC__/admin/js/imgpreview.min.jquery.js"></script>
 
 <script id="ejs-img-div" type="text/template">
-    <div>
+    <div class="img-div-item">
         <a class="img-link" target="_blank" href="<%= jsondata.path %>">
             <%= jsondata.name %>
         </a>
         <a href="javascript:void(0)" class="img-del" onclick="deleteUpImg(this, '<%= jsondata.id %>')">
-            <img src="__PUBLIC__/admin/images/close.gif" border="none"></a>
+            <img src="__PUBLIC__/admin/images/remove.png" border="none">
+        </a>
         <div class="btn-xs pull-right">
             <select class="img-insert-select">
                 <% var thumbsWidths = jsondata.thumb.width.reverse(); %>
@@ -127,9 +128,9 @@
                 <% }) %>
                 <option value="0">原图</option>
             </select>
+            &nbsp;<label style="font-weight: normal"><input id="main-img-checkbox-<%= jsondata.id %>" type="checkbox" class="set-main-img-checkbox" <% if(jsondata.ismain=='1'){%>checked <%}%> onclick="selectMainPic(this)">主图</label>
             &nbsp;<a href="javascript:void(0)" onclick="addToContent('<%= jsondata.path%>', '<%= jsondata.name%>', this, '<%= jsondata.thumb.prefix %>')"
-                     class="btn btn-primary btn-xs" style="margin-top:4px;color:#fff;">插入</a>
-            &nbsp;<label class="pull-right"><input type="checkbox">主图</label></a>
+                     class="btn btn-primary btn-xs" style="color:#fff;">插入</a>
         </div>
     </div>
 </script>
@@ -233,6 +234,19 @@
                 $(o).parent().remove();
             }else{
                 alert(data);
+            }
+        });
+    }
+
+    function selectMainPic(thiz){
+        var mainImgCheckboxs = $(".set-main-img-checkbox");
+        var checked = $(thiz).attr('checked');
+        $("#set_main_img_id").val(thiz.id);
+        mainImgCheckboxs.each(function(i, o){
+            if(checked){
+                if(o.id !== thiz.id){
+                    $(o).attr('checked', false);
+                }
             }
         });
     }

@@ -354,6 +354,7 @@ class ContentController extends BaseController {
 			$this->display("Content:edit");
 
 		}else{
+			/** @var  $contentD ContentModel */
 			$contentD = D("Content");
 			$contentD->startTrans();
 			if (!$contentD->create(False, 2)){
@@ -381,7 +382,8 @@ class ContentController extends BaseController {
 					$contentD->editor_id = $admin['id'];
 					$contentD->save();
 					$this->_addAttac(I("id"));
-					$this->addTags($cid);
+					$this->addMainImg($cid, array_pop(explode('-', I("post.set_main_img_id"))));
+					$contentD->addTags($cid, I("post.tags"));
 					$contentD->commit();
 				}catch (\Exception $e){
 					$contentD->rollback();
@@ -391,7 +393,11 @@ class ContentController extends BaseController {
 					$parentCategory = M("category")->where(['id' => $category['pid']])->find();
 					$pageCode = $parentCategory['pagecode'];
 				}
-				$this->success("编辑文档成功", __CONTROLLER__.'/category/code/'.$pageCode);
+				if(I('get.fromPopWindow') == '1'){
+					$this->success("编辑文档成功", __CONTROLLER__.'/category/code/'.$pageCode);
+				}else{
+					$this->success("编辑文档成功");
+				}
 			}
 		}
 	}
@@ -415,10 +421,10 @@ class ContentController extends BaseController {
 	
 	/**
 	 * 添加附件与文档的关系
+	 * @param string $cid
 	 */
 	private function _addAttac($cid){
 		$ids = I("yyg_uploadImg_ids");
-
 		$ids = explode(",", $ids);
 		$attacRelM = M("attac_rel");
 		
@@ -470,7 +476,6 @@ class ContentController extends BaseController {
 			$attac = $attacM->find($att_id);
 			if(empty($attac)) {
 				M("attac_rel")->where("`rel_id`='$cid' and `att_id`='$att_id'")->delete();
-				
 				continue;
 			}
 			$dataJson = array();
@@ -484,6 +489,7 @@ class ContentController extends BaseController {
 
 			$dataJson['desc'] = brReplace($attac['description']);
 			$dataJson['thumb'] = ['width' => explode(',', $opt->thumbMaxWidth), 'prefix' => $opt->thumbPrefix];
+			$dataJson['ismain'] = $ar['ismain'];
 			array_push($dataJsons, $dataJson);
 		}
 
@@ -605,5 +611,21 @@ class ContentController extends BaseController {
 		$cid = I('post.id');
 		$res = D("Content")->where("`id`='$cid'")->save(['indexdisplay' => $disId]);
 		$this->jsonReturn($res);
+	}
+
+	private function addMainImg($cid, $mainPicId)
+	{
+		if(empty($mainPicId)){
+			return;
+		}
+		M("attac_rel")->startTrans();
+		try{
+			M("attac_rel")->where(['rel_id' => $cid])->save(['ismain' => 0]);
+			M("attac_rel")->where(['att_id' => $mainPicId, 'rel_id' => $cid])->save(['ismain' => 1]);
+			M("attac_rel")->commit();
+		}catch (\Exception $e){
+			M("attac_rel")->rollback();
+		}
+
 	}
 }
