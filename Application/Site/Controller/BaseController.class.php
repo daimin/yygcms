@@ -163,9 +163,20 @@ class BaseController extends Controller {
 
 		foreach($articles as $article){
 			$article['link_url'] = site_url('/article/view/id/'.$hashids->encode($article['id']));
+			$article['main_img'] = $this->getMainImg($article['id']);
 			$newArticles []= $article;
 		}
 		return $newArticles;
 	}
-	
+
+	private function getMainImg($cid)
+	{
+		$attacRel = M("attac_rel")->where(['rel_id' => $cid, 'ismain' => 1])->find();
+		if(empty($attacRel)){
+			return false;
+		}
+
+		return M("attac")->where(['id' => $attacRel['att_id']])->find();
+	}
+
 }

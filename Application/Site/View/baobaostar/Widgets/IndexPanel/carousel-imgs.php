@@ -1,20 +1,16 @@
 <div class="row col-sm-12" style="padding: 0">
-    <div id="carousel-example-generic" class="carousel slide col-sm-8" data-ride="carousel">
+    <div id="carousel-example-generic" class="carousel slide col-sm-8" style="width: 70%;height: 320px;overflow: hidden;padding-left: 0;margin-left: 10px;" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+            <?php foreach($articles as $idx=>$article){ ?>
+            <li data-target="#carousel-example-generic" data-slide-to="<?php echo $idx ?>" class="<?php echo $idx==0 ? "active" : "" ?>"></li>
+            <?php } ?>
         </ol>
-        <div class="carousel-inner" role="listbox">
-            <div class="item">
-                <img src="__PUBLIC__/site/{$Think.THEME_NAME}/images/pic3207_1483407932.jpg" data-holder-rendered="true">
+        <div class="carousel-inner" role="listbox"   style="width: 100%">
+            <?php foreach($articles as $idx=>$article){ ?>
+            <div class="item<?php echo $idx==0 ? " active" : "" ?>">
+                <a href="<?php echo $article['link_url'] ?>"><img style="width: 100%;" src="<?php echo $article['main_img']['path'] ?>" data-holder-rendered="true"></a>
             </div>
-            <div class="item active">
-                <img src="__PUBLIC__/site/{$Think.THEME_NAME}/images/pic3484_1500269727.jpg" data-holder-rendered="true">
-            </div>
-            <div class="item">
-                <img src="__PUBLIC__/site/{$Think.THEME_NAME}/images/pic3510_1501817036.jpg" data-holder-rendered="true">
-            </div>
+            <?php } ?>
         </div>
         <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -26,10 +22,10 @@
         </a>
     </div>
     <div class="panel panel-default col-sm-4 tuijian" style="padding-right: 0">
-        <?php foreach($articles as $article){ ?>
-        <dl>
+        <?php foreach($articles as $idx=>$article){ ?>
+        <dl onmouseover="moveCarouselIndi(<?php echo $idx?>)" onmouseout="">
             <dt class="font_apple">
-                <a href="<?php echo $article['link_url'] ?>" title="<?php echo $article['title'] ?>" target="_blank" style=""><?php echo $article['title'] ?></a>
+                <a href="<?php echo $article['link_url'] ?>" title="<?php echo $article['title'] ?>" style=""><?php echo $article['title'] ?></a>
             </dt>
             <dd><?php echo $article['intro'] ?></dd>
         </dl>
@@ -38,3 +34,19 @@
 
 </div>
 
+<script type="text/javascript">
+    $(function () {
+        $('.carousel').carousel({
+            interval: 5000
+        });
+    });
+
+    
+
+    function moveCarouselIndi(idx) {
+        setTimeout(function () {
+            $('.carousel').carousel(idx);
+        }, 1000);
+
+    }
+</script>

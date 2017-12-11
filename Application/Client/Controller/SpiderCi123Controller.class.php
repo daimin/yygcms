@@ -222,6 +222,8 @@ class SpiderCi123Controller extends BaseController {
             $relSavepath = "topic";
         }
 
+        $relSavepath .= '/'.date("Ymd");
+
         $imgSavePath .= $relSavepath;
 
         if (!file_exists($imgSavePath)){
