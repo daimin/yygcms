@@ -729,13 +729,28 @@ function get_absolute_path($path) {
 	return implode(DIRECTORY_SEPARATOR, $absolutes);
 }
 
+/**
+ * @param $filepath string 源图片路径
+ * @param $opt object 系统参数
+ * @param $rootPath string 缩略图的根路径
+ * @param $savePath string 缩略图的路径
+ * @param $saveName string 缩略图的名称
+ */
 function genThumbs($filepath, $opt, $rootPath, $savePath, $saveName){
 	$widths = explode(',', $opt->thumbMaxWidth);
 	$heights = explode(',', $opt->thumbMaxHeight);
+	$relPath = $rootPath.$savePath;
+
+	if(!is_dir($relPath)){
+		mkdir($relPath);
+		echo $relPath." ====\n";
+	}
 	foreach($widths as $idx=>$width){
 		$image = new \Think\Image();
 		$image->open($filepath);
-		$tbpath = $rootPath.$savePath.$opt->thumbPrefix.$width.'_'.$saveName;
+
+		$tbpath = $relPath.'/'.$opt->thumbPrefix.$width.'_'.$saveName;
+		echo "thumb: " . $tbpath."\n";
 		$image->thumb($width, $heights[$idx],\Think\Image::IMAGE_THUMB_CENTER)->save($tbpath);
 	}
 
