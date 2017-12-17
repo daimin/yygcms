@@ -1,7 +1,113 @@
 <include file="Public:header1" />
     <div class="row col-sm-9">
         {:W('IndexPanel/CarouselImgs')}
+        <div class="panel panel-default col-sm-4 padding-left-none">
+            <div class="coom_title font_apple">
+                <div class="coom_h3">父母<span>学堂</span></div>
+            </div>
+            <div class="fumu_two_right">
+                <ul class="fv_zx">
+                    <li>
+                        <a href="http://www.ci123.com/article.php/74407">
+                            <img src="http://good.ci123.com/2010/upload/pics/201705241524368.jpg" alt="满月酒玩的小游戏">
+                        </a>
+                        <br>
+                        <span><a href="http://www.ci123.com/article.php/74407">满月酒玩的小游</a></span>
+                    </li>
+                    <li>
+                        <a href="http://www.ci123.com/article.php/74347">
+                            <img src="http://good.ci123.com/2010/upload/pics/2017052415280684.jpg" alt="3种调味品少碰">
+                        </a>
+                        <br>
+                        <span><a href="http://www.ci123.com/article.php/74347">3种调味品少碰</a></span>
+                    </li>
+                </ul>
+                <ul class="fv_td">
+                    <li><a href="http://www.ci123.com/article.php/73155" title="育儿小学问 怎么给宝宝断奶" target="_blank">育儿小学问 怎么给宝宝断奶</a></li>
+                    <li><a href="http://www.ci123.com/article.php/72545" title="BB学走路全解析 不懂的快来看" target="_blank">BB学走路全解析 不懂的快来看</a></li>
+                    <li><a href="http://www.ci123.com/article.php/72531" title="育网解析：1-3月baby的发育特点" target="_blank">育网解析：1-3月baby的发育特点</a></li>
+                    <li><a href="http://www.ci123.com/article.php/72522" title="育网揭秘：4月BB的发育特征" target="_blank">育网揭秘：4月BB的发育特征</a></li>
+                    <li><a href="http://www.ci123.com/article.php/72451" title="育网解析：6月BB的发展特点" target="_blank">育网解析：6月BB的发展特点</a></li>
+                    <li><a href="http://www.ci123.com/article.php/72531" title="育网解析：1-3月baby的发育特点" target="_blank">育网解析：1-3月baby的发育特点</a></li>
+                </ul>
+            </div>
+        </div>
+
         <div class="panel panel-default col-sm-6">
+            <div class="coom_title font_apple">
+                <div class="coom_h3">热点<span>导读</span></div>
+            </div>
+            <ul class="hot-lead-article col-sm-12">
+                <li style="margin-top: 6px;">
+                    <a href="http://news.ci123.com/article/114746.html" class="travel" >这个圣诞叔叔吓坏宝宝了</a>
+                    <div class="cloth">
+                        <div class="front"><span>资讯</span><span class="split">|</span><a href="http://news.ci123.com/article/114748.html">热捧进补膏方 BB能吃吗</a></div>
+                        <div class="behind"><a href="http://news.ci123.com/article/114776.html">花式取名这个叫王者荣耀</a></div>
+                    </div>
+                    <div class="expensive">
+                        <div class="front"><span>孕育</span><span class="split">|</span><a href="http://news.ci123.com/article/114528.html">宝爸怒砸广场大妈的音响</a> </div>
+                        <div class="behind"><a href="http://news.ci123.com/article/114739.html">为一百坏了女孩子的一生</a></div>
+                    </div>
+                </li>
+                <li>
+                    <a href="http://news.ci123.com/article/114746.html" class="travel" >这个圣诞叔叔吓坏宝宝了</a>
+                    <div class="cloth">
+                        <div class="front"><span>资讯</span><span class="split">|</span><a href="http://news.ci123.com/article/114748.html">热捧进补膏方 BB能吃吗</a></div>
+                        <div class="behind"><a href="http://news.ci123.com/article/114776.html">花式取名这个叫王者荣耀</a></div>
+                    </div>
+                    <div class="expensive">
+                        <div class="front"><span>孕育</span><span class="split">|</span><a href="http://news.ci123.com/article/114528.html">宝爸怒砸广场大妈的音响</a> </div>
+                        <div class="behind"><a href="http://news.ci123.com/article/114739.html">为一百坏了女孩子的一生</a></div>
+                    </div>
+                </li>
+                <li>
+                    <a href="http://news.ci123.com/article/114746.html" class="travel" >这个圣诞叔叔吓坏宝宝了</a>
+                    <div class="cloth">
+                        <div class="front"><span>资讯</span><span class="split">|</span><a href="http://news.ci123.com/article/114748.html">热捧进补膏方 BB能吃吗</a></div>
+                        <div class="behind"><a href="http://news.ci123.com/article/114776.html">花式取名这个叫王者荣耀</a></div>
+                    </div>
+                    <div class="expensive">
+                        <div class="front"><span>孕育</span><span class="split">|</span><a href="http://news.ci123.com/article/114528.html">宝爸怒砸广场大妈的音响</a> </div>
+                        <div class="behind"><a href="http://news.ci123.com/article/114739.html">为一百坏了女孩子的一生</a></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="panel panel-default col-sm-2">
+            <div class="coom_title font_apple">
+            </div>
+            <div class="new_article_pic">
+                <dl title="4个月宝宝竟差点一睡不醒，惨重代价警惕所有父母">
+                    <dt class="a">
+                        <a href="http://www.qqbaobao.com/xueqianjieduan/hulibaojian/255893.html" class="white" title="4个月宝宝竟差点一睡不醒，惨重代价警惕所有父母" target="_blank">4个月宝宝竟差点一睡不醒，</a>
+                    </dt>
+                    <dd class="b"></dd>
+                    <dd class="c"><a href="http://www.qqbaobao.com/xueqianjieduan/hulibaojian/255893.html" target="_blank"><img alt="4个月宝宝竟差点一睡不醒，惨重代价警惕所有父母"
+                                                                                                                                src="__PUBLIC__/site/{$Think.THEME_NAME}/images/f86e9dd69d.jpg"></a>
+                    </dd>
+                </dl>
+                <dl title="这种奶“有毒”，宝宝喝了竟成“小黄人”">
+                    <dt class="a">
+                        <a href="http://www.qqbaobao.com/youerjieduan/youerweiyang/255854.html" class="white" title="这种奶“有毒”，宝宝喝了竟成“小黄人”" target="_blank">这种奶“有毒”，宝宝喝了竟成</a>
+                    </dt>
+                    <dd class="b"></dd>
+                    <dd class="c"><a href="http://www.qqbaobao.com/youerjieduan/youerweiyang/255854.html" target="_blank"><img alt="这种奶“有毒”，宝宝喝了竟成“小黄人”"
+                                                                                                                               src="__PUBLIC__/site/{$Think.THEME_NAME}/images/56c578a6b9.jpg"></a>
+                    </dd>
+                </dl>
+                <dl title="这种奶“有毒”，宝宝喝了竟成“小黄人”">
+                    <dt class="a">
+                        <a href="http://www.qqbaobao.com/youerjieduan/youerweiyang/255854.html" class="white" title="这种奶“有毒”，宝宝喝了竟成“小黄人”" target="_blank">这种奶“有毒”，宝宝喝了竟成</a>
+                    </dt>
+                    <dd class="b"></dd>
+                    <dd class="c"><a href="http://www.qqbaobao.com/youerjieduan/youerweiyang/255854.html" target="_blank"><img alt="这种奶“有毒”，宝宝喝了竟成“小黄人”"
+                                                                                                                               src="__PUBLIC__/site/{$Think.THEME_NAME}/images/56c578a6b9.jpg"></a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="panel panel-default col-sm-6 padding-left-none">
             <div class="coom_title font_apple">
                 <div class="coom_h3"><a href="http://www.qqbaobao.com/shidian/" target="_blank">孕育<span>知识</span></a></div>
             </div>
@@ -139,80 +245,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="panel panel-default col-sm-12">
-            <div class="tyye font_apple">
-                <h2 class="tyye_l"><a href="" target="_blank">母婴<span>优品</span></a></h2>
-                <h3 class="tyye_r">
-                    <ul>
-                    </ul>
-                </h3>
-                <div class="clr zf0"></div>
-            </div>
-            <div class="muyi">
-                <div class="row col-sm-6" style="margin-right:12px;">
-                    <div class="muyi-item">
-                        <dl class="img-item">
-                            <dd class="c"><a href="http://www.qqbaobao.com/youerjieduan/youerweiyang/255854.html" target="_blank">
-                                    <img alt="这种奶“有毒”，宝宝喝了竟成“小黄人”" src="__PUBLIC__/site/{$Think.THEME_NAME}/images/56c578a6b9.jpg"></a>
-                            </dd>
-                        </dl>
-                        <dl class="text-item">
-                            <dt class="font_apple">
-                                <a href="http://www.qqbaobao.com/xueqianjieduan/hulibaojian/255994.html" target="_blank" title="谨记！及时打开新生儿的小拳头">谨记！及时打开新生儿的小拳头</a>
-                            </dt>
-                            <dd>每个宝宝生下来，他们都会紧紧握住自己的小拳头。对于这种现象，许多妈妈也许并不在意
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="muyi-item">
-                        <dl class="img-item">
-                            <dd class="c"><a href="http://www.qqbaobao.com/youerjieduan/youerweiyang/255854.html" target="_blank">
-                                    <img alt="这种奶“有毒”，宝宝喝了竟成“小黄人”" src="__PUBLIC__/site/{$Think.THEME_NAME}/images/56c578a6b9.jpg"></a>
-                            </dd>
-                        </dl>
-                        <dl class="text-item">
-                            <dt class="font_apple">
-                                <a href="http://www.qqbaobao.com/xueqianjieduan/hulibaojian/255980.html" target="_blank" title="喂奶后少做这一步 后果很严重">喂奶后少做这一步 后果很严重</a>
-                            </dt>
-                            <dd>每个宝宝生下来，他们都会紧紧握住自己的小拳头。对于这种现象，许多妈妈也许并不在意
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-                <div class="row col-sm-6">
-                    <div class="muyi-item">
-                        <dl class="img-item">
-                            <dd class="c"><a href="http://www.qqbaobao.com/youerjieduan/youerweiyang/255854.html" target="_blank">
-                                    <img alt="这种奶“有毒”，宝宝喝了竟成“小黄人”" src="__PUBLIC__/site/{$Think.THEME_NAME}/images/56c578a6b9.jpg"></a>
-                            </dd>
-                        </dl>
-                        <dl class="text-item">
-                            <dt class="font_apple">
-                                <a href="http://www.qqbaobao.com/xueqianjieduan/hulibaojian/255994.html" target="_blank" title="谨记！及时打开新生儿的小拳头">谨记！及时打开新生儿的小拳头</a>
-                            </dt>
-                            <dd>每个宝宝生下来，他们都会紧紧握住自己的小拳头。对于这种现象，许多妈妈也许并不在意
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="muyi-item">
-                        <dl class="img-item">
-                            <dd class="c"><a href="http://www.qqbaobao.com/youerjieduan/youerweiyang/255854.html" target="_blank">
-                                    <img alt="这种奶“有毒”，宝宝喝了竟成“小黄人”" src="__PUBLIC__/site/{$Think.THEME_NAME}/images/56c578a6b9.jpg"></a>
-                            </dd>
-                        </dl>
-                        <dl class="text-item">
-                            <dt class="font_apple">
-                                <a href="http://www.qqbaobao.com/xueqianjieduan/hulibaojian/255980.html" target="_blank" title="喂奶后少做这一步 后果很严重">喂奶后少做这一步 后果很严重</a>
-                            </dt>
-                            <dd>每个宝宝生下来，他们都会紧紧握住自己的小拳头。对于这种现象，许多妈妈也许并不在意
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default col-sm-12">
+        <div class="panel panel-default col-sm-12 padding-left-none">
             <div class="tyye font_apple">
                 <h2 class="tyye_l"><a href="" target="_blank">儿童<span>故事</span></a></h2>
                 <h3 class="tyye_r">

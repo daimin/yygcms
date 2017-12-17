@@ -193,7 +193,7 @@ class ContentController extends BaseController {
 			'startdate' => $startdate,
 			'enddate' => $enddate
 		];
-	    $page->parameter = http_build_query($urlParams);
+	    $page->parameter = $urlParams;
 
 		$show       = $page->show();// 分页显示输出
 		// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
