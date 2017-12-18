@@ -743,7 +743,6 @@ function genThumbs($filepath, $opt, $rootPath, $savePath, $saveName){
 
 	if(!is_dir($relPath)){
 		mkdir($relPath);
-		echo $relPath." ====\n";
 	}
 	foreach($widths as $idx=>$width){
 		$image = new \Think\Image();

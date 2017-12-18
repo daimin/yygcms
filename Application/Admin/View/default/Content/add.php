@@ -69,8 +69,18 @@
                             </tr>
                             <tr >
                                 <td class="head">上传图片：</td>
-                                <td class="tail"> <input type="file"  name="yyg_uploadImg" value="" id="yyg_uploadImg" style="visibility: hidden"/>
+                                <td class="tail">
                                     <input type="hidden"  name="yyg_uploadImg_ids" value="" id="yyg_uploadImg_ids"/>
+                                    <span class="btn btn-primary fileinput-button" style="margin-top: 12px">
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                        <span>上传图片...</span>
+                                        <input id="yyg_uploadImg" type="file" name="yyg_uploadImg[]">
+                                    </span>
+                                    <!-- The global progress bar -->
+                                    <div id="progress" class="progress" style="margin-top: 12px">
+                                        <div class="progress-bar progress-bar-success"></div>
+                                    </div>
+<!--                                    <!-- The container for the uploaded files -->
                                     <div id="update_img_list">
                                     </div>
                                 </td>
@@ -104,9 +114,10 @@
 <link rel="stylesheet" href="__PUBLIC__/admin/kindeditor/themes/simple/simple.css" />
 <script type="text/javascript" charset="utf-8" src="__PUBLIC__/admin/kindeditor/kindeditor-min.js"></script>
 <script type="text/javascript" charset="utf-8" src="__PUBLIC__/admin/kindeditor/lang/zh_CN.js"></script>
-<link rel="stylesheet" href="__PUBLIC__/admin/uploadify/uploadify.css" />
-<script type="text/javascript" src="__PUBLIC__/admin/uploadify/swfobject.js"></script>
-<script type="text/javascript" src="__PUBLIC__/admin/uploadify/jquery.uploadify.v2.1.4.min.js"></script>
+<link href="https://cdn.bootcss.com/blueimp-file-upload/9.19.2/css/jquery.fileupload.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/blueimp-file-upload/9.19.2/js/vendor/jquery.ui.widget.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-file-upload/9.19.2/js/jquery.iframe-transport.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-file-upload/9.19.2/js/jquery.fileupload.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/admin/js/imgpreview.min.jquery.js"></script>
 <script type="text/javascript">
     var editor;
@@ -131,36 +142,58 @@
         });
     });
 
-    $(document).ready(function() {
-        $('#yyg_uploadImg').uploadify({
-            'uploader'  : '__PUBLIC__/admin/uploadify/uploadify.swf?var='+(new Date()).getTime(),
-            'script'    : '__URL__/upload',
-            'cancelImg' : '__PUBLIC__/admin/uploadify/cancel.png',
-            'folder'    : '<?php echo C("__YYG_UPLOAD_DIR__");?>',
-            'auto'      : true,
-            'multi'     : true,
-            'queueSizeLimit' : 8,
-            'sizeLimit' : <?php echo $option->maxImgSize?>,
-            'fileExt'   : '{$attachAllow}',
-            'fileDesc'  : '请选择图片文件',
-            'simUploadLimit':8,
+//    $(document).ready(function() {
+//        $('#yyg_uploadImg').uploadify({
+//            'uploader'  : '__PUBLIC__/admin/uploadify/uploadify.swf?var='+(new Date()).getTime(),
+//            'script'    : '__URL__/upload',
+//            'cancelImg' : '__PUBLIC__/admin/uploadify/cancel.png',
+//            'folder'    : '<?php //echo C("__YYG_UPLOAD_DIR__");?>//',
+//            'auto'      : true,
+//            'multi'     : true,
+//            'queueSizeLimit' : 8,
+//            'sizeLimit' : <?php //echo $option->maxImgSize?>//,
+//            'fileExt'   : '{$attachAllow}',
+//            'fileDesc'  : '请选择图片文件',
+//            'simUploadLimit':8,
+//
+//            'onComplete'  : function(event, ID, fileObj, response, data) {
+//                var jsondata = response.toString();
+//                try{
+//                    jsondata = comm_parseJsonResult(jsondata);
+//                }catch(e){
+//                    bootbox.alert(jsondata);
+//                    return ;
+//                }
+//
+//                $("#yyg_uploadImg_ids").val($("#yyg_uploadImg_ids").val() + jsondata['id'] + ',');
+//                renderImgList(jsondata);
+//            }
+//        });
+//
+//        renderImgLink();
+//    });
 
-            'onComplete'  : function(event, ID, fileObj, response, data) {
-                var jsondata = response.toString();
-                try{
-                    jsondata = comm_parseJsonResult(jsondata);
-                }catch(e){
-                    bootbox.alert(jsondata);
-                    return ;
-                }
-
-                $("#yyg_uploadImg_ids").val($("#yyg_uploadImg_ids").val() + jsondata['id'] + ',');
-                renderImgList(jsondata);
-            }
-        });
-
-        renderImgLink();
-    });
+    $('#yyg_uploadImg').fileupload({
+        url: "__URL__/upload",
+        dataType: 'json',
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        maxFileSize: <?php echo $option->maxImgSize?>,
+        maxNumberOfFiles: 8,
+        formData:{},
+        done: function (e, data) {
+            $.each(data.result.files, function (index, file) {
+//                $('<p/>').text(file.name).appendTo('#files');
+            });
+        },
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#progress .progress-bar').css(
+                'width',
+                progress + '%'
+            );
+        }
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
     function renderImgList(jsondata){
         var opts = new Array();

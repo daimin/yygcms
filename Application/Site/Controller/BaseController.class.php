@@ -1,6 +1,7 @@
 <?php
 namespace Site\Controller;
 
+use Common\Model\OptionsModel;
 use Think\Controller;
 use Hashids\Hashids;
 // 本类由系统自动生成，仅供测试用途
@@ -176,7 +177,25 @@ class BaseController extends Controller {
 			return false;
 		}
 
-		return M("attac")->where(['id' => $attacRel['att_id']])->find();
+		$mainImg = M("attac")->where(['id' => $attacRel['att_id']])->find();
+		if($mainImg){
+			$mainImg['thumbs'] = $this->getThumbImgs($mainImg['path']);
+		}
+
+		return $mainImg;
+	}
+
+	private function getThumbImgs($path){
+		$options = OptionsModel::getOptions();
+		$thumbWidths = explode(',', $options->thumbMaxWidth);
+		$imgName = substr($path, strrpos($path, '/')+1);
+		$imgDir = substr($path, 0, strrpos($path, '/'));
+		$thumbsPaths = [];
+		foreach($thumbWidths as $thumbWidth){
+			$thumbsPaths []= sprintf("%s/thumbs/%s%s_%s", $imgDir, $options->thumbPrefix, $thumbWidth, $imgName);
+		}
+
+		return $thumbsPaths;
 	}
 
 }

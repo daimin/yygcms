@@ -8,6 +8,9 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#lunboimgs" aria-controls="lunboimgs" role="tab" data-toggle="tab">图片轮播</a></li>
+            <li role="presentation"><a href="#fumuketang" aria-controls="fumuketang" role="tab" data-toggle="tab">父母课堂</a></li>
+            <li role="presentation"><a href="#rediandaodu" aria-controls="rediandaodu" role="tab" data-toggle="tab">热点导读</a></li>
+            <li role="presentation"><a href="#tupianwenzhang" aria-controls="tupianwenzhang" role="tab" data-toggle="tab">图片文章</a></li>
             <li role="presentation"><a href="#yunyuzhishi" aria-controls="yunyuzhishi" role="tab" data-toggle="tab">孕育知识</a></li>
             <li role="presentation"><a href="#qingzibaike" aria-controls="qingzibaike" role="tab" data-toggle="tab">亲子百科</a></li>
             <li role="presentation"><a href="#muyinyoupin" aria-controls="muyinyoupin" role="tab" data-toggle="tab">母婴优品</a></li>
@@ -39,6 +42,72 @@
                             <a style="text-decoration: none;" href="javascript:void(0)" onclick="edit_content_page('<?php echo admin_url('/Content/edit/cid/'.$indexDisplayItem['id']) ?>')" title="编辑">编辑</a>
                         </td>
                     </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="fumuketang">
+                <table class="table table-hover ">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>标题</th>
+                        <th>分类</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($indexDisplayList['fumuketang'] as $idx => $indexDisplayItem){ ?>
+                        <tr>
+                            <td scope="row"><?php echo $idx+1 ?></td>
+                            <td><?php echo $indexDisplayItem['title'] ?></td>
+                            <td><?php echo $indexDisplayItem['category']['name'] ?></td>
+                            <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '父母课堂', this)">移除</a></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="rediandaodu">
+                <table class="table table-hover ">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>标题</th>
+                        <th>分类</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($indexDisplayList['rediandaodu'] as $idx => $indexDisplayItem){ ?>
+                        <tr>
+                            <td scope="row"><?php echo $idx+1 ?></td>
+                            <td><?php echo $indexDisplayItem['title'] ?></td>
+                            <td><?php echo $indexDisplayItem['category']['name'] ?></td>
+                            <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '热点导读', this)">移除</a></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tupianwenzhang">
+                <table class="table table-hover ">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>标题</th>
+                        <th>分类</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($indexDisplayList['tupianwenzhang'] as $idx => $indexDisplayItem){ ?>
+                        <tr>
+                            <td scope="row"><?php echo $idx+1 ?></td>
+                            <td><?php echo $indexDisplayItem['title'] ?></td>
+                            <td><?php echo $indexDisplayItem['category']['name'] ?></td>
+                            <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '图片文章', this)">移除</a></td>
+                        </tr>
                     <?php } ?>
                     </tbody>
                 </table>

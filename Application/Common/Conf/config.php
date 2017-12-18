@@ -41,6 +41,9 @@ return array(
         'muyinyoupin' => 4,
         'ertonggushi' => 8,
         'ertongdonghua' => 10,
+        'fumuketang' => 8,
+        'rediandaodu' => 25,
+        'tupianwenzhang' => 3,
     ],
     '__YYG_TAG_SIZE__' => 12,
 );

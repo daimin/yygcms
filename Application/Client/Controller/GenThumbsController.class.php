@@ -31,5 +31,4 @@ class GenThumbsController extends BaseController {
 
     }
 
-
 }

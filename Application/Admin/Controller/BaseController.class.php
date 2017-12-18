@@ -2,6 +2,7 @@
 namespace Admin\Controller;
 
 use Common\Model\OptionsModel;
+use Common\Service\UploadHandler;
 use \Think\Controller;
 use Think\Upload;
 
@@ -98,38 +99,43 @@ class BaseController extends Controller {
 	}
 	
 	public function upload() {
-		$upload = new Upload();// 实例化上传类
-		$opt = $this->getOptions();
-		$upload->maxSize  = intval($opt->maxImgSize) ;
-		$upload->exts  = explode(',', $opt->attachAllow);
-		$upload->replace = true;
-		$upload->autoSub = true;
-		$upload->subName = array('date','Ymd');;
-		$info = $upload->upload();
-		if(!$info) {// 上传错误提示错误信息
-			$this->jsonReturn (false, $upload->getError());
-		}else{// 上传成功 获取上传文件信息
-			if(empty($info) || count($info) == 0 || !isset($info['Filedata'])){
-				$this->jsonReturn (false, "上传失败");
-			}
-			$attacM = M("attac");
-			$fnew_name = $info['Filedata']['savename'];
-			$filepath = $upload->rootPath.$info['Filedata']['savepath'].$fnew_name;
-			$urlPath = ltrim($filepath, '.');
-			$data['title'] = $fnew_name;
-			$data['path'] = $urlPath;
-			$data['createtime'] = date("Y-m-d H:i:s");
-			$id = $attacM->add($data);
-			//$info['Filedata']['savepath'].$opt->thumbPrefix.$width.'_'.$info['Filedata']['savename']
-			genThumbs($filepath, $opt, $upload->rootPath, $info['Filedata']['savepath'], $info['Filedata']['savename']);
-			$dataJson = [];
-			$dataJson['id'] = $id;
-			$dataJson['path'] = $urlPath;
-			$dataJson['name'] = $info['Filedata']['savename'];
-			$dataJson['thumb'] = ['width' => explode(',', $opt->thumbMaxWidth), 'prefix' => $opt->thumbPrefix];
-
-			$this->jsonReturn($dataJson);
-		}
+		$uploadDir = C("__YYG_UPLOAD_DIR__").'/'.date("Ymd");
+		$upload_handler = new UploadHandler([
+			'upload_dir' => CORE_PATH.'/../'.$uploadDir,
+			'upload_url' => CORE_PATH.'/../'.$uploadDir,
+		]);
+//		$upload = new Upload();// 实例化上传类
+//		$opt = $this->getOptions();
+//		$upload->maxSize  = intval($opt->maxImgSize) ;
+//		$upload->exts  = explode(',', $opt->attachAllow);
+//		$upload->replace = true;
+//		$upload->autoSub = true;
+//		$upload->subName = array('date','Ymd');;
+//		$info = $upload->upload();
+//		if(!$info) {// 上传错误提示错误信息
+//			$this->jsonReturn (false, $upload->getError());
+//		}else{// 上传成功 获取上传文件信息
+//			if(empty($info) || count($info) == 0 || !isset($info['Filedata'])){
+//				$this->jsonReturn (false, "上传失败");
+//			}
+//			$attacM = M("attac");
+//			$fnew_name = $info['Filedata']['savename'];
+//			$filepath = $upload->rootPath.$info['Filedata']['savepath'].$fnew_name;
+//			$urlPath = ltrim($filepath, '.');
+//			$data['title'] = $fnew_name;
+//			$data['path'] = $urlPath;
+//			$data['createtime'] = date("Y-m-d H:i:s");
+//			$id = $attacM->add($data);
+//			//$info['Filedata']['savepath'].$opt->thumbPrefix.$width.'_'.$info['Filedata']['savename']
+//			genThumbs($filepath, $opt, $upload->rootPath, $info['Filedata']['savepath'], $info['Filedata']['savename']);
+//			$dataJson = [];
+//			$dataJson['id'] = $id;
+//			$dataJson['path'] = $urlPath;
+//			$dataJson['name'] = $info['Filedata']['savename'];
+//			$dataJson['thumb'] = ['width' => explode(',', $opt->thumbMaxWidth), 'prefix' => $opt->thumbPrefix];
+//
+//			$this->jsonReturn($dataJson);
+//		}
 	}
 
 
