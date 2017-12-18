@@ -842,7 +842,10 @@ a:hover {
     -webkit-margin-start: 0;
     -webkit-margin-end: 0;
     -webkit-padding-start: 0;
-    border-right:1px solid #eeeeff;border-left:1px solid #eeeeff;padding-left: 12px;padding-right: 12px
+    /*border-right:1px solid #eeeeff;*/
+    border-left:1px solid #eeeeff;
+    padding-left: 12px;
+    padding-right: 12px
 }
 
 .hot-lead-article li{
@@ -896,8 +899,6 @@ a:hover {
 .hot-lead-article li div .split {
     padding: 0 5px;
 }
-
-
 
 .hot-lead-article li .cloth div {
     float: left;
