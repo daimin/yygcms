@@ -679,7 +679,6 @@ option.stype {
 
 #update_img_list {
     width:90%;
-    margin-top: 12px;
     color: #4d4d4d;
 }
 
@@ -827,4 +826,8 @@ select option{
     cursor: pointer;
     line-height: 1.8em;
     padding-right: 1em;
+}
+
+.progress{
+    margin-bottom: 3px;
 }

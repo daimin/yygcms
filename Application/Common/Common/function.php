@@ -740,17 +740,17 @@ function genThumbs($filepath, $opt, $rootPath, $savePath, $saveName){
 	$widths = explode(',', $opt->thumbMaxWidth);
 	$heights = explode(',', $opt->thumbMaxHeight);
 	$relPath = $rootPath.$savePath;
-
+	$filepath = urldecode($filepath);
+	$saveName = urldecode($saveName);
 	if(!is_dir($relPath)){
 		mkdir($relPath);
 	}
-	foreach($widths as $idx=>$width){
+	foreach($widths as $idx=>$imgWidth){
 		$image = new \Think\Image();
 		$image->open($filepath);
 
-		$tbpath = $relPath.'/'.$opt->thumbPrefix.$width.'_'.$saveName;
-		echo "thumb: " . $tbpath."\n";
-		$image->thumb($width, $heights[$idx],\Think\Image::IMAGE_THUMB_CENTER)->save($tbpath);
+		$tbpath = $relPath.'/'.$opt->thumbPrefix.$imgWidth.'_'.$saveName;
+		$image->thumb($imgWidth, $heights[$idx],\Think\Image::IMAGE_THUMB_CENTER)->save($tbpath);
 	}
 
 }

@@ -47,7 +47,7 @@
 	}
 	
 	function addToContent(imgUrl, name, thiz, tbprefix){
-		var selectdOpt = $(thiz).prev("select").children("option:selected");
+		var selectdOpt = $(thiz).parent().find("select").children("option:selected");
 		if(!selectdOpt) return;
 		var thwidth = $(selectdOpt[0]).val();
 		if(thwidth != 0){
@@ -56,7 +56,7 @@
 			if(thwidth == 1){
 				imgUrl = fpath + '/' + tbprefix + name;
 			}else{
-				imgUrl = fpath + '/' + tbprefix + thwidth + "_" + name;
+				imgUrl = fpath + '/thumbs/' + tbprefix + thwidth + "_" + name;
 			}
 		}
 		var ext = imgUrl.substring(imgUrl.lastIndexOf(".")+1);
