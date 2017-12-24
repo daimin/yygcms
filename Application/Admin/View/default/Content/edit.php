@@ -78,6 +78,7 @@
                                 <td class="head">上传图片：</td>
                                 <td class="tail">
                                     <input type="hidden"  name="yyg_uploadImg_ids" value="" id="yyg_uploadImg_ids"/>
+                                    <input type="hidden"  name="set_main_img_id" value="" id="set_main_img_id"/>
                                     <span class="btn btn-primary fileinput-button" style="margin-top: 12px">
                                         <i class="glyphicon glyphicon-plus"></i>
                                         <span>上传图片...</span>
@@ -224,6 +225,7 @@
         var ejsImgDiv = document.getElementById('ejs-img-div').innerHTML;
         var imghtml = ejs.render(ejsImgDiv, { jsondata:jsondata });
         $("#update_img_list").prepend(imghtml);
+        $("#yyg_uploadImg_ids").val($("#yyg_uploadImg_ids").val() + "," + jsondata['id']);
         renderImgLink();
     }
 
@@ -247,7 +249,7 @@
     function selectMainPic(thiz){
         var mainImgCheckboxs = $(".set-main-img-checkbox");
         var checked = $(thiz).attr('checked');
-        $("#set_main_img_id").val(thiz.id);
+        $("#set_main_img_id").val($("#set_main_img_id").val() + "," + thiz.id);
         mainImgCheckboxs.each(function(i, o){
             if(checked){
                 if(o.id !== thiz.id){

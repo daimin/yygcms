@@ -274,6 +274,7 @@ class ContentController extends BaseController {
 
 					$this->_addAttac($cid);
 					$contentD->addTags($cid, I("post.tags"));
+					$this->addMainImg($cid, array_pop(explode('-', I("post.set_main_img_id"))));
 					$contentD->commit();
 				}catch (\Exception $e){
 					$contentD->rollback();
@@ -394,9 +395,9 @@ class ContentController extends BaseController {
 					$pageCode = $parentCategory['pagecode'];
 				}
 				if(I('get.fromPopWindow') == '1'){
-					$this->success("编辑文档成功", __CONTROLLER__.'/category/code/'.$pageCode);
-				}else{
 					$this->success("编辑文档成功");
+				}else{
+					$this->success("编辑文档成功", __CONTROLLER__.'/category/code/'.$pageCode);
 				}
 			}
 		}
