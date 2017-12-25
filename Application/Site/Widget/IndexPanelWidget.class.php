@@ -25,4 +25,8 @@ class IndexPanelWidget extends BaseController {
         $this->display('Widgets:ArticlesPanel:relates');
     }
 
+    public function fumuKetang(){
+        $this->display('Widgets:IndexPanel:fumu-ketang');
+    }
+
 }

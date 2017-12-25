@@ -89,6 +89,7 @@
                                             <li><a href="javascript:void(0)" onclick="setToDisplayIndex('muyinyoupin', '{$item.id}', this)">母婴优品</a></li>
                                             <li><a href="javascript:void(0)" onclick="setToDisplayIndex('ertonggushi', '{$item.id}', this)">儿童故事</a></li>
                                             <li><a href="javascript:void(0)" onclick="setToDisplayIndex('ertongdonghua', '{$item.id}', this)">儿童动画</a></li>
+                                            <li><a href="javascript:void(0)" onclick="setToDisplayIndex('fumuketang', '{$item.id}', this)">父母课堂</a></li>
                                         </ul>
                                     </div>
                                 </td>
