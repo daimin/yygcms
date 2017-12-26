@@ -26,6 +26,8 @@ class IndexPanelWidget extends BaseController {
     }
 
     public function fumuKetang(){
+        $articles = D("content")->field("id, title, intro")->where(["indexdisplay" => 'fumuketang', 'status' => 1])->order("topnum desc")->select();
+        $this->assign('articles', $this->makeArticlesCanDisplay($articles));
         $this->display('Widgets:IndexPanel:fumu-ketang');
     }
 

@@ -15,6 +15,7 @@
                 <form action="__URL__/edit/cid/<?php echo $content['id'] ?>" method="post" name="form1" >
                     <input type="hidden" value="{$content.id}" name="id" />
                     <input type="hidden" value="{$content.type}" name="type" />
+                    <input type="hidden" value="{$fromPopWindow}" name="fromPopWindow" />
                     <div id="_mainsearch">
 
                         <table class="edit-tab" width="100%" style='' id="" border="0" cellspacing="0" cellpadding="1">
@@ -248,8 +249,13 @@
 
     function selectMainPic(thiz){
         var mainImgCheckboxs = $(".set-main-img-checkbox");
-        var checked = $(thiz).attr('checked');
-        $("#set_main_img_id").val($("#set_main_img_id").val() + "," + thiz.id);
+        var checked = $(thiz).is(':checked');
+        if(!checked){
+            $("#set_main_img_id").val("null");
+        }else{
+            $("#set_main_img_id").val($("#set_main_img_id").val() + "," + thiz.id);
+        }
+
         mainImgCheckboxs.each(function(i, o){
             if(checked){
                 if(o.id !== thiz.id){

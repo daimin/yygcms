@@ -351,6 +351,7 @@ class ContentController extends BaseController {
 			$this->assign('option', $opts);
 			$this->assign('stages', C('__YYG_YUER_STAGE__'));
 			$this->assign('tags', $this->getTagsString($cid));
+			$this->assign("fromPopWindow", I('get.fromPopWindow'));
 			$this->getYuerStages($cid);
 			$this->display("Content:edit");
 
@@ -394,7 +395,7 @@ class ContentController extends BaseController {
 					$parentCategory = M("category")->where(['id' => $category['pid']])->find();
 					$pageCode = $parentCategory['pagecode'];
 				}
-				if(I('get.fromPopWindow') == '1'){
+				if(I('fromPopWindow') == '1'){
 					$this->success("编辑文档成功");
 				}else{
 					$this->success("编辑文档成功", __CONTROLLER__.'/category/code/'.$pageCode);
@@ -617,6 +618,10 @@ class ContentController extends BaseController {
 	private function addMainImg($cid, $mainPicId)
 	{
 		if(empty($mainPicId)){
+			return;
+		}
+		if($mainPicId == 'null'){
+			M("attac_rel")->where(['rel_id' => $cid])->save(['ismain' => 0]);
 			return;
 		}
 		M("attac_rel")->startTrans();

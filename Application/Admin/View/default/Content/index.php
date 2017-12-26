@@ -90,6 +90,8 @@
                                             <li><a href="javascript:void(0)" onclick="setToDisplayIndex('ertonggushi', '{$item.id}', this)">儿童故事</a></li>
                                             <li><a href="javascript:void(0)" onclick="setToDisplayIndex('ertongdonghua', '{$item.id}', this)">儿童动画</a></li>
                                             <li><a href="javascript:void(0)" onclick="setToDisplayIndex('fumuketang', '{$item.id}', this)">父母课堂</a></li>
+                                            <li><a href="javascript:void(0)" onclick="setToDisplayIndex('tupianwenzhang', '{$item.id}', this)">图片文章</a></li>
+                                            <li><a href="javascript:void(0)" onclick="setToDisplayIndex('rediandaodu', '{$item.id}', this)">热点导读</a></li>
                                         </ul>
                                     </div>
                                 </td>

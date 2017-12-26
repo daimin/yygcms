@@ -108,9 +108,13 @@
                     <?php foreach($indexDisplayList['tupianwenzhang'] as $idx => $indexDisplayItem){ ?>
                         <tr>
                             <td scope="row"><?php echo $idx+1 ?></td>
-                            <td><?php echo $indexDisplayItem['title'] ?></td>
+                            <td><?php echo $indexDisplayItem['title'] ?><span class="pull-right label label-info"><?php echo $indexDisplayItem['is_set_main'] ? '已设置主图' : ''?></span></td>
                             <td><?php echo $indexDisplayItem['category']['name'] ?></td>
-                            <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '图片文章', this)">移除</a></td>
+                            <td>
+                                <a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '图片文章', this)">移除</a> |
+                                <a href="javascript:void(0)" onclick="putToTop('<?php echo $indexDisplayItem['id'] ?>', this)">置顶</a> |
+                                <a style="text-decoration: none;" href="javascript:void(0)" onclick="edit_content_page('<?php echo admin_url('/Content/edit/cid/'.$indexDisplayItem['id']) ?>', this)" title="编辑">编辑</a>
+                            </td>
                         </tr>
                     <?php } ?>
                     </tbody>
@@ -286,22 +290,31 @@
     }
     
     function edit_content_page(url, thiz) {
-        bootbox.alert({message:'<iframe style="width: 100%;height:600px;" src="' + url + '&fromPopWindow=1"></iframe>', title:"编辑", size:"large", callback:function(){
+        bootbox.alert({message:'<iframe style="width: 100%;height:600px;" src="' + url + '?fromPopWindow=1"></iframe>', title:"编辑", size:"large", callback:function(){
             var dhref = window.location.href;
-            var subhref = dhref.substring(0,dhref.lastIndexOf("#"));
-            window.location.href = subhref + "#" + $($(thiz).parents(".tab-pane")[0]).attr("id");
+            var subhref = dhref.substring(0,dhref.lastIndexOf("?"));
+            if(!subhref){
+                subhref = dhref;
+            }
+
+            console.log(subhref + "#" + $($(thiz).parents(".tab-pane")[0]).attr("id"));
+            window.location.href = subhref + "?t=" + (new Date().getTime()) +  "#" + $($(thiz).parents(".tab-pane")[0]).attr("id");
         }});
     }
 
 
     $(function () {
         var href = window.location.href;
-        var hid = href.substring(href.lastIndexOf("#"));
-        $('#mytabs a').each(function(i, o){
-            if(o.href.indexOf(hid) != -1){
-                $(o).tab('show');
-            }
-        });
+        var shaindx = href.lastIndexOf("#");
+        if(shaindx !== -1){
+            var hid = href.substring(shaindx);
+            $('#mytabs a').each(function(i, o){
+                if(o.href.indexOf(hid) !== -1){
+                    $(o).tab('show');
+                }
+            });
+        }
+
     });
 
 </script>
