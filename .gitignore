@@ -24,3 +24,5 @@ config.inc.php
 db.php
 
 /BackupData
+
+/Application/Common/Conf/*
