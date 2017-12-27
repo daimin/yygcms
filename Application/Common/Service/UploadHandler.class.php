@@ -166,7 +166,6 @@ class UploadHandler
         if ($options) {
             $this->options = $options + $this->options;
         }
-        print_r($this->options);die();
         if ($error_messages) {
             $this->error_messages = $error_messages + $this->error_messages;
         }

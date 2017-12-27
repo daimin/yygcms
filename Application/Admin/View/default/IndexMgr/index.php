@@ -6,7 +6,7 @@
     <div>
 
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-tabs" role="tablist" id="mytabs">
             <li role="presentation" class="active"><a href="#lunboimgs" aria-controls="lunboimgs" role="tab" data-toggle="tab">图片轮播</a></li>
             <li role="presentation"><a href="#fumuketang" aria-controls="fumuketang" role="tab" data-toggle="tab">父母课堂</a></li>
             <li role="presentation"><a href="#rediandaodu" aria-controls="rediandaodu" role="tab" data-toggle="tab">热点导读</a></li>
@@ -39,7 +39,7 @@
                         <td>
                             <a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '图片轮播', this)">移除</a> |
                             <a href="javascript:void(0)" onclick="putToTop('<?php echo $indexDisplayItem['id'] ?>', this)">置顶</a> |
-                            <a style="text-decoration: none;" href="javascript:void(0)" onclick="edit_content_page('<?php echo admin_url('/Content/edit/cid/'.$indexDisplayItem['id']) ?>')" title="编辑">编辑</a>
+                            <a style="text-decoration: none;" href="javascript:void(0)" onclick="edit_content_page('<?php echo admin_url('/Content/edit/cid/'.$indexDisplayItem['id']) ?>', this)" title="编辑">编辑</a>
                         </td>
                     </tr>
                     <?php } ?>
@@ -60,9 +60,13 @@
                     <?php foreach($indexDisplayList['fumuketang'] as $idx => $indexDisplayItem){ ?>
                         <tr>
                             <td scope="row"><?php echo $idx+1 ?></td>
-                            <td><?php echo $indexDisplayItem['title'] ?></td>
+                            <td><?php echo $indexDisplayItem['title'] ?><span class="pull-right label label-info"><?php echo $indexDisplayItem['is_set_main'] ? '已设置主图' : ''?></span></td>
                             <td><?php echo $indexDisplayItem['category']['name'] ?></td>
-                            <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '父母课堂', this)">移除</a></td>
+                            <td>
+                                <a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '图片轮播', this)">移除</a> |
+                                <a href="javascript:void(0)" onclick="putToTop('<?php echo $indexDisplayItem['id'] ?>', this)">置顶</a> |
+                                <a style="text-decoration: none;" href="javascript:void(0)" onclick="edit_content_page('<?php echo admin_url('/Content/edit/cid/'.$indexDisplayItem['id']) ?>', this)" title="编辑">编辑</a>
+                            </td>
                         </tr>
                     <?php } ?>
                     </tbody>
@@ -104,9 +108,13 @@
                     <?php foreach($indexDisplayList['tupianwenzhang'] as $idx => $indexDisplayItem){ ?>
                         <tr>
                             <td scope="row"><?php echo $idx+1 ?></td>
-                            <td><?php echo $indexDisplayItem['title'] ?></td>
+                            <td><?php echo $indexDisplayItem['title'] ?><span class="pull-right label label-info"><?php echo $indexDisplayItem['is_set_main'] ? '已设置主图' : ''?></span></td>
                             <td><?php echo $indexDisplayItem['category']['name'] ?></td>
-                            <td><a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '图片文章', this)">移除</a></td>
+                            <td>
+                                <a href="javascript:void(0)" onclick="cancelToDisplayIndex('<?php echo $indexDisplayItem['id'] ?>', '图片文章', this)">移除</a> |
+                                <a href="javascript:void(0)" onclick="putToTop('<?php echo $indexDisplayItem['id'] ?>', this)">置顶</a> |
+                                <a style="text-decoration: none;" href="javascript:void(0)" onclick="edit_content_page('<?php echo admin_url('/Content/edit/cid/'.$indexDisplayItem['id']) ?>', this)" title="编辑">编辑</a>
+                            </td>
                         </tr>
                     <?php } ?>
                     </tbody>
@@ -281,11 +289,33 @@
         });
     }
     
-    function edit_content_page(url) {
-        bootbox.alert({message:'<iframe style="width: 100%;height:600px;" src="' + url + '&fromPopWindow=1"></iframe>', title:"编辑", size:"large", callback:function(){
-            window.location.reload();
+    function edit_content_page(url, thiz) {
+        bootbox.alert({message:'<iframe style="width: 100%;height:600px;" src="' + url + '?fromPopWindow=1"></iframe>', title:"编辑", size:"large", callback:function(){
+            var dhref = window.location.href;
+            var subhref = dhref.substring(0,dhref.lastIndexOf("?"));
+            if(!subhref){
+                subhref = dhref;
+            }
+
+            console.log(subhref + "#" + $($(thiz).parents(".tab-pane")[0]).attr("id"));
+            window.location.href = subhref + "?t=" + (new Date().getTime()) +  "#" + $($(thiz).parents(".tab-pane")[0]).attr("id");
         }});
     }
+
+
+    $(function () {
+        var href = window.location.href;
+        var shaindx = href.lastIndexOf("#");
+        if(shaindx !== -1){
+            var hid = href.substring(shaindx);
+            $('#mytabs a').each(function(i, o){
+                if(o.href.indexOf(hid) !== -1){
+                    $(o).tab('show');
+                }
+            });
+        }
+
+    });
 
 </script>
 <include file="Public:footer" />

@@ -99,43 +99,46 @@ class BaseController extends Controller {
 	}
 	
 	public function upload() {
-		$uploadDir = C("__YYG_UPLOAD_DIR__").'/'.date("Ymd");
+		$imgFieldName = 'yyg_uploadImg';
+		$opt = $this->getOptions();
+		$uploadBaseDir = C("__YYG_UPLOAD_DIR__");
+		$uploadDir = $uploadBaseDir.'/'.date("Ymd");
 		$upload_handler = new UploadHandler([
-			'upload_dir' => CORE_PATH.'/../'.$uploadDir,
-			'upload_url' => CORE_PATH.'/../'.$uploadDir,
+			'upload_dir' => THINK_PATH.'/../'.$uploadDir.'/',
+			'upload_url' => THINK_PATH.'/../'.$uploadDir.'/',
+			'param_name' => $imgFieldName,
+			'image_versions' => [],
+			'print_response' => false,
+			'max_file_size' => $opt->maxImgSize,
+			'accept_file_types' => '/\.(gif|jpe?g|png)$/i',
 		]);
-//		$upload = new Upload();// 实例化上传类
-//		$opt = $this->getOptions();
-//		$upload->maxSize  = intval($opt->maxImgSize) ;
-//		$upload->exts  = explode(',', $opt->attachAllow);
-//		$upload->replace = true;
-//		$upload->autoSub = true;
-//		$upload->subName = array('date','Ymd');;
-//		$info = $upload->upload();
-//		if(!$info) {// 上传错误提示错误信息
-//			$this->jsonReturn (false, $upload->getError());
-//		}else{// 上传成功 获取上传文件信息
-//			if(empty($info) || count($info) == 0 || !isset($info['Filedata'])){
-//				$this->jsonReturn (false, "上传失败");
-//			}
-//			$attacM = M("attac");
-//			$fnew_name = $info['Filedata']['savename'];
-//			$filepath = $upload->rootPath.$info['Filedata']['savepath'].$fnew_name;
-//			$urlPath = ltrim($filepath, '.');
-//			$data['title'] = $fnew_name;
-//			$data['path'] = $urlPath;
-//			$data['createtime'] = date("Y-m-d H:i:s");
-//			$id = $attacM->add($data);
-//			//$info['Filedata']['savepath'].$opt->thumbPrefix.$width.'_'.$info['Filedata']['savename']
-//			genThumbs($filepath, $opt, $upload->rootPath, $info['Filedata']['savepath'], $info['Filedata']['savename']);
-//			$dataJson = [];
-//			$dataJson['id'] = $id;
-//			$dataJson['path'] = $urlPath;
-//			$dataJson['name'] = $info['Filedata']['savename'];
-//			$dataJson['thumb'] = ['width' => explode(',', $opt->thumbMaxWidth), 'prefix' => $opt->thumbPrefix];
-//
-//			$this->jsonReturn($dataJson);
-//		}
+		$repos = $upload_handler->get_response();
+		if(empty($repos)){
+			$this->jsonReturn (false, "上传失败");
+		}
+
+		$uploadInfo = $repos[$imgFieldName][0];
+		if(isset($uploadInfo->error)){
+			$this->jsonReturn (false, $uploadInfo->error);
+		}
+
+		$opt = $this->getOptions();
+		$attacM = M("attac");
+		$fullPath = $uploadInfo->url;
+		$relPath = substr($fullPath, strpos($fullPath, $uploadBaseDir));
+
+		$data['title'] = $uploadInfo->name;
+		$data['path'] = $relPath;
+		$data['createtime'] = date("Y-m-d H:i:s");
+		$id = $attacM->add($data);
+		genThumbs($fullPath, $opt, substr($fullPath, 0, strpos($fullPath, $uploadBaseDir)), substr($relPath, 0, strrpos($relPath, '/')).'/thumbs/', $uploadInfo->name);
+		$dataJson = [];
+		$dataJson['id'] = $id;
+		$dataJson['path'] = $relPath;
+		$dataJson['name'] = $uploadInfo->name;
+		$dataJson['thumb'] = ['width' => explode(',', $opt->thumbMaxWidth), 'prefix' => $opt->thumbPrefix];
+		$this->jsonReturn($dataJson);
+
 	}
 
 

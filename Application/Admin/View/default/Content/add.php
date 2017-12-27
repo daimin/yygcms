@@ -1,4 +1,5 @@
 <include file="Public:header" />
+<script type="text/javascript" language="javascript" src="__PUBLIC__/admin/js/ejs/ejs.min.js"></script>
 <div style="min-width:780px;height:1440px;">
     <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D6DDD6" align="center">
         <tr>
@@ -71,6 +72,7 @@
                                 <td class="head">上传图片：</td>
                                 <td class="tail">
                                     <input type="hidden"  name="yyg_uploadImg_ids" value="" id="yyg_uploadImg_ids"/>
+                                    <input type="hidden"  name="set_main_img_id" value="" id="set_main_img_id"/>
                                     <span class="btn btn-primary fileinput-button" style="margin-top: 12px">
                                         <i class="glyphicon glyphicon-plus"></i>
                                         <span>上传图片...</span>
@@ -119,6 +121,28 @@
 <script src="https://cdn.bootcss.com/blueimp-file-upload/9.19.2/js/jquery.iframe-transport.js"></script>
 <script src="https://cdn.bootcss.com/blueimp-file-upload/9.19.2/js/jquery.fileupload.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/admin/js/imgpreview.min.jquery.js"></script>
+<script id="ejs-img-div" type="text/template">
+    <div class="img-div-item">
+        <a class="img-link" target="_blank" href="<%= jsondata.path %>">
+            <%= jsondata.name %>
+        </a>
+        <a href="javascript:void(0)" class="img-del" onclick="deleteUpImg(this, '<%= jsondata.id %>')">
+            <img src="__PUBLIC__/admin/images/remove.png" border="none">
+        </a>
+        <div class="btn-xs pull-right">
+            <select class="img-insert-select">
+                <% var thumbsWidths = jsondata.thumb.width.reverse(); %>
+                <% thumbsWidths.forEach(function(wh){ %>
+                <option value="<%= wh %>">缩略图<%= wh %>px</option>
+                <% }) %>
+                <option value="0">原图</option>
+            </select>
+            &nbsp;<label style="font-weight: normal"><input id="main-img-checkbox-<%= jsondata.id %>" type="checkbox" class="set-main-img-checkbox" <% if(jsondata.ismain=='1'){%>checked <%}%> onclick="selectMainPic(this)">主图</label>
+            &nbsp;<a href="javascript:void(0)" onclick="addToContent('<%= jsondata.path%>', '<%= jsondata.name%>', this, '<%= jsondata.thumb.prefix %>')"
+                     class="btn btn-primary btn-xs" style="color:#fff;">插入</a>
+        </div>
+    </div>
+</script>
 <script type="text/javascript">
     var editor;
     KindEditor.ready(function(K) {
@@ -142,82 +166,38 @@
         });
     });
 
-//    $(document).ready(function() {
-//        $('#yyg_uploadImg').uploadify({
-//            'uploader'  : '__PUBLIC__/admin/uploadify/uploadify.swf?var='+(new Date()).getTime(),
-//            'script'    : '__URL__/upload',
-//            'cancelImg' : '__PUBLIC__/admin/uploadify/cancel.png',
-//            'folder'    : '<?php //echo C("__YYG_UPLOAD_DIR__");?>//',
-//            'auto'      : true,
-//            'multi'     : true,
-//            'queueSizeLimit' : 8,
-//            'sizeLimit' : <?php //echo $option->maxImgSize?>//,
-//            'fileExt'   : '{$attachAllow}',
-//            'fileDesc'  : '请选择图片文件',
-//            'simUploadLimit':8,
-//
-//            'onComplete'  : function(event, ID, fileObj, response, data) {
-//                var jsondata = response.toString();
-//                try{
-//                    jsondata = comm_parseJsonResult(jsondata);
-//                }catch(e){
-//                    bootbox.alert(jsondata);
-//                    return ;
-//                }
-//
-//                $("#yyg_uploadImg_ids").val($("#yyg_uploadImg_ids").val() + jsondata['id'] + ',');
-//                renderImgList(jsondata);
-//            }
-//        });
-//
-//        renderImgLink();
-//    });
-
-    $('#yyg_uploadImg').fileupload({
-        url: "__URL__/upload",
-        dataType: 'json',
-        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-        maxFileSize: <?php echo $option->maxImgSize?>,
-        maxNumberOfFiles: 8,
-        formData:{},
-        done: function (e, data) {
-            $.each(data.result.files, function (index, file) {
-//                $('<p/>').text(file.name).appendTo('#files');
-            });
-        },
-        progressall: function (e, data) {
-            var progress = parseInt(data.loaded / data.total * 100, 10);
-            $('#progress .progress-bar').css(
-                'width',
-                progress + '%'
-            );
-        }
-    }).prop('disabled', !$.support.fileInput)
-        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+    $(function(){
+        $('#yyg_uploadImg').fileupload({
+            url: "__URL__/upload",
+            dataType: 'json',
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+            maxFileSize: <?php echo $option->maxImgSize?>,
+            maxNumberOfFiles: 8,
+            formData:{},
+            done: function (e, data) {
+                var jsondata = data.result;
+                try{
+                    jsondata = comm_parseJsonResult(jsondata);
+                }catch(ee){}
+                renderImgList(jsondata);
+            },
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#progress .progress-bar').css(
+                    'width',
+                    progress + '%'
+                );
+            }
+        }).prop('disabled', !$.support.fileInput)
+            .parent().addClass($.support.fileInput ? undefined : 'disabled');
+    });
 
     function renderImgList(jsondata){
-        var opts = new Array();
-        opts[opts.length] = '<option value="0">原图</option>';
-        $(jsondata['thumb']['width']).each(function(it){
-            var width = jsondata['thumb']['width'][it];
-            opts[opts.length] = '<option value="'+width+'">缩略图' + jsondata['thumb']['width'][it] + 'px</option>';
-        });
-        opts.reverse();
-        $("#update_img_list").prepend('<div><a class="img-link" target="_blank" href="' + jsondata['path'] + '">' +
-            jsondata['name'] +
-            '</a>' +
-            '<a href="javascript:void(0)" class="img-del" onclick="deleteUpImg(this, \'' + jsondata['id'] + '\')">' +
-            '<img src="__PUBLIC__/admin/images/remove.png" border="none"></a>' +
-            '<div class="btn-xs pull-right">'+
-            '<select class="img-insert-select">' +
-            opts.join("") +
-            '</select>'+
-            '&nbsp;<a href="javascript:void(0)" onclick="addToContent(\'' + jsondata['path'] + '\',\'' +
-            jsondata['name'] + '\', this, \'' + jsondata['thumb']['prefix'] + '\')" class="btn btn-primary btn-xs pull-right" style="margin-top:4px;color:#fff;">插入</a>'+
-            '</div>'+
-            '</div>');
+        var ejsImgDiv = document.getElementById('ejs-img-div').innerHTML;
+        var imghtml = ejs.render(ejsImgDiv, { jsondata:jsondata });
+        $("#update_img_list").prepend(imghtml);
+        $("#yyg_uploadImg_ids").val($("#yyg_uploadImg_ids").val() + "," + jsondata['id']);
         renderImgLink();
-
     }
 
     function deleteUpImg(o, attId){
@@ -229,6 +209,24 @@
                 $(o).parent().remove();
             }else{
                 alert(data);
+            }
+        });
+    }
+
+    function selectMainPic(thiz){
+        var mainImgCheckboxs = $(".set-main-img-checkbox");
+        var checked = $(thiz).is(':checked');
+        if(!checked){
+            $("#set_main_img_id").val("null");
+        }else{
+            $("#set_main_img_id").val($("#set_main_img_id").val() + "," + thiz.id);
+        }
+
+        mainImgCheckboxs.each(function(i, o){
+            if(checked){
+                if(o.id !== thiz.id){
+                    $(o).attr('checked', false);
+                }
             }
         });
     }
