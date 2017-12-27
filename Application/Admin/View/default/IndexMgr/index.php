@@ -31,7 +31,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($indexDisplayList['lunboimgs'] as $idx => $indexDisplayItem){ ?>
+                    <?php foreach($indexDisplayList['lunboimgs']['articles'] as $idx => $indexDisplayItem){ ?>
                     <tr>
                         <td scope="row"><?php echo $idx+1 ?></td>
                         <td><?php echo $indexDisplayItem['title'] ?><span class="pull-right label label-info"><?php echo $indexDisplayItem['is_set_main'] ? '已设置主图' : ''?></span></td>
@@ -45,6 +45,7 @@
                     <?php } ?>
                     </tbody>
                 </table>
+                <div class="alert alert-info" role="alert">仅在首页展示前<span class="yyg-import"><?php echo $indexDisplayList['lunboimgs']['limit_size'] ?></span>篇文章</div>
             </div>
             <div role="tabpanel" class="tab-pane" id="fumuketang">
                 <table class="table table-hover ">
@@ -57,7 +58,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($indexDisplayList['fumuketang'] as $idx => $indexDisplayItem){ ?>
+                    <?php foreach($indexDisplayList['fumuketang']['articles'] as $idx => $indexDisplayItem){ ?>
                         <tr>
                             <td scope="row"><?php echo $idx+1 ?></td>
                             <td><?php echo $indexDisplayItem['title'] ?><span class="pull-right label label-info"><?php echo $indexDisplayItem['is_set_main'] ? '已设置主图' : ''?></span></td>
@@ -71,6 +72,7 @@
                     <?php } ?>
                     </tbody>
                 </table>
+                <div class="alert alert-info" role="alert">仅在首页展示前<span class="yyg-import"><?php echo $indexDisplayList['fumuketang']['limit_size'] ?></span>篇文章</div>
             </div>
             <div role="tabpanel" class="tab-pane" id="rediandaodu">
                 <table class="table table-hover ">
@@ -83,7 +85,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($indexDisplayList['rediandaodu'] as $idx => $indexDisplayItem){ ?>
+                    <?php foreach($indexDisplayList['rediandaodu']['articles'] as $idx => $indexDisplayItem){ ?>
                         <tr>
                             <td scope="row"><?php echo $idx+1 ?></td>
                             <td><?php echo $indexDisplayItem['title'] ?></td>
@@ -105,7 +107,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($indexDisplayList['tupianwenzhang'] as $idx => $indexDisplayItem){ ?>
+                    <?php foreach($indexDisplayList['tupianwenzhang']['articles'] as $idx => $indexDisplayItem){ ?>
                         <tr>
                             <td scope="row"><?php echo $idx+1 ?></td>
                             <td><?php echo $indexDisplayItem['title'] ?><span class="pull-right label label-info"><?php echo $indexDisplayItem['is_set_main'] ? '已设置主图' : ''?></span></td>
@@ -119,6 +121,7 @@
                     <?php } ?>
                     </tbody>
                 </table>
+                <div class="alert alert-info" role="alert">仅在首页展示前<span class="yyg-import"><?php echo $indexDisplayList['tupianwenzhang']['limit_size'] ?></span>篇文章</div>
             </div>
             <div role="tabpanel" class="tab-pane" id="yunyuzhishi">
                 <table class="table table-hover ">

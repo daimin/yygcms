@@ -791,8 +791,13 @@ select option{
     font-size: 18px;margin-right: 2px;
 }
 
-.yyg-error, .yyg-required{
+.yyg-error, .yyg-required, .yyg-import{
     color:#dd2222;
+}
+
+.yyg-import{
+    font-weight: bold;
+    margin: 0 2px;
 }
 
 .yyg-required{

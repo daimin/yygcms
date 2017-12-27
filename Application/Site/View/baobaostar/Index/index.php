@@ -2,81 +2,8 @@
     <div class="row col-sm-9">
         {:W('IndexPanel/CarouselImgs')}
         {:W('IndexPanel/fumuKetang')}
-
-        <div class="panel panel-default col-sm-6">
-            <div class="coom_title font_apple">
-                <div class="coom_h3">热点<span>导读</span></div>
-            </div>
-            <ul class="hot-lead-article col-sm-12">
-                <li style="margin-top: 6px;">
-                    <a href="http://news.ci123.com/article/114746.html" class="travel" >这个圣诞叔叔吓坏宝宝了</a>
-                    <div class="cloth">
-                        <div class="front"><span>资讯</span><span class="split">|</span><a href="http://news.ci123.com/article/114748.html">热捧进补膏方 BB能吃吗</a></div>
-                        <div class="behind"><a href="http://news.ci123.com/article/114776.html">花式取名这个叫王者荣耀</a></div>
-                    </div>
-                    <div class="expensive">
-                        <div class="front"><span>孕育</span><span class="split">|</span><a href="http://news.ci123.com/article/114528.html">宝爸怒砸广场大妈的音响</a> </div>
-                        <div class="behind"><a href="http://news.ci123.com/article/114739.html">为一百坏了女孩子的一生</a></div>
-                    </div>
-                </li>
-                <li>
-                    <a href="http://news.ci123.com/article/114746.html" class="travel" >这个圣诞叔叔吓坏宝宝了</a>
-                    <div class="cloth">
-                        <div class="front"><span>资讯</span><span class="split">|</span><a href="http://news.ci123.com/article/114748.html">热捧进补膏方 BB能吃吗</a></div>
-                        <div class="behind"><a href="http://news.ci123.com/article/114776.html">花式取名这个叫王者荣耀</a></div>
-                    </div>
-                    <div class="expensive">
-                        <div class="front"><span>孕育</span><span class="split">|</span><a href="http://news.ci123.com/article/114528.html">宝爸怒砸广场大妈的音响</a> </div>
-                        <div class="behind"><a href="http://news.ci123.com/article/114739.html">为一百坏了女孩子的一生</a></div>
-                    </div>
-                </li>
-                <li>
-                    <a href="http://news.ci123.com/article/114746.html" class="travel" >这个圣诞叔叔吓坏宝宝了</a>
-                    <div class="cloth">
-                        <div class="front"><span>资讯</span><span class="split">|</span><a href="http://news.ci123.com/article/114748.html">热捧进补膏方 BB能吃吗</a></div>
-                        <div class="behind"><a href="http://news.ci123.com/article/114776.html">花式取名这个叫王者荣耀</a></div>
-                    </div>
-                    <div class="expensive">
-                        <div class="front"><span>孕育</span><span class="split">|</span><a href="http://news.ci123.com/article/114528.html">宝爸怒砸广场大妈的音响</a> </div>
-                        <div class="behind"><a href="http://news.ci123.com/article/114739.html">为一百坏了女孩子的一生</a></div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="panel panel-default col-sm-2">
-            <div class="coom_title font_apple">
-            </div>
-            <div class="new_article_pic">
-                <dl title="4个月宝宝竟差点一睡不醒，惨重代价警惕所有父母">
-                    <dt class="a">
-                        <a href="http://www.qqbaobao.com/xueqianjieduan/hulibaojian/255893.html" class="white" title="4个月宝宝竟差点一睡不醒，惨重代价警惕所有父母" target="_blank">4个月宝宝竟差点一睡不醒，</a>
-                    </dt>
-                    <dd class="b"></dd>
-                    <dd class="c"><a href="http://www.qqbaobao.com/xueqianjieduan/hulibaojian/255893.html" target="_blank"><img alt="4个月宝宝竟差点一睡不醒，惨重代价警惕所有父母"
-                                                                                                                                src="__PUBLIC__/site/{$Think.THEME_NAME}/images/f86e9dd69d.jpg"></a>
-                    </dd>
-                </dl>
-                <dl title="这种奶“有毒”，宝宝喝了竟成“小黄人”">
-                    <dt class="a">
-                        <a href="http://www.qqbaobao.com/youerjieduan/youerweiyang/255854.html" class="white" title="这种奶“有毒”，宝宝喝了竟成“小黄人”" target="_blank">这种奶“有毒”，宝宝喝了竟成</a>
-                    </dt>
-                    <dd class="b"></dd>
-                    <dd class="c"><a href="http://www.qqbaobao.com/youerjieduan/youerweiyang/255854.html" target="_blank"><img alt="这种奶“有毒”，宝宝喝了竟成“小黄人”"
-                                                                                                                               src="__PUBLIC__/site/{$Think.THEME_NAME}/images/56c578a6b9.jpg"></a>
-                    </dd>
-                </dl>
-                <dl title="这种奶“有毒”，宝宝喝了竟成“小黄人”">
-                    <dt class="a">
-                        <a href="http://www.qqbaobao.com/youerjieduan/youerweiyang/255854.html" class="white" title="这种奶“有毒”，宝宝喝了竟成“小黄人”" target="_blank">这种奶“有毒”，宝宝喝了竟成</a>
-                    </dt>
-                    <dd class="b"></dd>
-                    <dd class="c"><a href="http://www.qqbaobao.com/youerjieduan/youerweiyang/255854.html" target="_blank"><img alt="这种奶“有毒”，宝宝喝了竟成“小黄人”"
-                                                                                                                               src="__PUBLIC__/site/{$Think.THEME_NAME}/images/56c578a6b9.jpg"></a>
-                    </dd>
-                </dl>
-            </div>
-        </div>
-
+        {:W('IndexPanel/rediandaodu')}
+        {:W('IndexPanel/tupwenzhang')}
         <div class="panel panel-default col-sm-6 padding-left-none">
             <div class="coom_title font_apple">
                 <div class="coom_h3"><a href="http://www.qqbaobao.com/shidian/" target="_blank">孕育<span>知识</span></a></div>
@@ -274,7 +201,7 @@
 
         </div>
         <div class="panel panel-default col-sm-12 side-panel">
-            <img src="__PUBLIC__/site/{$Think.THEME_NAME}/images/185943_21330.jpg" class="img-responsive img-thumbnail" alt="Responsive image"/>
+            <img src="__PUBLIC__/site/{$Think.THEME_NAME}/images/ad1.jpg" class="img-responsive img-thumbnail" alt="Responsive image"/>
         </div>
             <div class="panel panel-default col-sm-12 side-panel" style="margin-top:6px">
                 <div class="coom_title font_apple">

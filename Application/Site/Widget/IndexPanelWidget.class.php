@@ -13,7 +13,7 @@ class IndexPanelWidget extends BaseController {
 
     public function carouselImgs(){
         $articles = D("content")->field("id, title, intro")->where(["indexdisplay" => 'lunboimgs', 'status' => 1])->order("topnum, modifytime desc")->select();
-        $this->assign('articles', $this->makeArticlesCanDisplay($articles));
+        $this->assign('articles', $this->getTopN($this->makeArticlesCanDisplay($articles), 'lunboimgs'));
         $this->display('Widgets:IndexPanel:carousel-imgs');
     }
 
@@ -26,9 +26,32 @@ class IndexPanelWidget extends BaseController {
     }
 
     public function fumuKetang(){
-        $articles = D("content")->field("id, title, intro")->where(["indexdisplay" => 'fumuketang', 'status' => 1])->order("topnum desc")->select();
-        $this->assign('articles', $this->makeArticlesCanDisplay($articles));
+        /** @var  $contentService \Common\Service\ContentService*/
+        $contentService = D("Content", "Service");
+        $articles = $contentService->getContentByIndexDisplay('fumuketang');
+        $this->assign('articles', $this->getTopN($this->makeArticlesCanDisplay($articles), 'fumuketang'));
         $this->display('Widgets:IndexPanel:fumu-ketang');
+    }
+
+    public function tupwenzhang(){
+        /** @var  $contentService \Common\Service\ContentService*/
+        $contentService = D("Content", "Service");
+        $articles = $contentService->getContentByIndexDisplay('tupianwenzhang');
+        $this->assign('articles', $this->getTopN($this->makeArticlesCanDisplay($articles), 'tupianwenzhang'));
+        $this->display('Widgets:IndexPanel:tupian-wenzhang');
+    }
+
+    public function rediandaodu(){
+        /** @var  $contentService \Common\Service\ContentService*/
+        $contentService = D("Content", "Service");
+        $articles = $contentService->getContentByIndexDisplay('tupianwenzhang');
+        $this->assign('articles', $this->getTopN($this->makeArticlesCanDisplay($articles), 'tupianwenzhang'));
+        $this->display('Widgets:IndexPanel:redian-daodu');
+    }
+
+    private function getTopN($articles, $disId){
+        $indexDisplays = C("__YYG_INDEX_DISPLAY");
+        return array_slice($articles, 0, intval($indexDisplays[$disId]));
     }
 
 }

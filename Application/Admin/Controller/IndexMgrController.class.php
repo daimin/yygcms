@@ -8,13 +8,15 @@ class IndexMgrController extends BaseController {
     public function index(){
         $indexDisplays = C("__YYG_INDEX_DISPLAY");
         $indexDisplayList = [];
+        /** @var  $contentService \Common\Service\ContentService*/
+        $contentService = D("Content", "Service");
         foreach($indexDisplays as $dsid => $limitSize){
-            $contentEntitys = D("Content")->field('id, title, category_id')->where(["status" => 1, "indexdisplay" => $dsid])->order("topnum desc, `order`,`createtime` desc")->limit($limitSize)->select();
+            $contentEntitys = $contentService->getContentByIndexDisplay($dsid);
             foreach($contentEntitys as &$contentEntity){
                 $contentEntity['category'] = M("category")->where(['id' => $contentEntity['category_id']])->find();
                 $contentEntity['is_set_main'] = !empty(M('attac_rel')->where(['ismain' => 1, 'rel_id' => $contentEntity['id']])->find());
             }
-            $indexDisplayList[$dsid] = $contentEntitys;
+            $indexDisplayList[$dsid] = ['articles' => $contentEntitys, 'limit_size' => $limitSize];
         }
         $this->assign('indexDisplayList', $indexDisplayList);
         $this->display();
