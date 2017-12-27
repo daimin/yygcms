@@ -2,7 +2,7 @@
 return array(
     'TMPL_DENY_PHP' => false,
     'DEFAULT_MODULE' => 'Site',
-    'LOAD_EXT_CONFIG' => 'db',
+    'LOAD_EXT_CONFIG' => 'db,security',
     'DEFAULT_THEME'  => 'baobaostar',
     'URL_MODEL' => 1, //PATHINFO设置为1，为兼容模式
     'TMPL_TEMPLATE_SUFFIX' => '.php',
@@ -13,7 +13,7 @@ return array(
     'PERM_ACTIONS' => array("SysMgr", "AdminMgr"),   //编辑者禁止访问的Action
     'SHOW_PAGE_TRACE' => false, // 显示页面Trace信息
     'SHOW_RUN_TIME'    => false, // 运行时间显示,
-    
+
     // 权限
     '__YYG_EDITOR__' => 2,
     '__YYG_ADMIN__' => 1,
