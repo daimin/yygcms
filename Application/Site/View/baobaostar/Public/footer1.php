@@ -5,5 +5,7 @@
         <p>Copyright © 2007-2015 qpx.com 起跑线儿童网版权所有</p>
     </div>
 </footer>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1263749502'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1263749502%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
 </html>
