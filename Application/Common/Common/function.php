@@ -1,4 +1,6 @@
 <?php
+use Hashids\Hashids;
+
 function createdir($dir) {
 	if (file_exists ( $dir ) && is_dir ( $dir )) {
 	} else {
@@ -754,3 +756,4 @@ function genThumbs($filepath, $opt, $rootPath, $savePath, $saveName){
 	}
 
 }
+

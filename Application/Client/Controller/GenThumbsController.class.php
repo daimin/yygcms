@@ -31,4 +31,46 @@ class GenThumbsController extends BaseController {
 
     }
 
+    public function delNoUseUploads(){
+        $attacs = M('attac')->select();
+        $conts = M('content')->select();
+        $contDict = [];
+        foreach($conts as $cont){
+            $contDict[$cont['id']] = $cont;
+        }
+
+        foreach($attacs as $attac){
+            $attacRels = M("attac_rel")->where(['att_id' => $attac['id']])->select();
+            if(empty($attacRels)){
+//                echo "Empty rel, can delete attac ".$attac['id'].' path: '.$attac['path']."\n";
+//                $this->delAttac($attac);
+            }else{
+                $canDel = true;
+                foreach($attacRels as $attacRel){
+                    if(isset($contDict[$attacRel['rel_id']])){
+                        $canDel = false;
+                        break;
+                    }
+                }
+                if($canDel){
+                    echo "No Rel, can delete attac ".$attac['id']."\n";
+                    $this->delAttac($attac);
+                }
+            }
+
+        }
+    }
+
+    private function delAttac($attac){
+        $widths = ['100', '200', '600'];
+        $attPath = $attac['path'];
+        $rpos = strrpos($attPath, '/');
+        $attName = substr($attPath, $rpos + 1);
+
+        foreach($widths as $width){
+            @unlink('/webser/www/yygcms/'.substr($attPath, 0, $rpos).'/thumbs/'."thumb_".$width.'_'.$attName);;
+        }
+        @unlink('/webser/www/yygcms/'.$attac['path']);
+    }
+
 }

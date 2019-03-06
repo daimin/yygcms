@@ -17,11 +17,14 @@ class BaseController extends Controller {
 		}
 		$this->flushTokenInvalidTime();
 		$this->assign('loginInfo', $this->getLoginInfo());
+        /** @var  $contentService \Common\Service\ContentService*/
+        $this->contentService = D("Content", "Service");
 	}
 	
     private $_options = False;
     private $_attac_relM = False;
     private $_attacM = False;
+    protected $contentService = null;
     
     
     public function getOptions(){
@@ -158,19 +161,9 @@ class BaseController extends Controller {
 		return $avatarurl.'?t='.time();
 	}
 
-	protected function makeArticlesCanDisplay($articles){
-		$newArticles = [];
-		$hashids = new Hashids();
 
-		foreach($articles as $article){
-			$article['link_url'] = site_url('/article/view/id/'.$hashids->encode($article['id']));
-			$article['main_img'] = $this->getMainImg($article['id']);
-			$newArticles []= $article;
-		}
-		return $newArticles;
-	}
 
-	private function getMainImg($cid)
+	protected function getMainImg($cid)
 	{
 		$attacRel = M("attac_rel")->where(['rel_id' => $cid, 'ismain' => 1])->find();
 		if(empty($attacRel)){
@@ -192,10 +185,23 @@ class BaseController extends Controller {
 		$imgDir = substr($path, 0, strrpos($path, '/'));
 		$thumbsPaths = [];
 		foreach($thumbWidths as $thumbWidth){
-			$thumbsPaths []= sprintf("%s/thumbs/%s%s_%s", $imgDir, $options->thumbPrefix, $thumbWidth, $imgName);
+			$thumbsPaths []= $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].sprintf("%s/thumbs/%s%s_%s", $imgDir, $options->thumbPrefix, $thumbWidth, $imgName);
 		}
 
 		return $thumbsPaths;
 	}
+
+    function makeArticlesCanDisplay($articles){
+        $newArticles = [];
+        $hashids = new Hashids();
+
+        foreach($articles as $article){
+            $article['link_url'] = site_url('/article/view/id/'.$hashids->encode($article['id']));
+            $article['main_img'] = $this->getMainImg($article['id']);
+            $newArticles []= $article;
+        }
+        return $newArticles;
+    }
+
 
 }
