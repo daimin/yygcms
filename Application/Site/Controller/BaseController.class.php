@@ -171,9 +171,7 @@ class BaseController extends Controller {
 		}
 
 		$mainImg = M("attac")->where(['id' => $attacRel['att_id']])->find();
-		if($mainImg){
-			$mainImg['thumbs'] = $this->getThumbImgs($mainImg['path']);
-		}
+        $mainImg['thumb'] = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].sprintf("/api/site/img/thumb/img/%s", base64_encode(urlencode($mainImg['path'])));
 
 		return $mainImg;
 	}
