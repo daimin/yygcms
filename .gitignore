@@ -27,3 +27,7 @@ db.php
 
 /Application/Common/Conf/db.php
 /Application/Common/Conf/security.php
+/golang/pkg/
+/golang/bin/
+/golang/src/yygcmsg/vendor
+/golang/src/yygcmsg/main

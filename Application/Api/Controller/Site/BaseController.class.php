@@ -25,7 +25,41 @@ class BaseController extends \Site\Controller\BaseController {
             $article['admin'] = M("admins")->where('id='.$article['author_id'])->find();;
             $newArticles []= $article;
         }
-        return $newArticles;
+        return $this->unsetNoUseArticleFields($newArticles);
+    }
+
+    private function unsetNoUseArticleFields($articles){
+        foreach($articles as &$article){
+            unset($article['content']);
+            unset($article['status']);
+            unset($article['embed_code']);
+            unset($article['relurl']);
+            unset($article['viewnum']);
+            unset($article['lastviewtime']);
+            unset($article['commentnum']);
+            unset($article['lastcommenttime']);
+            unset($article['order']);
+            unset($article['topnum']);
+            unset($article['indexdisplay']);
+            unset($article['author_id']);
+            unset($article['category_id']);
+            unset($article['editor_id']);
+            unset($article['main_img']['title']);
+            unset($article['main_img']['path']);
+            unset($article['main_img']['createtime']);
+            unset($article['main_img']['description']);
+            unset($article['category']['status']);
+            unset($article['category']['createtime']);
+            unset($article['category']['modifytime']);
+            unset($article['category']['pid']);
+            unset($article['admin']['password']);
+            unset($article['admin']['createtime']);
+            unset($article['admin']['lastlogintime']);
+            unset($article['admin']['status']);
+            unset($article['admin']['role']);
+        }
+
+        return $articles;
     }
 
 }
