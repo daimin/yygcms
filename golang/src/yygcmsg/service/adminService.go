@@ -1,11 +1,5 @@
 package service
 
-import (
-	"github.com/donnie4w/go-logger/logger"
-	"yygcmsg/entity"
-	"yygcmsg/model"
-)
-
 ///**
 //根据用户ID 查询用户信息
 // */
@@ -76,17 +70,3 @@ import (
 //	return result.RowsAffected()
 //}
 
-func GetNewAritcles(pageArg *entity.PageArgs) (*[]entity.Article, error) {
-	contents :=  []model.Content{}
-
-	err := db.Select(&contents, "select * from yyg_content where `status`=1 order by createtime desc limit ?,?", pageArg.Start, pageArg.Pagesize)
-	if err != nil {
-		logger.Error(err)
-	}
-
-	for _, content := range contents:
-
-
-	return &contents, err
-
-}

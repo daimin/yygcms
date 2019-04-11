@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/labstack/echo"
 	"strconv"
+	"yygcmsg/entity"
 )
 
 var DefaultPageSize int = 10
@@ -13,19 +14,12 @@ type BaseController struct {
 	//userme   model.User
 }
 
-type PageArgs struct {
-	Pagesize int
-	Pageno int
-	Start int
-}
-
-
 /*
 组装执行成功返回消息
 可以设置公共参数
  */
 func successResut(resutMap map[string]interface{}) map[string]interface{} {
-	resutMap["state"] = "success"
+	resutMap["retCode"] = "0"
 	return resutMap
 }
 
@@ -34,7 +28,7 @@ func successResut(resutMap map[string]interface{}) map[string]interface{} {
 可以设置公共参数
  */
 func failResut(resutMap map[string]interface{}) map[string]interface{} {
-	resutMap["state"] = "fail"
+	resutMap["retCode"] = "-1"
 	return resutMap
 }
 
@@ -45,7 +39,7 @@ func failResut(resutMap map[string]interface{}) map[string]interface{} {
 //return ['pagesize' => $pagesize, 'pageno' => $pageno, 'start' => $start];
 //}
 
-func getPageArgs(c echo.Context) PageArgs{
+func getPageArgs(c echo.Context) entity.PageArgs{
 	pagesize, err := strconv.Atoi(c.QueryParam("pagesize"))
 	if err != nil{
 		pagesize = DefaultPageSize
@@ -57,5 +51,5 @@ func getPageArgs(c echo.Context) PageArgs{
 
 	start := (pageno - 1) * pagesize
 
-	return PageArgs{Pagesize:pagesize, Pageno:pageno, Start:start}
+	return entity.PageArgs{Pagesize:pagesize, Pageno:pageno, Start:start}
 }

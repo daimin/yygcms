@@ -5,6 +5,7 @@ import (
 	"github.com/donnie4w/go-logger/logger"
 	"github.com/labstack/echo"
 	"net/http"
+	"yygcmsg/entity"
 	"yygcmsg/service"
 )
 
@@ -113,11 +114,14 @@ import (
 
 func News(c echo.Context) error {
 	pageArg := getPageArgs(c)
-	user, err := service.GetNewContents(&pageArg)
+	articles, err := service.GetNewAritcles(&pageArg)
+	resultMap := make(map[string]interface{})
 	if err != nil {
 		logger.Error(err)
-		resultMap["errMsg"] = "account not exist"
+		resultMap["errMsg"] = "article not exist"
 		return c.JSON(http.StatusOK, failResut(resultMap))
 	}
-	return c.JSON(http.StatusOK, "OK")
+
+	resultMap["data"] = articles
+	return c.JSON(http.StatusOK, successResut(resultMap))
 }
