@@ -1,12 +1,10 @@
 package entity
 
 type Article struct {
-	Id              int64
+	Id              int
 	Title           string
 	Content         string
 	Intro           string
-	EmbedCode       string
-	Relurl          string
 	CategoryId       int
 	CategoryName       string
 	Createtime      string
@@ -16,5 +14,6 @@ type Article struct {
 	Commentnum      int
 	Lastcommenttime string
 	AuthorId        int
-	AuthorName        int
+	AuthorName        string
+	MainImg  string
 }

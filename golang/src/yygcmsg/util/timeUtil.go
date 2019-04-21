@@ -1,6 +1,8 @@
 package util
 
-import "time"
+import (
+	"time"
+)
 
 import "strconv"
 
@@ -32,4 +34,10 @@ func FormatTime(date int64) string {
 		return strconv.FormatInt(s, 10) + "年前"
 	}
 	return "很久以前"
+}
+
+
+func StrFmtTime(strTime string) string{
+	p, _ := time.Parse("2006-01-02T15:04:05Z", strTime)
+	return p.Format("2006-01-02 15:04:05")
 }

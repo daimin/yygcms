@@ -1,11 +1,9 @@
 package controllers
 
 import (
-	"fmt"
 	"github.com/donnie4w/go-logger/logger"
 	"github.com/labstack/echo"
 	"net/http"
-	"yygcmsg/entity"
 	"yygcmsg/service"
 )
 

@@ -4,6 +4,7 @@ import (
 	"github.com/donnie4w/go-logger/logger"
 	"yygcmsg/entity"
 	"yygcmsg/model"
+	"yygcmsg/util"
 )
 
 ///**
@@ -77,16 +78,41 @@ import (
 //}
 
 func GetNewAritcles(pageArg *entity.PageArgs) (*[]entity.Article, error) {
-	contents :=  []model.Content{}
-
+	contents :=  make([]model.Content, 0) // 这里和 contents := []model.Content{}是一样的，都是创建size=0的切片
 	err := db.Select(&contents, "select * from yyg_content where `status`=1 order by createtime desc limit ?,?", pageArg.Start, pageArg.Pagesize)
 	if err != nil {
 		logger.Error(err)
 	}
 
-	for _, content := range contents:
+	articles := make([]entity.Article, len(contents))
+	for i, content := range contents{
+		art := entity.Article{}
+		art.Id = content.Id
+		art.Title = content.Title
+		art.Intro = content.Intro
+		art.Content = content.Content
+		art.CategoryId = content.CategoryId
+		category := GetCategoryById(content.CategoryId)
+		if category != nil{
+			art.CategoryName = category.Name
+		}
+
+		art.Createtime = util.StrFmtTime(content.Createtime)
+		art.Modifytime = util.StrFmtTime(content.Modifytime)
+		art.Viewnum = content.Viewnum
+		art.Lastviewtime = util.StrFmtTime(content.Lastviewtime)
+		art.Commentnum = content.Commentnum
+		art.Lastcommenttime = util.StrFmtTime(content.Lastcommenttime)
+		art.AuthorId = content.AuthorId
+		GetAttacByContentId(content.Id)
+		admin := GetAdminById(content.AuthorId)
+		if admin != nil{
+			art.AuthorName = admin.Name
+		}
+		articles[i] = art
+	}
 
 
-	return &contents, err
+	return &articles, err
 
 }

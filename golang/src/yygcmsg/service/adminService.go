@@ -1,5 +1,10 @@
 package service
 
+import (
+	"github.com/donnie4w/go-logger/logger"
+	"yygcmsg/model"
+)
+
 ///**
 //根据用户ID 查询用户信息
 // */
@@ -70,3 +75,11 @@ package service
 //	return result.RowsAffected()
 //}
 
+func GetAdminById(id int) *model.Admins  {
+	admin := model.Admins{}
+	err := db.Get(&admin, "select * from yyg_admins where Id=?", id)
+	if err != nil {
+		logger.Error(err)
+	}
+	return &admin
+}

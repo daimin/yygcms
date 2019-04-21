@@ -16,8 +16,8 @@ CREATE TABLE `yyg_category` (
 type Category struct {
 	Id         int64  `db:"id"`
 	Pid        int64  `db:"pid"`
-	Name       string `db:"password"`
-	Pagecode   string `db:"createtime"`
+	Name       string `db:"name"`
+	Pagecode   string `db:"pagecode"`
 	Status     int8   `db:"status"`
 	Createtime string `db:"createtime"`
 	Modifytime string `db:"modifytime"`

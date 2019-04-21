@@ -1,7 +1,7 @@
 package model
 
 type Content struct {
-	Id              int64  `db:"id"`
+	Id              int  `db:"id"`
 	Title           string `db:"title"`
 	Content         string `db:"content"`
 	Intro           string `db:"intro"`
